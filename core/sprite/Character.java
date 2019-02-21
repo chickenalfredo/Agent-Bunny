@@ -38,11 +38,11 @@ abstract public class Character extends Sprite {
         gravity = g;
     }
 
-    public int getDirection() {
+    public boolean getDirection() {
         return direction;
     }
 
-    public void setDirection(int d) {
+    public void setDirection(boolean d) {
         direction = d;
     }
 
@@ -59,10 +59,10 @@ abstract public class Character extends Sprite {
 
             //True = Right, False = Left
             if (direction) {
-                Coordinate moveTo = new Coordinate(this.x+1, this.y);  
+                Coordinate moveTo = new Coordinate(this.x+1*speed, this.y);  
                 super.setCoordinate(moveTo);   
             } else {
-                Coordinate moveTo = new Coordinate(this.x-1, this.y);
+                Coordinate moveTo = new Coordinate(this.x-1*speed, this.y);
                 super.setCoordinate(moveTo); 
             }
         }
