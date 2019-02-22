@@ -14,6 +14,7 @@ public class Monster extends Character {
      * 
      * @param min the floor of the range of numbers
      * @param max the ceiling of the range of numbers
+     * @return the integer that is randomly generated
      */
     public static int getRandomInt(int min, int max) {
         int num = (int) (Math.random() * ((max - min) + 1)) + min;
