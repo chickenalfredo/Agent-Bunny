@@ -12,7 +12,7 @@ public class Monster extends Character {
      * This generates a random integer between a range of numbers for some
      * randomness in the behavior of the monster.
      * 
-     * @param min The floor of the range of numbers
+     * @param min the floor of the range of numbers
      * @param max the ceiling of the range of numbers
      */
     public static int getRandomInt(int min, int max) {
