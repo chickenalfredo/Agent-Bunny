@@ -1,6 +1,6 @@
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import java.lang.reflect.Field;
+package core.sprite;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A Sprite
@@ -8,8 +8,7 @@ import java.lang.reflect.Field;
  * rectangular and its position (x,y) is located in the top left corner of the rectangle. 
  */
 public class Sprite {
-
-    private static final Logger LOGGER = Logger.getLogger(Sprite.class.getName());
+    
     private Coordinate coordinate = new Coordinate();
     private float width, height;
     private char terminalChar = 'x';
@@ -122,28 +121,7 @@ public class Sprite {
      * @return the string representation of the object
      */
     public String toString() {
-        StringBuilder result = new StringBuilder();
-        String nl = System.getProperty("line.separator");
-
-        result.append(this.getClass().getName());
-        result.append(" Object {");
-        result.append(nl);
-
-        Field[] fields = this.getClass().getDeclaredFields();
-
-        for (Field field : fields) {
-            result.append("    ");
-            try {
-                result.append(field.getName());
-                result.append(" : ");
-                result.append(field.get(this));
-            } catch (IllegalAccessException ex) {
-                LOGGER.log(Level.INFO, ex.toString());
-            }
-            result.append(nl);
-        }
-        result.append("}");
-        return result.toString();
+        return this.getClass().getSimpleName() + " Object " + new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 
 }

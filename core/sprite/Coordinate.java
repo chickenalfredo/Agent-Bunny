@@ -1,10 +1,13 @@
+package core.sprite;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
+
 /**
  * A point in a coordinate space representing a location (x, y) 
  */
 public class Coordinate {
-
-    private double x;
-    private double y;
+ 
+    private double x, y;
 
     /**
      * Constructs and initializes a coordinate point at location (0, 0)
@@ -103,7 +106,7 @@ public class Coordinate {
      * @return      A string representation of this point
      */
     public String toString() {
-        return this.getClass().getName() + ": (" + (int)x + "," + (int)y + ")";
+        return this.getClass().getSimpleName() + " Object " + new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
-    
+
 }
