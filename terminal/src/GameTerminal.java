@@ -1,8 +1,8 @@
 package core;
 
+
 import java.util.Timer;
 import java.util.TimerTask;
-import core.*;
 
 public class GameTerminal{
     
@@ -22,11 +22,13 @@ public class GameTerminal{
 
     private static void terminalTimer(){
         Timer timer = new Timer();
-        TimerTask task = new TimerTask() {   
-            public void run() {   
-            
-            }   
-    };
+        TimerTask task = new TimerTask(){
+            public void run() {
+                if(isUpdated()){
+                    print();
+                }
+            }
+        };
     }
     
 }

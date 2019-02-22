@@ -1,6 +1,9 @@
 package core.map;
 
 import java.util.List;
+import java.util.ArrayList;
+import core.sprite.*;
+import core.map.*;
 
 public class GameMap{
 
@@ -14,7 +17,7 @@ public class GameMap{
 	* @return List<Sprite>
 	*/
 	public List<Sprite> getSprite(){
-		return new List<Sprite>(this.sprite);
+		return new ArrayList<Sprite>(this.sprite);
 	}
 
 	/**
@@ -52,19 +55,19 @@ public class GameMap{
 
 		for(Sprite each : sprite){
 			Coordinate currentCoord = each.getCoordinate();
-			maxRowLength = Math.max(maxRowLength, currentCoord.x());
-			maxColumnHeight = Math.max(maxColumnHeight, currentCoord.y());
+			maxRowLength = Math.max((int)maxRowLength, (int)(currentCoord.getX() % 5));
+			maxColumnHeight = Math.max((int)maxColumnHeight, (int)(currentCoord.getY() % 5));
 		}
 
-		char[][] map = new char[maxColumnHeight][maxRowLength];
+		map = new char[maxColumnHeight][maxRowLength];
 
 		for(Sprite each : sprite){
 			Coordinate currentCoord = each.getCoordinate();
 			
-			int columnY = currentCoord.y() % 5; // assume 5px is one block in terminal version(way more than 5px in finished version)
-			int rowX = currentCoord.x() % 5;
+			int columnY = (int)(currentCoord.getY() % 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
+			int rowX = (int)(currentCoord.getX() % 5);
 
-			mapList[columnY][rowX] = each.getTerminalChar();
+			map[columnY][rowX] = each.getTerminalChar();
 		}
 
 		for(char[] column : map){
