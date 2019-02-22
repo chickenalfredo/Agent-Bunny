@@ -1,21 +1,40 @@
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.lang.reflect.Field;
+
 public class Sprite {
 
-    private Coordinate origin;
-    private double width;
-    private double height;
-    private char terminalChar;
-    private String avatar;
+    private static final Logger LOGGER = Logger.getLogger(Sprite.class.getName());
+    private Coordinate coordinate = new Coordinate();
+    private float width, height;
+    private char terminalChar = 'x';
 
-    public Sprite() {
+    public Sprite() {}
 
+    public Sprite(float x, float y, float width, float height) {
+        coordinate = new Coordinate(x, y);
+        this.width = width;
+        this.height = height;
     }
 
     public Sprite(Sprite sprite) {
-
+        if (coordinate == null)
+            coordinate = new Coordinate();
+        coordinate.setLocation(sprite.getCoordinate());
+        width = sprite.width;
+        height = sprite.height;
     }
 
-    public Rectangle getBoundingRectangle() {
+    public Coordinate getCoordinate() {
+        return new Coordinate(coordinate);
+    }
 
+    public double getX() {
+        return coordinate.getX();
+    }
+
+    public double getY() {
+        return coordinate.getY();
     }
 
     public double getHeight() {
@@ -26,52 +45,42 @@ public class Sprite {
         return width;
     }
 
-    public double getOriginX() {
-        return origin.getX();
-    }
-
-    public double getOriginY() {
-        return origin.getY();
-    }
-
     public char getTerminalChar() {
         return terminalChar;
     }
 
-    public String getAvatar() {
-        return avatar;
-    }
-
-    public void setBoundingRectangle(double x, double y, double width, double height) {
-
-    }
-
-    public void setOrigin(double originX, double originY) {
-
-    }
-
-    public void setPosition(double x, double y) {
-
-    }
-
-    public void setSize() {
-
+    public void setSize(int width, int height) {
+        this.width = width;
+        this.height = height;
     }
 
     public void setTerminalChar(char terminalChar) {
         this.terminalChar = terminalChar;
     }
 
-    public void setAvatar(String avatar) {
-        this.avatar = avatar;
-    }
-
-    public boolean equals(Object obj) {
-        return false;
-    }
-
     public String toString() {
-        return "";
+        StringBuilder result = new StringBuilder();
+        String nl = System.getProperty("line.separator");
+
+        result.append(this.getClass().getName());
+        result.append(" Object {");
+        result.append(nl);
+
+        Field[] fields = this.getClass().getDeclaredFields();
+
+        for (Field field : fields) {
+            result.append("    ");
+            try {
+                result.append(field.getName());
+                result.append(" : ");
+                result.append(field.get(this));
+            } catch (IllegalAccessException ex) {
+                LOGGER.log(Level.INFO, ex.toString());
+            }
+            result.append(nl);
+        }
+        result.append("}");
+        return result.toString();
     }
 
 }
