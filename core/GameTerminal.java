@@ -24,7 +24,9 @@ public class GameTerminal{
         Timer timer = new Timer();
         TimerTask task = new TimerTask() {   
             public void run() {   
-            
+            	if(isUpdated()){
+            		print();
+            	}
             }   
     };
     }
