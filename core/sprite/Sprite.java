@@ -1,3 +1,5 @@
+package core.sprite;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import java.lang.reflect.Field;

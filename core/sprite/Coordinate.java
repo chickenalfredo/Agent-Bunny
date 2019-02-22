@@ -1,3 +1,5 @@
+package core.sprite;
+
 /**
  * A point in a coordinate space representing a location (x, y) 
  */

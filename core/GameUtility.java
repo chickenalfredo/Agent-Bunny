@@ -1,3 +1,5 @@
+package core;
+
 class GameUtility{
 
 
