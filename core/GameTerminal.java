@@ -22,9 +22,7 @@ public class GameTerminal{
 		Timer timer = new Timer();
 
 		TimerTask task = new TimerTask() {   
-			if(){
-
-			}
+			
 		};
 	}
 	
