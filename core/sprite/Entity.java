@@ -9,11 +9,11 @@ abstract public class Entity extends Sprite {
     private String name;
     private double gravity = 1;
     private int health;
-    private boolean enemy;
+    private boolean isEnemy;
     private boolean isColliding = false;
 
     // Is the entity performing an action right now?
-    private boolean action = false;
+    private boolean isInAction = false;
 
     // The direction the entity's facing. false = Left, true = Right
     private boolean direction;
@@ -26,7 +26,7 @@ abstract public class Entity extends Sprite {
      * @param entityName   The name of the entity to set
      * @param entityHealth The health of the entity to set
      * @param entitySpeed  The speed of the entity to set
-     * @param enemyTag     is the entity an enemy? 1 = yes, 0 = no.
+     * @param enemy     is the entity an enemy?
      * 
      * @see Sprite class
      * @param entityX      The x coordinate of the entity to set
@@ -41,7 +41,7 @@ abstract public class Entity extends Sprite {
         name = entityName;
         health = entityHealth;
         speed = entitySpeed;
-        this.enemy = enemy;
+        this.isEnemy = enemy;
     }
 
     /**
@@ -138,28 +138,32 @@ abstract public class Entity extends Sprite {
      * @see Coordinate Class
      */
 
-    public void run() {
-        if (action == false && isColliding == false) {
-            action = true;
+    public void MoveX() {
+        if (isInAction == false && isColliding == false) {
+            isInAction = true;
             // True = Right, False = Left
             if (direction) {
                 setLocation(this.getX() + 2 * this.getWidth() * this.getSpeed(), this.getY());
             } else {
                 setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
             }
-            action = false;
+            isInAction = false;
         }
+    }
+
+    public void runY() {
+        if (act)
     }
 
     /**
      * TO DO
      */
-    public void collisionReaction(Sprite colliding) {
+    public void collisionReisInAction(Sprite colliding) {
         isColliding = true;
         if (colliding.getClass().getSimpleName() == Tile) {
 
         }
-        if (enemy) {
+        if isEnemy) {
 
         } else {
             if (colliding.getClass().getSimpleName() == Water) {
