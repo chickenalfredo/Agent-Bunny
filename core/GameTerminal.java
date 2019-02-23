@@ -26,7 +26,7 @@ public class GameTerminal{
 
     /**
 	* check if the string is updated
-	* @return boolean
+	* @return boolean - is the terminal string updated?
     */
     private static boolean isUpdated(){
         return !(getDisplay().equals(display));
@@ -34,7 +34,7 @@ public class GameTerminal{
 
     /**
     * Get the display string
-	* @return String
+	* @return String - get terminal string to be print on the terminal
     */
     public static String getDisplay(){
         return GameState.getCurrentGameMap().generateMapTerminal();

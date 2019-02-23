@@ -27,7 +27,7 @@ public class GameMap{
 
 	/**
 	* Get all the sprite in this map
-	* @return List<Sprite>
+	* @return List<Sprite> - all sprite in the map
 	*/
 	public List<Sprite> getSprite(){
 		return new ArrayList<Sprite>(this.sprite);
@@ -35,7 +35,7 @@ public class GameMap{
 
 	/**
 	* Set recent check point
-	* @param Sprite
+	* @param Sprite: checkPoint object
 	*/
 	public void setCheckPoint(Sprite checkPoint){
 		this.checkPoint = checkPoint;
@@ -43,7 +43,7 @@ public class GameMap{
 
 	/**
 	* Get recent check point
-	* @return Sprite
+	* @return Sprite: checkPoint object
 	*/
 	public Sprite getCheckPoint(){
 		return this.checkPoint;
@@ -58,7 +58,7 @@ public class GameMap{
 
 	/**
 	* Get the terminal character map for Demo 1
-	* @return String
+	* @return String - terminal string
 	*/
 	public String generateMapTerminal(){
 		String ret = "";
@@ -95,7 +95,7 @@ public class GameMap{
 
 	/**
 	* Add a sprite to the map
-	* @param Sprite
+	* @param Sprite - sprite object to be added
 	*/
 	public void addSprite(Sprite sprite){
 		this.sprite.add(sprite);
@@ -103,7 +103,7 @@ public class GameMap{
 
 	/**
 	* Remove a sprite from the map by object
-	* @param Sprite
+	* @param Sprite - sprite object to be removed
 	*/
 	public void removeSprite(Sprite sprite){
 		this.sprite.remove(sprite);
@@ -111,7 +111,7 @@ public class GameMap{
 
 	/**
 	* remove a sprite from the map by index
-	* @param int
+	* @param int - sprite index to be added
 	*/
 	public void removeSprite(int index){
 		this.sprite.remove(index);
@@ -119,7 +119,7 @@ public class GameMap{
 
 	/**
 	* Get the level name of map
-	* @return String
+	* @return String - level map name
 	*/
 	public String getName(){
 		return this.name;
