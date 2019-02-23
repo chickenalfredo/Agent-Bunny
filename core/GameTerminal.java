@@ -1,8 +1,17 @@
+
 package core;
 
 import java.util.Timer;
 import java.util.TimerTask;
 import core.*;
+
+
+/**
+ * Terminal output for Demo 1
+ * @author Cloudy Yunfan
+ * @since 2019/02/23 11:36
+ */
+
 
 public class GameTerminal{
     

@@ -5,11 +5,24 @@ import java.util.ArrayList;
 import core.sprite.*;
 import core.map.*;
 
+
+
+/**
+ * Storing all the sprites inside a map
+ * @author Cloudy Yunfan
+ * @since 2019/02/23 11:36
+ * @param String name of the level
+ */
+
 public class GameMap{
 
 	private List<Sprite> sprite;
 	private Sprite checkPoint;
 	private String name;
+
+	public GameMap(String name){
+		this.name = name;
+	}
 
 
 	/**
