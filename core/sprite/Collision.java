@@ -36,8 +36,10 @@ public class Collision {
     }
 
     /**
-     * Returns true or false, depending on whether the provided Sprite objects intersect or not.
-     * @return  True or False
+     * Returns true or false, depending on whether the provided Sprite objects
+     * intersect or not.
+     * 
+     * @return True or False
      */
     public boolean intersectAABB(Sprite boundingBoxA, Sprite boundingBoxB) {
         return boundingBoxA.getX() < boundingBoxB.getX() + boundingBoxB.getWidth()
