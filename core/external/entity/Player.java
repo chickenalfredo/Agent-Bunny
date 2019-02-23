@@ -1,15 +1,14 @@
 import java.util.Scanner;
 import java.lang.System;
 
-public class CharacterPlayer {
+public class Player {
 
-    int lives;
-    int gamePoints;
+    int lives = 3;
 
-    CharacterPlayer(String n, int heal, Sprite spri, double spe, int l, int g) {
-        super(n, heal, spri, spe);
-        lives = l;
-        gamePoints = g; 
+        Player(float x, float y, float width, float height, char playerImage, int enemy,String playerName, int playerHealth, double playerSpeed) { 
+        
+            super(playerName, playerHealth,playerSpeed, enemy, x, y, width, height, playerImage);
+            gamePoints = g; 
     }
 
 
@@ -39,23 +38,20 @@ public class CharacterPlayer {
             //moveUp();
         }
         if (in.equalsIgnoreCase("a")) {
-            if (isColliding(this)) {
-                playerCollision(collidable)
-            }
-            playerCollision();
             setDirection(false);
             run();
             //moveLeft();
         }
         if (in.equalsIgnoreCase("s")) {
-            playerCollision();
             //moveDown();
         }
         if (in.equalsIgnoreCase("d")) {
-            playerCollision();
             setDirection(true);
             run();
             //moveRight();
+        }
+        if (in.equalsIgnoreCase("z")) {
+            attack();
         }
         if (in.equalsIgnoreCase("exit")) {
             //Application.exit();
@@ -70,12 +66,8 @@ public class CharacterPlayer {
         receiveInput();
     }
 
-    public void playerCollision() {
-        if (isColliding(this)  ) {
+    attack() {
 
-        } else {
-
-        }
     }
 
 }
