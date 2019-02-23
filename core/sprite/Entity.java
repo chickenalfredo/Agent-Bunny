@@ -1,5 +1,6 @@
 package core.sprite;
 
+
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
@@ -37,7 +38,7 @@ abstract public class Entity extends Sprite {
      */
     public Entity(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
             float entityWidth, float entityHeight, char entityImage) {
-        super(entityX, entityY, entityWidth, entityHeight, entityImage);
+        super(entityImage, entityX, entityY, entityWidth, entityHeight);
         name = entityName;
         health = entityHealth;
         speed = entitySpeed;
@@ -138,7 +139,7 @@ abstract public class Entity extends Sprite {
      * @see Coordinate Class
      */
 
-    public void MoveX() {
+    public void moveX() {
         if (isInAction == false && isColliding == false) {
             isInAction = true;
             // True = Right, False = Left
@@ -151,9 +152,7 @@ abstract public class Entity extends Sprite {
         }
     }
 
-    public void runY() {
-        if (act)
-    }
+    public void runY() {}
 
     /**
      * TO DO
@@ -163,7 +162,7 @@ abstract public class Entity extends Sprite {
         if (colliding.getClass().getSimpleName() == Tile) {
 
         }
-        if isEnemy) {
+        if (isEnemy) {
 
         } else {
             if (colliding.getClass().getSimpleName() == Water) {

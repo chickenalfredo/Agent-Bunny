@@ -1,7 +1,10 @@
+package core.external.entity;
+
+import core.sprite.Entity;
 import java.util.Scanner;
 import java.lang.System;
 
-public class Player {
+public class Player extends Entity {
 
     int lives = 3;
 
@@ -33,12 +36,11 @@ public class Player {
         String in = userInput.nextLine();
 
         if (in.equalsIgnoreCase("w")) {
-            playerCollision();
             //moveUp();
         }
         if (in.equalsIgnoreCase("a")) {
             setDirection(false);
-            run();
+            moveX();
             //moveLeft();
         }
         if (in.equalsIgnoreCase("s")) {
@@ -46,7 +48,7 @@ public class Player {
         }
         if (in.equalsIgnoreCase("d")) {
             setDirection(true);
-            run();
+            moveX();
             //moveRight();
         }
         if (in.equalsIgnoreCase("z")) {
@@ -65,7 +67,7 @@ public class Player {
         receiveInput();
     }
 
-    attack() {
+    public void attack() {
 
     }
 
