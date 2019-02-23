@@ -80,9 +80,12 @@ public class Monster extends Entity {
 
     /**
      * This sets monster's power when attacking.
+     * 
+     * @return the damaged health.
      */
-    public void attack() {
-        Sprite.Player.setHealth(power * -1);
+    public int attack() {
+        int health = Entity.setHealth() - power;
+        return health;
     }
 
     /**
