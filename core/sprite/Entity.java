@@ -9,10 +9,10 @@ abstract public class Entity extends Sprite {
     private String name;
     private double gravity = 1;
     private int health;
-    private int enemyTag;
+    private boolean enemy;
     private boolean isColliding = false;
 
-    //Is the entity performing an action right now?
+    // Is the entity performing an action right now?
     private boolean action = false;
 
     // The direction the entity's facing. false = Left, true = Right
@@ -35,17 +35,20 @@ abstract public class Entity extends Sprite {
      * @param entityHeight The height of the entity to set
      * @param entityImage  The terminal character representation of the entity
      */
-    public Entity(String entityName, int entityHealth, double charSpeed, int enemy, float entityX, float entityY, float entityWidth, float entityHeight, char entityImage) {
+    public Entity(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
+            float entityWidth, float entityHeight, char entityImage) {
         super(entityX, entityY, entityWidth, entityHeight, entityImage);
-        name = charName;
-        health = charHealth;
-        speed = charSpeed;
+        name = entityName;
+        health = entityHealth;
+        speed = entitySpeed;
+        this.enemy = enemy;
     }
 
     /**
      * TODO
      */
-    public void dead() {}
+    public void dead() {
+    }
 
     /**
      * Returns a boolean to tell if the character's health has reached 0
@@ -54,14 +57,6 @@ abstract public class Entity extends Sprite {
      */
     public boolean isDead() {
         return (health <= 0);
-    }
-    /**
-     * Returns if the entity is an enemy
-     * 
-     * @return boolean 
-     */
-    public boolean isEnemy() {
-        return (enemyTag = 1);
     }
 
     /**
@@ -111,9 +106,7 @@ abstract public class Entity extends Sprite {
     /**
      * Sets the value of the entity's direction
      * 
-     * @param entityDirection The direction to set
-     * false = left
-     * true = right
+     * @param entityDirection The direction to set false = left true = right
      */
     public void setDirection(boolean entityDirection) {
         direction = entityDirection;
@@ -137,13 +130,20 @@ abstract public class Entity extends Sprite {
         speed = entitySpeed;
     }
 
+    /**
+     * Checks if the entity is already in an action then moves the character one
+     * body length in the direction specified prior to the call
+     * 
+     * @see Sprite Class
+     * @see Coordinate Class
+     */
+
     public void run() {
         if (action == false && isColliding == false) {
             action = true;
             // True = Right, False = Left
             if (direction) {
-                setLocation(this.getX() + 2 * this.getWidth()
-                * this.getSpeed(), this.getY());
+                setLocation(this.getX() + 2 * this.getWidth() * this.getSpeed(), this.getY());
             } else {
                 setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
             }
@@ -155,19 +155,21 @@ abstract public class Entity extends Sprite {
      * TO DO
      */
     public void collisionReaction(Sprite colliding) {
-        isColliding = true; 
+        isColliding = true;
         if (colliding.getClass().getSimpleName() == Tile) {
-            
-        }  
-        if (isEnemy()) {
 
         }
-        else {
+        if (enemy) {
+
+        } else {
             if (colliding.getClass().getSimpleName() == Water) {
                 this.setHealth(0);
             }
         }
     }
 
-    public void attack() {}
+    }
+
+    public void attack() {
+    }
 }
