@@ -3,9 +3,6 @@ package core.sprite;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-/**
- * 
- */
 public class Tile extends Sprite {
 
     private boolean isCollidable;
@@ -20,7 +17,7 @@ public class Tile extends Sprite {
     public boolean getIsCollidable() {
         return isCollidable;
     }
-
+y
     public void setIsCollidable(boolean isCollidable) {
         this.isCollidable = isCollidable;
     }
@@ -29,11 +26,6 @@ public class Tile extends Sprite {
         
     }
 
-    /*
-     * For testing only Returns a string representation of this object
-     * 
-     * @return the string representation of the object
-     */
     public String toString() {
         return this.getClass().getSimpleName() + " Object "
                 + new GsonBuilder().setPrettyPrinting().create().toJson(this);
