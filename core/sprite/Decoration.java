@@ -17,7 +17,7 @@ public class Decoration extends Sprite {
     public boolean getIsCollidable() {
         return isCollidable;
     }
-y
+
     public void setIsCollidable(boolean isCollidable) {
         this.isCollidable = isCollidable;
     }
