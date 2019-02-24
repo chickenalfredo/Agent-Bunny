@@ -8,7 +8,7 @@ package core.sprite;
 abstract public class Entity extends Sprite {
 
     private String name;
-    private double gravity = 1;
+    private double gravity = 1.0;
     private int health;
     private boolean isEnemy;
     private boolean isColliding = false;
@@ -140,24 +140,24 @@ abstract public class Entity extends Sprite {
      */
 
     public void moveX() {
-        if (isInAction == false && isColliding == false) {
+        if (isInAction == false) {
             isInAction = true;
             // True = Right, False = Left
             if (direction) {
-                setLocation(this.getX() + 2 * this.getWidth() * this.getSpeed(), this.getY());
+                this.getCoordinate().setLocation(this.getX() + 2 * this.getWidth() * this.getSpeed(), this.getY());
             } else {
-                setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
+                this.getCoordinate().setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
             }
             isInAction = false;
         }
     }
 
-    public void runY() {}
+    public void moveY() {}
 
     /**
      * TO DO
      */
-    public void collisionReisInAction(Sprite colliding) {
+    public void collisionReaction(Sprite colliding) {
         isColliding = true;
         if (colliding.getClass().getSimpleName() == Tile) {
 
@@ -171,8 +171,7 @@ abstract public class Entity extends Sprite {
         }
     }
 
-    }
-
-    public void attack() {
-    }
+    public void attack() {}
 }
+
+   
