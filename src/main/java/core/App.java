@@ -7,5 +7,6 @@ public class App {
         System.out.println("Hello World!");
         Sprite s = new Sprite();
         System.out.println(s.toString());
+        
     }
 }
