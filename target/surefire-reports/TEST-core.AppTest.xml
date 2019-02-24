@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="core.AppTest" time="0.061" tests="1" errors="0" skipped="0" failures="0">
+<testsuite xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="https://maven.apache.org/surefire/maven-surefire-plugin/xsd/surefire-test-report.xsd" name="core.AppTest" time="0.051" tests="1" errors="0" skipped="0" failures="0">
   <properties>
     <property name="sun.desktop" value="windows"/>
     <property name="awt.toolkit" value="sun.awt.windows.WToolkit"/>
@@ -19,6 +20,7 @@
     <property name="sun.java.launcher" value="SUN_STANDARD"/>
     <property name="sun.boot.library.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\bin"/>
     <property name="sun.java.command" value="C:\Users\Brett\AppData\Local\Temp\surefire2499457552095355104\surefirebooter5309169939195709987.jar C:\Users\Brett\AppData\Local\Temp\surefire2499457552095355104 2019-02-23T19-19-55_393-jvmRun1 surefire8516482936833428242tmp surefire_05685778548643769639tmp"/>
+    <property name="sun.java.command" value="C:\Users\Brett\AppData\Local\Temp\surefire6724924899463008658\surefirebooter156964765445937447.jar C:\Users\Brett\AppData\Local\Temp\surefire6724924899463008658 2019-02-24T00-37-49_570-jvmRun1 surefire4545840957625962255tmp surefire_03945810420300076458tmp"/>
     <property name="surefire.test.class.path" value="C:\Users\Brett\Desktop\CPSC 219\Project\Animation-Game\target\test-classes;C:\Users\Brett\Desktop\CPSC 219\Project\Animation-Game\target\classes;C:\Users\Brett\.m2\repository\junit\junit\4.11\junit-4.11.jar;C:\Users\Brett\.m2\repository\org\hamcrest\hamcrest-core\1.3\hamcrest-core-1.3.jar;C:\Users\Brett\.m2\repository\com\google\code\gson\gson\2.8.5\gson-2.8.5.jar;"/>
     <property name="sun.cpu.endian" value="little"/>
     <property name="user.home" value="C:\Users\Brett"/>
@@ -32,6 +34,7 @@
     <property name="java.specification.name" value="Java Platform API Specification"/>
     <property name="java.awt.graphicsenv" value="sun.awt.Win32GraphicsEnvironment"/>
     <property name="surefire.real.class.path" value="C:\Users\Brett\AppData\Local\Temp\surefire2499457552095355104\surefirebooter5309169939195709987.jar"/>
+    <property name="surefire.real.class.path" value="C:\Users\Brett\AppData\Local\Temp\surefire6724924899463008658\surefirebooter156964765445937447.jar"/>
     <property name="sun.boot.class.path" value="C:\Program Files\Java\jdk1.8.0_201\jre\lib\resources.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\rt.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\sunrsasign.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jsse.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jce.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\charsets.jar;C:\Program Files\Java\jdk1.8.0_201\jre\lib\jfr.jar;C:\Program Files\Java\jdk1.8.0_201\jre\classes"/>
     <property name="user.script" value=""/>
     <property name="sun.management.compiler" value="HotSpot 64-Bit Tiered Compilers"/>
