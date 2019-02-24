@@ -1,9 +1,6 @@
 package core.external.entity;
 
 import core.sprite.Entity;
-import java.util.Random;
-import java.util.List;
-import java.lang.Thread;
 import java.lang.Math;
 
 /**
@@ -30,25 +27,18 @@ public class Monster extends Entity {
      * @param power        This sets the overall strength of the enemy's attack.
      */
     public Monster(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
-            float entityWidth, float entityHeight, char entityImage, int power) {
+            float entityWidth, float entityHeight, char entityImage) {
         super(entityName, entityHealth, entitySpeed, enemy, entityX, entityY, entityWidth, entityHeight, entityImage);
-        setPower(power);
+        setDirection(Math.random() < 0.5);
     }
 
     /**
      * This is the get method for the variable power.
+     * 
      * @return the value for overall strength of the monster
      */
     public int getPower() {
         return power;
-    }
-
-    /**
-     * This is the set method for the variable power.
-     * @param strength This sets the overall strength of the monster when attacking.
-     */
-    public void setPower(int strength) {
-        this.power = strength;
     }
 
     /**
@@ -65,42 +55,8 @@ public class Monster extends Entity {
     }
 
     /**
-     * This generates a random boolean with true or false for monster's direction.
-     * 
-     * @return the boolean that is randomly generated
-     */
-    public boolean getRandomBoolean() {
-        return Math.random() < 0.5;
-    }
-
-    /**
-     * This is the initial state of the monster.
-     */
-    public void basicCharacteristics() {
-        boolean randomized = getRandomBoolean();
-        setHealth(200);
-        setDirection(randomized);
-    }
-
-    /**
      * This is what the monster will passively do when player is not nearby.
      */
     public void idle() {
-        if (getAction() == false) {
-            setAction(true);
-            while (!isDead()) {
-                int waitTime = getRandomInt(4000, 8000);
-                boolean direction = getRandomBoolean();
-                int randNum = getRandomInt(3, 7);
-                // randomly selects direction
-                setDirection(direction);
-                // moves random amount of length 
-                for (int i = 0; i <= randNum; i++) {
-                    moveX();
-                }
-                setAction(false);
-            }
-
-        }
     }
 }
