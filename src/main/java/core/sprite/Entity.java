@@ -1,6 +1,5 @@
 package core.sprite;
 
-
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
@@ -17,7 +16,7 @@ abstract public class Entity extends Sprite {
     private boolean isInAction = false;
 
     // The direction the entity's facing. false = Left, true = Right
-    private boolean direction;
+    private boolean isFacingRight;
     private double speed;
 
     /**
@@ -27,7 +26,7 @@ abstract public class Entity extends Sprite {
      * @param entityName   The name of the entity to set
      * @param entityHealth The health of the entity to set
      * @param entitySpeed  The speed of the entity to set
-     * @param enemy     is the entity an enemy?
+     * @param enemy        is the entity an enemy?
      * 
      * @see Sprite class
      * @param entityX      The x coordinate of the entity to set
@@ -101,7 +100,7 @@ abstract public class Entity extends Sprite {
      */
 
     public boolean getDirection() {
-        return direction;
+        return isFacingRight;
     }
 
     /**
@@ -110,7 +109,7 @@ abstract public class Entity extends Sprite {
      * @param entityDirection The direction to set false = left true = right
      */
     public void setDirection(boolean entityDirection) {
-        direction = entityDirection;
+        isFacingRight = entityDirection;
     }
 
     /**
@@ -132,19 +131,35 @@ abstract public class Entity extends Sprite {
     }
 
     /**
+     * Returns true if the entity is current in an action
+     * 
+     * @return isInAction
+     */
+    public boolean getAction() {
+        return isInAction;
+    }
+
+    /**
+     * Sets the entity's action state
+     * 
+     * @param action The action state to set
+     */
+    public void setAction(boolean action) {
+        isInAction = action;
+    }
+
+    /**
      * Checks if the entity is already in an action then moves the character one
-     * body length in the direction specified prior to the call
+     * body length in the X direction specified prior to the call (modified my speed)
      * 
      * @see Sprite Class
      * @see Coordinate Class
      */
-
     public void moveX() {
         if (isInAction == false) {
             isInAction = true;
-            // True = Right, False = Left
-            if (direction) {
-                this.getCoordinate().setLocation(this.getX() + 2 * this.getWidth() * this.getSpeed(), this.getY());
+            if (isFacingRight) {
+                this.getCoordinate().setLocation(this.getX() + this.getWidth() * this.getSpeed(), this.getY());
             } else {
                 this.getCoordinate().setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
             }
@@ -152,14 +167,41 @@ abstract public class Entity extends Sprite {
         }
     }
 
-    public void moveY() {}
+    /**
+     * Checks if the entity is already in an action, then moves the character one
+     * body length up (modified by speed)
+     */
+
+    public void moveUp() {
+        if (isInAction == false) {
+            isInAction = true;
+
+            this.getCoordinate().setLocation(this.getX(), this.getY() - this.getHeight() * this.getSpeed());
+
+            isInAction = false;
+        }
+    }
+
+    /**
+     * Checks if the entity is already in an action, then moves the character one
+     * body length down (modified by speed)
+     */
+    public void moveDown() {
+        if (isInAction == false) {
+            isInAction = true;
+
+            this.getCoordinate().setLocation(this.getX(), this.getY() + this.getHeight() * this.getSpeed());
+
+            isInAction = false;
+        }
+    }
 
     /**
      * TO DO
      */
-    public void collisionReaction(Sprite colliding) {}
+    public void collisionReaction(Sprite colliding) {
+    }
 
-    public void attack() {}
+    public void attack() {
+    }
 }
-
-   
