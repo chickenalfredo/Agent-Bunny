@@ -35,10 +35,18 @@ public class Monster extends Entity {
         setPower(power);
     }
 
+    /**
+     * This is the get method for the variable power.
+     * @return the value for overall strength of the monster
+     */
     public int getPower() {
         return power;
     }
 
+    /**
+     * This is the set method for the variable power.
+     * @param strength This sets the overall strength of the monster when attacking.
+     */
     public void setPower(int strength) {
         this.power = strength;
     }
