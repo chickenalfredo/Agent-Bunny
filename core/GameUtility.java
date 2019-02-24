@@ -5,13 +5,15 @@ import java.net.URLClassLoader;
 
 public class GameUtility{
 
-	private String path;
+	private static String path;
 
-	public static GameClass importClass(String path, String className) throws Exception{
-		this.path = path;
+	public static GameClass importClass(String path_, String className) throws Exception{
+		path = path;
 		URL[] classLoaderUrls = new URL[]{
 			new URL(path)
 		};
+		
+		URLClassLoader urlClassLoader = new URLClassLoader(classLoaderUrls);
 		Class<?> classObj = urlClassLoader.loadClass(className);
 		return new GameClass(classObj);
 	}

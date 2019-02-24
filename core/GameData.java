@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import core.map.GameMap;
+import java.lang.reflect.InvocationTargetException;
+//import org.json.JSONArray;
 
 
 /**
@@ -17,41 +19,55 @@ import core.map.GameMap;
 */
 
 public class GameData{
-	
-	private List<GameMap> map;
-	private GameMap reachedGameMap;
-	private Map<String, Map> gameMapRecord;
-	private Map<String, Map> gameCharacterRecord;
+    
+    private static List<GameMap> map;
+    private static GameMap reachedGameMap;
+    private static Map<String, Map> gameMapRecord;
+    private static Map<String, Map> gameCharacterRecord;
 
-	public static void loadGameMap(){
-		String path = "map\\";
-		List<String> fileList = getFileNamesByPath(path);
+    public static void loadGameMap(){
+        String path = "map/";
 
-		for(int t = 0; t < fileList.size(); t ++){
-			String fileName = fileList.get(t);
-			//System.out.println(fileName);
-			GameClass mapClass = GameUtility.importClass(fileName, "Level.java");
-		}
+        String reachedRecord = path + "record.json";
 
-	}
+        List<String> fileList = getFileNamesByPath(path);
+
+        for(int t = 0; t < fileList.size(); t ++) {
+            String fileName = fileList.get(t);
+            //System.out.println(fileName);
+            try{
+                GameClass mapClass = GameUtility.importClass(fileName, "Level.java");
+                GameMap gameMap = (GameMap)(mapClass.newInstance());
+                map.add(gameMap);
+            }catch(Exception e){
+                System.out.println(e);
+            }
+            
+        }
+
+    }
 
 
-	private static ArrayList<String> getFileNamesByPath(String path) throws NullPointerException{
-		ArrayList<String> files = new ArrayList<String>(); 
-		File file = new File(path); 
-		File[] tempList = file.listFiles();
-		System.out.println(tempList);
-		if(tempList.length == 0){
-		    return new ArrayList<String>();
-		}
-		for (int i = 0; i < tempList.length; i++){
-			if (tempList[i].isFile()){
-			 	files.add(tempList[i].toString());
-			}else if(tempList[i].isDirectory()){
-				// Not include sub-folder, no action
-			}
-		} 
-		return files;
-	}
+    private static ArrayList<String> getFileNamesByPath(String path) throws NullPointerException{
+        ArrayList<String> files = new ArrayList<String>(); 
+        File file = new File(path); 
+        File[] tempList = file.listFiles();
+        System.out.println(tempList);
+        if(tempList.length == 0){
+            return new ArrayList<String>();
+        }
+        for (int i = 0; i < tempList.length; i++){
+            if (tempList[i].isFile()){
+                files.add(tempList[i].toString());
+            }else if(tempList[i].isDirectory()){
+                // Not include sub-folder, no action
+            }
+        } 
+        return files;
+    }
+
+    public static GameMap reachedGameMap(){
+        return reachedGameMap;
+    }
 
 }
