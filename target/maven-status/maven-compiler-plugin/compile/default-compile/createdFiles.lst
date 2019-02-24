@@ -5,4 +5,5 @@ core\sprite\Coordinate.class
 core\sprite\Prop.class
 core\sprite\Decoration.class
 core\sprite\Sprite.class
+core\external\entity\Player.class
 core\App.class
