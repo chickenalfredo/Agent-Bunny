@@ -1,6 +1,6 @@
 package core.sprite;
 
-import com.google.gson.GsonBuilder;
+// import com.google.gson.GsonBuilder;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A
@@ -132,8 +132,9 @@ public class Sprite {
      * @return the string representation of the object
      */
     public String toString() {
-        return this.getClass().getSimpleName() + " Object "
-                + new GsonBuilder().setPrettyPrinting().create().toJson(this);
+        // return this.getClass().getSimpleName() + " Object "
+        //         + new GsonBuilder().setPrettyPrinting().create().toJson(this);
+        return "";
     }
 
 }
