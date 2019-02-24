@@ -9,8 +9,8 @@ public class Decoration extends Sprite {
 
     public Decoration() {}
 
-    public Decoration(float x, float y, float width, float height) {
-        super(x, y, width, height);
+    public Decoration(char terminalChar, float x, float y, float width, float height) {
+        super(terminalChar, x, y, width, height);
     }
 
     public boolean getIsCollidable() {

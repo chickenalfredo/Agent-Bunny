@@ -9,8 +9,8 @@ public class Tile extends Sprite {
 
     public Tile() {}
 
-    public Tile(float x, float y, float width, float height) {
-        super(x, y, width, height);
+    public Tile(char terminalChar, float x, float y, float width, float height) {
+        super(terminalChar, x, y, width, height);
     }
 
     public boolean getIsCollidable() {
