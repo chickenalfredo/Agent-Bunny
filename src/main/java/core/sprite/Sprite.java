@@ -31,8 +31,9 @@ public class Sprite {
      * @param width  - The width of the Sprites bounding rectangle
      * @param height - The height of the Sprites bounding rectangle
      */
-    public Sprite(float x, float y, float width, float height) {
+    public Sprite(char terminalChar, float x, float y, float width, float height) {
         coordinate = new Coordinate(x, y);
+        this.terminalChar = terminalChar;
         this.width = width;
         this.height = height;
     }
