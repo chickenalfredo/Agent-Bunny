@@ -1,8 +1,0 @@
-core\sprite\Tile.class
-core\sprite\Collision.class
-core\sprite\Entity.class
-core\sprite\Coordinate.class
-core\sprite\Prop.class
-core\sprite\Sprite.class
-core\external\entity\Player.class
-core\App.class
