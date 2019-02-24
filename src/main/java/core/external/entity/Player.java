@@ -6,7 +6,8 @@ import java.lang.System;
 
 public class Player extends Entity {
 
-    int lives = 3;
+    private int lives = 3;
+    private int attackPower = 1;
 
         Player(float x, float y, float width, float height, char playerImage, boolean enemy,String playerName, int playerHealth, double playerSpeed) { 
         super(playerName, playerHealth,playerSpeed, enemy, x, y, width, height, playerImage);
@@ -36,23 +37,22 @@ public class Player extends Entity {
         String in = userInput.nextLine();
 
         if (in.equalsIgnoreCase("w")) {
-            //moveUp();
+            moveUp();
         }
         if (in.equalsIgnoreCase("a")) {
             setDirection(false);
             moveX();
-            //moveLeft();
         }
         if (in.equalsIgnoreCase("s")) {
-            //moveDown();
+            moveDown();
         }
         if (in.equalsIgnoreCase("d")) {
             setDirection(true);
             moveX();
-            //moveRight();
+            
         }
         if (in.equalsIgnoreCase("z")) {
-            attack();
+            attack(attackPower);
         }
         if (in.equalsIgnoreCase("exit")) {
             //Application.exit();
@@ -67,8 +67,19 @@ public class Player extends Entity {
         receiveInput();
     }
 
-    public void attack() {
-
+    public int getLives() {
+        return lives;
     }
 
+    public void setLives(int oneUp) {
+        lives += oneUp;
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    private void setAttackPower(int attack) {
+        attackPower = attack;
+    }
 }

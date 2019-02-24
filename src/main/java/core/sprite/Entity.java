@@ -45,12 +45,6 @@ abstract public class Entity extends Sprite {
     }
 
     /**
-     * TODO
-     */
-    public void dead() {
-    }
-
-    /**
      * Returns a boolean to tell if the character's health has reached 0
      * 
      * @return boolean
@@ -97,6 +91,8 @@ abstract public class Entity extends Sprite {
 
     /**
      * Returns the value of the entity's direction
+     * 
+     * @return isFacingRight
      */
 
     public boolean getDirection() {
@@ -106,7 +102,7 @@ abstract public class Entity extends Sprite {
     /**
      * Sets the value of the entity's direction
      * 
-     * @param entityDirection The direction to set false = left true = right
+     * @param entityDirection The direction to set
      */
     public void setDirection(boolean entityDirection) {
         isFacingRight = entityDirection;
