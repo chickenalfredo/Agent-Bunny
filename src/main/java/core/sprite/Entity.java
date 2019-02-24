@@ -199,9 +199,7 @@ abstract public class Entity extends Sprite {
     /**
      * TO DO
      */
-    public void collisionReaction(Sprite colliding) {
-    }
+    public void collisionReaction(Sprite colliding) {}
 
-    public void attack() {
-    }
+    public void attack() {}
 }
