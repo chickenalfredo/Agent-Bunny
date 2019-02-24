@@ -1,6 +1,6 @@
 package core.sprite;
 
-// import com.google.gson.GsonBuilder;
+import com.google.gson.GsonBuilder;
 
 /**
  * A point in a coordinate space representing a location (x, y)
@@ -119,9 +119,8 @@ public class Coordinate {
      * @return A string representation of this point
      */
     public String toString() {
-        // return this.getClass().getSimpleName() + " Object "
-        //         + new GsonBuilder().setPrettyPrinting().create().toJson(this);
-        return "";
+        return this.getClass().getSimpleName() + " Object "
+                + new GsonBuilder().setPrettyPrinting().create().toJson(this);
     }
 
 }
