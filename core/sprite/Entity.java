@@ -157,19 +157,7 @@ abstract public class Entity extends Sprite {
     /**
      * TO DO
      */
-    public void collisionReaction(Sprite colliding) {
-        isColliding = true;
-        if (colliding.getClass().getSimpleName() == Tile) {
-
-        }
-        if (isEnemy) {
-
-        } else {
-            if (colliding.getClass().getSimpleName() == Water) {
-                this.setHealth(0);
-            }
-        }
-    }
+    public void collisionReaction(Sprite colliding) {}
 
     public void attack() {}
 }
