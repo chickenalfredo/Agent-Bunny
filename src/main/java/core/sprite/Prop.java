@@ -9,8 +9,8 @@ public class Prop extends Sprite {
 
     public Prop() {}
 
-    public Prop(float x, float y, float width, float height) {
-        super(x, y, width, height);
+    public Prop(char terminalChar, float x, float y, float width, float height) {
+        super(terminalChar, x, y, width, height);
     }
 
     public boolean getIsCollidable() {
