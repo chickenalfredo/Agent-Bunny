@@ -57,9 +57,9 @@ public class Monster extends Entity {
     /**
      * This is what the monster will passively do when player is not nearby.
      */
-    public void idle() {
+    public void guard() {
     }
-    
+
     /**
      * If player collides with monster, the player will lose 1 health.
      */
