@@ -59,4 +59,11 @@ public class Monster extends Entity {
      */
     public void idle() {
     }
+    
+    /**
+     * If player collides with monster, the player will lose 1 health.
+     */
+    public void collisionReaction(Entity spriteCollidingWith) {
+        spriteCollidingWith.setHealth(spriteCollidingWith.getHealth()-1);
+    }
 }
