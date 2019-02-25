@@ -1,5 +1,3 @@
-package core;
-
 
  
 
@@ -25,6 +23,8 @@ public class GameData{
     private static List<GameMap> map;
     private static List<Sprite> character;
     private static GameMap reachedGameMap;
+    private static Map<String, Map> gameMapRecord;
+    private static Map<String, Map> gameCharacterRecord;
 
     public static void loadGameMap(){
         String path = "map/";
@@ -68,58 +68,12 @@ public class GameData{
         return files;
     }
 
-    public static GameMap getReachedGameMap(){
+    public static GameMap reachedGameMap(){
         return reachedGameMap;
-    }
-
-    public static void setReachedGameMap(GameMap map_){
-        reachedGameMap = map_;
     }
 
     public void loadGameMapRecord(){
         // TODO read reached game map here
-        try{
-            FileReader reader = new FileReader("map/record.json");
-            BufferedReader br = new BufferedReader(reader);
-            String res;
-            while(br.readLine() != null){
-                res += br.readLine();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        JsonParser parser = new JsonParser();
-        JsonArray arr = parser.parse(res).getAsJsonArray();
-
-        for(int t = 0; t < arr.size(); t ++){
-            JsonObject obj = (JsonObject)(arr.get(t));
-            String name = obj.get("name").getAsString();
-            int point = obj.get("highestGamePoint").getAsInt();
-            GameMap map_ = getGameMapByName(name);
-            if(map_ != null){
-                map_.setHighestGamePoint(point);
-            }
-        }
-
-        loadReachedGameMap();
-
-    }
-
-    private void loadReachedGameMap(){
-        try{
-            FileReader reader = new FileReader("map/reached.json");
-            BufferedReader br = new BufferedReader(reader);
-            String res;
-            while(br.readLine() != null){
-                res += br.readLine();
-            }
-        }catch(IOException e){
-            e.printStackTrace();
-        }
-
-        reachedGameMap = getGameMapByName(res);
-
     }
     
     public void loadGameCharacterRecord(){
@@ -140,34 +94,7 @@ public class GameData{
         try {
             File file = new File("map/record.json");
 
-            if(!file.exists()){
-                file.createNewFile();
-            }
-
-            FileWriter fw = new FileWriter(file.getAbsoluteFile());
-            BufferedWriter bw = new BufferedWriter(fw);
-            bw.write(res);
-            bw.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        saveReachedGameMap();
-
-    }
-
-    public void saveReachedGameMap(){
-
-        if(res == null){
-            return;
-        }
-
-        String res = reachedGameMap.getName();
-
-        try {
-            File file = new File("map/reached.json");
-
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.createNewFile();
             }
 
@@ -181,7 +108,6 @@ public class GameData{
     }
 
     public void saveGameCharacterRecord(){
-        /**
         JsonArray arr = new JsonArray();
         for(GameMap each : character){
             JsonObject obj = new JsonObject();
@@ -193,9 +119,9 @@ public class GameData{
         String res = arr.toString();
 
         try {
-            File file = new File("sprite/record.json");
+            File file = new File("map/record.json");
 
-            if(!file.exists()){
+            if (!file.exists()) {
                 file.createNewFile();
             }
 
@@ -206,17 +132,19 @@ public class GameData{
         } catch (IOException e) {
             e.printStackTrace();
         }
-        **/
     }
     
     
+    public Map<Character> getMapRecordByName(String name){
+        
+    }
+    
+    public Map<String> getCharacterRecordByName(String name){
+        
+    }
+    
     public GameMap getGameMapByName(String name){
-        for(GameMap each : map){
-            if(each.getName().equals(name)){
-                return each;
-            }
-        }
-        return null;
+        
     }
     
     

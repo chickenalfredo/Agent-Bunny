@@ -1,5 +1,3 @@
-package core;
-
  
 
 import java.net.URL;
@@ -10,9 +8,9 @@ public class GameUtility{
 	private static String path;
 
 	public static GameClass importClass(String path_, String className) throws Exception{
-		path = path_;
+		path = path;
 		URL[] classLoaderUrls = new URL[]{
-			new URL(path);
+			new URL(path)
 		};
 		
 		URLClassLoader urlClassLoader = new URLClassLoader(classLoaderUrls);
