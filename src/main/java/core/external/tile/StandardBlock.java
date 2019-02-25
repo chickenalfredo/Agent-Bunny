@@ -1,11 +1,11 @@
 package main.java.core.external.tile;
 
-import core.sprite;
+import core.sprite.*;
 
 /**
  * Creates a standard collidable wall block that prevents entity's from
  */
-public class StandardBlock extends Tile {
+public class StandardBlock extends TileObject {
 
     /** 
      * Constructor that creates a wall block with a specified coordinate and dimension
