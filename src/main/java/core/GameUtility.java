@@ -12,7 +12,7 @@ public class GameUtility{
 	public static GameClass importClass(String path_, String className) throws Exception{
 		path = path_;
 		URL[] classLoaderUrls = new URL[]{
-			new URL(path);
+			new URL(path)
 		};
 		
 		URLClassLoader urlClassLoader = new URLClassLoader(classLoaderUrls);
