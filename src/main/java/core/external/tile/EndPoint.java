@@ -1,20 +1,31 @@
 package core.external.tile;
 
-import core.sprite.Tile;
+import core.sprite.TileObject;
+import core.sprite.Sprite;
+
 /**
- * This class implements a end point tile that allows to set the end point of each level.
+ * This class implements a isLevelOver point tile that allows to set the
+ * isLevelOver point of each level.
+ * 
  * @author Harry Lee
  */
-public class EndPoint extends Tile{
-    
-    private boolean end = false;
+public class EndPoint extends TileObject {
 
-    /**
-     * The tile checks for whether if the level is ended or not.
-     * @return the state of the level's progress
-     */
-    public boolean levelEnd(){
-        end = true;
-        return end;
+    private boolean isLevelOver = false;
+
+    public EndPoint(boolean isCollidable, char terminalChar, float x, float y, float width, float height) {
+        super(terminalChar, x, y, width, height);
+        setIsCollidable(isCollidable);
     }
+
+    public boolean getIsLevelOver() {
+        return isLevelOver;
+    }
+
+    public void collisionReaction(Sprite spriteCollidedWith) {
+        if (spriteCollidedWith != null && spriteCollidedWith.getClass().getSimpleName().equals("Player")) {
+            isLevelOver = true;
+        } 
+    }
+
 }
