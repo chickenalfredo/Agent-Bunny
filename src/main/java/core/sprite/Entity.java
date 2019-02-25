@@ -10,7 +10,7 @@ abstract public class Entity extends Sprite {
     private double gravity = 1.0;
     private int health;
     private boolean isEnemy;
-    private boolean isColliding = false;
+    private String isColliding;
 
     // Is the entity performing an action right now?
     private boolean isInAction = false;
@@ -43,9 +43,22 @@ abstract public class Entity extends Sprite {
     }
 
     /**
-     * TODO
+     * Gets the name of the entity
+     * 
+     * @return name
      */
-    public void dead() {
+
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of the entity
+     * 
+     * @param nameToSet
+     */
+    public void setName(String nameToSet) {
+        name = nameToSet;
     }
 
     /**
@@ -95,6 +108,8 @@ abstract public class Entity extends Sprite {
 
     /**
      * Returns the value of the entity's direction
+     * 
+     * @return isFacingRight
      */
 
     public boolean getDirection() {
@@ -104,10 +119,28 @@ abstract public class Entity extends Sprite {
     /**
      * Sets the value of the entity's direction
      * 
-     * @param entityDirection The direction to set false = left true = right
+     * @param entityDirection The direction to set
      */
     public void setDirection(boolean entityDirection) {
         isFacingRight = entityDirection;
+    }
+
+    /**
+     * Gets the direction of the entity's collision
+     * 
+     * @return isColliding
+     */
+    public String getCollision() {
+        return isColliding;
+    }
+
+    /**
+     * Gets the direction of the entity's collision
+     * 
+     * @param directionOfCollision
+     */
+    public void setCollision(String directionOfCollision) {
+        isColliding = directionOfCollision;
     }
 
     /**
@@ -146,23 +179,35 @@ abstract public class Entity extends Sprite {
         isInAction = action;
     }
 
+    public boolean isEnemy() {
+        return isEnemy;
+    }
+
     /**
      * Checks if the entity is already in an action then moves the character one
-     * body length in the X direction specified prior to the call (modified my speed)
+     * body length to the left (modified my speed)
      * 
      * @see Sprite Class
      * @see Coordinate Class
      */
-    public void moveX() {
-        if (isInAction == false) {
+    public void moveLeft() {
+        if (isInAction == false && !isColliding.equals("Left")) {
             isInAction = true;
-            if (isFacingRight) {
-                this.getCoordinate().setLocation(this.getX() + this.getWidth() * this.getSpeed(), this.getY());
-            } else {
-                this.getCoordinate().setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
-            }
-            isInAction = false;
+            this.getCoordinate().setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
         }
+        isInAction = false;
+    }
+
+    /**
+     * Checks if the entity is already in an action then moves the character one
+     * body length to the right (modified my speed)
+     */
+    public void moveRight() {
+        if (isInAction == false && !isColliding.equals("Right")) {
+            isInAction = true;
+            this.getCoordinate().setLocation(this.getX() + this.getWidth() * this.getSpeed(), this.getY());
+        }
+        isInAction = false;
     }
 
     /**
@@ -171,13 +216,13 @@ abstract public class Entity extends Sprite {
      */
 
     public void moveUp() {
-        if (isInAction == false) {
+        if (isInAction == false && !isColliding.equals("Up")) {
             isInAction = true;
 
             this.getCoordinate().setLocation(this.getX(), this.getY() - this.getHeight() * this.getSpeed());
 
-            isInAction = false;
         }
+        isInAction = false;
     }
 
     /**
@@ -185,19 +230,20 @@ abstract public class Entity extends Sprite {
      * body length down (modified by speed)
      */
     public void moveDown() {
-        if (isInAction == false) {
+        if (isInAction == false && !isColliding.equals("Down")) {
             isInAction = true;
 
             this.getCoordinate().setLocation(this.getX(), this.getY() + this.getHeight() * this.getSpeed());
 
-            isInAction = false;
         }
+        isInAction = false;
     }
 
     /**
-     * TO DO
+     * TODO
+     * 
+     * @param attackDamage
      */
-    public void collisionReaction(Sprite colliding) {}
-
-    public void attack() {}
+    public void attack(int attackDamage) {
+    }
 }
