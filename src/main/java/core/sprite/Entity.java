@@ -45,6 +45,25 @@ abstract public class Entity extends Sprite {
     }
 
     /**
+     * Gets the name of the entity
+     * 
+     * @return name
+     */
+
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * Sets the name of the entity
+     * 
+     * @param nameToSet
+     */
+    public void setName(String nameToSet) {
+        name = nameToSet;
+    }
+
+    /**
      * Returns a boolean to tell if the character's health has reached 0
      * 
      * @return boolean
@@ -160,6 +179,10 @@ abstract public class Entity extends Sprite {
      */
     public void setAction(boolean action) {
         isInAction = action;
+    }
+
+    public boolean isEnemy() {
+        return isEnemy;
     }
 
     /**
