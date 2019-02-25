@@ -34,6 +34,7 @@ public class Player extends Entity {
             moveUp();
 =======
             // moveUp();
+>>>>>>> develop
         }
         if (in.equalsIgnoreCase("a")) {
             setDirection(false);
@@ -47,6 +48,7 @@ public class Player extends Entity {
         }
         if (in.equalsIgnoreCase("s")) {
             // moveDown();
+>>>>>>> develop
         }
         if (in.equalsIgnoreCase("d")) {
             setDirection(true);
@@ -55,6 +57,7 @@ public class Player extends Entity {
             
 =======
             // moveRight();
+>>>>>>> develop
         }
         if (in.equalsIgnoreCase("z")) {
             attack(attackPower);
