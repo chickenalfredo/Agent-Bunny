@@ -37,8 +37,8 @@ public class GameTerminal{
 	* @return String - get terminal string to be print on the terminal
     */
     public static String getDisplay(){
-        //return GameState.getCurrentGameMap().generateMapTerminal();
-        return "";
+        return GameState.getCurrentGameMap().generateMapTerminal();
+        //return "";
     }
 
     /**

@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import core.map.GameMap;
 import java.lang.reflect.InvocationTargetException;
-//import org.json.JSONArray;
+import com.google.code.gson;
 
 
 /**
@@ -44,12 +44,13 @@ public class GameData{
             }
             
         }
+        
 
     }
 
 
     private static ArrayList<String> getFileNamesByPath(String path) throws NullPointerException{
-        ArrayList<String> files = new ArrayList<String>(); 
+        ArrayList<String> files = new ArrayList<String>();
         File file = new File(path); 
         File[] tempList = file.listFiles();
         System.out.println(tempList);
@@ -69,5 +70,28 @@ public class GameData{
     public static GameMap reachedGameMap(){
         return reachedGameMap;
     }
+
+    public void loadGameMapRecord(){
+        // TODO read reached game map here
+    }
+    
+    public void loadGameCharacterRecord(){
+        
+    }
+    
+    
+    public Map<Character> getMapRecordByName(String name){
+        
+    }
+    
+    public Map<String> getCharacterRecordByName(String name){
+        
+    }
+    
+    public GameMap getGameMapByName(String name){
+        
+    }
+    
+    
 
 }
