@@ -27,9 +27,5 @@ public class GameUtility{
 
 	}
 
-	public static void importSpriteClass(){
-
-		
-	}
 
 }
