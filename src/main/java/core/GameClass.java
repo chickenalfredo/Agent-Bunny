@@ -2,8 +2,6 @@ package core;
 
  
 
-
-
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -27,7 +25,7 @@ public class GameClass<T>{
     }
 
     public Object invokeMethod(String method) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException{
-        Method methodObj = this.classObj.getMethod("sayHello");
+        Method methodObj = this.classObj.getMethod(method);
         return methodObj.invoke(method);
     }
 
