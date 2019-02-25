@@ -1,7 +1,6 @@
 package main.java.core.external.tile;
 
-import core.sprite.Sprite;
-import core.sprite.Entity;
+import core.sprite;
 
 /**
  * Creates a standard collidable wall block that prevents entity's from
