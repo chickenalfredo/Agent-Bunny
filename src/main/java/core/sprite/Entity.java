@@ -14,8 +14,6 @@ abstract public class Entity extends Sprite {
 
     // Is the entity performing an action right now?
     private boolean isInAction = false;
-
-    // The direction the entity's facing. false = Left, true = Right
     private boolean isFacingRight;
     private double speed;
 
