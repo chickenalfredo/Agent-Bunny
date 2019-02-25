@@ -1,12 +1,12 @@
 package core.sprite;
 
-public class Tile extends Sprite {
+public class TileObject extends Sprite {
 
     private boolean isCollidable;
 
-    public Tile() {}
+    public TileObject() {}
 
-    public Tile(char terminalChar, float x, float y, float width, float height) {
+    public TileObject(char terminalChar, float x, float y, float width, float height) {
         super(terminalChar, x, y, width, height);
     }
 

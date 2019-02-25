@@ -1,6 +1,6 @@
 package core.external.tile;
 
-import core.sprite.Tile;
+import core.sprite.TileObject;
 import core.sprite.Sprite;
 
 /**
@@ -9,7 +9,7 @@ import core.sprite.Sprite;
  * 
  * @author Harry Lee
  */
-public class EndPoint extends Tile {
+public class EndPoint extends TileObject {
 
     private boolean isLevelOver = false;
 
