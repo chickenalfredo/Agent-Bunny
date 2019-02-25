@@ -1,12 +1,13 @@
 package core;
 
- 
-
-import core.sprite.Sprite;
+import core.external.entity.*;
+import core.external.tile.*;
 
 public class App {
     public static void main(String[] args) {
-        Sprite s = new Sprite();
-        System.out.println(s.toString());
+        Monster m = new Monster("m1", 200, 1, true, 1, 1, 1, 1, 'e');
+        Player p = new Player(1, 1, 1, 1, 'p', false, "p1", 200, 1);
+        EndPoint e = new EndPoint(true, 'b', 1, 1, 1, 1);
+
     }
 }
