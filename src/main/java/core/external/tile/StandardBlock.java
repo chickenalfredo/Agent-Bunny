@@ -1,4 +1,4 @@
-package main.java.core.external.tile;
+package core.external.tile;
 
 import core.sprite.*;
 
