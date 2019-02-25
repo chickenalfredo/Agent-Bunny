@@ -24,8 +24,7 @@ public class StandardBlock extends TileObject {
     /** 
      * Collision Reaction with Entity's that prevents movement into it
     */
-    public void coolisionReaction(Sprite spriteCollideWith) {
-        if(spriteCollideWith.getClass().getSimpleName() == Entity)
+    public void coolisionReaction(Entity spriteCollideWith) {
             if(spriteCollideWith.getCoordinate().getX() == this.getCoordinate().getX()+1) {
                 spriteCollideWith.setCollision("Left");
             } else if(spriteCollideWith.getCoordinate().getX() == this.getCoordinate().getX()-1) {
