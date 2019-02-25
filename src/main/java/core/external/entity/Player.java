@@ -9,7 +9,7 @@ public class Player extends Entity {
     private int lives = 3;
     private int attackPower = 1;
 
-    Player(float x, float y, float width, float height, char playerImage, boolean enemy, String playerName,
+    public Player(float x, float y, float width, float height, char playerImage, boolean enemy, String playerName,
             int playerHealth, double playerSpeed) {
         super(playerName, playerHealth, playerSpeed, enemy, x, y, width, height, playerImage);
 
