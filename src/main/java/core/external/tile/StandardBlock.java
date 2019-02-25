@@ -1,6 +1,6 @@
 package main.java.core.external.tile;
 
-import core.sprite;
+import main.java.core.sprite;
 
 /**
  * Creates a standard collidable wall block that prevents entity's from
@@ -16,7 +16,7 @@ public class StandardBlock extends Tile {
      * @param width         The width of the block
      * @param height        The height of the block
     */
-    public WhiteBlock(char terminalChar, float x, float y, float width, float height) {
+    public StandardBlock(char terminalChar, float x, float y, float width, float height) {
         super(terminalChar, x, y, width, height);
         setIsCollidable(true);
     }
@@ -24,7 +24,7 @@ public class StandardBlock extends Tile {
     /** 
      * Collision Reaction with Entity's that prevents movement into it
     */
-    public coolisionReaction(Sprite spriteCollideWith) {
+    public void coolisionReaction(Sprite spriteCollideWith) {
         if(spriteCollideWith.getClass().getSimpleName() == Entity)
             if(spriteCollideWith.getCoordinate().getX() == this.getCoordinate().getX()+1) {
                 spriteCollideWith.setCollision("Left");
