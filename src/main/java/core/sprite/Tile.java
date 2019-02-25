@@ -5,7 +5,6 @@ import com.google.gson.GsonBuilder;
 public class Tile extends Sprite {
 
     private boolean isCollidable;
-    private Collision collisionDetection = new Collision();
 
     public Tile() {}
 
@@ -21,9 +20,9 @@ public class Tile extends Sprite {
         this.isCollidable = isCollidable;
     }
 
-    public void collisionReaction(Sprite spriteCollidedWith) {
-        
-    }
+    // public void collisionReaction(Sprite spriteCollidedWith) {
+
+    // }
 
     public String toString() {
         return this.getClass().getSimpleName() + " Object "
