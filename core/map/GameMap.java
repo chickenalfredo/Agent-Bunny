@@ -19,6 +19,7 @@ public class GameMap{
 	private List<Sprite> sprite;
 	private Sprite checkPoint;
 	private String name;
+	private int highestGamePoint;
 
 	public GameMap(String name){
 		this.name = name;
@@ -123,6 +124,14 @@ public class GameMap{
 	*/
 	public String getName(){
 		return this.name;
+	}
+
+	/**
+	* Get the highest game point
+	* @return int - game point
+	*/
+	public int getHighestGamePoint(){
+		return this.highestGamePoint;
 	}
 
 	

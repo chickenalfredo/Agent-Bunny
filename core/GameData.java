@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import core.map.GameMap;
 import java.lang.reflect.InvocationTargetException;
-import com.google.code.gson;
+import com.google.code.gson.*;
 
 
 /**
@@ -21,6 +21,7 @@ import com.google.code.gson;
 public class GameData{
     
     private static List<GameMap> map;
+    private static List<Sprite> character;
     private static GameMap reachedGameMap;
     private static Map<String, Map> gameMapRecord;
     private static Map<String, Map> gameCharacterRecord;
@@ -77,6 +78,60 @@ public class GameData{
     
     public void loadGameCharacterRecord(){
         
+    }
+
+    public void saveGameMapRecord(){
+        JsonArray arr = new JsonArray();
+        for(GameMap each : map){
+            JsonObject obj = new JsonObject();
+            obj.addProperty("name", each.getName());
+            obj.addProperty("highestGamePoint", each.getHighestGamePoint());
+
+            arr.add(obj);
+        }
+        String res = arr.toString();
+
+        try {
+            File file = new File("map/record.json");
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(res);
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void saveGameCharacterRecord(){
+        JsonArray arr = new JsonArray();
+        for(GameMap each : character){
+            JsonObject obj = new JsonObject();
+            obj.addProperty("name", each.getName());
+            obj.addProperty("highestGamePoint", each.getHighestGamePoint());
+
+            arr.add(obj);
+        }
+        String res = arr.toString();
+
+        try {
+            File file = new File("map/record.json");
+
+            if (!file.exists()) {
+                file.createNewFile();
+            }
+
+            FileWriter fw = new FileWriter(file.getAbsoluteFile());
+            BufferedWriter bw = new BufferedWriter(fw);
+            bw.write(res);
+            bw.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
     
     
