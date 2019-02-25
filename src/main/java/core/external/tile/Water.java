@@ -1,8 +1,6 @@
 package core.external.tile;
 
-import core.sprite.Tile;
-import core.sprite.Sprite;
-import core.sprite.Entity;
+import core.sprite.*;
 
 /**
  * This class implements a isLevelOver point tile that allows to set the
@@ -10,7 +8,7 @@ import core.sprite.Entity;
  * 
  * @author Harry Lee
  */
-public class Water extends Tile {
+public class Water extends TileObject {
 
     public Water(boolean isCollidable, char terminalChar, float x, float y, float width, float height) {
         super(terminalChar, x, y, width, height);
