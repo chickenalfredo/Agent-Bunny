@@ -11,29 +11,27 @@ import java.lang.reflect.InvocationTargetException;
 
 public class GameClass<T>{
 
-    Class<T> classObj;
-    Constructor<T> constructorObj;
+    private Class<T> classObj;
+    private Constructor<T> constructorObj;
     
     public GameClass(Class<T> classObj){
         this.classObj = classObj;
     }
-    
-    /**
-     * @link https://www.sczyh30.com/posts/Java/java-reflection-1/
-     */
-    public Object getConstructor() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+
+    public Object getConstructor() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException{
         this.constructorObj = this.classObj.getConstructor();
         Object instanceConstructor = this.constructorObj.newInstance();
         return instanceConstructor;
     }
-    
-    /**
-     * @link https://www.sczyh30.com/posts/Java/java-reflection-1/
-     */
-    public Object invokeMethod(String method) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException {
+
+    public Object invokeMethod(String method) throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException{
         Method methodObj = this.classObj.getMethod("sayHello");
         return methodObj.invoke(method);
     }
-    
+
+    public Object newInstance() throws IllegalAccessException, InstantiationException, NoSuchMethodException, InvocationTargetException{
+    	return classObj.newInstance();
+    }
+
 
 }

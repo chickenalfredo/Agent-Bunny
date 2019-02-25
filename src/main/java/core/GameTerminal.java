@@ -38,6 +38,7 @@ public class GameTerminal{
     */
     public static String getDisplay(){
         return GameState.getCurrentGameMap().generateMapTerminal();
+        //return "";
     }
 
     /**

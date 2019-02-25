@@ -94,7 +94,7 @@ public class GameData{
         try {
             File file = new File("map/record.json");
 
-            if (!file.exists()) {
+            if(!file.exists()){
                 file.createNewFile();
             }
 
@@ -108,6 +108,7 @@ public class GameData{
     }
 
     public void saveGameCharacterRecord(){
+        /**
         JsonArray arr = new JsonArray();
         for(GameMap each : character){
             JsonObject obj = new JsonObject();
@@ -119,9 +120,9 @@ public class GameData{
         String res = arr.toString();
 
         try {
-            File file = new File("map/record.json");
+            File file = new File("sprite/record.json");
 
-            if (!file.exists()) {
+            if(!file.exists()){
                 file.createNewFile();
             }
 
@@ -132,6 +133,7 @@ public class GameData{
         } catch (IOException e) {
             e.printStackTrace();
         }
+        **/
     }
     
     
