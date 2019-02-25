@@ -43,6 +43,14 @@ abstract public class Entity extends Sprite {
     }
 
     /**
+     * Returns a boolean to tell if the character's health has reached 0
+     * 
+     * @return boolean
+     */
+    public boolean isDead() {
+        return (health <= 0);
+    }
+    /**
      * Gets the name of the entity
      * 
      * @return name
@@ -59,15 +67,6 @@ abstract public class Entity extends Sprite {
      */
     public void setName(String nameToSet) {
         name = nameToSet;
-    }
-
-    /**
-     * Returns a boolean to tell if the character's health has reached 0
-     * 
-     * @return boolean
-     */
-    public boolean isDead() {
-        return (health <= 0);
     }
 
     /**
