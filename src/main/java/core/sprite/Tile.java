@@ -1,7 +1,5 @@
 package core.sprite;
 
-import com.google.gson.GsonBuilder;
-
 public class Tile extends Sprite {
 
     private boolean isCollidable;
@@ -19,14 +17,4 @@ public class Tile extends Sprite {
     public void setIsCollidable(boolean isCollidable) {
         this.isCollidable = isCollidable;
     }
-
-    // public void collisionReaction(Sprite spriteCollidedWith) {
-
-    // }
-
-    public String toString() {
-        return this.getClass().getSimpleName() + " Object "
-                + new GsonBuilder().setPrettyPrinting().create().toJson(this);
-    }
-
 }
