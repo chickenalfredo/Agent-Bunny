@@ -9,27 +9,20 @@ public class Player extends Entity {
     private int lives = 3;
     private int attackPower = 1;
 
-        Player(float x, float y, float width, float height, char playerImage, boolean enemy,String playerName, int playerHealth, double playerSpeed) { 
-        super(playerName, playerHealth,playerSpeed, enemy, x, y, width, height, playerImage);
- 
-    }
+    Player(float x, float y, float width, float height, char playerImage, boolean enemy, String playerName,
+            int playerHealth, double playerSpeed) {
+        super(playerName, playerHealth, playerSpeed, enemy, x, y, width, height, playerImage);
 
+    }
 
     public static void controlList() {
 
-        System.out.println(
-            "\n----------------------------\n"
-          + "w: move up\n"
-          + "a: move left\n"
-          + "s: move down\n"
-          + "d: move right\n\n"
-          + "exit: close the game\n"
-          + "restart: return gamestate to startup position\n"
-          + "cp: return to last checkpoint"
-          + "\n----------------------------"
-            );  
+        System.out.println("\n----------------------------\n" + "w: move up\n" + "a: move left\n" + "s: move down\n"
+                + "d: move right\n\n" + "exit: close the game\n" + "restart: return gamestate to startup position\n"
+                + "cp: return to last checkpoint" + "\n----------------------------");
 
     }
+
     public void receiveInput() {
         controlList();
         Scanner userInput = new Scanner(System.in);
@@ -49,20 +42,20 @@ public class Player extends Entity {
         if (in.equalsIgnoreCase("d")) {
             setDirection(true);
             moveRight();
-            
+
         }
         if (in.equalsIgnoreCase("z")) {
             attack(attackPower);
         }
         if (in.equalsIgnoreCase("exit")) {
-            //Application.exit();
+            // Application.exit();
             return;
         }
         if (in.equalsIgnoreCase("restart")) {
-            //Map(Map startup);
+            // Map(Map startup);
         }
         if (in.equalsIgnoreCase("cp")) {
-            //Map(Map lastCP);
+            // Map(Map lastCP);
         }
         receiveInput();
     }
