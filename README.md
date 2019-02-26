@@ -1,6 +1,6 @@
 # Animation-Game
 
-[![Build Status](https://travis-ci.org/chickenalfredo/Animation-Game.svg?branch=develop)](https://travis-ci.org/chickenalfredo/Animation-Game) [![codecov](https://codecov.io/gh/chickenalfredo/Animation-Game/branch/develop/graph/badge.svg)](https://codecov.io/gh/chickenalfredo/Animation-Game) <a href="https://codeclimate.com/github/chickenalfredo/Animation-Game/maintainability"><img src="https://api.codeclimate.com/v1/badges/aad711836e705103f279/maintainability" /></a> <a href="https://codeclimate.com/github/chickenalfredo/Animation-Game/test_coverage"><img src="https://api.codeclimate.com/v1/badges/aad711836e705103f279/test_coverage" /></a>
+[![Build Status](https://travis-ci.org/chickenalfredo/Animation-Game.svg?branch=develop)](https://travis-ci.org/chickenalfredo/Animation-Game) [![codecov](https://codecov.io/gh/chickenalfredo/Animation-Game/branch/develop/graph/badge.svg)](https://codecov.io/gh/chickenalfredo/Animation-Game) <a href="https://codeclimate.com/github/chickenalfredo/Animation-Game/maintainability"><img src="https://api.codeclimate.com/v1/badges/aad711836e705103f279/maintainability" /></a> 
 
 Animation-Game is a 2D-platformer style game. The player starts off on a 2D-level map where they must venture to the end of the map, much like the classic Mario platformer games. As the player makes their way to the end of the map, they must battle various enemies and overcome obstacles before coming to the end of the map. The player must also battle a boss before being able to continue and move onto the next map. 
 
