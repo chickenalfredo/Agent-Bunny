@@ -31,6 +31,17 @@
       <version>2.8.5</version>
       <scope>compile</scope>
     </dependency>
+    <dependency>
+      <groupId>com.openpojo</groupId>
+      <artifactId>openpojo</artifactId>
+      <version>0.8.12</version>
+    </dependency>
+    <dependency>
+      <groupId>com.jparams</groupId>
+      <artifactId>to-string-verifier</artifactId>
+      <version>1.4.5</version>
+      <scope>test</scope>
+    </dependency>
   </dependencies>
 
   <build>
