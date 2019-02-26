@@ -20,19 +20,4 @@ public class StandardBlock extends TileObject {
         super(terminalChar, x, y, width, height);
         setIsCollidable(true);
     }
-
-    /** 
-     * Collision Reaction with Entity's that prevents movement into it
-    */
-    public void collisionReaction(Entity spriteCollideWith) {
-            if(spriteCollideWith.getCoordinate().getX() == this.getCoordinate().getX()+1) {
-                spriteCollideWith.setCollision("Left");
-            } else if(spriteCollideWith.getCoordinate().getX() == this.getCoordinate().getX()-1) {
-                spriteCollideWith.setCollision("Right");
-            } else if(spriteCollideWith.getCoordinate().getY() == this.getCoordinate().getY()+1) {
-                spriteCollideWith.setCollision("Up");
-            } else if(spriteCollideWith.getCoordinate().getY() == this.getCoordinate().getY()-1) {
-                spriteCollideWith.setCollision("Down");
-            }
-    }
 }

@@ -3,6 +3,8 @@ package core.sprite;
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
+ * 
+ * @author Daniel Contreras
  */
 abstract public class Entity extends Sprite {
 
@@ -10,11 +12,6 @@ abstract public class Entity extends Sprite {
     private double gravity = 1.0;
     private int health;
     private boolean isEnemy;
-    private String isColliding;
-
-    // Is the entity performing an action right now?
-    private boolean isInAction = false;
-    private boolean isFacingRight;
     private double speed;
 
     /**
@@ -50,6 +47,7 @@ abstract public class Entity extends Sprite {
     public boolean isDead() {
         return (health <= 0);
     }
+
     /**
      * Gets the name of the entity
      * 
@@ -106,43 +104,6 @@ abstract public class Entity extends Sprite {
     }
 
     /**
-     * Returns the value of the entity's direction
-     * 
-     * @return isFacingRight
-     */
-
-    public boolean getDirection() {
-        return isFacingRight;
-    }
-
-    /**
-     * Sets the value of the entity's direction
-     * 
-     * @param entityDirection The direction to set
-     */
-    public void setDirection(boolean entityDirection) {
-        isFacingRight = entityDirection;
-    }
-
-    /**
-     * Gets the direction of the entity's collision
-     * 
-     * @return isColliding
-     */
-    public String getCollision() {
-        return isColliding;
-    }
-
-    /**
-     * Gets the direction of the entity's collision
-     * 
-     * @param directionOfCollision
-     */
-    public void setCollision(String directionOfCollision) {
-        isColliding = directionOfCollision;
-    }
-
-    /**
      * Returns the value of the entity's speed
      * 
      * @return speed
@@ -160,82 +121,31 @@ abstract public class Entity extends Sprite {
         speed = entitySpeed;
     }
 
-    /**
-     * Returns true if the entity is current in an action
-     * 
-     * @return isInAction
-     */
-    public boolean getAction() {
-        return isInAction;
-    }
-
-    /**
-     * Sets the entity's action state
-     * 
-     * @param action The action state to set
-     */
-    public void setAction(boolean action) {
-        isInAction = action;
-    }
-
-    public boolean isEnemy() {
+    public boolean getIsEnemy() {
         return isEnemy;
     }
 
-    /**
-     * Checks if the entity is already in an action then moves the character one
-     * body length to the left (modified my speed)
-     * 
-     * @see Sprite Class
-     * @see Coordinate Class
-     */
-    public void moveLeft() {
-        if (isInAction == false && !isColliding.equals("Left")) {
-            isInAction = true;
-            this.getCoordinate().setLocation(this.getX() - this.getWidth() * this.getSpeed(), this.getY());
+    public void move(String key) {
+        switch (key) {
+        case "w":
+            this.setCoordinate(this.getX(), this.getY() - this.getHeight() * this.getSpeed());
+            break;
+        case "a":
+            this.setCoordinate(this.getX() - this.getWidth(), this.getY());
+            break;
+        case "s":
+            this.setCoordinate(this.getX(), this.getY() + this.getHeight() * this.getSpeed());
+            break;
+        case "d":
+            this.setCoordinate(this.getX() + this.getWidth(), this.getY());
+            break;
+        case "z":
+            System.out.println("no attack yet");
+            break;
+        default:
+            System.out.println("Not a valid movement");
+            break;
         }
-        isInAction = false;
-    }
-
-    /**
-     * Checks if the entity is already in an action then moves the character one
-     * body length to the right (modified my speed)
-     */
-    public void moveRight() {
-        if (isInAction == false && !isColliding.equals("Right")) {
-            isInAction = true;
-            this.getCoordinate().setLocation(this.getX() + this.getWidth() * this.getSpeed(), this.getY());
-        }
-        isInAction = false;
-    }
-
-    /**
-     * Checks if the entity is already in an action, then moves the character one
-     * body length up (modified by speed)
-     */
-
-    public void moveUp() {
-        if (isInAction == false && !isColliding.equals("Up")) {
-            isInAction = true;
-
-            this.getCoordinate().setLocation(this.getX(), this.getY() - this.getHeight() * this.getSpeed());
-
-        }
-        isInAction = false;
-    }
-
-    /**
-     * Checks if the entity is already in an action, then moves the character one
-     * body length down (modified by speed)
-     */
-    public void moveDown() {
-        if (isInAction == false && !isColliding.equals("Down")) {
-            isInAction = true;
-
-            this.getCoordinate().setLocation(this.getX(), this.getY() + this.getHeight() * this.getSpeed());
-
-        }
-        isInAction = false;
     }
 
     /**
@@ -243,6 +153,6 @@ abstract public class Entity extends Sprite {
      * 
      * @param attackDamage
      */
-    public void attack(int attackDamage) {
-    }
+    public void attack(int attackDamage) {}
+
 }
