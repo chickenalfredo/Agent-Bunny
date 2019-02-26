@@ -110,7 +110,7 @@ public class GameTerminal{
         str += "********************************\n";
         str += "********************************\n";
         System.out.println(str);
-        level1 = new Chapter1Level1;
+        level1 = new Chapter1Level1();
 
     }
 

@@ -7,7 +7,7 @@ import core.map.*;
 
 
 
-public Chapter1Level1 extends GameMap{
+public class Chapter1Level1 extends GameMap{
 	
 	public Chapter1Level1(){
 
