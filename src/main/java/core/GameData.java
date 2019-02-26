@@ -9,7 +9,8 @@ import java.io.File;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
-import core.map.GameMap;
+import core.map.*;
+import core.sprite.*;
 import java.lang.reflect.InvocationTargetException;
 import com.google.gson.*;
 
