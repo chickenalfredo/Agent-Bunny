@@ -61,12 +61,12 @@ public class GameTerminal{
         if (in.equalsIgnoreCase("d")) {
             player.setDirection(true);
             player.moveRight();
-
         }
+        
         if (in.equalsIgnoreCase("z")) {
             player.attack(attackPower);
         }
-        
+
         if (in.equalsIgnoreCase("exit")) {
             // Application.exit();
             return false;
