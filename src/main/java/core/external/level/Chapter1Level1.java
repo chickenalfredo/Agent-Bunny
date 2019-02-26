@@ -1,31 +1,25 @@
-<<<<<<< HEAD
-=======
 package core.external.level;
 
-
-import core.external.tile.*;
 import core.external.entity.*;
-import core.*;
 import core.sprite.*;
 import core.map.*;
-import java.util.List;
-import java.util.ArrayList;
 
+/**
+ * 
+ */
+public class Chapter1Level1 extends GameMap {
 
+	public Chapter1Level1() {
 
+		Sprite block1 = new Sprite('-', 0, 0, 5, 5);
+		Sprite block2 = new Sprite('-', 0, 5, 5, 5);
+		Sprite block3 = new Sprite('-', 0, 10, 5, 5);
+		Sprite block4 = new Sprite('-', 15, 15, 5, 5);
+		Sprite block5 = new Sprite('-', 10, 20, 5, 5);
+		Sprite block6 = new Sprite('-', 5, 25, 5, 5);
 
-public class Chapter1Level1 extends GameMap{
-	
-	public Chapter1Level1(){
-
-		StandardBlock block1 = new StandardBlock('-', 0, 0, 5, 5);
-		StandardBlock block2 = new StandardBlock('-', 0, 5, 5, 5);
-		StandardBlock block3 = new StandardBlock('-', 0, 10, 5, 5);
-		StandardBlock block4 = new StandardBlock('-', 0, 15, 5, 5);
-		StandardBlock block5 = new StandardBlock('-', 0, 20, 5, 5);
-		StandardBlock block6 = new StandardBlock('-', 0, 25, 5, 5);
-
-		Sprite player = new Player((float)0.0, (float)0.0, (float)5.0, (float)5.0, 'x', false, "Name", 1, (float)5.0);
+		Sprite player = new Player((float) 5.0, (float) 0.0, (float) 5.0, (float) 5.0, 'x', false, "Name", 1,
+				(float) 1.0);
 
 		super.addSprite(block1);
 		super.addSprite(block2);
@@ -36,10 +30,6 @@ public class Chapter1Level1 extends GameMap{
 
 		super.addSprite(player);
 
-
 	}
 
-
-
 }
->>>>>>> e81658df378bacfd9dc1aabbfd92b7df69a169d2

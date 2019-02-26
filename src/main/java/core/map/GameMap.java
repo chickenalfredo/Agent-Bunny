@@ -5,8 +5,6 @@ import java.util.ArrayList;
 import core.sprite.*;
 import core.map.*;
 
-
-
 /**
  * Storing all the sprites inside a map
  * @author Cloudy Yunfan
@@ -16,16 +14,19 @@ import core.map.*;
 
 public class GameMap{
 
-	private List<Sprite> sprite;
+	private List<Sprite> sprite = new ArrayList<Sprite>();
 	private Sprite checkPoint;
 	private String name;
 	private int highestGamePoint;
 	
-	public GameMap(){
-	    
-	    
-	}
+	/**
+	 * 
+	 */
+	public GameMap() {}
 	   
+	/**
+	 * 
+	 */
 	public GameMap(String name){
 		this.name = name;
 	}
@@ -69,22 +70,28 @@ public class GameMap{
 	public String generateMapTerminal(){
 		String ret = "";
 		char[][] map;
-		int maxRowLength = 0;
-		int maxColumnHeight = 0;
+		int maxRowLength = 1;
+		int maxColumnHeight = 1;
 
 		for(Sprite each : sprite){
 			Coordinate currentCoord = each.getCoordinate();
-			maxRowLength = Math.max((int)maxRowLength, (int)(currentCoord.getX() % 5));
-			maxColumnHeight = Math.max((int)maxColumnHeight, (int)(currentCoord.getY() % 5));
+			maxRowLength = Math.max((int)maxRowLength, (int)(currentCoord.getX() / 5)) + 1;
+			maxColumnHeight = Math.max((int)maxColumnHeight, (int)(currentCoord.getY() / 5)) + 1;
 		}
 
-		map = new char[maxColumnHeight][maxRowLength];
+		map = new char[maxRowLength][maxColumnHeight];
+
+		for (int i = 0; i < maxRowLength; i++) {
+			for (int j = 0; j < maxColumnHeight; j++) {
+				map[i][j] = ' ';
+			}
+		}
 
 		for(Sprite each : sprite){
 			Coordinate currentCoord = each.getCoordinate();
 			
-			int columnY = (int)(currentCoord.getY() % 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
-			int rowX = (int)(currentCoord.getX() % 5);
+			int columnY = (int)(currentCoord.getY() / 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
+			int rowX = (int)(currentCoord.getX() / 5);
 
 			map[columnY][rowX] = each.getTerminalChar();
 		}
@@ -146,7 +153,4 @@ public class GameMap{
 	public void setHighestGamePoint(int point){
 		this.highestGamePoint = point;
 	}
-
-	
-
 }

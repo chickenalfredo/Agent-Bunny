@@ -1,10 +1,6 @@
 package core;
 
 import core.GameTerminal;
-import java.util.List;
-import java.util.ArrayList;
-
-
 
 /**
  * Terminal launcher for Demo 1
@@ -15,14 +11,10 @@ import java.util.ArrayList;
 public class TerminalLaucher{
 
 	public static void main(String[] args){
-
 		boolean resume = true;
 		GameTerminal.printTitle();
 		while(resume){
 			resume = GameTerminal.print();
 		}
-		
 	}
-
-
 }
