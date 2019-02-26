@@ -26,7 +26,7 @@ public class GameTerminal{
     */
     public static boolean print(){
         Scanner scan = new Scanner();
-        String str = '';
+        String str = "";
         str += "                         ←A D→\n";
         str += "What is your next action? ";
         System.out.println(str);
@@ -62,7 +62,7 @@ public class GameTerminal{
             player.setDirection(true);
             player.moveRight();
         }
-        
+
         if (in.equalsIgnoreCase("z")) {
             player.attack(attackPower);
         }
@@ -93,7 +93,7 @@ public class GameTerminal{
     }
 
     public static void printTitle(){
-        String str = '';
+        String str = "";
         str += "********************************\n";
         str += "********************************\n";
         str += "**       AnimationGame        **\n";

@@ -1,6 +1,8 @@
 
 import core.external.tile.*;
 import core.external.entity.*;
+import core.*;
+import core.map.*;
 
 
 
@@ -16,7 +18,7 @@ public Chapter1Level1 extends GameMap{
 		StandardBlobk block5 = new StandardBlock('-', 0, 20, 5, 5);
 		StandardBlobk block6 = new StandardBlock('-', 0, 25, 5, 5);
 
-		Player player = new Player(0, 0, 5, 5, 'x', false, 'Name');
+		Player player = new Player(0, 0, 5, 5, 'x', false, "Name");
 
 		super.addSprite(block1);
 		super.addSprite(block2);
