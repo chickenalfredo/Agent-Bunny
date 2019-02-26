@@ -83,10 +83,25 @@ public class CoordinateTest
     }
 
     @Test
-    public void test_equals_false_by_creating_separate_objects() 
+    public void test_equals_false_with_only_x_coordinate_difference() 
     {
         Coordinate c = new Coordinate(5, 20);
         Coordinate a = new Coordinate(1, 20);
+        assertFalse(c.equals(a));
+    }
+
+    @Test
+    public void test_equals_false_with_only_y_coordinate_difference()  
+    {
+        Coordinate c = new Coordinate(5, 20);
+        Coordinate a = new Coordinate(5, 1);
+        assertFalse(c.equals(a));
+    }
+
+    public void test_equals_false_with_xy_coordinate_difference() 
+    {
+        Coordinate c = new Coordinate(5, 20);
+        Coordinate a = new Coordinate(1, 1);
         assertFalse(c.equals(a));
     }
 
