@@ -17,6 +17,7 @@ public class TerminalLaucher{
 	public static void main(String[] args){
 
 		boolean resume = true;
+		GameTerminal.printTitle();
 		while(resume){
 			resume = GameTerminal.print();
 		}

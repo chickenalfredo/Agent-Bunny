@@ -9,7 +9,7 @@ import core.*;
 import core.sprite.*;
 import core.map.*;
 import core.external.entity.*;
-import core.external.map.*;
+import core.external.level.*;
 import java.util.Scanner;
 import java.util.List;
 import java.util.ArrayList;
@@ -29,67 +29,32 @@ public class GameTerminal{
     private static GameMap level1;
 
     /**
-	* Print string to the terminal
+    * Print string to the terminal
     */
     public static boolean print(){
-        Scanner scan = new Scanner();
+        Scanner scan = new Scanner(System.in);
         String str = "";
-        str += "                         ‚ÜêA D‚Üí\n";
+        str += "";
         str += "What is your next action? ";
+        
+        System.out.println("\n----------------------------\n" + "w: move up\n" + "a: move left\n" + "s: move down\n"
+                + "d: move right\n\n" + "exit: close the game\n" + "restart: return gamestate to startup position\n"
+                + "cp: return to last checkpoint" + "\n----------------------------");
         System.out.println(str);
 
-        controlList();
         Scanner userInput = new Scanner(System.in);
         System.out.println("Enter an action");
         String in = userInput.nextLine();
 
-        List<Sprite> sprite = map.getSprite();
-        Sprite player;
+        List<Sprite> sprite = level1.getSprite();
+        Player player;
         for(Sprite each : sprite){
             if(each instanceof Player){
-                player = each;
+                player = (Player)each;
             }
         }
 
-
-        if (in.equalsIgnoreCase("w")) {
-            player.moveUp();
-        }
-
-        if (in.equalsIgnoreCase("a")) {
-            player.setDirection(false);
-            player.moveLeft();
-        }
-
-        if (in.equalsIgnoreCase("s")) {
-            player.moveDown();
-        }
-
-        if (in.equalsIgnoreCase("d")) {
-            player.setDirection(true);
-            player.moveRight();
-        }
-
-        if (in.equalsIgnoreCase("z")) {
-            player.attack(attackPower);
-        }
-
-        if (in.equalsIgnoreCase("exit")) {
-            // Application.exit();
-            return false;
-        }
-
-        if (in.equalsIgnoreCase("restart")) {
-            // Map(Map startup);
-        }
-
-        if (in.equalsIgnoreCase("cp")) {
-            // Map(Map lastCP);
-        }
-
-
-        String command = scan.nextChar();
-        scan.nextLine();
+        player.receiveInput();
 
 
 
@@ -108,7 +73,7 @@ public class GameTerminal{
         str += "**                            **\n";
         str += "**                            **\n";
         str += "**                            **\n";
-        str += "**         (‡πë‚Ä¢ÃÄ„ÖÇ‚Ä¢ÃÅ)Ÿà‚úß          **\n";
+        str += "**         (‡πë‚?¢Ã?„ÖÇ‚?¢Ã?)Ÿà‚ú?          **\n";
         str += "**          Welcome           **\n";
         str += "**                            **\n";
         str += "**                            **\n";
@@ -122,8 +87,8 @@ public class GameTerminal{
     }
 
     /**
-	* check if the string is updated
-	* @return boolean - is the terminal string updated?
+    * check if the string is updated
+    * @return boolean - is the terminal string updated?
     */
     private static boolean isUpdated(){
         return !(getDisplay().equals(display));
@@ -131,7 +96,7 @@ public class GameTerminal{
 
     /**
     * Get the display string
-	* @return String - get terminal string to be print on the terminal
+    * @return String - get terminal string to be print on the terminal
     */
     public static String getDisplay(){
         return GameState.getCurrentGameMap().generateMapTerminal();
@@ -139,17 +104,17 @@ public class GameTerminal{
     }
 
     /**
-	* This is a terminal timer which will refresh each second
+    * This is a terminal timer which will refresh each second
     */
     public static void terminalTimer(){
         /**
-    	TimerTask task = new TimerTask(){
+        TimerTask task = new TimerTask(){
             public void run() {
-            	if(isUpdated()){
-            		print();
-            	}
+                if(isUpdated()){
+                    print();
+                }
             }
-		};
+        };
         Timer timer = new Timer();
         timer.schedule(task, 0, 1000);
         **/

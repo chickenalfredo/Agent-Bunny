@@ -8,7 +8,9 @@ public class Player extends Entity {
 
     private int lives = 3;
     private int attackPower = 1;
-
+    
+    
+    // CLOUDY: Using double instead of float, its really incovinient when using them, check Chapter1Level1
     public Player(float x, float y, float width, float height, char playerImage, boolean enemy, String playerName,
             int playerHealth, double playerSpeed) {
         super(playerName, playerHealth, playerSpeed, enemy, x, y, width, height, playerImage);
