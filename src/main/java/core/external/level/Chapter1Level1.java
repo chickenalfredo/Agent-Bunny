@@ -3,6 +3,8 @@ import core.external.tile.*;
 import core.external.entity.*;
 import core.*;
 import core.map.*;
+import java.util.List;
+import java.util.ArrayList;
 
 
 
