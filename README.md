@@ -18,14 +18,14 @@ Installation requires Git and triggers `git clone`. Building the project require
 To begin installation, you must first clone the git repository.
 
 ```
-git clone https://github.com/chickenalfredo/Animation-Game.git
-cd Animation-Game
+git clone https://github.com/chickenalfredo/Agent-Bunny.git
+cd Agent-Bunny
 ```
 
 Once you have successfully cloned the repository and navigated to the root directory, build the project and execute to run the program.
+Note: Executing the project will only build and run the executable, but will not concurrently run tests.
 
 ```
-mvn package
 mvn exec:java
 ```
 
