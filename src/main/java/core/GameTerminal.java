@@ -73,7 +73,7 @@ public class GameTerminal{
         str += "**                            **\n";
         str += "**                            **\n";
         str += "**                            **\n";
-        str += "**         (à¹‘â?¢Ì?ã…‚â?¢Ì?)Ùˆâœ?          **\n";
+        str += "**                            **\n";
         str += "**          Welcome           **\n";
         str += "**                            **\n";
         str += "**                            **\n";

@@ -11,7 +11,7 @@ import java.util.ArrayList;
 import java.util.Map;
 import core.map.GameMap;
 import java.lang.reflect.InvocationTargetException;
-import com.google.code.gson.*;
+import com.google.gson.*;
 
 
 /**
