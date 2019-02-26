@@ -29,7 +29,6 @@ public class Monster extends Entity {
     public Monster(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
             float entityWidth, float entityHeight, char entityImage) {
         super(entityName, entityHealth, entitySpeed, enemy, entityX, entityY, entityWidth, entityHeight, entityImage);
-        setDirection(Math.random() < 0.5);
     }
 
     /**
@@ -58,12 +57,5 @@ public class Monster extends Entity {
      * This is what the monster will passively do when player is not nearby.
      */
     public void guard() {
-    }
-
-    /**
-     * If player collides with monster, the player will lose 1 health.
-     */
-    public void collisionReaction(Entity spriteCollidingWith) {
-        spriteCollidingWith.setHealth(spriteCollidingWith.getHealth()-1);
     }
 }

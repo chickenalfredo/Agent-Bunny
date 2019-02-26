@@ -1,9 +1,6 @@
 package core.external.entity;
 
 import core.sprite.Entity;
-import java.util.Random;
-import java.util.List;
-import java.lang.Thread;
 import java.lang.Math;
 
 /**
@@ -32,7 +29,6 @@ public class BlackWolf extends Entity {
     public BlackWolf(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
             float entityWidth, float entityHeight, char entityImage) {
         super(entityName, entityHealth, entitySpeed, enemy, entityX, entityY, entityWidth, entityHeight, entityImage);
-        setDirection(Math.random() < 0.5);
     }
 
     /**

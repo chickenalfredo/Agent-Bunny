@@ -2,6 +2,8 @@ package core.sprite;
 
 /**
  * Collection of methods for detecting intersections between two objects
+ * 
+ * @author Daniel Contreras
  */
 public class Collision {
 

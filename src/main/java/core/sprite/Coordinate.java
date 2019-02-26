@@ -4,6 +4,8 @@ import com.google.gson.GsonBuilder;
 
 /**
  * A point in a coordinate space representing a location (x, y)
+ * 
+ * @author Daniel Contreras
  */
 public class Coordinate {
 
