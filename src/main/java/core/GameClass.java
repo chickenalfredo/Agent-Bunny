@@ -14,7 +14,15 @@ public class GameClass<T>{
     private Class<T> classObj;
     private Constructor<T> constructorObj;
     
+    public GameClass(){
+
+    }
+
     public GameClass(Class<T> classObj){
+        this.classObj = classObj;
+    }
+
+    public void setClassObj(Class<T> classObj){
         this.classObj = classObj;
     }
 

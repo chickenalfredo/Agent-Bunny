@@ -4,6 +4,7 @@ package core;
 
 import java.net.URL;
 import java.net.URLClassLoader;
+import java.net.URL;
 
 public class GameUtility{
 
@@ -13,11 +14,17 @@ public class GameUtility{
 
 		try{
 			path = path_;
-			URL[] classLoaderUrls = {new URL(path)};
+			URL[] classLoaderUrls = new URL[]{new URL(path)};
+
+			GameClass<?> gameClass = new GameClass();
 			
-			URLClassLoader urlClassLoader = new URLClassLoader(this.class.getClassLoader(), classLoaderUrls);
+			URLClassLoader urlClassLoader = new URLClassLoader(classLoaderUrls, GameUtility.class.getClassLoader());
+
 			Class<?> classObj = urlClassLoader.loadClass(className);
-			return new GameClass(classObj);
+
+			gameClass.setClassObj((Class)classObj);
+
+			return gameClass;
 		}catch(Exception e){
 			//System.out.println(e);
 			e.printStackTrace();

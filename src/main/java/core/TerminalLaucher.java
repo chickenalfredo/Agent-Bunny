@@ -12,7 +12,12 @@ import core.GameTerminal;
 public class TerminalLaucher{
 
 	public static void main(String[] args){
-		GameTerminal.print();
+
+		boolean resume = true;
+		while(resume){
+			resume = GameTerminal.print();
+		}
+		
 	}
 
 
