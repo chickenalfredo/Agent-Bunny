@@ -20,7 +20,12 @@ public class GameMap{
 	private Sprite checkPoint;
 	private String name;
 	private int highestGamePoint;
-
+	
+	public GameMap(){
+	    
+	    
+	}
+	   
 	public GameMap(String name){
 		this.name = name;
 	}

@@ -1,6 +1,9 @@
 package core;
 
 import core.GameTerminal;
+import java.util.List;
+import java.util.ArrayList;
+
 
 
 /**
@@ -12,7 +15,13 @@ import core.GameTerminal;
 public class TerminalLaucher{
 
 	public static void main(String[] args){
-		GameTerminal.print();
+
+		boolean resume = true;
+		GameTerminal.printTitle();
+		while(resume){
+			resume = GameTerminal.print();
+		}
+		
 	}
 
 
