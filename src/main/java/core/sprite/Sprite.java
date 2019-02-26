@@ -7,6 +7,8 @@ import com.google.gson.GsonBuilder;
  * Sprite has information regarding position and size of the geometric shape. A
  * Sprite is always rectangular and its position (x,y) is located in the top
  * left corner of the rectangle.
+ * 
+ * @author Daniel Contreras
  */
 public class Sprite {
 
@@ -115,6 +117,19 @@ public class Sprite {
     public void setSize(int width, int height) {
         this.width = width;
         this.height = height;
+    }
+
+    /**
+     * Sets the coordinate of the Sprite which represents the top-left most
+     * corner of the bounding box. 
+     * 
+     * @param x      - The x position on the coordinate plane of the top left corner
+     *               of the bounding rectangle
+     * @param y      - The y position on the coordinate plane of the top left corner
+     *               of the bounding rectangle
+     */
+    public void setCoordinate(double x, double y) {
+        coordinate.setLocation(x, y);
     }
 
     /**
