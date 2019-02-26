@@ -6,7 +6,7 @@ package core;
 //import java.util.Timer;
 //import java.util.TimerTask;
 import core.*;
-import core.sprite.*
+import core.sprite.*;
 import core.map.*;
 import core.external.entity.*;
 import core.external.map.*;
