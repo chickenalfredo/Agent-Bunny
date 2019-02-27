@@ -1,10 +1,13 @@
 package core;
 
-import core.external.entity.*;
-import core.sprite.*;
+import core.external.entity.Player;
+import core.sprite.Collision;
+import core.sprite.Sprite;
 import java.util.List;
 
 /**
+ * A simulation manager meant to simulate collisions, movement, and attacks.
+ * 
  * @author Daniel Contreras
  */
 public class SimulationManager {
