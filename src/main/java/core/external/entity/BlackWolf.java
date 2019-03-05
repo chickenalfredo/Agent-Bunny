@@ -26,9 +26,8 @@ public class BlackWolf extends Entity {
      * @param entityImage  This sets the visual graphic for the entity
      * @param power        This sets the overall strength of the enemy's attack.
      */
-    public BlackWolf(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
-            float entityWidth, float entityHeight, char entityImage) {
-        super(entityName, entityHealth, entitySpeed, enemy, entityX, entityY, entityWidth, entityHeight, entityImage);
+    public BlackWolf(double x, double y, double width, double height, char playerImage, String playerName, int playerHealth, double playerSpeed) {
+        super(playerName, playerHealth, playerSpeed, true, x, y, width, height, playerImage);
     }
 
     /**

@@ -16,9 +16,9 @@ public class EndPoint extends TileObject {
     /**
      * 
      */
-    public EndPoint(boolean isCollidable, char terminalChar, float x, float y, float width, float height) {
+    public EndPoint(double x, double y, double width, double height, char terminalChar) {
         super(terminalChar, x, y, width, height);
-        setIsCollidable(isCollidable);
+        setIsCollidable(true);
     }
 
     /**
@@ -31,6 +31,7 @@ public class EndPoint extends TileObject {
     /**
      * 
      */
+    @Override
     public void collisionReaction(Sprite spriteCollidedWith) {
         if (spriteCollidedWith != null && spriteCollidedWith.getClass().getSimpleName().equals("Player")) {
             isLevelOver = true;

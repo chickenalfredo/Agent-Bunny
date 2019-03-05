@@ -13,18 +13,16 @@ public class Player extends Entity {
     /**
      * 
      */
-    public Player(float x, float y, float width, float height, char playerImage, boolean enemy, String playerName,
-            int playerHealth, double playerSpeed) {
-        super(playerName, playerHealth, playerSpeed, enemy, x, y, width, height, playerImage);
+    public Player(double x, double y, double width, double height, char playerImage, String playerName, int playerHealth, double playerSpeed) {
+        super(playerName, playerHealth, playerSpeed, false, x, y, width, height, playerImage);
 
     }
 
     /**
      * 
      */
-    public Player (Player player) {
-        super(player.getName(), player.getHealth(), player.getSpeed(), player.getIsEnemy(), (float)player.getX(), 
-        (float)player.getY(), (float)player.getWidth(), (float)player.getHeight(), player.getTerminalChar());
+    public Player(Player player) {
+        super(player.getName(), player.getHealth(), player.getSpeed(), player.getIsEnemy(), player.getX(), player.getY(), player.getWidth(), player.getHeight(), player.getTerminalChar());
     }
 
     /**

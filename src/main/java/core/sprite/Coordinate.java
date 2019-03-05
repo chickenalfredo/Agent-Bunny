@@ -95,8 +95,7 @@ public class Coordinate {
      * @return The distance from the two points
      */
     public double distanceFrom(Coordinate coordinate) {
-        return Math.sqrt(
-                (this.x - coordinate.x) * (this.x - coordinate.x) + (this.y - coordinate.y) * (this.y - coordinate.y));
+        return Math.sqrt((this.x - coordinate.x) * (this.x - coordinate.x) + (this.y - coordinate.y) * (this.y - coordinate.y));
     }
 
     /**
