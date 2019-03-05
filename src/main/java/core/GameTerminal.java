@@ -6,6 +6,7 @@ import core.external.entity.*;
 import core.external.level.*;
 import java.util.Scanner;
 import java.util.List;
+import core.utils.SimulationManager;
 
 /**
  * Terminal output for Demo 1

@@ -1,4 +1,7 @@
-package core.sprite;
+package core.math;
+
+import core.sprite.Coordinate;
+import core.sprite.Sprite;
 
 /**
  * Collection of methods for detecting intersections between two objects

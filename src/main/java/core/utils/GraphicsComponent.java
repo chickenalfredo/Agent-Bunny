@@ -1,7 +1,6 @@
-package core.sprite;
+package core.utils;
 
 public class GraphicsComponent {
-
 
     public void update() {
         
