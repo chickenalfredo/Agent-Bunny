@@ -131,15 +131,15 @@ public class CoordinateTest
     @Test
     public void test_equals_false_null_object() 
     {
-        Coordinate c = new Coordinate(5, 20);
+        Coordinate c = new Coordinate();
         assertFalse(c.equals(null));
     }
 
     @Test
     public void test_equals_false_not_same_object_type() 
     {
-        Coordinate c = new Coordinate(5, 20);
-        assertFalse(c.equals(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0)));
+        Coordinate c = new Coordinate();
+        assertFalse(c.equals(new Object()));
     }
 
     @Test
