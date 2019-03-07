@@ -1,7 +1,7 @@
-package core;
+package core.utils;
 
 import core.external.entity.Player;
-import core.sprite.Collision;
+import core.math.Collision;
 import core.sprite.Sprite;
 import java.util.List;
 

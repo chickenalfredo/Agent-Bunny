@@ -4,9 +4,8 @@ package core.sprite;
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
  * 
- * @author Daniel Contreras
  */
-abstract public class Entity extends Sprite {
+public abstract class Entity extends Sprite {
 
     private String name;
     private double gravity = 1.0;
@@ -30,8 +29,8 @@ abstract public class Entity extends Sprite {
      * @param entityHeight The height of the entity to set
      * @param entityImage  The terminal character representation of the entity
      */
-    public Entity(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
-            float entityWidth, float entityHeight, char entityImage) {
+    public Entity(String entityName, int entityHealth, double entitySpeed, boolean enemy, double entityX, double entityY,
+            double entityWidth, double entityHeight, char entityImage) {
         super(entityImage, entityX, entityY, entityWidth, entityHeight);
         name = entityName;
         health = entityHealth;
@@ -138,12 +137,6 @@ abstract public class Entity extends Sprite {
             break;
         case "d":
             this.setCoordinate(this.getX() + this.getWidth(), this.getY());
-            break;
-        case "z":
-            System.out.println("no attack yet");
-            break;
-        default:
-            System.out.println("Not a valid movement");
             break;
         }
     }

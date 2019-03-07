@@ -1,9 +1,11 @@
-package core.sprite;
+package core.math;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+import core.sprite.Coordinate;
+import core.external.entity.Player;
 
 public class CollisionTest 
 {
@@ -40,14 +42,14 @@ public class CollisionTest
     public void test_intersectAABB_from_the_left_with_no_collision() 
     {
         Collision c = new Collision();
-        assertFalse(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 10, 20, 5, 5)));
+        assertFalse(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(10.0, 20.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
     }
 
     @Test
     public void test_intersectAABB_from_the_top_with_no_collision() 
     {
         Collision c = new Collision();
-        assertFalse(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 15, 25, 5, 5)));
+        assertFalse(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(15.0, 25.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
 
     }
 
@@ -55,7 +57,7 @@ public class CollisionTest
     public void test_intersectAABB_from_the_right_with_no_collision() 
     {
         Collision c = new Collision();
-        assertFalse(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 20, 20, 5, 5)));
+        assertFalse(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(20.0, 20.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
 
     }
 
@@ -63,7 +65,7 @@ public class CollisionTest
     public void test_intersectAABB_from_the_bottom_with_no_collision() 
     {
         Collision c = new Collision();
-        assertFalse(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 15, 15, 5, 5)));
+        assertFalse(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(15.0, 15.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
 
     }
 
@@ -71,14 +73,14 @@ public class CollisionTest
     public void test_intersectAABB_from_the_left_with_collision() 
     {
         Collision c = new Collision();
-        assertTrue(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 11, 20, 5, 5)));
+        assertTrue(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(11.0, 20.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
     }
 
     @Test
     public void test_intersectAABB_from_the_top_with_collision() 
     {
         Collision c = new Collision();
-        assertTrue(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 15, 24, 5, 5)));
+        assertTrue(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(15.0, 24.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
 
     }
 
@@ -86,7 +88,7 @@ public class CollisionTest
     public void test_intersectAABB_from_the_right_with_collision() 
     {
         Collision c = new Collision();
-        assertTrue(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 19, 20, 5, 5)));
+        assertTrue(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(19.0, 20.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
 
     }
 
@@ -94,7 +96,7 @@ public class CollisionTest
     public void test_intersectAABB_from_the_bottom_with_collision() 
     {
         Collision c = new Collision();
-        assertTrue(c.intersectAABB(new Sprite('a', 15, 20, 5, 5), new Sprite('b', 15, 16, 5, 5)));
+        assertTrue(c.intersectAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Player(15.0, 16.0, 5.0, 5.0, 'x', "b", 1, 1.0)));
 
     }
 
@@ -102,14 +104,14 @@ public class CollisionTest
     public void testSweptAABB() 
     {
         Collision c = new Collision();
-        assertFalse(c.sweptAABB(new Sprite(), new Coordinate(2,2)));
+        assertFalse(c.sweptAABB(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Coordinate(2,2)));
     }
 
     @Test
     public void testSweepInto() 
     {
         Collision c = new Collision();
-        assertFalse(c.sweepInto(new Sprite(), new Coordinate()));
+        assertFalse(c.sweepInto(new Player(15.0, 20.0, 5.0, 5.0, 'x', "a", 1, 1.0), new Coordinate()));
     }
     
 }

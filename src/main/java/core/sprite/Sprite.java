@@ -10,10 +10,10 @@ import com.google.gson.GsonBuilder;
  * 
  * @author Daniel Contreras
  */
-public class Sprite {
+public abstract class Sprite {
 
     private Coordinate coordinate = new Coordinate();
-    private float width, height;
+    private double width, height;
     private char terminalChar = 'x';
 
     /**
@@ -33,7 +33,7 @@ public class Sprite {
      * @param width  - The width of the Sprites bounding rectangle
      * @param height - The height of the Sprites bounding rectangle
      */
-    public Sprite(char terminalChar, float x, float y, float width, float height) {
+    public Sprite(char terminalChar, double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
         this.terminalChar = terminalChar;
         this.width = width;

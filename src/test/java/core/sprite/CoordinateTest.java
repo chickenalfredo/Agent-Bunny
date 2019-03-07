@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.jparams.verifier.tostring.ToStringVerifier;
 import core.utils.*;
 import core.sprite.Coordinate;
-import core.sprite.Sprite;
 
 public class CoordinateTest 
 {
@@ -131,15 +130,15 @@ public class CoordinateTest
     @Test
     public void test_equals_false_null_object() 
     {
-        Coordinate c = new Coordinate(5, 20);
+        Coordinate c = new Coordinate();
         assertFalse(c.equals(null));
     }
 
     @Test
     public void test_equals_false_not_same_object_type() 
     {
-        Coordinate c = new Coordinate(5, 20);
-        assertFalse(c.equals(new Sprite()));
+        Coordinate c = new Coordinate();
+        assertFalse(c.equals(new Object()));
     }
 
     @Test

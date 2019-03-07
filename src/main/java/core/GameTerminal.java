@@ -6,6 +6,7 @@ import core.external.entity.*;
 import core.external.level.*;
 import java.util.Scanner;
 import java.util.List;
+import core.utils.SimulationManager;
 
 /**
  * Terminal output for Demo 1
@@ -24,8 +25,7 @@ public class GameTerminal {
         List<Sprite> sprite = level1.getSprite();
         SimulationManager input;
         Scanner userInput = new Scanner(System.in);
-        Player player = new Player((float) 0.0, (float) 0.0, (float) 5.0, (float) 5.0, 'x', false, "Name", 1,
-                (float) 5.0);
+        Player player = new Player(0.0, 0.0, 5.0, 5.0, 'x', "Name", 1, 5.0);
 
         for (Sprite each : sprite) {
             if (each instanceof Player) {

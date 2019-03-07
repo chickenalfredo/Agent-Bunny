@@ -1,16 +1,19 @@
 package core.sprite;
 
+import core.sprite.Sprite;
+
 /**
  * @author Daniel Contreras
  */
-public class TileObject extends Sprite {
+public abstract class TileObject extends Sprite {
 
     private boolean isCollidable;
 
-    public TileObject() {
-    }
+    public abstract void collisionReaction(Sprite spriteCollidedWith);
 
-    public TileObject(char terminalChar, float x, float y, float width, float height) {
+    public TileObject() {}
+
+    public TileObject(char terminalChar, double x, double y, double width, double height) {
         super(terminalChar, x, y, width, height);
     }
 
@@ -21,4 +24,5 @@ public class TileObject extends Sprite {
     public void setIsCollidable(boolean isCollidable) {
         this.isCollidable = isCollidable;
     }
+
 }
