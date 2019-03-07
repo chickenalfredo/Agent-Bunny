@@ -1,7 +1,6 @@
 package core.external.entity;
 
-import core.sprite.Entity;
-import java.lang.Math;
+import core.sprite.AbstractEnemy;
 
 /**
  * This class implements the AI and behaviours of strong hostile npc in the game.
@@ -9,8 +8,7 @@ import java.lang.Math;
  * 
  * @author Harry Lee
  */
-public class BlackWolf extends Entity {
-    private int power = 20;
+public class BlackWolf extends AbstractEnemy {
 
     /**
      * This is the constructor for this class that extends from Entity class.
@@ -27,47 +25,28 @@ public class BlackWolf extends Entity {
      * @param power        This sets the overall strength of the enemy's attack.
      */
     public BlackWolf(double x, double y, double width, double height, char playerImage, String playerName, int playerHealth, double playerSpeed) {
-        super(playerName, playerHealth, playerSpeed, true, x, y, width, height, playerImage);
+        super(x, y, width, height, playerImage, playerName, playerHealth, playerSpeed);
     }
 
-    /**
-     * This is the get method for the variable power.
-     * 
-     * @return the value for overall strength of the wolf
-     */
-    public int getPower() {
-        return power;
-    }
+    // /**
+    //  * If player collides with the wolf, the player will lose 2 health.
+    //  */
+    // public void collisionReaction(Entity spriteCollidingWith) {
+    //     spriteCollidingWith.setHealth(spriteCollidingWith.getHealth()-2);
+    // }
 
-    /**
-     * This generates a random integer between a range of numbers for some
-     * randomness in the behavior of the wolf.
-     * 
-     * @param min the floor of the range of numbers
-     * @param max the ceiling of the range of numbers
-     * @return the integer that is randomly generated
-     */
-    public int getRandomInt(int min, int max) {
-        int num = (int) (Math.random() * ((max - min) + 1)) + min;
-        return num;
-    }
+    @Override
+    public void draw() {}
+    @Override
+    public void update() {}
 
-    /**
-     * This is what the wolf will passively do when player is not nearby.
-     */
-    public void guard() {
-    }
-
-    /**
-     * When player attacks the black wolf, it will dodge dodge the attack by significant chance.
-     */
-    public void dodge(){
-    }
+    @Override
+    public void attack() {}
+    @Override
+    public void guard() {}
+    @Override
+    public void dodge() {}
+    @Override
+    public void collisionResolution() {}
     
-    /**
-     * If player collides with the wolf, the player will lose 2 health.
-     */
-    public void collisionReaction(Entity spriteCollidingWith) {
-        spriteCollidingWith.setHealth(spriteCollidingWith.getHealth()-2);
-    }
 }

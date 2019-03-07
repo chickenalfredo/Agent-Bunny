@@ -1,14 +1,15 @@
 package core.external.entity;
 
 import core.sprite.Entity;
+import core.sprite.interfaces.IPhysics;
+import core.sprite.interfaces.IHeroOffensive;
 
 /**
  * 
  */
-public class Player extends Entity {
+public class Player extends Entity implements IPhysics, IHeroOffensive {
 
     private int lives = 3;
-    private int attackPower = 1;
 
     /**
      * 
@@ -39,17 +40,24 @@ public class Player extends Entity {
         lives += oneUp;
     }
 
-    /**
-     * 
-     */
-    public int getAttackPower() {
-        return attackPower;
-    }
+    @Override
+    public void draw() {}
+    @Override
+    public void update() {}
 
-    /**
-     * 
-     */
-    private void setAttackPower(int attack) {
-        attackPower = attack;
-    }
+    @Override
+    public void attack() {}
+
+    @Override
+    public void collisionResolution() {}
+
+    @Override
+    public void jump() {}
+    @Override
+    public void doubleJump() {}
+    @Override
+    public void dash() {}
+    @Override
+    public void duck() {}
+
 }

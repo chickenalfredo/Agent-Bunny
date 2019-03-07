@@ -37,4 +37,9 @@ public class EndPoint extends TileObject {
             isLevelOver = true;
         } 
     }
+
+    @Override
+    public void draw() {}
+    @Override
+    public void update() {}
 }

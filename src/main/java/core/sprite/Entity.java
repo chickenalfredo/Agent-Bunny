@@ -1,17 +1,22 @@
 package core.sprite;
 
+import core.sprite.interfaces.IAttack;
+import core.sprite.interfaces.IMovement;
+import core.sprite.interfaces.IPhysics;
+
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
  * 
  */
-public abstract class Entity extends Sprite {
+public abstract class Entity extends Sprite implements IMovement, IAttack, IPhysics {
 
     private String name;
     private double gravity = 1.0;
     private int health;
     private boolean isEnemy;
     private double speed;
+    private int attackPower;
 
     /**
      * Constructor that calls the constructor of the Sprite class and sets name,
@@ -64,6 +69,14 @@ public abstract class Entity extends Sprite {
      */
     public void setName(String nameToSet) {
         name = nameToSet;
+    }
+
+    public int getAttackPower() {
+        return attackPower;
+    }
+
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
     }
 
     /**
@@ -140,12 +153,4 @@ public abstract class Entity extends Sprite {
             break;
         }
     }
-
-    /**
-     * TODO
-     * 
-     * @param attackDamage
-     */
-    public void attack(int attackDamage) {}
-
 }

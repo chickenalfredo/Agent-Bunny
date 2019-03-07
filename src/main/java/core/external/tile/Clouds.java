@@ -15,4 +15,9 @@ public class Clouds extends TileObject {
         
     }
 
+    @Override
+    public void draw() {}
+    @Override
+    public void update() {}
+
 }

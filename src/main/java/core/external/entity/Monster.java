@@ -1,7 +1,6 @@
 package core.external.entity;
 
-import core.sprite.Entity;
-import java.lang.Math;
+import core.sprite.AbstractEnemy;
 
 /**
  * This class implements the AI and behaviours of weak hostile npc in the game.
@@ -9,8 +8,7 @@ import java.lang.Math;
  * 
  * @author Harry Lee
  */
-public class Monster extends Entity {
-    private int power = 20;
+public class Monster extends AbstractEnemy {
 
     /**
      * This is the constructor for this class that extends from Entity class.
@@ -30,34 +28,21 @@ public class Monster extends Entity {
      * 
      */
     public Monster(double x, double y, double width, double height, char playerImage, String playerName, int playerHealth, double playerSpeed) {
-        super(playerName, playerHealth, playerSpeed, true, x, y, width, height, playerImage);
+        super(x, y, width, height, playerImage, playerName, playerHealth, playerSpeed);
     }
 
-    /**
-     * This is the get method for the variable power.
-     * 
-     * @return the value for overall strength of the monster
-     */
-    public int getPower() {
-        return power;
-    }
+    @Override
+    public void draw() {}
+    @Override
+    public void update() {}
 
-    /**
-     * This generates a random integer between a range of numbers for some
-     * randomness in the behavior of the monster.
-     * 
-     * @param min the floor of the range of numbers
-     * @param max the ceiling of the range of numbers
-     * @return the integer that is randomly generated
-     */
-    public int getRandomInt(int min, int max) {
-        int num = (int) (Math.random() * ((max - min) + 1)) + min;
-        return num;
-    }
+    @Override
+    public void attack() {}
+    @Override
+    public void guard() {}
+    @Override
+    public void dodge() {}
+    @Override
+    public void collisionResolution() {}
 
-    /**
-     * This is what the monster will passively do when player is not nearby.
-     */
-    public void guard() {
-    }
 }

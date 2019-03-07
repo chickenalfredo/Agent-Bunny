@@ -1,5 +1,6 @@
 package core.sprite;
 
+import core.sprite.interfaces.IRender;
 import com.google.gson.GsonBuilder;
 
 /**
@@ -10,18 +11,17 @@ import com.google.gson.GsonBuilder;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite {
+public abstract class Sprite implements IRender {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
-    private char terminalChar = 'x';
+    private char terminalChar;
 
     /**
      * Constructs and initializes a default Sprite with position and size all being
      * set to the default value 0.
      */
-    public Sprite() {
-    }
+    public Sprite() {}
 
     /**
      * Constructs and initializes a Sprite with specified position and size.

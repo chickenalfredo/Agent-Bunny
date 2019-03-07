@@ -25,4 +25,9 @@ public class StandardBlock extends TileObject {
     public void collisionReaction(Sprite spriteCollidedWith) {
 
     }
+
+    @Override
+    public void draw() {}
+    @Override
+    public void update() {}
 }
