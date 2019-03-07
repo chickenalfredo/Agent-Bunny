@@ -4,7 +4,7 @@ package core.game;
 
 // import core.map.GameMap;
 
-public class GameState {
+public class GameState{
 
 
 	// private static GameMap currentGameMap;
@@ -35,7 +35,7 @@ public class GameState {
     // }
 
     // public static int getState(){
-    // 	return state; 
+    // 	return state;
     // }
 
     // public static String covertState(int stateInt){
