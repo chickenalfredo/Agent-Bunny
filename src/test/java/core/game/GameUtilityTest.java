@@ -1,4 +1,4 @@
-package core;
+package core.game;
 
 import static org.junit.Assert.assertTrue;
 
@@ -7,7 +7,7 @@ import org.junit.Test;
 /**
  * Unit test for simple App.
  */
-public class GameStateTest 
+public class GameUtilityTest 
 {
     /**
      * Rigorous Test :-)

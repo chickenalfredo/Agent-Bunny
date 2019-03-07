@@ -1,4 +1,4 @@
-package core;
+package core.game;
 
 import static org.junit.Assert.assertTrue;
 
