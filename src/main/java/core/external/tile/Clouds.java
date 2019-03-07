@@ -5,19 +5,19 @@ import core.sprite.Sprite;
 
 public class Clouds extends TileObject {
 
-    public Clouds(double x, double y, double width, double height, char terminalChar) {
-        super(terminalChar, x, y, width, height);
+    public Clouds(double x, double y, double width, double height) {
+        super(x, y, width, height);
         setIsCollidable(false);
-    }
-
-    @Override
-    public void collisionReaction(Sprite spriteCollidedWith) {
-        
+        setTerminalChar('l');
     }
 
     @Override
     public void draw() {}
+
     @Override
     public void update() {}
+
+    @Override
+    public void collisionResolution(Sprite sprite) {}
 
 }

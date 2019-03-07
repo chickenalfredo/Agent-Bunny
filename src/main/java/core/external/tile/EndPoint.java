@@ -16,9 +16,10 @@ public class EndPoint extends TileObject {
     /**
      * 
      */
-    public EndPoint(double x, double y, double width, double height, char terminalChar) {
-        super(terminalChar, x, y, width, height);
+    public EndPoint(double x, double y, double width, double height) {
+        super(x, y, width, height);
         setIsCollidable(true);
+        setTerminalChar('e');
     }
 
     /**
@@ -28,18 +29,18 @@ public class EndPoint extends TileObject {
         return isLevelOver;
     }
 
-    /**
-     * 
-     */
+
     @Override
-    public void collisionReaction(Sprite spriteCollidedWith) {
+    public void draw() {}
+
+    @Override
+    public void update() {}
+
+    @Override
+    public void collisionResolution(Sprite spriteCollidedWith) {
         if (spriteCollidedWith != null && spriteCollidedWith.getClass().getSimpleName().equals("Player")) {
             isLevelOver = true;
         } 
     }
 
-    @Override
-    public void draw() {}
-    @Override
-    public void update() {}
 }

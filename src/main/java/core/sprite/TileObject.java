@@ -9,12 +9,8 @@ public abstract class TileObject extends Sprite {
 
     private boolean isCollidable;
 
-    public abstract void collisionReaction(Sprite spriteCollidedWith);
-
-    public TileObject() {}
-
-    public TileObject(char terminalChar, double x, double y, double width, double height) {
-        super(terminalChar, x, y, width, height);
+    public TileObject(double x, double y, double width, double height) {
+        super(x, y, width, height);
     }
 
     public boolean getIsCollidable() {
