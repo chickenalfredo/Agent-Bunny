@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.jparams.verifier.tostring.ToStringVerifier;
 import core.utils.*;
 import core.sprite.Coordinate;
-import core.external.entity.Player;
 
 public class CoordinateTest 
 {

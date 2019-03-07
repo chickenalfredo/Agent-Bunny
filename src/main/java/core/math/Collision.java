@@ -5,6 +5,8 @@ import core.sprite.Sprite;
 
 /**
  * Collection of methods for detecting intersections between two objects
+ * <source: https://noonat.github.io/intersect/>
+ * <source: https://www.gamedev.net/articles/programming/general-and-gameplay-programming/swept-aabb-collision-detection-and-response-r3084>
  * 
  * @author Daniel Contreras
  */
