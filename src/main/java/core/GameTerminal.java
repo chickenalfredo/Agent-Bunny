@@ -83,11 +83,18 @@ public class GameTerminal {
      * 
      */
     private static void printMessage() {
-        System.out.println("\n----------------------------\n" + "w: move up\n" + "a: move left\n" + "s: move down\n"
-                + "d: move right\n\n" + "e: close the game\n" + "r: return gamestate to startup position\n"
-                + "c: return to last checkpoint" + "\n----------------------------");
-
-        System.out.println("Enter an action");
+        StringBuilder str = new StringBuilder();
+        str.append("\n----------------------------\n");
+        str.append("w: move up\n");
+        str.append("a: move left\n");
+        str.append("s: move down\n");
+        str.append("d: move right\n\n");
+        str.append("e: close the game\n");
+        str.append("r: return gamestate to startup position\n");
+        str.append("c: return to last checkpoint");
+        str.append("\n----------------------------");
+        str.append("\nEnter an action");
+        System.out.println(str.toString());
     }
 
     /**

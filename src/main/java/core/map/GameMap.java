@@ -2,6 +2,8 @@ package core.map;
 
 import java.util.List;
 import java.util.ArrayList;
+
+import core.external.tile.Wall;
 import core.sprite.*;
 
 /**
@@ -19,16 +21,12 @@ public class GameMap {
 	private Sprite checkPoint;
 	private String name;
 	private int highestGamePoint;
+	private final int ROW = 15;
+	private final int COLUMN = 50;
+	private char map[][] = new char[ROW][COLUMN];
 
-	/**
-	 * 
-	 */
-	public GameMap() {
-	}
+	public GameMap() {}
 
-	/**
-	 * 
-	 */
 	public GameMap(String name) {
 		this.name = name;
 	}
@@ -64,9 +62,7 @@ public class GameMap {
 	/**
 	 * Generate the graphical map after Demo 1
 	 */
-	public void generateMap() {
-
-	}
+	public void generateMap() {}
 
 	/**
 	 * Get the terminal character map for Demo 1
@@ -75,32 +71,9 @@ public class GameMap {
 	 */
 	public String generateMapTerminal() {
 		String ret = "";
-		char[][] map;
-		int maxRowLength = 1;
-		int maxColumnHeight = 1;
-
-		for (Sprite each : sprite) {
-			Coordinate currentCoord = each.getCoordinate();
-			maxRowLength = Math.max((int) maxRowLength, (int) (currentCoord.getX() / 5)) + 1;
-			maxColumnHeight = Math.max((int) maxColumnHeight, (int) (currentCoord.getY() / 5)) + 1;
-		}
-
-		map = new char[maxRowLength][maxColumnHeight];
-
-		for (int i = 0; i < maxRowLength; i++) {
-			for (int j = 0; j < maxColumnHeight; j++) {
-				map[i][j] = ' ';
-			}
-		}
-
-		for (Sprite each : sprite) {
-			Coordinate currentCoord = each.getCoordinate();
-
-			int columnY = (int) (currentCoord.getY() / 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
-			int rowX = (int) (currentCoord.getX() / 5);
-
-			map[columnY][rowX] = each.getTerminalChar();
-		}
+		
+		generateTerminalBounds();
+		setSpritesOnTerminalMap();
 
 		for (char[] column : map) {
 			for (char row : column) {
@@ -110,6 +83,31 @@ public class GameMap {
 		}
 
 		return ret;
+	}
+
+	private void setSpritesOnTerminalMap() {
+		for (Sprite each : sprite) {
+			Coordinate currentCoord = each.getCoordinate();
+			int columnY = (int) (currentCoord.getY() / 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
+			int rowX = (int) (currentCoord.getX() / 5);
+			map[columnY][rowX] = each.getTerminalChar();
+		}
+	}
+
+	private void generateTerminalBounds() {
+		for (int i = 0; i < ROW; i++) {
+			for (int j = 0; j < COLUMN; j++) {
+				if (i == 0 || j == 0) {
+					addSprite(new Wall(j*5, i*5, 5.0, 5.0));
+				} else if (i == ROW - 1) {
+					addSprite(new Wall((j)*5, (ROW-1)*5, 5.0, 5.0));
+				} else if (j == COLUMN - 1) {
+					addSprite(new Wall((COLUMN-1)*5, (i)*5, 5.0, 5.0));
+				} else {
+					map[i][j] = ' ';
+				}
+			}
+		}
 	}
 
 	/**
