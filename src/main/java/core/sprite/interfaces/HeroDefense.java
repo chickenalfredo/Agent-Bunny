@@ -1,6 +1,6 @@
 package core.sprite.interfaces;
 
-public interface IHeroOffensive {
+public interface HeroDefense {
 
     public abstract void jump();
 

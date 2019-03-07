@@ -1,6 +1,6 @@
 package core.sprite.interfaces;
 
-public interface IEnemyDefensive {
+public interface EnemyDefense {
 
     public abstract void dodge();
 

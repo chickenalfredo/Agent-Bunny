@@ -1,6 +1,6 @@
 package core.sprite.interfaces;
 
-public interface IMovement {
+public interface Movement {
 
     public abstract void move(String key);
 

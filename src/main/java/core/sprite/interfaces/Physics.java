@@ -1,6 +1,6 @@
 package core.sprite.interfaces;
 
-public interface IPhysics {
+public interface Physics {
 
     public abstract void collisionResolution();
 

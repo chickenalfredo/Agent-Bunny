@@ -25,11 +25,11 @@ public class GameTerminal {
         List<Sprite> sprite = level1.getSprite();
         SimulationManager input;
         Scanner userInput = new Scanner(System.in);
-        Player player = new Player(0.0, 0.0, 5.0, 5.0, 'x', "Name", 1, 5.0);
+        Hero player = new Hero(0.0, 0.0, 5.0, 5.0, 'x', "Name", 1, 5.0);
 
         for (Sprite each : sprite) {
-            if (each instanceof Player) {
-                player = (Player) each;
+            if (each instanceof Hero) {
+                player = (Hero) each;
             }
         }
         System.out.println(getDisplay());

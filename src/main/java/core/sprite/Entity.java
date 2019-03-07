@@ -1,15 +1,15 @@
 package core.sprite;
 
-import core.sprite.interfaces.IAttack;
-import core.sprite.interfaces.IMovement;
-import core.sprite.interfaces.IPhysics;
+import core.sprite.interfaces.Attacks;
+import core.sprite.interfaces.Movement;
+import core.sprite.interfaces.Physics;
 
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
  * 
  */
-public abstract class Entity extends Sprite implements IMovement, IAttack, IPhysics {
+public abstract class Entity extends Sprite implements Movement, Attacks, Physics {
 
     private String name;
     private double gravity = 1.0;

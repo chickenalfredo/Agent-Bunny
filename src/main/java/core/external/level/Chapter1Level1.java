@@ -18,7 +18,7 @@ public class Chapter1Level1 extends GameMap {
 
 		Monster monster = new Monster(10.0, 5.0, 5.0, 5.0, 'm', "Monster", 1, 1.0);
 		BlackWolf wolf = new BlackWolf(15.0, 10.0, 5.0, 5.0, 'w', "Wolf", 1, 1.0);
-		Player player = new Player(5.0, 0.0, 5.0, 5.0, 'x', "Hero", 1, 1.0);
+		Hero player = new Hero(5.0, 0.0, 5.0, 5.0, 'x', "Hero", 1, 1.0);
 		CheckPoint cp = new CheckPoint(20.0, 15.0, 5.0, 5.0, '!');
 		Clouds cloud = new Clouds(25.0, 10.0, 5.0, 5.0, '=');
 		EndPoint ep = new EndPoint(30.0, 25.0, 5.0, 5.0, 'e');

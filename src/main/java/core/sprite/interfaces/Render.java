@@ -1,6 +1,6 @@
 package core.sprite.interfaces;
 
-public interface IRender {
+public interface Render {
 
     public abstract void draw();
 

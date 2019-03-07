@@ -1,20 +1,20 @@
 package core.external.entity;
 
 import core.sprite.Entity;
-import core.sprite.interfaces.IPhysics;
-import core.sprite.interfaces.IHeroOffensive;
+import core.sprite.interfaces.Physics;
+import core.sprite.interfaces.HeroDefense;;
 
 /**
  * 
  */
-public class Player extends Entity implements IPhysics, IHeroOffensive {
+public class Hero extends Entity implements Physics, HeroDefense {
 
     private int lives = 3;
 
     /**
      * 
      */
-    public Player(double x, double y, double width, double height, char playerImage, String playerName, int playerHealth, double playerSpeed) {
+    public Hero(double x, double y, double width, double height, char playerImage, String playerName, int playerHealth, double playerSpeed) {
         super(playerName, playerHealth, playerSpeed, false, x, y, width, height, playerImage);
 
     }
@@ -22,7 +22,7 @@ public class Player extends Entity implements IPhysics, IHeroOffensive {
     /**
      * 
      */
-    public Player(Player player) {
+    public Hero(Hero player) {
         super(player.getName(), player.getHealth(), player.getSpeed(), player.getIsEnemy(), player.getX(), player.getY(), player.getWidth(), player.getHeight(), player.getTerminalChar());
     }
 
