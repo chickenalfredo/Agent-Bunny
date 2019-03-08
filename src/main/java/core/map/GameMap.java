@@ -23,7 +23,7 @@ public class GameMap {
 	private int highestGamePoint;
 	private final int ROW = 15;
 	private final int COLUMN = 50;
-	private char map[][] = new char[ROW][COLUMN];
+	private char map[][];
 
 	public GameMap() {}
 
@@ -71,17 +71,15 @@ public class GameMap {
 	 */
 	public String generateMapTerminal() {
 		String ret = "";
-		
+		setTerminalMap();
 		generateTerminalBounds();
 		setSpritesOnTerminalMap();
-
 		for (char[] column : map) {
 			for (char row : column) {
 				ret += row;
 			}
 			ret += "\n";
 		}
-
 		return ret;
 	}
 
@@ -94,19 +92,23 @@ public class GameMap {
 		}
 	}
 
-	private void generateTerminalBounds() {
+	private void setTerminalMap() {
+		map = new char[ROW][COLUMN];
 		for (int i = 0; i < ROW; i++) {
-			for (int j = 0; j < COLUMN; j++) {
-				if (i == 0 || j == 0) {
-					addSprite(new Wall(j*5, i*5, 5.0, 5.0));
-				} else if (i == ROW - 1) {
-					addSprite(new Wall((j)*5, (ROW-1)*5, 5.0, 5.0));
-				} else if (j == COLUMN - 1) {
-					addSprite(new Wall((COLUMN-1)*5, (i)*5, 5.0, 5.0));
-				} else {
-					map[i][j] = ' ';
-				}
+			for (int j = 0; j < COLUMN; j ++) {
+				map[i][j] = ' ';
 			}
+		}
+	}
+
+	private void generateTerminalBounds() {
+		for (int i = 0; i < COLUMN; i++) {
+			addSprite(new Wall(i*5, 0, 5.0, 5.0));
+			addSprite(new Wall((i)*5, (ROW-1)*5, 5.0, 5.0));
+		}
+		for (int i = 0; i < ROW; i++) {
+			addSprite(new Wall(0, i*5, 5.0, 5.0));
+			addSprite(new Wall((COLUMN-1)*5, (i)*5, 5.0, 5.0));
 		}
 	}
 
