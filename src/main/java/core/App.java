@@ -10,8 +10,6 @@ import javafx.stage.Stage;
 
 public class App extends Application{
 
-        private Scene CurrentScene;
-        private Button startNewGame;
         private static Stage gameWindow;
 
     public void start(Stage primaryStage) {
@@ -22,11 +20,9 @@ public class App extends Application{
     }
 
     public void init() {
-
     }
 
     public static Stage getGameWindow() {
         return gameWindow;
     }
-
 }
