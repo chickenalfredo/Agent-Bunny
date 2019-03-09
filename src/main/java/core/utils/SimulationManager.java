@@ -1,6 +1,6 @@
 package core.utils;
 
-import core.external.entity.Player;
+import core.external.entity.Hero;
 import core.math.Collision;
 import core.sprite.Sprite;
 import java.util.List;
@@ -33,8 +33,8 @@ public class SimulationManager {
     /**
      * 
      */
-    public boolean simulateCollision(Player player, List<Sprite> list) {
-        Player simulatedPlayer = new Player(player);
+    public boolean simulateCollision(Hero player, List<Sprite> list) {
+        Hero simulatedPlayer = new Hero(player);
         Collision collision = new Collision();
         simulatedPlayer.move(key);
         for (Sprite sprite : list) {

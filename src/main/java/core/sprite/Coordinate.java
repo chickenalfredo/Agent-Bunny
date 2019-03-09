@@ -99,6 +99,25 @@ public class Coordinate {
     }
 
     /**
+     * Returns the normal vectors length of the Coordinate
+     * 
+     * @return  The length of the normal vector
+     */
+    public double normalize() {
+        double length = x * x + y * y;
+        if (length > 0) {
+            length = Math.sqrt(length);
+            double inverseLength = 1.0 / length;
+            x *= inverseLength;
+            y *= inverseLength;
+        } else {
+            x = 1;
+            y = 0;
+        }
+        return length;
+    }
+
+    /**
      * Determines whether or not two Coordinates are equal
      * 
      * @param obj - The object to be compared

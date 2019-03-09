@@ -1,5 +1,7 @@
 package core.math;
 
+import java.util.Vector;
+
 import core.sprite.Coordinate;
 import core.sprite.Sprite;
 
@@ -11,6 +13,8 @@ import core.sprite.Sprite;
  * @author Daniel Contreras
  */
 public class Collision {
+
+    private MathUtil math = new MathUtil();
 
     /**
      * Returns whether a collision has occured between two static objects.
@@ -59,7 +63,7 @@ public class Collision {
      * Returns whether a collision has occured between an AABB object and a swept
      * AABB object
      */
-    public boolean sweptAABB(Sprite box, Coordinate delta) {
+    public boolean sweptAABB(Sprite hero, Coordinate pos) {
         return false;
     }
 

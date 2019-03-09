@@ -1,14 +1,14 @@
 package core.external.tile;
 
-import core.sprite.TileObject;
 import core.sprite.Sprite;
+import core.sprite.TileObject;
 
-public class CheckPoint extends TileObject {
+public class Wall extends TileObject {
 
-    public CheckPoint(double x, double y, double width, double height) {
+    public Wall(double x, double y, double width, double height) {
         super(x, y, width, height);
         setIsCollidable(true);
-        setTerminalChar('c');
+        setTerminalChar('#');
     }
 
     @Override

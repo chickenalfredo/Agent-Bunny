@@ -16,13 +16,19 @@ public class StandardBlock extends TileObject {
      * @param width         The width of the block
      * @param height        The height of the block
     */
-    public StandardBlock(double x, double y, double width, double height, char terminalChar) {
-        super(terminalChar, x, y, width, height);
+    public StandardBlock(double x, double y, double width, double height) {
+        super(x, y, width, height);
         setIsCollidable(true);
+        setTerminalChar('-');
     }
 
     @Override
-    public void collisionReaction(Sprite spriteCollidedWith) {
+    public void draw() {}
 
-    }
+    @Override
+    public void update() {}
+
+    @Override
+    public void collisionResolution(Sprite sprite) {}
+
 }

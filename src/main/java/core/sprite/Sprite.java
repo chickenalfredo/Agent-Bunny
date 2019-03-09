@@ -1,5 +1,7 @@
 package core.sprite;
 
+import core.sprite.interfaces.Physics;
+import core.sprite.interfaces.Render;
 import com.google.gson.GsonBuilder;
 
 /**
@@ -10,18 +12,11 @@ import com.google.gson.GsonBuilder;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite {
+public abstract class Sprite implements Render, Physics {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
-    private char terminalChar = 'x';
-
-    /**
-     * Constructs and initializes a default Sprite with position and size all being
-     * set to the default value 0.
-     */
-    public Sprite() {
-    }
+    private char terminalChar;
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -33,9 +28,8 @@ public abstract class Sprite {
      * @param width  - The width of the Sprites bounding rectangle
      * @param height - The height of the Sprites bounding rectangle
      */
-    public Sprite(char terminalChar, double x, double y, double width, double height) {
+    public Sprite(double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
-        this.terminalChar = terminalChar;
         this.width = width;
         this.height = height;
     }
