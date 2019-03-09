@@ -4,7 +4,6 @@ import core.scenes.*;
 import core.App;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.geometry.*;
 
 public class MenuEventHandlers {
 
