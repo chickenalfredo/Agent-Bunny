@@ -1,6 +1,7 @@
 package core.external.entity;
 
 import core.sprite.AbstractEnemy;
+import core.sprite.Entity;
 import core.sprite.Sprite;
 
 /**
@@ -31,7 +32,7 @@ public class Monster extends AbstractEnemy {
     public void guard() {}
 
     @Override
-    public void attack() {}
+    public void attack(Entity entityToAttack) {}
 
     @Override
     public void collisionResolution(Sprite sprite) {}

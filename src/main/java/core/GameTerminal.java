@@ -32,10 +32,15 @@ public class GameTerminal {
                 player = (Hero) each;
             }
         }
+
+
         System.out.println(getDisplay());
         printMessage();
         String key = userInput.nextLine();
         input = new SimulationManager(key);
+        
+
+
         if (input.isSimulationInput(key)) {
             if (input.simulateCollision(player, sprite)) {
                 System.out.println("Collision detected");
@@ -52,6 +57,9 @@ public class GameTerminal {
         } else {
             System.out.println("Invalid Input");
         }
+
+
+
         return true;
     }
 

@@ -15,6 +15,7 @@ public class Hero extends Entity implements Physics, HeroDefense {
     public Hero(double x, double y, double width, double height) {
         super(x, y, width, height);
         setTerminalChar('H');
+        setAttackPower(25);
     }
 
     public Hero(Hero player) {
@@ -30,7 +31,9 @@ public class Hero extends Entity implements Physics, HeroDefense {
     }
 
     @Override
-    public void attack() {}
+    public void attack(Entity enemyToAttack) {
+        enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
+    }
 
     @Override
     public void draw() {}
