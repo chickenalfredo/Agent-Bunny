@@ -6,6 +6,9 @@ import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import core.utils.MenuEventHandlers;
+
+import java.io.File;
+
 import core.App;
 import javafx.geometry.*;
 
@@ -17,7 +20,7 @@ public class TitleScene {
         VBox root = initScene();
         TitleScene = new Scene(root);
         TitleScene.getStylesheets().clear();
-        TitleScene.getStylesheets().add("Style.css");
+        TitleScene.getStylesheets().add((new File("Style.css")).toURI().toString());
         return TitleScene;
     }
        
