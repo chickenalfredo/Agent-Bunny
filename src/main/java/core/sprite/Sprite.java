@@ -15,7 +15,7 @@ import com.google.gson.GsonBuilder;
 public abstract class Sprite implements Render, Physics {
 
     private Coordinate coordinate = new Coordinate();
-    private double width, height;
+    private double width, height, velocityX, velocityY;
     private char terminalChar;
 
     /**
@@ -32,6 +32,34 @@ public abstract class Sprite implements Render, Physics {
         coordinate = new Coordinate(x, y);
         this.width = width;
         this.height = height;
+    }
+
+    /**
+     * @return the velocityY
+     */
+    public double getVelocityY() {
+        return velocityY;
+    }
+
+    /**
+     * @param velocityY the velocityY to set
+     */
+    public void setVelocityY(double velocityY) {
+        this.velocityY = velocityY;
+    }
+
+    /**
+     * @return the velocityX
+     */
+    public double getVelocityX() {
+        return velocityX;
+    }
+
+    /**
+     * @param velocityX the velocityX to set
+     */
+    public void setVelocityX(double velocityX) {
+        this.velocityX = velocityX;
     }
 
     /**
