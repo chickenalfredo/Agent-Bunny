@@ -3,10 +3,11 @@ package core.external.entity;
 import core.sprite.AbstractEnemy;
 import core.sprite.Entity;
 import core.sprite.Sprite;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
- * This class implements the AI and behaviours of strong hostile npc in the game.
- * It is the extension of the Entity class.
+ * This class implements the AI and behaviours of strong hostile npc in the
+ * game. It is the extension of the Entity class.
  * 
  * @author Harry Lee
  */
@@ -26,21 +27,19 @@ public class BlackWolf extends AbstractEnemy {
     }
 
     @Override
-    public void dodge() {}
+    public void dodge() {
+    }
 
     @Override
-    public void guard() {}
+    public void guard() {
+    }
 
     @Override
-    public void attack(Entity entityToAttack) {}
+    public void attack(Entity entityToAttack) {
+    }
 
     @Override
-    public void collisionResolution(Sprite sprite) {}
+    public void collisionResolution(Sprite sprite) {
+    }
 
-    @Override
-    public void draw() {}
-
-    @Override
-    public void update() {}
-    
 }

@@ -3,6 +3,7 @@ package core.external.entity;
 import core.sprite.Entity;
 import core.sprite.Sprite;
 import core.sprite.interfaces.Physics;
+import javafx.scene.canvas.GraphicsContext;
 import core.sprite.interfaces.HeroDefense;;
 
 /**
@@ -22,6 +23,10 @@ public class Hero extends Entity implements Physics, HeroDefense {
         super(player.getX(), player.getY(), player.getWidth(), player.getHeight());
     }
 
+    public Hero(int x, int y) {
+        super(x, y);
+    }
+
     public int getLives() {
         return lives;
     }
@@ -36,24 +41,23 @@ public class Hero extends Entity implements Physics, HeroDefense {
     }
 
     @Override
-    public void draw() {}
+    public void jump() {
+    }
 
     @Override
-    public void update() {}
+    public void doubleJump() {
+    }
 
     @Override
-    public void jump() {}
+    public void dash() {
+    }
 
     @Override
-    public void doubleJump() {}
+    public void duck() {
+    }
 
     @Override
-    public void dash() {}
-
-    @Override
-    public void duck() {}
-
-    @Override
-    public void collisionResolution(Sprite sprite) {}
+    public void collisionResolution(Sprite sprite) {
+    }
 
 }

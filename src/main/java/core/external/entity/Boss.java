@@ -3,6 +3,7 @@ package core.external.entity;
 import core.sprite.AbstractEnemy;
 import core.sprite.Entity;
 import core.sprite.Sprite;
+import javafx.scene.canvas.GraphicsContext;
 
 public class Boss extends AbstractEnemy {
 
@@ -12,21 +13,19 @@ public class Boss extends AbstractEnemy {
     }
 
     @Override
-    public void dodge() {}
+    public void dodge() {
+    }
 
     @Override
-    public void guard() {}
+    public void guard() {
+    }
 
     @Override
-    public void attack(Entity entityToAttack) {}
+    public void attack(Entity entityToAttack) {
+    }
 
     @Override
-    public void collisionResolution(Sprite sprite) {}
-
-    @Override
-    public void draw() {}
-
-    @Override
-    public void update() {}
+    public void collisionResolution(Sprite sprite) {
+    }
 
 }

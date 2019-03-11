@@ -24,16 +24,6 @@ public class Sword extends Melee {
     }
 
     @Override
-    public void draw() {
-
-    }
-
-    @Override
-    public void update() {
-
-    }
-
-    @Override
     public void collisionResolution(Sprite sprite) {
 
     }

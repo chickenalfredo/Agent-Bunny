@@ -29,6 +29,10 @@ public abstract class Entity extends Sprite implements Movement, Attacks, Physic
         super(entityX, entityY, entityWidth, entityHeight);
     }
 
+    public Entity(int x, int y) {
+        super(x, y);
+    }
+
     /**
      * Returns a boolean to tell if the character's health has reached 0
      * 

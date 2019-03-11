@@ -2,6 +2,9 @@ package core.sprite;
 
 import core.sprite.interfaces.Physics;
 import core.sprite.interfaces.Render;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
 import com.google.gson.GsonBuilder;
 
 /**
@@ -17,6 +20,7 @@ public abstract class Sprite implements Render, Physics {
     private Coordinate coordinate = new Coordinate();
     private double width, height, velocityX, velocityY;
     private char terminalChar;
+    private Image image;
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -33,6 +37,41 @@ public abstract class Sprite implements Render, Physics {
         this.width = width;
         this.height = height;
     }
+
+    public Sprite(double x, double y) {
+        coordinate = new Coordinate(x, y);
+    }
+
+    /**
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(Image image) {
+        this.image = image;
+        width = image.getWidth();
+        height = image.getHeight();
+    }
+
+    public void setImage(String filename)
+    {
+        Image i = new Image(filename);
+        setImage(i);
+    }
+
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(image, coordinate.getX(), coordinate.getY());
+    }
+
+    public void update(double time) {
+        coordinate.setLocation(coordinate.getX() + velocityX * time, coordinate.getY() + velocityY * time);
+    }
+
 
     /**
      * @return the velocityY
