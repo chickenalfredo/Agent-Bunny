@@ -29,6 +29,10 @@ public abstract class Entity extends Sprite implements Movement, Attacks, Physic
         super(entityX, entityY, entityWidth, entityHeight);
     }
 
+    public Entity(int x, int y) {
+        super(x, y);
+    }
+
     /**
      * Returns a boolean to tell if the character's health has reached 0
      * 
@@ -94,16 +98,16 @@ public abstract class Entity extends Sprite implements Movement, Attacks, Physic
     public void move(String key) {
         switch (key) {
         case "w":
-            this.setCoordinate(this.getX(), this.getY() - this.getHeight() * this.getSpeed());
+            this.setCoordinate(this.getX(), this.getY() - 10);
             break;
         case "a":
-            this.setCoordinate(this.getX() - this.getWidth(), this.getY());
+            this.setCoordinate(this.getX() - 10, this.getY());
             break;
         case "s":
-            this.setCoordinate(this.getX(), this.getY() + this.getHeight() * this.getSpeed());
+            this.setCoordinate(this.getX(), this.getY() + 10);
             break;
         case "d":
-            this.setCoordinate(this.getX() + this.getWidth(), this.getY());
+            this.setCoordinate(this.getX() + 10, this.getY());
             break;
         }
     }

@@ -22,6 +22,10 @@ public class Hero extends Entity implements Physics, HeroDefense {
         super(player.getX(), player.getY(), player.getWidth(), player.getHeight());
     }
 
+    public Hero(int x, int y) {
+        super(x, y);
+    }
+
     public int getLives() {
         return lives;
     }
@@ -35,25 +39,32 @@ public class Hero extends Entity implements Physics, HeroDefense {
         enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
     }
 
-    @Override
-    public void draw() {}
+    public void attack() {
+        System.out.println("Hero attacks...");
+    }
 
     @Override
-    public void update() {}
+    public void jump() {
+        System.out.println("Hero jumps...");
+    }
 
     @Override
-    public void jump() {}
+    public void doubleJump() {
+        System.out.println("Hero double jumps...");
+    }
 
     @Override
-    public void doubleJump() {}
+    public void dash() {
+        System.out.println("Hero dashes...");
+    }
 
     @Override
-    public void dash() {}
+    public void duck() {
+        System.out.println("Hero ducks...");
+    }
 
     @Override
-    public void duck() {}
-
-    @Override
-    public void collisionResolution(Sprite sprite) {}
+    public void collisionResolution(Sprite sprite) {
+    }
 
 }

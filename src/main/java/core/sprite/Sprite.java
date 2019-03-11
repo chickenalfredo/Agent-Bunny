@@ -2,6 +2,9 @@ package core.sprite;
 
 import core.sprite.interfaces.Physics;
 import core.sprite.interfaces.Render;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
 import com.google.gson.GsonBuilder;
 
 /**
@@ -16,7 +19,10 @@ public abstract class Sprite implements Render, Physics {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
+    private double velocityX = 2;
+    private double velocityY = 2;
     private char terminalChar;
+    private Image image;
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -32,6 +38,69 @@ public abstract class Sprite implements Render, Physics {
         coordinate = new Coordinate(x, y);
         this.width = width;
         this.height = height;
+    }
+
+    public Sprite(double x, double y) {
+        coordinate = new Coordinate(x, y);
+    }
+
+    /**
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(Image image) {
+        this.image = image;
+        width = image.getWidth();
+        height = image.getHeight();
+    }
+
+    public void setImage(String filename)
+    {
+        Image i = new Image(filename);
+        setImage(i);
+    }
+
+    public void draw(GraphicsContext gc) {
+        gc.drawImage(image, coordinate.getX(), coordinate.getY());
+    }
+
+    public void update(double time) {
+        coordinate.setLocation(coordinate.getX() + velocityX * time, coordinate.getY() + velocityY * time);
+    }
+
+
+    /**
+     * @return the velocityY
+     */
+    public double getVelocityY() {
+        return velocityY;
+    }
+
+    /**
+     * @param velocityY the velocityY to set
+     */
+    public void setVelocityY(double velocityY) {
+        this.velocityY = velocityY;
+    }
+
+    /**
+     * @return the velocityX
+     */
+    public double getVelocityX() {
+        return velocityX;
+    }
+
+    /**
+     * @param velocityX the velocityX to set
+     */
+    public void setVelocityX(double velocityX) {
+        this.velocityX = velocityX;
     }
 
     /**

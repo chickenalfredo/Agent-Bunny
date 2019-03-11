@@ -2,6 +2,7 @@ package core.external.props;
 
 import core.sprite.Sprite;
 import core.sprite.TileObject;
+import javafx.scene.canvas.GraphicsContext;
 
 public class Carrot extends TileObject {
 
@@ -10,12 +11,7 @@ public class Carrot extends TileObject {
     }
 
     @Override
-    public void draw() {}
-
-    @Override
-    public void update() {}
-
-    @Override
-    public void collisionResolution(Sprite sprite) {}
+    public void collisionResolution(Sprite sprite) {
+    }
 
 }

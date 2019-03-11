@@ -1,6 +1,7 @@
 package core.external.tile;
 
 import core.sprite.TileObject;
+import javafx.scene.canvas.GraphicsContext;
 import core.sprite.Sprite;
 
 public class Clouds extends TileObject {
@@ -10,12 +11,6 @@ public class Clouds extends TileObject {
         setIsCollidable(false);
         setTerminalChar('l');
     }
-
-    @Override
-    public void draw() {}
-
-    @Override
-    public void update() {}
 
     @Override
     public void collisionResolution(Sprite sprite) {}
