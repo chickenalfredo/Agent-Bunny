@@ -1,5 +1,4 @@
 package core.screens;
-import core.App;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;

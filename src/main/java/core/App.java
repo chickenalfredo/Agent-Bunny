@@ -3,9 +3,6 @@ package core;
 import core.scenes.TitleScene;
 import core.screens.ScreenBuilder;
 import javafx.application.Application;
-import javafx.scene.control.*;
-import javafx.scene.layout.*;
-import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 public class App extends Application{
