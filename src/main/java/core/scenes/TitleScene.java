@@ -1,15 +1,10 @@
 package core.scenes;
 
-import javafx.application.Application;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import core.utils.MenuEventHandlers;
-
 import java.io.File;
-
-import core.App;
 import javafx.geometry.*;
 
 public class TitleScene {

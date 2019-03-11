@@ -1,22 +1,15 @@
 package core.scenes;
 
-import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.Scene;
-import javafx.stage.Stage;
 import core.utils.MenuEventHandlers;
-import core.App;
 import javafx.geometry.*;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import core.utils.MenuEventHandlers;
+import java.io.*;
+
+
 
 public class GameSettings {
 
@@ -28,6 +21,8 @@ public class GameSettings {
     public static Scene display() {
         menu = mainMenu();
         GameSettings = new Scene(menu);
+        GameSettings.getStylesheets().clear();
+        GameSettings.getStylesheets().add((new File("Style.css")).toURI().toString());
         return GameSettings;
     }
 

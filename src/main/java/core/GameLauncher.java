@@ -2,7 +2,6 @@ package core;
 
 import javafx.application.Application;
 import core.App;
-import javafx.stage.*;
 import java.util.Scanner;
 
 public class GameLauncher {
