@@ -18,7 +18,9 @@ import com.google.gson.GsonBuilder;
 public abstract class Sprite implements Render, Physics {
 
     private Coordinate coordinate = new Coordinate();
-    private double width, height, velocityX, velocityY;
+    private double width, height;
+    private double velocityX = 2;
+    private double velocityY = 2;
     private char terminalChar;
     private Image image;
 

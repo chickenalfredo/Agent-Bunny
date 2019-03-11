@@ -1,38 +1,33 @@
 package core.scenes;
 
-import javafx.application.Application;
-import javafx.scene.control.*;
+import javafx.event.EventHandler;
 import javafx.scene.image.Image;
-import javafx.scene.layout.*;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
+import javafx.scene.input.KeyEvent;
 import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.stage.Stage;
-import core.utils.MenuEventHandlers;
+import core.utils.InputHandler;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
-import javax.imageio.stream.FileImageInputStream;
-
-import core.App;
+import core.command.Command;
 import core.external.entity.Hero;
-import javafx.geometry.*;
 
 public class GameScene {
 
     private static Hero hero;
     private static Scene GameScene;
+    private static GraphicsContext gc;
+    private static InputHandler inputHandler = new InputHandler();
 
     public static Scene display() {
         Group root = initScene();
+        GameScene = new Scene(root);
         Canvas canvas = new Canvas(1000, 1000);
         root.getChildren().add(canvas);
-        GraphicsContext gc = canvas.getGraphicsContext2D();
+        gc = canvas.getGraphicsContext2D();
         hero = new Hero(0, 0);
         try {
             hero.setImage(new Image(new FileInputStream("char.jpg")));
@@ -41,10 +36,18 @@ public class GameScene {
         }
         hero.draw(gc);
 
-        GameScene.setOnKeyPressed(new InputHandler());
+        class GameLoop implements EventHandler<KeyEvent> {
+            public void handle(KeyEvent event) {
+                Command command = inputHandler.handleInput(event);
+                if (command != null) {
+                    System.out.println("command was null");
+                } 
+                command.execute(hero);
+                hero.draw(gc);
+            }
+        }
+        GameScene.setOnKeyPressed(new GameLoop());
 
-
-        GameScene = new Scene(root);
         return GameScene;
     }
 

@@ -3,7 +3,6 @@ package core.external.entity;
 import core.sprite.Entity;
 import core.sprite.Sprite;
 import core.sprite.interfaces.Physics;
-import javafx.scene.canvas.GraphicsContext;
 import core.sprite.interfaces.HeroDefense;;
 
 /**
@@ -40,20 +39,28 @@ public class Hero extends Entity implements Physics, HeroDefense {
         enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
     }
 
+    public void attack() {
+        System.out.println("Hero attacks...");
+    }
+
     @Override
     public void jump() {
+        System.out.println("Hero jumps...");
     }
 
     @Override
     public void doubleJump() {
+        System.out.println("Hero double jumps...");
     }
 
     @Override
     public void dash() {
+        System.out.println("Hero dashes...");
     }
 
     @Override
     public void duck() {
+        System.out.println("Hero ducks...");
     }
 
     @Override
