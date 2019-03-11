@@ -1,6 +1,7 @@
 package core.external.tile;
 
 import core.sprite.TileObject;
+import javafx.scene.canvas.GraphicsContext;
 import core.sprite.Sprite;
 
 public class CheckPoint extends TileObject {
@@ -12,12 +13,7 @@ public class CheckPoint extends TileObject {
     }
 
     @Override
-    public void draw() {}
-
-    @Override
-    public void update() {}
-
-    @Override
-    public void collisionResolution(Sprite sprite) {}
+    public void collisionResolution(Sprite sprite) {
+    }
 
 }

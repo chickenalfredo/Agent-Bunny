@@ -1,5 +1,4 @@
 package core.screens;
-import core.App;
 import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
@@ -15,5 +14,11 @@ public class ScreenBuilder {
         primaryStage.setHeight(primaryScreenBounds.getHeight());
         primaryStage.setTitle("Agent Bunny");
         return primaryStage;
+    }
+    /**
+     * @return the primaryScreenBounds
+     */
+    public static Rectangle2D getPrimaryScreenBounds() {
+        return primaryScreenBounds;
     }
 }

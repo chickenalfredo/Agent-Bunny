@@ -2,6 +2,7 @@ package core.external.tile;
 
 import core.sprite.Sprite;
 import core.sprite.TileObject;
+import javafx.scene.canvas.GraphicsContext;
 
 public class Wall extends TileObject {
 
@@ -12,12 +13,7 @@ public class Wall extends TileObject {
     }
 
     @Override
-    public void draw() {}
-
-    @Override
-    public void update() {}
-
-    @Override
-    public void collisionResolution(Sprite sprite) {}
+    public void collisionResolution(Sprite sprite) {
+    }
 
 }

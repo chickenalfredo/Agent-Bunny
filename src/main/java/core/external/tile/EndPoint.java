@@ -1,6 +1,7 @@
 package core.external.tile;
 
 import core.sprite.TileObject;
+import javafx.scene.canvas.GraphicsContext;
 import core.sprite.Sprite;
 
 /**
@@ -29,12 +30,10 @@ public class EndPoint extends TileObject {
         return isLevelOver;
     }
 
-
     @Override
-    public void draw() {}
+    public void update(double time) {
 
-    @Override
-    public void update() {}
+    }
 
     @Override
     public void collisionResolution(Sprite spriteCollidedWith) {
