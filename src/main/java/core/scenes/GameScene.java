@@ -1,5 +1,6 @@
 package core.scenes;
 
+import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
@@ -8,30 +9,43 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import core.utils.InputHandler;
+import core.utils.SimulationManager;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import core.command.Command;
 import core.external.entity.Hero;
+import core.external.level.Chapter1Level1;
+import core.map.GameMap;
 import core.screens.ScreenBuilder;
+import core.sprite.Sprite;
+
+import java.util.List;
 
 public class GameScene {
 
-    private static Hero hero;
+    private static Hero hero = new Hero(0,0);
     private static Scene GameScene;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
+    private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
+    private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
+    private static GameMap level1 = new Chapter1Level1();
+    private static List<Sprite> spritesList = level1.getSprite();
 
     public static Scene display() {
         Group root = initScene();
         GameScene = new Scene(root);
-        Canvas canvas = new Canvas(ScreenBuilder.getPrimaryScreenBounds().getWidth(), ScreenBuilder.getPrimaryScreenBounds().getHeight());
+        Canvas canvas = new Canvas(screenWidth, screenHeight);
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
-        hero = new Hero(0, 0);
         try {
-            hero.setImage(new Image(new FileInputStream("char.jpg")));
+            hero.setImage(new Image(new FileInputStream("char.jpg"), 100, 100, true, true));
+            for (Sprite sprite : spritesList) {
+                sprite.setImage(new Image(new FileInputStream("char.jpg"), 100, 100, true, true));
+                sprite.draw(gc);
+            }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
@@ -39,15 +53,23 @@ public class GameScene {
 
         class GameLoop implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {
+                SimulationManager simulation = new SimulationManager();
                 Command command = inputHandler.handleInput(event);
-                if (command != null) {
-                    System.out.println("command was null");
-                } 
-                command.execute(hero);
-                hero.draw(gc);
+                if (command != null && !simulation.simulateCollision(command, hero, spritesList)) {
+                    command.execute(hero);
+                }
             }
         }
         GameScene.setOnKeyPressed(new GameLoop());
+        new AnimationTimer() {
+            public void handle(long time) {
+                gc.clearRect(0,0, screenWidth, screenHeight);
+                for (Sprite sprite : spritesList) {
+                    sprite.draw(gc);
+                }
+                hero.draw(gc);
+            }
+        }.start();
 
         return GameScene;
     }

@@ -3,7 +3,6 @@ package core.external.entity;
 import core.sprite.AbstractEnemy;
 import core.sprite.Entity;
 import core.sprite.Sprite;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class implements the AI and behaviours of weak hostile npc in the game.
@@ -24,6 +23,10 @@ public class Monster extends AbstractEnemy {
     public Monster(double x, double y, double width, double height) {
         super(x, y, width, height);
         setTerminalChar('M');
+    }
+
+    public Monster(double x, double y) {
+        super(x, y);
     }
 
     @Override

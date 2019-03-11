@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.*;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * Creates a standard collidable wall block that prevents entity's from
@@ -22,6 +21,10 @@ public class StandardBlock extends TileObject {
         super(x, y, width, height);
         setIsCollidable(true);
         setTerminalChar('-');
+    }
+
+    public StandardBlock(double x, double y) {
+        super(x, y);
     }
 
     @Override

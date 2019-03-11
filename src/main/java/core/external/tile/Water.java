@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.*;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class implements a isLevelOver point tile that allows to set the
@@ -15,6 +14,10 @@ public class Water extends TileObject {
         super(x, y, width, height);
         setIsCollidable(true);
         setTerminalChar('*');
+    }
+
+    public Water(double x, double y) {
+        super(x, y);
     }
 
     /**

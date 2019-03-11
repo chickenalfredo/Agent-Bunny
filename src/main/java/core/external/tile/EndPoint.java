@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.TileObject;
-import javafx.scene.canvas.GraphicsContext;
 import core.sprite.Sprite;
 
 /**
@@ -21,6 +20,10 @@ public class EndPoint extends TileObject {
         super(x, y, width, height);
         setIsCollidable(true);
         setTerminalChar('e');
+    }
+
+    public EndPoint(double x, double y) {
+        super(x, y);
     }
 
     /**

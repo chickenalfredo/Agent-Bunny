@@ -22,7 +22,7 @@ public class Hero extends Entity implements Physics, HeroDefense {
         super(player.getX(), player.getY(), player.getWidth(), player.getHeight());
     }
 
-    public Hero(int x, int y) {
+    public Hero(double x, double y) {
         super(x, y);
     }
 

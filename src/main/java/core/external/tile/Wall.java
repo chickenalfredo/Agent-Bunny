@@ -2,7 +2,6 @@ package core.external.tile;
 
 import core.sprite.Sprite;
 import core.sprite.TileObject;
-import javafx.scene.canvas.GraphicsContext;
 
 public class Wall extends TileObject {
 
@@ -10,6 +9,10 @@ public class Wall extends TileObject {
         super(x, y, width, height);
         setIsCollidable(true);
         setTerminalChar('#');
+    }
+
+    public Wall(double x, double y) {
+        super(x, y);
     }
 
     @Override

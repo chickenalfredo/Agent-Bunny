@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.TileObject;
-import javafx.scene.canvas.GraphicsContext;
 import core.sprite.Sprite;
 
 public class CheckPoint extends TileObject {
@@ -10,6 +9,10 @@ public class CheckPoint extends TileObject {
         super(x, y, width, height);
         setIsCollidable(true);
         setTerminalChar('c');
+    }
+
+    public CheckPoint(double x, double y) {
+        super(x, y);
     }
 
     @Override

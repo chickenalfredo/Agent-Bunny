@@ -66,6 +66,10 @@ public abstract class Sprite implements Render, Physics {
         setImage(i);
     }
 
+    public void spriteSheet(String path, double frameWidth, double frameHeight) {
+
+    }   
+
     public void draw(GraphicsContext gc) {
         gc.drawImage(image, coordinate.getX(), coordinate.getY());
     }

@@ -1,5 +1,6 @@
 package core.utils;
 
+import core.command.Command;
 import core.external.entity.Hero;
 import core.math.Collision;
 import core.sprite.Sprite;
@@ -37,6 +38,17 @@ public class SimulationManager {
         Hero simulatedPlayer = new Hero(player);
         Collision collision = new Collision();
         simulatedPlayer.move(key);
+        for (Sprite sprite : list) {
+            if (collision.intersectAABB(simulatedPlayer, sprite)) 
+                return true;
+        }
+        return false;
+    }
+
+    public boolean simulateCollision(Command command, Hero player, List<Sprite> list) {
+        Hero simulatedPlayer = new Hero(player);
+        Collision collision = new Collision();
+        command.execute(simulatedPlayer);
         for (Sprite sprite : list) {
             if (collision.intersectAABB(simulatedPlayer, sprite)) 
                 return true;
