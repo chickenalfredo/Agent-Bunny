@@ -14,6 +14,7 @@ import java.io.FileNotFoundException;
 
 import core.command.Command;
 import core.external.entity.Hero;
+import core.screens.ScreenBuilder;
 
 public class GameScene {
 
@@ -25,7 +26,7 @@ public class GameScene {
     public static Scene display() {
         Group root = initScene();
         GameScene = new Scene(root);
-        Canvas canvas = new Canvas(1000, 1000);
+        Canvas canvas = new Canvas(ScreenBuilder.getPrimaryScreenBounds().getWidth(), ScreenBuilder.getPrimaryScreenBounds().getHeight());
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
         hero = new Hero(0, 0);
