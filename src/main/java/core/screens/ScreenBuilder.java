@@ -15,4 +15,10 @@ public class ScreenBuilder {
         primaryStage.setTitle("Agent Bunny");
         return primaryStage;
     }
+    /**
+     * @return the primaryScreenBounds
+     */
+    public static Rectangle2D getPrimaryScreenBounds() {
+        return primaryScreenBounds;
+    }
 }
