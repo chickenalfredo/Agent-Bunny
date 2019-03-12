@@ -29,7 +29,7 @@ public class Chapter1Level1 extends GameMap {
 
 		Monster monster = new Monster(1000, 200);
 		BlackWolf wolf = new BlackWolf(200.0, 1000.0);
-		Hero player = new Hero(500, 500);
+		// Hero player = new Hero(500, 500);
 		CheckPoint cp = new CheckPoint(200, 500.0);
 		Clouds cloud = new Clouds(100.0, 100.0);
 		EndPoint ep = new EndPoint(50.0, 600.0);
@@ -40,7 +40,6 @@ public class Chapter1Level1 extends GameMap {
 		sprites.add(block1);
 		sprites.add(monster);
 		sprites.add(wolf);
-		sprites.add(player);
 		sprites.add(cp);
 		sprites.add(cloud);
 		sprites.add(ep);

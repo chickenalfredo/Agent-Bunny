@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
+import com.sun.javafx.geom.Rectangle;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A
@@ -26,6 +27,7 @@ public abstract class Sprite implements Render, Physics {
     private double width, height;
     private char terminalChar;
     private Image image;
+    private Rectangle boundingBox;
     private PhysicsComponent physics = new PhysicsComponent();
     private GraphicsComponent graphics = new GraphicsComponent();
 
@@ -51,6 +53,7 @@ public abstract class Sprite implements Render, Physics {
 
     public Sprite(double x, double y) {
         coordinate = new Coordinate(x, y);
+        boundingBox = new Rectangle((int)x, (int )y, (int)width, (int)height);
     }
 
     /**
@@ -59,6 +62,25 @@ public abstract class Sprite implements Render, Physics {
     public Image getImage() {
         return image;
     }
+
+    // public Rectangle getBounds() {
+    //     return new Rectangle(new Rectangle((int)getX(), (int)getY()+(int)(height/2), (int)width/2, (int)height/2));
+    // }
+
+    // public Rectangle getBoundsTop() {
+    //     return new Rectangle(new Rectangle((int)getX()+(int)((width/2)/2), (int )getY(), (int)width/2, (int)height/2));
+    // }
+    // public Rectangle getBoundsBottom() {
+    //     return new Rectangle(new Rectangle((int)getX()+(int)((width/2)/2), (int )getY(), (int)width, (int)height));
+    // }
+
+    // public Rectangle getBoundsLeft() {
+    //     return new Rectangle(new Rectangle((int)getX(), (int )getY(), (int)width, (int)height));
+    // }
+
+    // public Rectangle getBoundsRight() {
+    //     return new Rectangle(new Rectangle((int)getX(), (int )getY(), (int)width, (int)height));
+    // }
 
     protected PhysicsComponent getPhysicsComponent() {
         return physics;
@@ -71,6 +93,7 @@ public abstract class Sprite implements Render, Physics {
         this.image = image;
         width = image.getWidth();
         height = image.getHeight();
+        boundingBox.setBounds((int) getX(), (int) getY(), (int) width, (int) height);
     }
 
     public void setImage(String filename)

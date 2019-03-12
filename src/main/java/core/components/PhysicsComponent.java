@@ -2,6 +2,7 @@ package core.components;
 
 import java.util.List;
 
+import core.external.entity.Hero;
 import core.math.Collision;
 import core.sprite.Entity;
 import core.sprite.Sprite;
@@ -163,11 +164,13 @@ public class PhysicsComponent {
     public void stopEntity(String key) {
         switch (key) {
         case "w":
+        // setVelocityY(0);
             break;
         case "a":
             setVelocityX(0);
             break;
         case "s":
+        // setVelocityY(0);
             break;
         case "d":
             setVelocityX(0);
@@ -178,11 +181,13 @@ public class PhysicsComponent {
     public void moveEntity(String key) {
         switch (key) {
         case "w":
+        // setVelocityY(-3);
             break;
         case "a":
             setVelocityX(-4);
             break;
         case "s":
+        // setVelocityY(3);
             break;
         case "d":
             setVelocityX(4);
@@ -192,12 +197,13 @@ public class PhysicsComponent {
 
     public void collisionDetection(Sprite actor, List<Sprite> world) {
         Collision collision = new Collision();
+
         for (Sprite sprite : world) {
             if (collision.intersectAABB(actor, sprite)) {
                 actor.setY(sprite.getY() - actor.getHeight());
-                velocityY = 0;
-                jumping = false;
-                falling = false;
+                    velocityY = 0;
+                    jumping = false;
+                    falling = false;
             } else {
                 falling = true;
             }
@@ -215,8 +221,8 @@ public class PhysicsComponent {
     
     public void duck() {}
 
-    public void attack() {
-        
+    public void attack(Sprite actor, List<Sprite> world) {
+        // System.out.println();
     }
 
 }
