@@ -17,6 +17,11 @@ public class Water extends TileObject {
         setTerminalChar('*');
     }
 
+    public Water(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+        setIsCollidable(true);
+    }
+
     public Water(double x, double y) {
         super(x, y);
     }

@@ -26,6 +26,10 @@ public class BlackWolf extends AbstractEnemy {
         setTerminalChar('W');
     }
 
+    public BlackWolf(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+    }
+
     public BlackWolf(double x, double y) {
         super(x, y);
     }

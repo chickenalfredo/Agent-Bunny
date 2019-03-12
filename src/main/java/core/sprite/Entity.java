@@ -29,8 +29,17 @@ public abstract class Entity extends Sprite implements Movement, Attacks, Physic
         super(entityX, entityY, entityWidth, entityHeight);
     }
 
+    public Entity(double entityX, double entityY, double entityWidth, double entityHeight, String image) {
+        super(entityX, entityY, entityWidth, entityHeight, image);
+    }
+
+
     public Entity(double x, double y) {
         super(x, y);
+    }
+
+    public Entity(double x, double y, String image) {
+        super(x, y, image);
     }
 
     /**

@@ -7,11 +7,8 @@ import core.sprite.interfaces.Render;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 
->>>>>>> feature-logic
 import com.google.gson.GsonBuilder;
 
 /**
@@ -30,11 +27,8 @@ public abstract class Sprite implements Render, Physics {
     private double velocityY = 2;
     private char terminalChar;
     private Image image;
-<<<<<<< HEAD
-=======
     private PhysicsComponent physics = new PhysicsComponent();
     private GraphicsComponent graphics = new GraphicsComponent();
->>>>>>> feature-logic
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -60,6 +54,18 @@ public abstract class Sprite implements Render, Physics {
         coordinate = new Coordinate(x, y);
     }
 
+    public Sprite(double x, double y, double width, double height, String image) {
+        coordinate = new Coordinate(x, y);
+        this.width = width;
+        this.height = height;
+        setImage(image);
+    }
+
+    public Sprite(double x, double y, String image) {
+        coordinate = new Coordinate(x, y);
+        setImage(image);
+    }
+
     /**
      * @return the image
      */
@@ -67,65 +73,23 @@ public abstract class Sprite implements Render, Physics {
         return image;
     }
 
-<<<<<<< HEAD
-=======
     protected PhysicsComponent getPhysicsComponent() {
         return physics;
     }
 
->>>>>>> feature-logic
     /**
      * @param image the image to set
      */
     public void setImage(Image image) {
         this.image = image;
-        width = image.getWidth();
-        height = image.getHeight();
     }
 
     public void setImage(String filename)
     {
-        Image i = new Image(filename);
+        Image i = new Image(this.getClass().getResourceAsStream(filename), this.getWidth(), this.getHeight(), false, true);
         setImage(i);
     }
 
-<<<<<<< HEAD
-    public void draw(GraphicsContext gc) {
-        gc.drawImage(image, coordinate.getX(), coordinate.getY());
-    }
-
-    public void update(double time) {
-        coordinate.setLocation(coordinate.getX() + velocityX * time, coordinate.getY() + velocityY * time);
-    }
-
-
-    /**
-     * @return the velocityY
-     */
-    public double getVelocityY() {
-        return velocityY;
-    }
-
-    /**
-     * @param velocityY the velocityY to set
-     */
-    public void setVelocityY(double velocityY) {
-        this.velocityY = velocityY;
-    }
-
-    /**
-     * @return the velocityX
-     */
-    public double getVelocityX() {
-        return velocityX;
-    }
-
-    /**
-     * @param velocityX the velocityX to set
-     */
-    public void setVelocityX(double velocityX) {
-        this.velocityX = velocityX;
-=======
     public void spriteSheet(String path, double frameWidth, double frameHeight) {
 
     }   
@@ -137,7 +101,6 @@ public abstract class Sprite implements Render, Physics {
 
     protected void updateMovement() {
 
->>>>>>> feature-logic
     }
 
     /**

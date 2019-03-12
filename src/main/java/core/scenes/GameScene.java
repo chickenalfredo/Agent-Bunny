@@ -2,16 +2,17 @@ package core.scenes;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.Group;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Button;
 import core.utils.InputHandler;
-
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+import core.utils.MenuEventHandlers;
+import java.io.File;
 
 import core.command.Command;
 import core.external.entity.Hero;
@@ -24,7 +25,7 @@ import java.util.List;
 
 public class GameScene {
 
-    private static Hero hero = new Hero(0,0);
+    private static Hero hero = new Hero(0, 0, 100, 100, "Hero.png");
     private static Scene GameScene;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
@@ -34,19 +35,13 @@ public class GameScene {
     private static List<Sprite> spritesList = level1.getSprite();
 
     public static Scene display() {
-        Group root = initScene();
+        BorderPane root = initScene();
         GameScene = new Scene(root);
+        GameScene.getStylesheets().clear();
+        GameScene.getStylesheets().add((new File("Style.css")).toURI().toString());
         Canvas canvas = new Canvas(screenWidth, screenHeight);
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
-        try {
-            hero.setImage(new Image(new FileInputStream("char.jpg"), 100, 100, true, true));
-            for (Sprite sprite : spritesList) {
-                sprite.setImage(new Image(new FileInputStream("char.jpg"), 100, 100, true, true));
-            }
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        }
 
         class GameLoop implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {
@@ -71,8 +66,14 @@ public class GameScene {
         return GameScene;
     }
 
-    public static Group initScene() {
-        Group gameUI = new Group();
+    public static BorderPane initScene() {
+
+        BorderPane gameUI = new BorderPane();
+
+        Button exit = new Button("Exit Game");
+        BorderPane.setAlignment(exit, Pos.TOP_RIGHT);
+        gameUI.setTop(exit);
+        exit.setOnAction(new MenuEventHandlers.ExitGameEvent());
         return gameUI;
     }
 }

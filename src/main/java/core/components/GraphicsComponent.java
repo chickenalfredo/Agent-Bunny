@@ -13,12 +13,8 @@ public class GraphicsComponent {
     public void update(Sprite actor, GraphicsContext gc) {
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
-        if (actor instanceof Wall) {
-            actor.setWidth(ScreenBuilder.getPrimaryScreenBounds().getWidth());
-            gc.fillRect(actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
-        } else {
-            gc.drawImage(actor.getImage(), actor.getX(), actor.getY());
-        }
+        gc.drawImage(actor.getImage(), actor.getX(), actor.getY());
+        
     }
 
 }

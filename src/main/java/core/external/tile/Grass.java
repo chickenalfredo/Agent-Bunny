@@ -6,7 +6,7 @@ import javafx.scene.canvas.GraphicsContext;
 /**
  * Creates a standard collidable wall block that prevents entity's from
  */
-public class StandardBlock extends TileObject {
+public class Grass extends TileObject {
 
     /**
      * Constructor that creates a wall block with a specified coordinate and
@@ -18,13 +18,18 @@ public class StandardBlock extends TileObject {
      * @param width        The width of the block
      * @param height       The height of the block
      */
-    public StandardBlock(double x, double y, double width, double height) {
+    public Grass(double x, double y, double width, double height) {
         super(x, y, width, height);
         setIsCollidable(true);
         setTerminalChar('-');
     }
 
-    public StandardBlock(double x, double y) {
+    public Grass(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+        setIsCollidable(true);
+    }
+
+    public Grass(double x, double y) {
         super(x, y);
     }
 
