@@ -9,13 +9,11 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import core.utils.InputHandler;
-import core.utils.SimulationManager;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import core.command.Command;
-import core.components.PhysicsComponent;
 import core.external.entity.Hero;
 import core.external.level.Chapter1Level1;
 import core.map.GameMap;
