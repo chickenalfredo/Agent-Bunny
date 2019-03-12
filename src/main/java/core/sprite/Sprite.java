@@ -2,6 +2,7 @@ package core.sprite;
 
 import core.components.GraphicsComponent;
 import core.components.PhysicsComponent;
+import core.external.entity.Hero;
 import core.sprite.interfaces.Physics;
 import core.sprite.interfaces.Render;
 import javafx.scene.canvas.GraphicsContext;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
+import com.sun.javafx.geom.Rectangle;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A
@@ -23,10 +25,9 @@ public abstract class Sprite implements Render, Physics {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
-    private double velocityX = 2;
-    private double velocityY = 2;
     private char terminalChar;
     private Image image;
+    private Rectangle boundingBox;
     private PhysicsComponent physics = new PhysicsComponent();
     private GraphicsComponent graphics = new GraphicsComponent();
 
@@ -52,6 +53,7 @@ public abstract class Sprite implements Render, Physics {
 
     public Sprite(double x, double y) {
         coordinate = new Coordinate(x, y);
+        boundingBox = new Rectangle((int)x, (int )y, (int)width, (int)height);
     }
 
     public Sprite(double x, double y, double width, double height, String image) {
@@ -72,6 +74,25 @@ public abstract class Sprite implements Render, Physics {
     public Image getImage() {
         return image;
     }
+
+    // public Rectangle getBounds() {
+    //     return new Rectangle(new Rectangle((int)getX(), (int)getY()+(int)(height/2), (int)width/2, (int)height/2));
+    // }
+
+    // public Rectangle getBoundsTop() {
+    //     return new Rectangle(new Rectangle((int)getX()+(int)((width/2)/2), (int )getY(), (int)width/2, (int)height/2));
+    // }
+    // public Rectangle getBoundsBottom() {
+    //     return new Rectangle(new Rectangle((int)getX()+(int)((width/2)/2), (int )getY(), (int)width, (int)height));
+    // }
+
+    // public Rectangle getBoundsLeft() {
+    //     return new Rectangle(new Rectangle((int)getX(), (int )getY(), (int)width, (int)height));
+    // }
+
+    // public Rectangle getBoundsRight() {
+    //     return new Rectangle(new Rectangle((int)getX(), (int )getY(), (int)width, (int)height));
+    // }
 
     protected PhysicsComponent getPhysicsComponent() {
         return physics;
@@ -95,12 +116,9 @@ public abstract class Sprite implements Render, Physics {
     }   
 
     public void update(List<Sprite> world, GraphicsContext gc) {
-        physics.update(this, world);
         graphics.update(this, gc);
-    }
-
-    protected void updateMovement() {
-
+        if (this instanceof Hero) 
+            physics.update(this, world);
     }
 
     /**

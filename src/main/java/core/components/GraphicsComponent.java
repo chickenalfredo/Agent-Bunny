@@ -1,5 +1,6 @@
 package core.components;
 
+import core.external.entity.Hero;
 import core.external.tile.Wall;
 import core.screens.ScreenBuilder;
 import core.sprite.Sprite;
