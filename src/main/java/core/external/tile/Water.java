@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.*;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class implements a isLevelOver point tile that allows to set the

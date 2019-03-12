@@ -1,6 +1,5 @@
 package core.components;
 
-import core.external.entity.Hero;
 import core.external.tile.Wall;
 import core.screens.ScreenBuilder;
 import core.sprite.Sprite;
@@ -14,8 +13,12 @@ public class GraphicsComponent {
     public void update(Sprite actor, GraphicsContext gc) {
         gc.setFill(Color.GREEN);
         gc.setStroke(Color.BLUE);
-        gc.drawImage(actor.getImage(), actor.getX(), actor.getY());
-        
+        if (actor instanceof Wall) {
+            actor.setWidth(ScreenBuilder.getPrimaryScreenBounds().getWidth());
+            gc.fillRect(actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
+        } else {
+            gc.drawImage(actor.getImage(), actor.getX(), actor.getY());
+        }
     }
 
 }

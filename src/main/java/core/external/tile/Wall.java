@@ -2,7 +2,6 @@ package core.external.tile;
 
 import core.sprite.Sprite;
 import core.sprite.TileObject;
-import javafx.scene.canvas.GraphicsContext;
 
 public class Wall extends TileObject {
 

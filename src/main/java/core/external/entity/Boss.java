@@ -3,7 +3,6 @@ package core.external.entity;
 import core.sprite.AbstractEnemy;
 import core.sprite.Entity;
 import core.sprite.Sprite;
-import javafx.scene.canvas.GraphicsContext;
 
 public class Boss extends AbstractEnemy {
 

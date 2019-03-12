@@ -3,7 +3,6 @@ package core.external.entity;
 import core.sprite.AbstractEnemy;
 import core.sprite.Entity;
 import core.sprite.Sprite;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class implements the AI and behaviours of weak hostile npc in the game.

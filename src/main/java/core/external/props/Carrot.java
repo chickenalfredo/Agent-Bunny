@@ -2,7 +2,6 @@ package core.external.props;
 
 import core.sprite.Sprite;
 import core.sprite.TileObject;
-import javafx.scene.canvas.GraphicsContext;
 
 public class Carrot extends TileObject {
 

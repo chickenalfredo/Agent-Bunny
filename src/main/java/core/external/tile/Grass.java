@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.*;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * Creates a standard collidable wall block that prevents entity's from
