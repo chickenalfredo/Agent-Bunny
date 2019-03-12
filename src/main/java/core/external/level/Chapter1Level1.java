@@ -30,8 +30,8 @@ public class Chapter1Level1 extends GameMap {
 		Monster monster = new Monster(1000, 200, 100, 100, "Beetle.png");
 		BlackWolf wolf = new BlackWolf(200.0, 300.0, 100, 100, "Cyclops.png");
 		EndPoint ep = new EndPoint(50.0, 600.0, 100, 100, "Door.png");
-		Grass block1 = new Grass(300.0, 500.0, 100, 100, "Float_Tile_Middle.png");
-		Wall wall = new Wall(0, ScreenBuilder.getPrimaryScreenBounds().getHeight() - 150, ScreenBuilder.getPrimaryScreenBounds().getWidth(), 150, "Door.png");
+		Grass block1 = new Grass(300.0, 500.0, 100, 100, "Grass.png");
+		Wall wall = new Wall(0, ScreenBuilder.getPrimaryScreenBounds().getHeight() - 150, ScreenBuilder.getPrimaryScreenBounds().getWidth(), 150, "Grass.png");
 
 		sprites.add(block1);
 		sprites.add(monster);

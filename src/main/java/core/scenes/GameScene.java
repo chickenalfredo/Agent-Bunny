@@ -2,16 +2,12 @@ package core.scenes;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
-import javafx.geometry.Pos;
-import javafx.scene.image.Image;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.Button;
 import core.utils.InputHandler;
-import core.utils.MenuEventHandlers;
 import java.io.File;
 
 import core.command.Command;
@@ -35,10 +31,13 @@ public class GameScene {
     private static List<Sprite> spritesList = level1.getSprite();
 
     public static Scene display() {
-        BorderPane root = initScene();
+        Pane root = initScene();
         GameScene = new Scene(root);
-        GameScene.getStylesheets().clear();
-        GameScene.getStylesheets().add((new File("Style.css")).toURI().toString());
+        try {
+            GameScene.getStylesheets().add((new File("Style.css")).toURI().toString());
+        } catch (Exception e) {
+            System.out.println("file not found");
+        }
         Canvas canvas = new Canvas(screenWidth, screenHeight);
         root.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
@@ -65,15 +64,8 @@ public class GameScene {
 
         return GameScene;
     }
-
-    public static BorderPane initScene() {
-
-        BorderPane gameUI = new BorderPane();
-
-        Button exit = new Button("Exit Game");
-        BorderPane.setAlignment(exit, Pos.TOP_RIGHT);
-        gameUI.setTop(exit);
-        exit.setOnAction(new MenuEventHandlers.ExitGameEvent());
+    public static Pane initScene() {
+        Pane gameUI = new Pane();
         return gameUI;
     }
 }
