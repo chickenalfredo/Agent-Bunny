@@ -96,19 +96,10 @@ public abstract class Entity extends Sprite implements Movement, Attacks, Physic
 
     @Override
     public void move(String key) {
-        switch (key) {
-        case "w":
-            this.setCoordinate(this.getX(), this.getY() - 10);
-            break;
-        case "a":
-            this.setCoordinate(this.getX() - 10, this.getY());
-            break;
-        case "s":
-            this.setCoordinate(this.getX(), this.getY() + 10);
-            break;
-        case "d":
-            this.setCoordinate(this.getX() + 10, this.getY());
-            break;
-        }
+        this.getPhysicsComponent().moveEntity(key);
+    }
+
+    public void stopEntity(String key) {
+        this.getPhysicsComponent().stopEntity(key);
     }
 }

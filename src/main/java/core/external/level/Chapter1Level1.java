@@ -3,6 +3,7 @@ package core.external.level;
 import core.external.entity.*;
 import core.external.tile.*;
 import core.map.GameMap;
+import core.screens.ScreenBuilder;
 import core.sprite.Sprite;
 
 import java.util.List;
@@ -34,6 +35,7 @@ public class Chapter1Level1 extends GameMap {
 		EndPoint ep = new EndPoint(50.0, 600.0);
 		Water water = new Water(600, 20);
 		StandardBlock block1 = new StandardBlock(2000.0, 1000.0);
+		Wall wall = new Wall(0, ScreenBuilder.getPrimaryScreenBounds().getHeight() - 150);
 
 		sprites.add(block1);
 		sprites.add(monster);
@@ -43,6 +45,7 @@ public class Chapter1Level1 extends GameMap {
 		sprites.add(cloud);
 		sprites.add(ep);
 		sprites.add(water);
+		sprites.add(wall);
 
 		for (Sprite sprite : sprites) {
 			super.addSprite(sprite);

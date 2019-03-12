@@ -15,6 +15,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 
 import core.command.Command;
+import core.components.PhysicsComponent;
 import core.external.entity.Hero;
 import core.external.level.Chapter1Level1;
 import core.map.GameMap;
@@ -44,30 +45,28 @@ public class GameScene {
             hero.setImage(new Image(new FileInputStream("char.jpg"), 100, 100, true, true));
             for (Sprite sprite : spritesList) {
                 sprite.setImage(new Image(new FileInputStream("char.jpg"), 100, 100, true, true));
-                sprite.draw(gc);
             }
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        hero.draw(gc);
 
         class GameLoop implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {
-                SimulationManager simulation = new SimulationManager();
                 Command command = inputHandler.handleInput(event);
-                if (command != null && !simulation.simulateCollision(command, hero, spritesList)) {
+                if (command != null) {
                     command.execute(hero);
                 }
             }
         }
         GameScene.setOnKeyPressed(new GameLoop());
+        GameScene.setOnKeyReleased(new GameLoop());
         new AnimationTimer() {
             public void handle(long time) {
                 gc.clearRect(0,0, screenWidth, screenHeight);
                 for (Sprite sprite : spritesList) {
-                    sprite.draw(gc);
+                    sprite.update(spritesList, gc);
                 }
-                hero.draw(gc);
+                hero.update(spritesList, gc);
             }
         }.start();
 

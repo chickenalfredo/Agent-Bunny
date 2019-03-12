@@ -33,10 +33,10 @@ public class EndPoint extends TileObject {
         return isLevelOver;
     }
 
-    @Override
-    public void update(double time) {
+    // @Override
+    // public void update(double time) {
 
-    }
+    // }
 
     @Override
     public void collisionResolution(Sprite spriteCollidedWith) {
