@@ -2,16 +2,14 @@ package core.sprite;
 
 import core.components.GraphicsComponent;
 import core.components.PhysicsComponent;
+import core.external.entity.Hero;
 import core.sprite.interfaces.Physics;
 import core.sprite.interfaces.Render;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-<<<<<<< HEAD
-=======
 import java.util.List;
 
->>>>>>> feature-logic
 import com.google.gson.GsonBuilder;
 
 /**
@@ -26,15 +24,10 @@ public abstract class Sprite implements Render, Physics {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
-    private double velocityX = 2;
-    private double velocityY = 2;
     private char terminalChar;
     private Image image;
-<<<<<<< HEAD
-=======
     private PhysicsComponent physics = new PhysicsComponent();
     private GraphicsComponent graphics = new GraphicsComponent();
->>>>>>> feature-logic
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -67,13 +60,10 @@ public abstract class Sprite implements Render, Physics {
         return image;
     }
 
-<<<<<<< HEAD
-=======
     protected PhysicsComponent getPhysicsComponent() {
         return physics;
     }
 
->>>>>>> feature-logic
     /**
      * @param image the image to set
      */
@@ -89,55 +79,14 @@ public abstract class Sprite implements Render, Physics {
         setImage(i);
     }
 
-<<<<<<< HEAD
-    public void draw(GraphicsContext gc) {
-        gc.drawImage(image, coordinate.getX(), coordinate.getY());
-    }
-
-    public void update(double time) {
-        coordinate.setLocation(coordinate.getX() + velocityX * time, coordinate.getY() + velocityY * time);
-    }
-
-
-    /**
-     * @return the velocityY
-     */
-    public double getVelocityY() {
-        return velocityY;
-    }
-
-    /**
-     * @param velocityY the velocityY to set
-     */
-    public void setVelocityY(double velocityY) {
-        this.velocityY = velocityY;
-    }
-
-    /**
-     * @return the velocityX
-     */
-    public double getVelocityX() {
-        return velocityX;
-    }
-
-    /**
-     * @param velocityX the velocityX to set
-     */
-    public void setVelocityX(double velocityX) {
-        this.velocityX = velocityX;
-=======
     public void spriteSheet(String path, double frameWidth, double frameHeight) {
 
     }   
 
     public void update(List<Sprite> world, GraphicsContext gc) {
-        physics.update(this, world);
         graphics.update(this, gc);
-    }
-
-    protected void updateMovement() {
-
->>>>>>> feature-logic
+        if (this instanceof Hero) 
+            physics.update(this, world);
     }
 
     /**

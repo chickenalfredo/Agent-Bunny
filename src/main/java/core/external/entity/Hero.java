@@ -27,13 +27,6 @@ public class Hero extends Entity implements Physics, HeroDefense {
         super(x, y);
     }
 
-    // public void update() {
-    //     // setCoordinate(getX() + getVelocityX(), getY() + getVelocityY());
-    //     // if (isFalling() || isJumping()) {
-    //     //     setVelocityY(getVelocityY() + getMass());
-    //     // }
-    // }
-
     public int getLives() {
         return lives;
     }
@@ -53,26 +46,31 @@ public class Hero extends Entity implements Physics, HeroDefense {
 
     @Override
     public void jump() {
+        getPhysicsComponent().jump();
         System.out.println("Hero jumps...");
     }
 
     @Override
     public void doubleJump() {
         System.out.println("Hero double jumps...");
+        getPhysicsComponent().doubleJump();
     }
 
     @Override
     public void dash() {
         System.out.println("Hero dashes...");
+        getPhysicsComponent().dash();
     }
 
     @Override
     public void duck() {
         System.out.println("Hero ducks...");
+        getPhysicsComponent().duck();
     }
 
     @Override
     public void collisionResolution(Sprite sprite) {
+
     }
 
 }
