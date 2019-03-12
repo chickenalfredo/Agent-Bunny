@@ -1,6 +1,15 @@
 package core.sprite;
 
+import core.components.GraphicsComponent;
+import core.components.PhysicsComponent;
+import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.image.Image;
+
+import java.util.List;
+
 import com.google.gson.GsonBuilder;
+import com.sun.javafx.geom.Rectangle;
+import java.io.FileInputStream;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A
@@ -10,34 +19,88 @@ import com.google.gson.GsonBuilder;
  * 
  * @author Daniel Contreras
  */
-public class Sprite {
+public abstract class Sprite {
 
     private Coordinate coordinate = new Coordinate();
-    private float width, height;
-    private char terminalChar = 'x';
-
-    /**
-     * Constructs and initializes a default Sprite with position and size all being
-     * set to the default value 0.
-     */
-    public Sprite() {
-    }
+    private double width, height;
+    private char terminalChar;
+    private Image image;
+    private PhysicsComponent physics = new PhysicsComponent();
+    private GraphicsComponent graphics = new GraphicsComponent();
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
      * 
-     * @param x      - The x position on the coordinate plane of the top left corner
-     *               of the bounding rectangle
-     * @param y      - The y position on the coordinate plane of the top left corner
-     *               of the bounding rectangle
-     * @param width  - The width of the Sprites bounding rectangle
-     * @param height - The height of the Sprites bounding rectangle
+     * @param x
+     *                   - The x position on the coordinate plane of the top left
+     *                   corner of the bounding rectangle
+     * @param y
+     *                   - The y position on the coordinate plane of the top left
+     *                   corner of the bounding rectangle
+     * @param width
+     *                   - The width of the Sprites bounding rectangle
+     * @param height
+     *                   - The height of the Sprites bounding rectangle
      */
-    public Sprite(char terminalChar, float x, float y, float width, float height) {
+    public Sprite(double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
-        this.terminalChar = terminalChar;
         this.width = width;
         this.height = height;
+    }
+
+    public Sprite(double x, double y) {
+        coordinate = new Coordinate(x, y);
+    }
+
+    public Sprite(double x, double y, double width, double height, String image) {
+        coordinate = new Coordinate(x, y);
+        this.width = width;
+        this.height = height;
+        setImage(image);
+    }
+
+    public Sprite(double x, double y, String image) {
+        coordinate = new Coordinate(x, y);
+        setImage(image);
+    }
+
+    /**
+     * @return the image
+     */
+    public Image getImage() {
+        return image;
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle((int)getX(), (int)getY(), (int)width, (int)height);
+    }
+
+    protected PhysicsComponent getPhysicsComponent() {
+        return physics;
+    }
+
+    /**
+     * @param image the image to set
+     */
+    public void setImage(Image image) {
+        this.image = image;
+    }
+
+    public void setImage(String filename)
+    {
+        try {
+            Image i = new Image(new FileInputStream(filename), this.getWidth(), this.getHeight(), false, true);
+            setImage(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
+    }
+
+    public void update(List<Sprite> world, GraphicsContext gc) {
+        graphics.update(this, gc);
+        if (this instanceof Entity) 
+            physics.update(this, world);
     }
 
     /**
@@ -119,6 +182,14 @@ public class Sprite {
         this.height = height;
     }
 
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
     /**
      * Sets the coordinate of the Sprite which represents the top-left most
      * corner of the bounding box. 
@@ -130,6 +201,14 @@ public class Sprite {
      */
     public void setCoordinate(double x, double y) {
         coordinate.setLocation(x, y);
+    }
+
+    public void setX(double x) {
+        coordinate.setX(x);
+    }
+
+    public void setY(double y) {
+        coordinate.setY(y);
     }
 
     /**

@@ -88,6 +88,14 @@ public class Coordinate {
         y = coordinate.getX();
     }
 
+    public void setX(double x) {
+        this.x = x;
+    }
+
+    public void setY(double y) {
+        this.y = y;
+    }
+
     /**
      * Returns the distance between two points
      * 
@@ -95,8 +103,26 @@ public class Coordinate {
      * @return The distance from the two points
      */
     public double distanceFrom(Coordinate coordinate) {
-        return Math.sqrt(
-                (this.x - coordinate.x) * (this.x - coordinate.x) + (this.y - coordinate.y) * (this.y - coordinate.y));
+        return Math.sqrt((this.x - coordinate.x) * (this.x - coordinate.x) + (this.y - coordinate.y) * (this.y - coordinate.y));
+    }
+
+    /**
+     * Returns the normal vectors length of the Coordinate
+     * 
+     * @return  The length of the normal vector
+     */
+    public double normalize() {
+        double length = x * x + y * y;
+        if (length > 0) {
+            length = Math.sqrt(length);
+            double inverseLength = 1.0 / length;
+            x *= inverseLength;
+            y *= inverseLength;
+        } else {
+            x = 1;
+            y = 0;
+        }
+        return length;
     }
 
     /**

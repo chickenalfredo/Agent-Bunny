@@ -1,8 +1,13 @@
 package core.external.level;
 
 import core.external.entity.*;
-import core.sprite.*;
-import core.map.*;
+import core.external.tile.*;
+import core.map.GameMap;
+import core.screens.ScreenBuilder;
+import core.sprite.Sprite;
+
+import java.util.List;
+import java.util.ArrayList;
 
 /**
  * 
@@ -11,24 +16,23 @@ public class Chapter1Level1 extends GameMap {
 
 	public Chapter1Level1() {
 
-		Sprite block1 = new Sprite('-', 0, 0, 5, 5);
-		Sprite block2 = new Sprite('-', 0, 5, 5, 5);
-		Sprite block3 = new Sprite('-', 0, 10, 5, 5);
-		Sprite block4 = new Sprite('-', 15, 15, 5, 5);
-		Sprite block5 = new Sprite('-', 10, 20, 5, 5);
-		Sprite block6 = new Sprite('-', 5, 25, 5, 5);
+		List<Sprite> sprites = new ArrayList<Sprite>();
 
-		Sprite player = new Player((float) 5.0, (float) 0.0, (float) 5.0, (float) 5.0, 'x', false, "Name", 1,
-				(float) 1.0);
+		Monster monster = new Monster(1000, 200, 100, 100, "Beetle.png");
+		BlackWolf wolf = new BlackWolf(200.0, 300.0, 100, 100, "Cyclops.png");
+		EndPoint ep = new EndPoint(50.0, 600.0, 100, 100, "Door.png");
+		Grass block1 = new Grass(300.0, 500.0, 100, 100, "Grass.png");
+		Wall wall = new Wall(0, ScreenBuilder.getPrimaryScreenBounds().getHeight() - 150, ScreenBuilder.getPrimaryScreenBounds().getWidth(), 150, "Grass.png");
 
-		super.addSprite(block1);
-		super.addSprite(block2);
-		super.addSprite(block3);
-		super.addSprite(block4);
-		super.addSprite(block5);
-		super.addSprite(block6);
+		sprites.add(block1);
+		sprites.add(monster);
+		sprites.add(wolf);
+		sprites.add(ep);
+		sprites.add(wall);
 
-		super.addSprite(player);
+		for (Sprite sprite : sprites) {
+			super.addSprite(sprite);
+		}
 
 	}
 

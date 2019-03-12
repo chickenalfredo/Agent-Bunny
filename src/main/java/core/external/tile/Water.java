@@ -10,17 +10,28 @@ import core.sprite.*;
  */
 public class Water extends TileObject {
 
-    public Water(boolean isCollidable, char terminalChar, float x, float y, float width, float height) {
-        super(terminalChar, x, y, width, height);
-        setIsCollidable(isCollidable);
+    public Water(double x, double y, double width, double height) {
+        super(x, y, width, height);
+        setIsCollidable(true);
+        setTerminalChar('*');
     }
+
+    public Water(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+        setIsCollidable(true);
+    }
+
+    public Water(double x, double y) {
+        super(x, y);
+    }
+
     /**
      * This method will cause player to die once the player touches water tile.
      */
     public void collisionReaction(Entity entityCollidedWith) {
         if (entityCollidedWith != null && entityCollidedWith.getClass().getSimpleName().equals("Player")) {
             entityCollidedWith.setHealth(0);
-        } 
+        }
     }
 
 }

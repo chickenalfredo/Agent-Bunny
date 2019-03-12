@@ -3,40 +3,39 @@ package core.sprite;
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
- * 
- * @author Daniel Contreras
  */
-abstract public class Entity extends Sprite {
+public abstract class Entity extends Sprite {
 
-    private String name;
-    private double gravity = 1.0;
-    private int health;
-    private boolean isEnemy;
-    private double speed;
+    private int health = 100;
+    private int attackPower = 1;
+    private boolean isEnemy = false;
+    private double speed = 1.0;
 
     /**
      * Constructor that calls the constructor of the Sprite class and sets name,
      * health, and speed for the Character
-     * 
-     * @param entityName   The name of the entity to set
-     * @param entityHealth The health of the entity to set
-     * @param entitySpeed  The speed of the entity to set
-     * @param enemy        is the entity an enemy?
      * 
      * @see Sprite class
      * @param entityX      The x coordinate of the entity to set
      * @param entityY      The y coordinate of the entity to set
      * @param entityWidth  The width of the entity to set
      * @param entityHeight The height of the entity to set
-     * @param entityImage  The terminal character representation of the entity
      */
-    public Entity(String entityName, int entityHealth, double entitySpeed, boolean enemy, float entityX, float entityY,
-            float entityWidth, float entityHeight, char entityImage) {
-        super(entityImage, entityX, entityY, entityWidth, entityHeight);
-        name = entityName;
-        health = entityHealth;
-        speed = entitySpeed;
-        this.isEnemy = enemy;
+    public Entity(double entityX, double entityY, double entityWidth, double entityHeight) {
+        super(entityX, entityY, entityWidth, entityHeight);
+    }
+
+    public Entity(double entityX, double entityY, double entityWidth, double entityHeight, String image) {
+        super(entityX, entityY, entityWidth, entityHeight, image);
+    }
+
+
+    public Entity(double x, double y) {
+        super(x, y);
+    }
+
+    public Entity(double x, double y, String image) {
+        super(x, y, image);
     }
 
     /**
@@ -48,23 +47,12 @@ abstract public class Entity extends Sprite {
         return (health <= 0);
     }
 
-    /**
-     * Gets the name of the entity
-     * 
-     * @return name
-     */
-
-    public String getName() {
-        return name;
+    public int getAttackPower() {
+        return attackPower;
     }
 
-    /**
-     * Sets the name of the entity
-     * 
-     * @param nameToSet
-     */
-    public void setName(String nameToSet) {
-        name = nameToSet;
+    public void setAttackPower(int attackPower) {
+        this.attackPower = attackPower;
     }
 
     /**
@@ -86,24 +74,6 @@ abstract public class Entity extends Sprite {
     }
 
     /**
-     * Returns the value of the entity's gravity
-     * 
-     * @return gravity
-     */
-    public double getGravity() {
-        return gravity;
-    }
-
-    /**
-     * Sets the value of the entity's gravity
-     * 
-     * @param entityGravity The value of gravity to set
-     */
-    public void setGravity(double entityGravity) {
-        gravity = entityGravity;
-    }
-
-    /**
      * Returns the value of the entity's speed
      * 
      * @return speed
@@ -121,38 +91,19 @@ abstract public class Entity extends Sprite {
         speed = entitySpeed;
     }
 
+    protected void setIsEnemy(boolean isEnemy) {
+        this.isEnemy = isEnemy;
+    }
+
     public boolean getIsEnemy() {
         return isEnemy;
     }
 
     public void move(String key) {
-        switch (key) {
-        case "w":
-            this.setCoordinate(this.getX(), this.getY() - this.getHeight() * this.getSpeed());
-            break;
-        case "a":
-            this.setCoordinate(this.getX() - this.getWidth(), this.getY());
-            break;
-        case "s":
-            this.setCoordinate(this.getX(), this.getY() + this.getHeight() * this.getSpeed());
-            break;
-        case "d":
-            this.setCoordinate(this.getX() + this.getWidth(), this.getY());
-            break;
-        case "z":
-            System.out.println("no attack yet");
-            break;
-        default:
-            System.out.println("Not a valid movement");
-            break;
-        }
+        this.getPhysicsComponent().moveEntity(key);
     }
 
-    /**
-     * TODO
-     * 
-     * @param attackDamage
-     */
-    public void attack(int attackDamage) {}
-
+    public void stopEntity(String key) {
+        this.getPhysicsComponent().stopEntity(key);
+    }
 }

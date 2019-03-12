@@ -1,0 +1,11 @@
+{
+    "configurations": [
+        {
+            "type": "java",
+            "name": "CodeLens (Launch) - AppLauncher",
+            "request": "launch",
+            "mainClass": "core.AppLauncher",
+            "projectName": "Animation-Game"
+        }
+    ]
+}
