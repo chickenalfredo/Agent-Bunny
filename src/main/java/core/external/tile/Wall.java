@@ -20,8 +20,4 @@ public class Wall extends TileObject {
         super(x, y);
     }
 
-    @Override
-    public void collisionResolution(Sprite sprite) {
-    }
-
 }

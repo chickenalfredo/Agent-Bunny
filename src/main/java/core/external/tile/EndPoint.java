@@ -38,11 +38,4 @@ public class EndPoint extends TileObject {
         return isLevelOver;
     }
 
-    @Override
-    public void collisionResolution(Sprite spriteCollidedWith) {
-        if (spriteCollidedWith != null && spriteCollidedWith.getClass().getSimpleName().equals("Player")) {
-            isLevelOver = true;
-        } 
-    }
-
 }

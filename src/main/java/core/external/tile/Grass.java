@@ -32,8 +32,4 @@ public class Grass extends TileObject {
         super(x, y);
     }
 
-    @Override
-    public void collisionResolution(Sprite sprite) {
-    }
-
 }

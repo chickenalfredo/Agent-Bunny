@@ -10,11 +10,6 @@ public abstract class Melee extends Weapon implements MeleeType {
 
 
     @Override
-    public void collisionResolution(Sprite sprite) {
-
-    }
-
-    @Override
     public double damageEnemy(Entity enemy) {
         return 0;
     }

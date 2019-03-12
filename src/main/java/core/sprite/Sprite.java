@@ -2,7 +2,6 @@ package core.sprite;
 
 import core.components.GraphicsComponent;
 import core.components.PhysicsComponent;
-import core.sprite.interfaces.Physics;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -20,7 +19,7 @@ import java.io.FileInputStream;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite implements Physics {
+public abstract class Sprite {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
@@ -89,9 +88,6 @@ public abstract class Sprite implements Physics {
 
     public void setImage(String filename)
     {
-        System.out.println(this.getClass().getResource("").getPath());
-        System.out.println(filename);
-        System.out.println(this.getClass().getResourceAsStream(filename));
         try {
             Image i = new Image(new FileInputStream(filename), this.getWidth(), this.getHeight(), false, true);
             setImage(i);

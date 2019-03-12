@@ -9,11 +9,6 @@ public abstract class Ranged extends Weapon implements RangedType {
     }
 
     @Override
-    public void collisionResolution(Sprite sprite) {
-
-    }
-
-    @Override
     public double damageEnemy(Entity enemy) {
         return 0;
     }

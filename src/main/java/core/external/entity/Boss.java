@@ -15,19 +15,19 @@ public class Boss extends AbstractEnemy {
         super(x, y);
     }
 
-    @Override
+    
     public void dodge() {
     }
 
-    @Override
+    
     public void guard() {
     }
 
-    @Override
+    
     public void attack(Entity entityToAttack) {
     }
 
-    @Override
+    
     public void collisionResolution(Sprite sprite) {
     }
 

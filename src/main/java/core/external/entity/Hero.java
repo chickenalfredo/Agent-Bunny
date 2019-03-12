@@ -2,13 +2,11 @@ package core.external.entity;
 
 import core.sprite.Entity;
 import core.sprite.Sprite;
-import core.sprite.interfaces.Physics;
-import core.sprite.interfaces.HeroDefense;;
 
 /**
  * 
  */
-public class Hero extends Entity implements Physics, HeroDefense {
+public class Hero extends Entity {
 
     private int lives = 3;
 
@@ -41,7 +39,6 @@ public class Hero extends Entity implements Physics, HeroDefense {
         lives += oneUp;
     }
 
-    @Override
     public void attack(Entity enemyToAttack) {
         enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
     }
@@ -50,33 +47,24 @@ public class Hero extends Entity implements Physics, HeroDefense {
         System.out.println("Hero attacks...");
     }
 
-    @Override
     public void jump() {
         getPhysicsComponent().jump();
         System.out.println("Hero jumps...");
     }
 
-    @Override
     public void doubleJump() {
         System.out.println("Hero double jumps...");
         getPhysicsComponent().doubleJump();
     }
 
-    @Override
     public void dash() {
         System.out.println("Hero dashes...");
         getPhysicsComponent().dash();
     }
 
-    @Override
     public void duck() {
         System.out.println("Hero ducks...");
         getPhysicsComponent().duck();
-    }
-
-    @Override
-    public void collisionResolution(Sprite sprite) {
-
     }
 
 }

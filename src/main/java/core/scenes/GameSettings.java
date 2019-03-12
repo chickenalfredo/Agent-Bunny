@@ -50,7 +50,7 @@ public class GameSettings {
         Label resolutionLabel = new Label("Available Resolutions: ");
         ComboBox<String> graphicsOptions = new ComboBox<String>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("ScreenResolutions.txt"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("settings.config"))) {
             ObservableList<String> resolutions = FXCollections.observableArrayList();
             String line;
             while ((line = br.readLine()) != null) {

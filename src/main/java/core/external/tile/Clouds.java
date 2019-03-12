@@ -20,7 +20,4 @@ public class Clouds extends TileObject {
         super(x, y);
     }
 
-    @Override
-    public void collisionResolution(Sprite sprite) {}
-
 }

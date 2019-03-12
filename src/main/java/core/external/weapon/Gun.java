@@ -23,9 +23,4 @@ public class Gun extends Ranged {
         return 0.0;
     }
 
-    @Override
-    public void collisionResolution(Sprite sprite) {
-
-    }
-
 }

@@ -23,9 +23,4 @@ public class Sword extends Melee {
         return 0.0;
     }
 
-    @Override
-    public void collisionResolution(Sprite sprite) {
-
-    }
-
 }

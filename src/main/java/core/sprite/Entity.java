@@ -1,14 +1,10 @@
 package core.sprite;
 
-import core.sprite.interfaces.Attacks;
-import core.sprite.interfaces.Movement;
-import core.sprite.interfaces.Physics;
-
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
  */
-public abstract class Entity extends Sprite implements Movement, Attacks, Physics {
+public abstract class Entity extends Sprite {
 
     private int health = 100;
     private int attackPower = 1;
@@ -103,7 +99,6 @@ public abstract class Entity extends Sprite implements Movement, Attacks, Physic
         return isEnemy;
     }
 
-    @Override
     public void move(String key) {
         this.getPhysicsComponent().moveEntity(key);
     }

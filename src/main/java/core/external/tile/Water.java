@@ -34,8 +34,4 @@ public class Water extends TileObject {
         }
     }
 
-    @Override
-    public void collisionResolution(Sprite sprite) {
-    }
-
 }
