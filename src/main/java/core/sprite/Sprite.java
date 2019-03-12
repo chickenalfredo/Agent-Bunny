@@ -4,7 +4,6 @@ import core.components.GraphicsComponent;
 import core.components.PhysicsComponent;
 import core.external.entity.Hero;
 import core.sprite.interfaces.Physics;
-import core.sprite.interfaces.Render;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -21,7 +20,7 @@ import com.sun.javafx.geom.Rectangle;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite implements Render, Physics {
+public abstract class Sprite implements Physics {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
@@ -61,6 +60,10 @@ public abstract class Sprite implements Render, Physics {
      */
     public Image getImage() {
         return image;
+    }
+
+    public Rectangle getBounds() {
+        return new Rectangle((int)getX(), (int)getY(), (int)width, (int)height);
     }
 
     // public Rectangle getBounds() {
@@ -108,7 +111,7 @@ public abstract class Sprite implements Render, Physics {
 
     public void update(List<Sprite> world, GraphicsContext gc) {
         graphics.update(this, gc);
-        if (this instanceof Hero) 
+        if (this instanceof Entity) 
             physics.update(this, world);
     }
 

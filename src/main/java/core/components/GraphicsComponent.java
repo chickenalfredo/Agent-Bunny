@@ -1,6 +1,5 @@
 package core.components;
 
-import core.external.entity.Hero;
 import core.external.tile.Wall;
 import core.screens.ScreenBuilder;
 import core.sprite.Sprite;
@@ -20,9 +19,6 @@ public class GraphicsComponent {
         } else {
             gc.drawImage(actor.getImage(), actor.getX(), actor.getY());
         }
-        // if (actor instanceof Hero) {
-        //     gc.fillRect(actor.getBounds());
-        // }
     }
 
 }

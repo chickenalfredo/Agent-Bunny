@@ -1,7 +1,5 @@
 package core.math;
 
-import java.util.Vector;
-
 import core.sprite.Coordinate;
 import core.sprite.Sprite;
 
@@ -13,8 +11,6 @@ import core.sprite.Sprite;
  * @author Daniel Contreras
  */
 public class Collision {
-
-    private MathUtil math = new MathUtil();
 
     /**
      * Returns whether a collision has occured between two static objects.
@@ -58,6 +54,24 @@ public class Collision {
                 && boundingBoxA.getY() < boundingBoxB.getY() + boundingBoxB.getHeight()
                 && boundingBoxA.getY() + boundingBoxA.getHeight() > boundingBoxB.getY();
     }
+
+    // public Hit intersectAABB(Sprite boundingBoxA, Sprite boundingBoxB) {
+
+    //     boolean top, left, right, bottom;
+    //     String side = "";
+
+    //     top = boundingBoxA.getY() + boundingBoxA.getHeight() > boundingBoxB.getY();
+    //     left = boundingBoxA.getX() + boundingBoxA.getWidth() > boundingBoxB.getX();
+    //     right = boundingBoxA.getX() < boundingBoxB.getX() + boundingBoxB.getWidth();
+    //     bottom = boundingBoxA.getY() < boundingBoxB.getY() + boundingBoxB.getHeight();
+
+    //     if (right) side += "right";
+    //     if (left) side += "left";
+    //     if (bottom) side += "bottom";
+    //     if (top) side += "top";
+
+    //     return new Hit((right && left && bottom && top), side);
+    // }
 
     /**
      * Returns whether a collision has occured between an AABB object and a swept

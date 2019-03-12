@@ -2,7 +2,6 @@ package core.components;
 
 import java.util.List;
 
-import core.external.entity.Hero;
 import core.math.Collision;
 import core.sprite.Entity;
 import core.sprite.Sprite;
@@ -157,7 +156,7 @@ public class PhysicsComponent {
     private void applyGravity(Sprite actor, List<Sprite> world) {
         if (actor instanceof Entity) {
             if (isFalling() || isJumping())
-            velocityY += force;
+                velocityY += force;
         }
     }
 
@@ -197,15 +196,16 @@ public class PhysicsComponent {
 
     public void collisionDetection(Sprite actor, List<Sprite> world) {
         Collision collision = new Collision();
-
         for (Sprite sprite : world) {
-            if (collision.intersectAABB(actor, sprite)) {
-                actor.setY(sprite.getY() - actor.getHeight());
+            if (!actor.equals(sprite)) {
+                if (collision.intersectAABB(actor, sprite)) {
+                    actor.setY(sprite.getY() - actor.getHeight());
                     velocityY = 0;
                     jumping = false;
                     falling = false;
-            } else {
-                falling = true;
+                } else {
+                    falling = true;
+                }
             }
         }
     }
@@ -221,8 +221,6 @@ public class PhysicsComponent {
     
     public void duck() {}
 
-    public void attack(Sprite actor, List<Sprite> world) {
-        // System.out.println();
-    }
+    public void attack(Sprite actor, List<Sprite> world) {}
 
 }
