@@ -12,6 +12,7 @@ public class Hero extends Entity implements Physics, HeroDefense {
 
     private int lives = 3;
 
+
     public Hero(double x, double y, double width, double height) {
         super(x, y, width, height);
         setTerminalChar('H');
@@ -22,9 +23,16 @@ public class Hero extends Entity implements Physics, HeroDefense {
         super(player.getX(), player.getY(), player.getWidth(), player.getHeight());
     }
 
-    public Hero(int x, int y) {
+    public Hero(double x, double y) {
         super(x, y);
     }
+
+    // public void update() {
+    //     // setCoordinate(getX() + getVelocityX(), getY() + getVelocityY());
+    //     // if (isFalling() || isJumping()) {
+    //     //     setVelocityY(getVelocityY() + getMass());
+    //     // }
+    // }
 
     public int getLives() {
         return lives;

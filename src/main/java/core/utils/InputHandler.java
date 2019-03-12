@@ -14,11 +14,21 @@ public class InputHandler {
     private JumpCommand keySpaceBar_ = new JumpCommand();      
     private DoubleJumpCommand keyR_ = new DoubleJumpCommand();       
     private DashCommand keyE_ = new DashCommand();             
-    private AttackCommand keyZ_ = new AttackCommand();           
+    private AttackCommand keyZ_ = new AttackCommand();   
+    
+    private HaltMoveLeftCommand haltKeyA_ = new HaltMoveLeftCommand();
+    private HaltMoveRightCommand haltKeyD_ = new HaltMoveRightCommand();
+    private HaltMoveUpCommand haltKeyW_ = new HaltMoveUpCommand();
+    private HaltMoveDownCommand haltKeyS_ = new HaltMoveDownCommand();
 
     public InputHandler() {}
 
     public Command handleInput(KeyEvent event) {
+        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.A) return haltKeyA_;
+        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.D) return haltKeyD_;
+        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.W) return haltKeyW_;
+        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.S) return haltKeyS_;
+
         if (event.getCode() == KeyCode.W) return keyW_;
         if (event.getCode() == KeyCode.A) return keyA_;
         if (event.getCode() == KeyCode.S) return keyS_;

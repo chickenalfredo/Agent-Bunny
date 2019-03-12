@@ -12,6 +12,10 @@ public class Boss extends AbstractEnemy {
         setTerminalChar('B');
     }
 
+    public Boss(double x, double y) {
+        super(x, y);
+    }
+
     @Override
     public void dodge() {
     }

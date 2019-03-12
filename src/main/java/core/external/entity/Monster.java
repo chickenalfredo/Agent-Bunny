@@ -26,6 +26,10 @@ public class Monster extends AbstractEnemy {
         setTerminalChar('M');
     }
 
+    public Monster(double x, double y) {
+        super(x, y);
+    }
+
     @Override
     public void dodge() {
     }

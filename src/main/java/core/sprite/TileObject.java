@@ -13,6 +13,10 @@ public abstract class TileObject extends Sprite {
         super(x, y, width, height);
     }
 
+    public TileObject(double x, double y) {
+        super(x, y);
+    }
+
     public boolean getIsCollidable() {
         return isCollidable;
     }

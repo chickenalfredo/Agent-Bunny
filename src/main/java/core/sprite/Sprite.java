@@ -1,10 +1,17 @@
 package core.sprite;
 
+import core.components.GraphicsComponent;
+import core.components.PhysicsComponent;
 import core.sprite.interfaces.Physics;
 import core.sprite.interfaces.Render;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+<<<<<<< HEAD
+=======
+import java.util.List;
+
+>>>>>>> feature-logic
 import com.google.gson.GsonBuilder;
 
 /**
@@ -23,16 +30,25 @@ public abstract class Sprite implements Render, Physics {
     private double velocityY = 2;
     private char terminalChar;
     private Image image;
+<<<<<<< HEAD
+=======
+    private PhysicsComponent physics = new PhysicsComponent();
+    private GraphicsComponent graphics = new GraphicsComponent();
+>>>>>>> feature-logic
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
      * 
-     * @param x      - The x position on the coordinate plane of the top left corner
-     *               of the bounding rectangle
-     * @param y      - The y position on the coordinate plane of the top left corner
-     *               of the bounding rectangle
-     * @param width  - The width of the Sprites bounding rectangle
-     * @param height - The height of the Sprites bounding rectangle
+     * @param x
+     *                   - The x position on the coordinate plane of the top left
+     *                   corner of the bounding rectangle
+     * @param y
+     *                   - The y position on the coordinate plane of the top left
+     *                   corner of the bounding rectangle
+     * @param width
+     *                   - The width of the Sprites bounding rectangle
+     * @param height
+     *                   - The height of the Sprites bounding rectangle
      */
     public Sprite(double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
@@ -51,6 +67,13 @@ public abstract class Sprite implements Render, Physics {
         return image;
     }
 
+<<<<<<< HEAD
+=======
+    protected PhysicsComponent getPhysicsComponent() {
+        return physics;
+    }
+
+>>>>>>> feature-logic
     /**
      * @param image the image to set
      */
@@ -66,6 +89,7 @@ public abstract class Sprite implements Render, Physics {
         setImage(i);
     }
 
+<<<<<<< HEAD
     public void draw(GraphicsContext gc) {
         gc.drawImage(image, coordinate.getX(), coordinate.getY());
     }
@@ -101,6 +125,19 @@ public abstract class Sprite implements Render, Physics {
      */
     public void setVelocityX(double velocityX) {
         this.velocityX = velocityX;
+=======
+    public void spriteSheet(String path, double frameWidth, double frameHeight) {
+
+    }   
+
+    public void update(List<Sprite> world, GraphicsContext gc) {
+        physics.update(this, world);
+        graphics.update(this, gc);
+    }
+
+    protected void updateMovement() {
+
+>>>>>>> feature-logic
     }
 
     /**
@@ -182,6 +219,14 @@ public abstract class Sprite implements Render, Physics {
         this.height = height;
     }
 
+    public void setWidth(double width) {
+        this.width = width;
+    }
+
+    public void setHeight(double height) {
+        this.height = height;
+    }
+
     /**
      * Sets the coordinate of the Sprite which represents the top-left most
      * corner of the bounding box. 
@@ -193,6 +238,14 @@ public abstract class Sprite implements Render, Physics {
      */
     public void setCoordinate(double x, double y) {
         coordinate.setLocation(x, y);
+    }
+
+    public void setX(double x) {
+        coordinate.setX(x);
+    }
+
+    public void setY(double y) {
+        coordinate.setY(y);
     }
 
     /**
