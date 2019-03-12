@@ -1,82 +1,16 @@
 package core.math;
 
-import core.sprite.Coordinate;
 import core.sprite.Sprite;
 
 public class Hit {
 
     private Sprite collider;
-    private Coordinate pos;
-    private Coordinate delta;
-    private Coordinate normal;
-    private double time;
+    private boolean collisionOccured = false;
+    private String sideCollidedWith;
 
-    public Hit(Sprite collider) {
-        this.setCollider(collider);
-        setPos(new Coordinate());
-        setDelta(new Coordinate());
-        setNormal(new Coordinate());
-        setTime(0.0);
-    }
-
-    /**
-     * @return the time
-     */
-    public double getTime() {
-        return time;
-    }
-
-    /**
-     * @param time
-     *                 the time to set
-     */
-    public void setTime(double time) {
-        this.time = time;
-    }
-
-    /**
-     * @return the normal
-     */
-    public Coordinate getNormal() {
-        return normal;
-    }
-
-    /**
-     * @param normal
-     *                   the normal to set
-     */
-    public void setNormal(Coordinate normal) {
-        this.normal = normal;
-    }
-
-    /**
-     * @return the delta
-     */
-    public Coordinate getDelta() {
-        return delta;
-    }
-
-    /**
-     * @param delta
-     *                  the delta to set
-     */
-    public void setDelta(Coordinate delta) {
-        this.delta = delta;
-    }
-
-    /**
-     * @return the pos
-     */
-    public Coordinate getPos() {
-        return pos;
-    }
-
-    /**
-     * @param pos
-     *                the pos to set
-     */
-    public void setPos(Coordinate pos) {
-        this.pos = pos;
+    public Hit(boolean collision, String side) {
+        collisionOccured = collision;
+        sideCollidedWith = side;
     }
 
     /**
@@ -87,11 +21,39 @@ public class Hit {
     }
 
     /**
-     * @param collider
-     *                     the collider to set
+     * @param collider the collider to set
      */
     public void setCollider(Sprite collider) {
         this.collider = collider;
     }
+
+    /**
+     * @return the collisionOccured
+     */
+    public boolean isCollisionOccured() {
+        return collisionOccured;
+    }
+
+    /**
+     * @return the sideCollidedWith
+     */
+    public String getSideCollidedWith() {
+        return sideCollidedWith;
+    }
+
+    /**
+     * @param sideCollidedWith the sideCollidedWith to set
+     */
+    public void setSideCollidedWith(String sideCollidedWith) {
+        this.sideCollidedWith = sideCollidedWith;
+    }
+
+    /**
+     * @param collisionOccured the collisionOccured to set
+     */
+    public void setCollisionOccured(boolean collisionOccured) {
+        this.collisionOccured = collisionOccured;
+    }
+
 
 }
