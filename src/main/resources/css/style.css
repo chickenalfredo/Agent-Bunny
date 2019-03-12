@@ -27,13 +27,6 @@
 }
 
 .root {
-    -fx-background-image: url("Wall_BG.png");
+    -fx-background-image: url("../assets/Wall_BG.png");
+    -fx-background-size: cover;
 }
-
-/*.button {
-    -fx-font: 16px "Serif";
-    -fx-padding: 10;
-    -fx-background-color: #CCFF99;
-}
-*/
-
