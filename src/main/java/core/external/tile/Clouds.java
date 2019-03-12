@@ -12,6 +12,10 @@ public class Clouds extends TileObject {
         setTerminalChar('l');
     }
 
+    public Clouds(double x, double y) {
+        super(x, y);
+    }
+
     @Override
     public void collisionResolution(Sprite sprite) {}
 

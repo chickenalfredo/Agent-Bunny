@@ -23,6 +23,10 @@ public class EndPoint extends TileObject {
         setTerminalChar('e');
     }
 
+    public EndPoint(double x, double y) {
+        super(x, y);
+    }
+
     /**
      * 
      */
@@ -30,10 +34,10 @@ public class EndPoint extends TileObject {
         return isLevelOver;
     }
 
-    @Override
-    public void update(double time) {
+    // @Override
+    // public void update(double time) {
 
-    }
+    // }
 
     @Override
     public void collisionResolution(Sprite spriteCollidedWith) {

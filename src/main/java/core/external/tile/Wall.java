@@ -12,6 +12,10 @@ public class Wall extends TileObject {
         setTerminalChar('#');
     }
 
+    public Wall(double x, double y) {
+        super(x, y);
+    }
+
     @Override
     public void collisionResolution(Sprite sprite) {
     }

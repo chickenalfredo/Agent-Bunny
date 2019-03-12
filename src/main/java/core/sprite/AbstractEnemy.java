@@ -9,4 +9,8 @@ public abstract class AbstractEnemy extends Entity implements EnemyDefense {
         setIsEnemy(true);
     }
 
+    public AbstractEnemy(double x, double y) {
+        super(x, y);
+    }
+
 }

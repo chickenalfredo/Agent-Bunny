@@ -26,6 +26,10 @@ public class BlackWolf extends AbstractEnemy {
         setTerminalChar('W');
     }
 
+    public BlackWolf(double x, double y) {
+        super(x, y);
+    }
+
     @Override
     public void dodge() {
     }

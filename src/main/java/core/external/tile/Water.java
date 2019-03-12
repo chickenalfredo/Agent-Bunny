@@ -17,6 +17,10 @@ public class Water extends TileObject {
         setTerminalChar('*');
     }
 
+    public Water(double x, double y) {
+        super(x, y);
+    }
+
     /**
      * This method will cause player to die once the player touches water tile.
      */

@@ -24,6 +24,10 @@ public class StandardBlock extends TileObject {
         setTerminalChar('-');
     }
 
+    public StandardBlock(double x, double y) {
+        super(x, y);
+    }
+
     @Override
     public void collisionResolution(Sprite sprite) {
     }

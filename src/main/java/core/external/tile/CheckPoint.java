@@ -12,6 +12,13 @@ public class CheckPoint extends TileObject {
         setTerminalChar('c');
     }
 
+<<<<<<< HEAD
+=======
+    public CheckPoint(double x, double y) {
+        super(x, y);
+    }
+
+>>>>>>> feature-logic
     @Override
     public void collisionResolution(Sprite sprite) {
     }
