@@ -21,7 +21,7 @@ import java.util.List;
 
 public class GameScene {
 
-    private static Hero hero = new Hero(0, 0, 100, 100, "Hero.png");
+    private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
     private static Scene GameScene;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
@@ -34,7 +34,7 @@ public class GameScene {
         Pane root = initScene();
         GameScene = new Scene(root);
         try {
-            GameScene.getStylesheets().add((new File("Style.css")).toURI().toString());
+            GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
         } catch (Exception e) {
             System.out.println("file not found");
         }

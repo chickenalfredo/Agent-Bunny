@@ -15,7 +15,7 @@ public class TitleScene {
         VBox root = initScene();
         TitleScene = new Scene(root);
         TitleScene.getStylesheets().clear();
-        TitleScene.getStylesheets().add((new File("Style.css")).toURI().toString());
+        TitleScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
         return TitleScene;
     }
        
