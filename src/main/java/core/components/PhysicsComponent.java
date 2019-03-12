@@ -13,7 +13,7 @@ public class PhysicsComponent {
     private double position = 0.0f;
     private double velocityX = 0.0f;
     private double velocityY = 0.0f;
-    private double force = 0.05f;
+    private double force = 0.5f;
     private double mass = 1.0f;
     private boolean falling = true;
     private boolean jumping = false;
@@ -212,7 +212,7 @@ public class PhysicsComponent {
 
     public void jump() {
         if (!(jumping || falling))
-            setVelocityY(-5);
+            setVelocityY(-10);
     }
 
     public void doubleJump() {}

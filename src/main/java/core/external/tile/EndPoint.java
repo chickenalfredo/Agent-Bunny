@@ -22,6 +22,11 @@ public class EndPoint extends TileObject {
         setTerminalChar('e');
     }
 
+    public EndPoint(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+        setIsCollidable(true);
+    }
+
     public EndPoint(double x, double y) {
         super(x, y);
     }

@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 public class GameLauncher {
     public static void main(String[] args) {
-        System.out.println("Would you like to load the terminal or GUI version (Enter 't' or 'g' respectively");
+        System.out.println("Would you like to load the terminal or GUI version (Enter 't' or 'g' respectively)");
         Scanner input = new Scanner(System.in);
         String gameVersion = input.nextLine();
 
@@ -15,7 +15,7 @@ public class GameLauncher {
         }else if (gameVersion.equalsIgnoreCase("g")) {
             Application.launch(App.class);
         }else {
-            System.out.println("Please enter a valid input");
+            System.out.println("Please enter a valid input:");
             main(null);
         }
     }

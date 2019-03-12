@@ -7,10 +7,12 @@ import core.sprite.interfaces.Physics;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+import java.io.FileNotFoundException;
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
 import com.sun.javafx.geom.Rectangle;
+import java.io.FileInputStream;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A
@@ -55,6 +57,18 @@ public abstract class Sprite implements Physics {
         boundingBox = new Rectangle((int)x, (int )y, (int)width, (int)height);
     }
 
+    public Sprite(double x, double y, double width, double height, String image) {
+        coordinate = new Coordinate(x, y);
+        this.width = width;
+        this.height = height;
+        setImage(image);
+    }
+
+    public Sprite(double x, double y, String image) {
+        coordinate = new Coordinate(x, y);
+        setImage(image);
+    }
+
     /**
      * @return the image
      */
@@ -94,15 +108,20 @@ public abstract class Sprite implements Physics {
      */
     public void setImage(Image image) {
         this.image = image;
-        width = image.getWidth();
-        height = image.getHeight();
-        boundingBox.setBounds((int) getX(), (int) getY(), (int) width, (int) height);
     }
 
     public void setImage(String filename)
     {
-        Image i = new Image(filename);
-        setImage(i);
+        System.out.println(this.getClass().getResource("").getPath());
+        System.out.println(filename);
+        System.out.println(this.getClass().getResourceAsStream(filename));
+        try {
+            Image i = new Image(new FileInputStream(filename), this.getWidth(), this.getHeight(), false, true);
+            setImage(i);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        
     }
 
     public void spriteSheet(String path, double frameWidth, double frameHeight) {

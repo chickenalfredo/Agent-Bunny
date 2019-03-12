@@ -18,6 +18,11 @@ public abstract class AbstractEnemy extends Entity implements EnemyDefense {
         setIsEnemy(true);
     }
 
+    public AbstractEnemy(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+        setIsEnemy(true);
+    }
+
     public AbstractEnemy(double x, double y) {
         super(x, y);
     }

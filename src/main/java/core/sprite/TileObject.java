@@ -13,6 +13,10 @@ public abstract class TileObject extends Sprite {
         super(x, y, width, height);
     }
 
+    public TileObject(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+    }
+
     public TileObject(double x, double y) {
         super(x, y);
     }

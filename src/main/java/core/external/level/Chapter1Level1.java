@@ -27,23 +27,16 @@ public class Chapter1Level1 extends GameMap {
 		// Water water = new Water(35.0, 15.0, 5.0, 5.0);
 		// StandardBlock block1 = new StandardBlock(230.0, 55.0, 5, 5);
 
-		Monster monster = new Monster(1000, 200);
-		BlackWolf wolf = new BlackWolf(200.0, 1000.0);
-		// Hero player = new Hero(500, 500);
-		CheckPoint cp = new CheckPoint(200, 500.0);
-		Clouds cloud = new Clouds(100.0, 100.0);
-		EndPoint ep = new EndPoint(50.0, 600.0);
-		Water water = new Water(600, 20);
-		StandardBlock block1 = new StandardBlock(2000.0, 1000.0);
-		Wall wall = new Wall(0, ScreenBuilder.getPrimaryScreenBounds().getHeight() - 150);
+		Monster monster = new Monster(1000, 200, 100, 100, "Beetle.png");
+		BlackWolf wolf = new BlackWolf(200.0, 300.0, 100, 100, "Cyclops.png");
+		EndPoint ep = new EndPoint(50.0, 600.0, 100, 100, "Door.png");
+		Grass block1 = new Grass(300.0, 500.0, 100, 100, "Grass.png");
+		Wall wall = new Wall(0, ScreenBuilder.getPrimaryScreenBounds().getHeight() - 150, ScreenBuilder.getPrimaryScreenBounds().getWidth(), 150, "Grass.png");
 
 		sprites.add(block1);
 		sprites.add(monster);
 		sprites.add(wolf);
-		sprites.add(cp);
-		sprites.add(cloud);
 		sprites.add(ep);
-		sprites.add(water);
 		sprites.add(wall);
 
 		for (Sprite sprite : sprites) {
