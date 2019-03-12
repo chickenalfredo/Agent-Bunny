@@ -6,6 +6,9 @@ import core.math.Collision;
 import core.sprite.Entity;
 import core.sprite.Sprite;
 
+/**
+ * <source: http://gameprogrammingpatterns.com/contents.html>
+ */
 public class PhysicsComponent {
 
     private double t = 0.0;

@@ -1,11 +1,11 @@
 package core.components;
 
-import core.external.tile.Wall;
-import core.screens.ScreenBuilder;
 import core.sprite.Sprite;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
 
+/**
+ * <source: http://gameprogrammingpatterns.com/contents.html>
+ */
 public class GraphicsComponent {
 
     public GraphicsComponent() {

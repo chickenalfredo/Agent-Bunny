@@ -9,8 +9,6 @@ import core.utils.MenuEventHandlers;
 import javafx.geometry.*;
 import java.io.*;
 
-
-
 public class GameSettings {
 
     private static Scene GameSettings;
