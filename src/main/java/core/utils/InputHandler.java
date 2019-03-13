@@ -22,28 +22,56 @@ public class InputHandler {
     public InputHandler() {}
 
     public Command handleInput(KeyEvent event) {
-        if (event.getEventType() == KeyEvent.KEY_RELEASED) return handleKeyRelease(event);
-        if (event.getEventType() == KeyEvent.KEY_PRESSED) return handleKeyPress(event);
+        if (event.getEventType() == KeyEvent.KEY_RELEASED) return keyReleasedHandler(event.getCode());
+        if (event.getEventType() == KeyEvent.KEY_PRESSED) return keyPressHandler(event.getCode());
         return null;
     }
 
-    private Command handleKeyRelease(KeyEvent event) {
-        Command command = null;
-        if (event.getCode() == KeyCode.A) command = haltKeyA_;
-        if (event.getCode() == KeyCode.D) command =  haltKeyD_;
-        if (event.getCode() == KeyCode.W) command =  haltKeyW_;
-        if (event.getCode() == KeyCode.S) command =  haltKeyS_;
+    private Command keyPressHandler(KeyCode key) {
+        Command command;
+        switch (key) {
+            case W:
+                command = keyW_;
+                break;
+            case A:
+                command = keyA_;
+                break;
+            case S:
+                command = keyS_;
+                break;
+            case D:
+                command = keyD_;
+                break;
+            case SPACE:
+                command = keySpaceBar_;
+                break;
+            case Z:
+                command = keyZ_;
+                break;
+            default:
+                command = null;
+        }
         return command;
     }
 
-    private Command handleKeyPress(KeyEvent event) {
-        Command command = null;
-        if (event.getCode() == KeyCode.W) command =  keyW_;
-        if (event.getCode() == KeyCode.A) command =  keyA_;
-        if (event.getCode() == KeyCode.S) command =  keyS_;
-        if (event.getCode() == KeyCode.D) command =  keyD_;
-        if (event.getCode() == KeyCode.SPACE) command =  keySpaceBar_;
-        if (event.getCode() == KeyCode.Z) command =  keyZ_;
+    private Command keyReleasedHandler(KeyCode key) {
+        Command command;
+        switch (key) {
+            case W:
+                command = haltKeyW_;
+                break;
+            case A:
+                command = haltKeyA_;
+                break;
+            case S:
+                command = haltKeyS_;
+                break;
+            case D:
+                command = haltKeyD_;
+                break;
+            default:
+                command = null;
+        }
         return command;
     }
 
