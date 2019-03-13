@@ -33,18 +33,8 @@ public class BlackWolf extends AbstractEnemy {
         super(x, y);
     }
 
-    
-    public void dodge() {
-    }
-
-    
-    public void guard() {
-    }
-
-    
     public void attack(Entity entityToAttack) {
     }
-
     
     public void collisionResolution(Sprite sprite) {
     }
