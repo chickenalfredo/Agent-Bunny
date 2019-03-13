@@ -9,6 +9,6 @@ public class MoveUpCommand extends Command {
 
     @Override
     public void execute(Hero actor) {
-        actor.move("w");
+        // actor.move("w");
     }
 }

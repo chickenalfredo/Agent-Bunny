@@ -28,21 +28,23 @@ public class InputHandler {
     }
 
     private Command handleKeyRelease(KeyEvent event) {
-        if (event.getCode() == KeyCode.A) return haltKeyA_;
-        if (event.getCode() == KeyCode.D) return haltKeyD_;
-        if (event.getCode() == KeyCode.W) return haltKeyW_;
-        if (event.getCode() == KeyCode.S) return haltKeyS_;
-        return null;
+        Command command = null;
+        if (event.getCode() == KeyCode.A) command = haltKeyA_;
+        if (event.getCode() == KeyCode.D) command =  haltKeyD_;
+        if (event.getCode() == KeyCode.W) command =  haltKeyW_;
+        if (event.getCode() == KeyCode.S) command =  haltKeyS_;
+        return command;
     }
 
     private Command handleKeyPress(KeyEvent event) {
-        if (event.getCode() == KeyCode.W) return keyW_;
-        if (event.getCode() == KeyCode.A) return keyA_;
-        if (event.getCode() == KeyCode.S) return keyS_;
-        if (event.getCode() == KeyCode.D) return keyD_;
-        if (event.getCode() == KeyCode.SPACE) return keySpaceBar_;
-        if (event.getCode() == KeyCode.Z) return keyZ_;
-        return null;
+        Command command = null;
+        if (event.getCode() == KeyCode.W) command =  keyW_;
+        if (event.getCode() == KeyCode.A) command =  keyA_;
+        if (event.getCode() == KeyCode.S) command =  keyS_;
+        if (event.getCode() == KeyCode.D) command =  keyD_;
+        if (event.getCode() == KeyCode.SPACE) command =  keySpaceBar_;
+        if (event.getCode() == KeyCode.Z) command =  keyZ_;
+        return command;
     }
 
 }

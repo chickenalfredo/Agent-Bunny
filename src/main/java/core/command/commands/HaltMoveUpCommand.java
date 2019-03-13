@@ -9,6 +9,6 @@ public class HaltMoveUpCommand extends Command {
 
     @Override
     public void execute(Hero actor) {
-        actor.stopEntity("w");
+        // actor.stopEntity("w");
     }
 }

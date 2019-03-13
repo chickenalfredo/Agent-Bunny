@@ -8,6 +8,6 @@ public class MoveDownCommand extends Command {
     public MoveDownCommand() {}
 
     public void execute(Hero actor) {
-        actor.move("s");
+        // actor.move("s");
     }
 }
