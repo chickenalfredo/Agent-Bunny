@@ -1,6 +1,5 @@
 package core.external.tile;
 
-import core.sprite.Sprite;
 import core.sprite.TileObject;
 
 public class Wall extends TileObject {

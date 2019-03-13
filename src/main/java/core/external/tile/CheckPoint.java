@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.TileObject;
-import core.sprite.Sprite;
 
 public class CheckPoint extends TileObject {
 

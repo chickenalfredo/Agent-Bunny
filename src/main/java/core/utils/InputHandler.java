@@ -12,8 +12,6 @@ public class InputHandler {
     private MoveDownCommand keyS_ = new MoveDownCommand();     
     private MoveRightCommand keyD_ = new MoveRightCommand();       
     private JumpCommand keySpaceBar_ = new JumpCommand();      
-    private DoubleJumpCommand keyR_ = new DoubleJumpCommand();       
-    private DashCommand keyE_ = new DashCommand();             
     private AttackCommand keyZ_ = new AttackCommand();   
     
     private HaltMoveLeftCommand haltKeyA_ = new HaltMoveLeftCommand();
@@ -24,20 +22,26 @@ public class InputHandler {
     public InputHandler() {}
 
     public Command handleInput(KeyEvent event) {
-        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.A) return haltKeyA_;
-        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.D) return haltKeyD_;
-        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.W) return haltKeyW_;
-        if (event.getEventType() == KeyEvent.KEY_RELEASED && event.getCode() == KeyCode.S) return haltKeyS_;
+        if (event.getEventType() == KeyEvent.KEY_RELEASED) return handleKeyRelease(event);
+        if (event.getEventType() == KeyEvent.KEY_PRESSED) return handleKeyPress(event);
+        return null;
+    }
 
+    private Command handleKeyRelease(KeyEvent event) {
+        if (event.getCode() == KeyCode.A) return haltKeyA_;
+        if (event.getCode() == KeyCode.D) return haltKeyD_;
+        if (event.getCode() == KeyCode.W) return haltKeyW_;
+        if (event.getCode() == KeyCode.S) return haltKeyS_;
+        return null;
+    }
+
+    private Command handleKeyPress(KeyEvent event) {
         if (event.getCode() == KeyCode.W) return keyW_;
         if (event.getCode() == KeyCode.A) return keyA_;
         if (event.getCode() == KeyCode.S) return keyS_;
         if (event.getCode() == KeyCode.D) return keyD_;
         if (event.getCode() == KeyCode.SPACE) return keySpaceBar_;
-        if (event.getCode() == KeyCode.R) return keyR_;
-        if (event.getCode() == KeyCode.E) return keyE_;
         if (event.getCode() == KeyCode.Z) return keyZ_;
-
         return null;
     }
 
