@@ -1,6 +1,9 @@
 package core.external.entity;
 
+import java.util.List;
+
 import core.sprite.Entity;
+import core.sprite.Sprite;
 
 /**
  * 
@@ -42,13 +45,12 @@ public class Hero extends Entity {
         enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
     }
 
-    public void attack() {
-        System.out.println("Hero attacks...");
+    public void attack(List<Sprite> world) {
+        getPhysicsComponent().attack(world);
     }
 
     public void jump() {
         getPhysicsComponent().jump();
-        System.out.println("Hero jumps...");
     }
 
 }

@@ -2,13 +2,13 @@ package core.sprite;
 
 import core.components.GraphicsComponent;
 import core.components.PhysicsComponent;
+import core.external.entity.Hero;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
-import com.sun.javafx.geom.Rectangle;
 import java.io.FileInputStream;
 
 /**
@@ -69,10 +69,6 @@ public abstract class Sprite {
      */
     public Image getImage() {
         return image;
-    }
-
-    public Rectangle getBounds() {
-        return new Rectangle((int)getX(), (int)getY(), (int)width, (int)height);
     }
 
     protected PhysicsComponent getPhysicsComponent() {

@@ -17,7 +17,8 @@ public class PhysicsComponent {
     private boolean falling = true;
     private boolean jumping = false;
 
-    public PhysicsComponent() {}
+    public PhysicsComponent() {
+    }
 
     /**
      * @return the velocityX
@@ -27,7 +28,8 @@ public class PhysicsComponent {
     }
 
     /**
-     * @param velocityX the velocityX to set
+     * @param velocityX
+     *                      the velocityX to set
      */
     public void setVelocityX(double velocityX) {
         this.velocityX = velocityX;
@@ -41,7 +43,8 @@ public class PhysicsComponent {
     }
 
     /**
-     * @param velocityY the velocityY to set
+     * @param velocityY
+     *                      the velocityY to set
      */
     public void setVelocityY(double velocityY) {
         this.velocityY = velocityY;
@@ -55,7 +58,8 @@ public class PhysicsComponent {
     }
 
     /**
-     * @param force the force to set
+     * @param force
+     *                  the force to set
      */
     public void setForce(double force) {
         this.force = force;
@@ -69,7 +73,8 @@ public class PhysicsComponent {
     }
 
     /**
-     * @param falling the falling to set
+     * @param falling
+     *                    the falling to set
      */
     public void setFalling(boolean falling) {
         this.falling = falling;
@@ -83,7 +88,8 @@ public class PhysicsComponent {
     }
 
     /**
-     * @param jumping the jumping to set
+     * @param jumping
+     *                    the jumping to set
      */
     public void setJumping(boolean jumping) {
         this.jumping = jumping;
@@ -97,20 +103,14 @@ public class PhysicsComponent {
     }
 
     private void applyGravity(Sprite actor, List<Sprite> world) {
-        if (actor instanceof Entity && (isFalling() || isJumping())) 
+        if (actor instanceof Entity)
             velocityY += force;
     }
 
     public void stopEntity(String key) {
         switch (key) {
-        case "w":
-        // setVelocityY(0);
-            break;
         case "a":
             setVelocityX(0);
-            break;
-        case "s":
-        // setVelocityY(0);
             break;
         case "d":
             setVelocityX(0);
@@ -120,40 +120,95 @@ public class PhysicsComponent {
 
     public void moveEntity(String key) {
         switch (key) {
-        case "w":
-        // setVelocityY(-3);
-            break;
         case "a":
-            setVelocityX(-4);
-            break;
-        case "s":
-        // setVelocityY(3);
+            setVelocityX(-7);
             break;
         case "d":
-            setVelocityX(4);
+            setVelocityX(7);
             break;
         }
     }
 
     public void collisionDetection(Sprite actor, List<Sprite> world) {
         Collision collision = new Collision();
-        for (Sprite sprite : world) {
-            if (!actor.equals(sprite) && collision.intersectAABB(actor, sprite)) {
-                actor.setY(sprite.getY() - actor.getHeight());
-                velocityY = 0;
-                jumping = false;
-                falling = false;
-            } else {
-                falling = true;
+        for (Sprite collider : world) {
+            if (!actor.equals(collider) && collision.intersectAABB(actor, collider)) {
+                collisionResolution(actor, collider);
             }
         }
     }
 
-    public void jump() {
-        if (!(jumping || falling))
-            setVelocityY(-10);
+    private void collisionResolution(Sprite actor, Sprite collider) {
+        if (topCollision(actor, collider)) {
+            actor.setY(collider.getY() - actor.getHeight());
+            velocityY = 0;
+            jumping = false;
+            falling = false;
+        } else {
+            falling = true;
+        }
+        if (bottomCollision(actor, collider)) {
+            actor.setY(collider.getY() + actor.getHeight());
+            velocityY = 0;
+        }
+        if (rightCollision(actor, collider)) {
+            actor.setX(collider.getX() + actor.getWidth());
+        }
+        if (leftCollision(actor, collider)) {
+            actor.setX(collider.getX() - actor.getWidth());
+        }
     }
 
-    public void attack(Sprite actor, List<Sprite> world) {}
+    private double getTopBoundCollision(Sprite actor, Sprite collider) {
+        return actor.getY() + actor.getHeight() - collider.getY();
+    }
+
+    private double getBottomBoundCollision(Sprite actor, Sprite collider) {
+        return collider.getY() + collider.getHeight() - actor.getY();
+    }
+
+    private double getLeftBoundCollision(Sprite actor, Sprite collider) {
+        return actor.getX() + actor.getWidth() - collider.getX();
+    }
+
+    private double getRightBoundCollision(Sprite actor, Sprite collider) {
+        return collider.getX() + collider.getWidth() - actor.getX();
+    }
+
+    private boolean topCollision(Sprite actor, Sprite collider) {
+        return getTopBoundCollision(actor, collider) < getBottomBoundCollision(actor, collider)
+                && getTopBoundCollision(actor, collider) < getLeftBoundCollision(actor, collider)
+                && getTopBoundCollision(actor, collider) < getRightBoundCollision(actor, collider);
+    }
+
+    private boolean bottomCollision(Sprite actor, Sprite collider) {
+        return getBottomBoundCollision(actor, collider) < getTopBoundCollision(actor, collider)
+                && getBottomBoundCollision(actor, collider) < getLeftBoundCollision(actor, collider)
+                && getBottomBoundCollision(actor, collider) < getRightBoundCollision(actor, collider);
+    }
+
+    private boolean leftCollision(Sprite actor, Sprite collider) {
+        return getLeftBoundCollision(actor, collider) < getRightBoundCollision(actor, collider)
+                && getLeftBoundCollision(actor, collider) < getTopBoundCollision(actor, collider)
+                && getLeftBoundCollision(actor, collider) < getBottomBoundCollision(actor, collider);
+    }
+
+    private boolean rightCollision(Sprite actor, Sprite collider) {
+        return getRightBoundCollision(actor, collider) < getLeftBoundCollision(actor, collider)
+                && getRightBoundCollision(actor, collider) < getTopBoundCollision(actor, collider)
+                && getRightBoundCollision(actor, collider) < getBottomBoundCollision(actor, collider);
+    }
+
+    public void jump() {
+        if (!(jumping || falling)) {
+            setVelocityY(-15);
+            jumping = true;
+            falling = true;
+        }
+    }
+
+    public void attack(List<Sprite> world) {
+        System.out.println("Attack...");
+    }
 
 }
