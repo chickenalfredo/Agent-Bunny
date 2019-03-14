@@ -32,14 +32,14 @@ public class GameScene {
 
     public static Scene display() {
         Pane root = initScene();
+        Pane camera = new Pane();
+        root.getChildren().add(camera);
+
         GameScene = new Scene(root);
-        try {
-            GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
-        } catch (Exception e) {
-            System.out.println("file not found");
-        }
-        Canvas canvas = new Canvas(screenWidth, screenHeight);
-        root.getChildren().add(canvas);
+        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+
+        Canvas canvas = new Canvas(3*screenWidth, screenHeight);
+        camera.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
 
         class GameLoop implements EventHandler<KeyEvent> {
@@ -50,12 +50,18 @@ public class GameScene {
                 }
             }
         }
+
         GameScene.setOnKeyPressed(new GameLoop());
         GameScene.setOnKeyReleased(new GameLoop());
         new AnimationTimer() {
             public void handle(long time) {
+<<<<<<< HEAD
                 gc.clearRect(0,0, screenWidth, screenHeight);
                 hero.update(spritesList, gc);
+=======
+                camera.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
+                gc.clearRect(0,0, 3*screenWidth, screenHeight);
+>>>>>>> 6ea38032a2661faec919dab269642886b0a289bd
                 for (Sprite sprite : spritesList) {
                     sprite.update(spritesList, gc);
                 }
