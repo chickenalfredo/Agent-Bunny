@@ -9,7 +9,6 @@ public abstract class Entity extends Sprite {
     private int health = 100;
     private int attackPower = 1;
     private boolean isEnemy = false;
-    private double speed = 1.0;
 
     /**
      * Constructor that calls the constructor of the Sprite class and sets name,
@@ -73,24 +72,6 @@ public abstract class Entity extends Sprite {
         health = entityHealth;
     }
 
-    /**
-     * Returns the value of the entity's speed
-     * 
-     * @return speed
-     */
-    public double getSpeed() {
-        return speed;
-    }
-
-    /**
-     * Sets the value of the entity's speed
-     * 
-     * @param entitySpeed The value of speed to set
-     */
-    public void setSpeed(double entitySpeed) {
-        speed = entitySpeed;
-    }
-
     protected void setIsEnemy(boolean isEnemy) {
         this.isEnemy = isEnemy;
     }
@@ -99,11 +80,8 @@ public abstract class Entity extends Sprite {
         return isEnemy;
     }
 
-    public void move(String key) {
-        this.getPhysicsComponent().moveEntity(key);
+    public void move(String key, boolean isKeyPressedEvent) {
+        this.getPhysicsComponent().moveEntity(key, isKeyPressedEvent);
     }
 
-    public void stopEntity(String key) {
-        this.getPhysicsComponent().stopEntity(key);
-    }
 }

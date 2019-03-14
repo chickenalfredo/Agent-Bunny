@@ -2,7 +2,6 @@ package core.external.weapon;
 
 import core.sprite.Entity;
 import core.sprite.Ranged;
-import core.sprite.Sprite;
 
 public class Gun extends Ranged {
 
@@ -10,7 +9,6 @@ public class Gun extends Ranged {
 
     public Gun(double x, double y, double width, double height) {
         super(x, y, width, height);
-        // setWeaponDamage(GUN_BASE_DAMAGE);
     }
 
     public double getGunBaseDamage() {
@@ -19,7 +17,6 @@ public class Gun extends Ranged {
 
     @Override
     public double damageEnemy(Entity enemy) {
-        // return this.getWeaponDamage();
         return 0.0;
     }
 

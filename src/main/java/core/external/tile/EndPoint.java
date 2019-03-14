@@ -1,7 +1,6 @@
 package core.external.tile;
 
 import core.sprite.TileObject;
-import core.sprite.Sprite;
 
 /**
  * This class implements a isLevelOver point tile that allows to set the

@@ -8,7 +8,6 @@ import javafx.scene.image.Image;
 import java.util.List;
 
 import com.google.gson.GsonBuilder;
-import com.sun.javafx.geom.Rectangle;
 import java.io.FileInputStream;
 
 /**
@@ -48,10 +47,16 @@ public abstract class Sprite {
         this.height = height;
     }
 
+    /**
+     * 
+     */
     public Sprite(double x, double y) {
         coordinate = new Coordinate(x, y);
     }
 
+    /**
+     * 
+     */
     public Sprite(double x, double y, double width, double height, String image) {
         coordinate = new Coordinate(x, y);
         this.width = width;
@@ -59,6 +64,9 @@ public abstract class Sprite {
         setImage(image);
     }
 
+    /**
+     * 
+     */
     public Sprite(double x, double y, String image) {
         coordinate = new Coordinate(x, y);
         setImage(image);
@@ -71,11 +79,10 @@ public abstract class Sprite {
         return image;
     }
 
-    public Rectangle getBounds() {
-        return new Rectangle((int)getX(), (int)getY(), (int)width, (int)height);
-    }
-
-    protected PhysicsComponent getPhysicsComponent() {
+    /**
+     * 
+     */
+    public PhysicsComponent getPhysicsComponent() {
         return physics;
     }
 
@@ -86,17 +93,21 @@ public abstract class Sprite {
         this.image = image;
     }
 
-    public void setImage(String filename)
-    {
+    /**
+     * 
+     */
+    public void setImage(String filename) {
         try {
             Image i = new Image(new FileInputStream(filename), this.getWidth(), this.getHeight(), false, true);
             setImage(i);
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 
+    /**
+     * 
+     */
     public void update(List<Sprite> world, GraphicsContext gc) {
         graphics.update(this, gc);
         if (this instanceof Entity) 
@@ -182,10 +193,16 @@ public abstract class Sprite {
         this.height = height;
     }
 
+    /**
+     * 
+     */
     public void setWidth(double width) {
         this.width = width;
     }
 
+    /**
+     * 
+     */
     public void setHeight(double height) {
         this.height = height;
     }
@@ -203,10 +220,16 @@ public abstract class Sprite {
         coordinate.setLocation(x, y);
     }
 
+    /**
+     * 
+     */
     public void setX(double x) {
         coordinate.setX(x);
     }
 
+    /**
+     * 
+     */
     public void setY(double y) {
         coordinate.setY(y);
     }

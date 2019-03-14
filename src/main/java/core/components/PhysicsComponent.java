@@ -3,66 +3,23 @@ package core.components;
 import java.util.List;
 
 import core.math.Collision;
+import core.math.CollisionPacket;
 import core.sprite.Entity;
 import core.sprite.Sprite;
+import core.sprite.TileObject;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
 public class PhysicsComponent {
 
-    private double t = 0.0;
-    private double dt = 1.0f;
-    private double position = 0.0f;
     private double velocityX = 0.0f;
     private double velocityY = 0.0f;
     private double force = 0.5f;
-    private double mass = 1.0f;
     private boolean falling = true;
     private boolean jumping = false;
 
-    public PhysicsComponent() {}
-
-    /**
-     * @return the t
-     */
-    public double getT() {
-        return t;
-    }
-
-    /**
-     * @param t the t to set
-     */
-    public void setT(double t) {
-        this.t = t;
-    }
-
-    /**
-     * @return the dt
-     */
-    public double getDt() {
-        return dt;
-    }
-
-    /**
-     * @param dt the dt to set
-     */
-    public void setDt(double dt) {
-        this.dt = dt;
-    }
-
-    /**
-     * @return the position
-     */
-    public double getPosition() {
-        return position;
-    }
-
-    /**
-     * @param position the position to set
-     */
-    public void setPosition(double position) {
-        this.position = position;
+    public PhysicsComponent() {
     }
 
     /**
@@ -108,20 +65,6 @@ public class PhysicsComponent {
     }
 
     /**
-     * @return the mass
-     */
-    public double getMass() {
-        return mass;
-    }
-
-    /**
-     * @param mass the mass to set
-     */
-    public void setMass(double mass) {
-        this.mass = mass;
-    }
-
-    /**
      * @return the falling
      */
     public boolean isFalling() {
@@ -149,6 +92,9 @@ public class PhysicsComponent {
         this.jumping = jumping;
     }
 
+    /**
+     * 
+     */
     public void update(Sprite actor, List<Sprite> world) {
         actor.setX(actor.getX() + velocityX);
         actor.setY(actor.getY() + velocityY);
@@ -156,74 +102,85 @@ public class PhysicsComponent {
         collisionDetection(actor, world);
     }
 
+    /**
+     * 
+     */
     private void applyGravity(Sprite actor, List<Sprite> world) {
-        if (actor instanceof Entity) {
-            if (isFalling() || isJumping())
-                velocityY += force;
-        }
+        if (actor instanceof Entity)
+            velocityY += force;
     }
 
-    public void stopEntity(String key) {
-        switch (key) {
-        case "w":
-        // setVelocityY(0);
-            break;
-        case "a":
+    /**
+     * 
+     */
+    public void moveEntity(String key, boolean isKeyPressedEvent) {
+        if (isKeyPressedEvent) {
+            switch (key) {
+            case "a":
+                setVelocityX(-7);
+                break;
+            case "d":
+                setVelocityX(7);
+                break;
+            }
+        } else {
             setVelocityX(0);
-            break;
-        case "s":
-        // setVelocityY(0);
-            break;
-        case "d":
-            setVelocityX(0);
-            break;
         }
     }
 
-    public void moveEntity(String key) {
-        switch (key) {
-        case "w":
-        // setVelocityY(-3);
-            break;
-        case "a":
-            setVelocityX(-4);
-            break;
-        case "s":
-        // setVelocityY(3);
-            break;
-        case "d":
-            setVelocityX(4);
-            break;
-        }
-    }
-
+    /**
+     * 
+     */
     public void collisionDetection(Sprite actor, List<Sprite> world) {
         Collision collision = new Collision();
-        for (Sprite sprite : world) {
-            if (!actor.equals(sprite)) {
-                if (collision.intersectAABB(actor, sprite)) {
-                    actor.setY(sprite.getY() - actor.getHeight());
-                    velocityY = 0;
-                    jumping = false;
-                    falling = false;
-                } else {
-                    falling = true;
-                }
+        for (Sprite collider : world) {
+            if (collider instanceof TileObject && collision.intersectAABB(actor, collider)) {
+                collisionResolution(actor, collider);
             }
         }
     }
 
-    public void jump() {
-        if (!(jumping || falling))
-            setVelocityY(-10);
+    /**
+     * 
+     */
+    private void collisionResolution(Sprite actor, Sprite collider) {
+        CollisionPacket packet = new CollisionPacket(actor, collider);
+        if (packet.getCollisionSide().equals("top")) {
+            actor.setY(collider.getY() - actor.getHeight());
+            velocityY = 0;
+            jumping = false;
+            falling = false;
+        } else {
+            falling = true;
+        }
+        if (packet.getCollisionSide().equals("bottom")) {
+            actor.setY(collider.getY() + actor.getHeight());
+            velocityY = 0;
+        }
+        if (packet.getCollisionSide().equals("right")) {
+            actor.setX(collider.getX() + actor.getWidth());
+        }
+        if (packet.getCollisionSide().equals("left")) {
+            actor.setX(collider.getX() - actor.getWidth());
+        }
     }
 
-    public void doubleJump() {}
+    /**
+     * 
+     */
+    public void jump() {
+        if (!(jumping || falling)) {
+            setVelocityY(-15);
+            jumping = true;
+            falling = true;
+        }
+    }
 
-    public void dash() {}
-    
-    public void duck() {}
-
-    public void attack(Sprite actor, List<Sprite> world) {}
+    /**
+     * 
+     */
+    public void attack(List<Sprite> world) {
+        System.out.println("Attack...");
+    }
 
 }
