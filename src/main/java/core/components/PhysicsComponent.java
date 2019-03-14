@@ -145,27 +145,24 @@ public class PhysicsComponent {
      */
     private void collisionResolution(Sprite actor, Sprite collider) {
         CollisionPacket packet = new CollisionPacket(actor, collider);
-        if (packet != null) {
-            if (packet.getCollisionSide().equals("top")) {
-                actor.setY(collider.getY() - actor.getHeight());
-                velocityY = 0;
-                jumping = false;
-                falling = false;
-            } else {
-                falling = true;
-            }
-            if (packet.getCollisionSide().equals("bottom")) {
-                actor.setY(collider.getY() + actor.getHeight());
-                velocityY = 0;
-            }
-            if (packet.getCollisionSide().equals("right")) {
-                actor.setX(collider.getX() + actor.getWidth());
-            }
-            if (packet.getCollisionSide().equals("left")) {
-                actor.setX(collider.getX() - actor.getWidth());
-            }
+        if (packet.getCollisionSide().equals("top")) {
+            actor.setY(collider.getY() - actor.getHeight());
+            velocityY = 0;
+            jumping = false;
+            falling = false;
+        } else {
+            falling = true;
         }
-
+        if (packet.getCollisionSide().equals("bottom")) {
+            actor.setY(collider.getY() + actor.getHeight());
+            velocityY = 0;
+        }
+        if (packet.getCollisionSide().equals("right")) {
+            actor.setX(collider.getX() + actor.getWidth());
+        }
+        if (packet.getCollisionSide().equals("left")) {
+            actor.setX(collider.getX() - actor.getWidth());
+        }
     }
 
     /**
