@@ -22,4 +22,6 @@ An exhaustive list of sources that were used in our project. Most examples have 
 
 ## Assets
 
-* [Free online assets]()
+* [Sprite Images](https://bayat.itch.io/platform-game-assets)
+* [More Sprite Images](https://pipoya.itch.io/free-rpg-monster-pack)
+* [StyleSheet](http://fxexperience.com/2011/12/styling-fx-buttons-with-css/)
