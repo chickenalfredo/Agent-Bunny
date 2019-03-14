@@ -8,6 +8,7 @@ public class InputHandler {
 
     private JumpCommand keySpaceBar_ = new JumpCommand();      
     private AttackCommand keyZ_ = new AttackCommand();   
+    private MenuCommand keyEscape = new MenuCommand(); 
     
     public InputHandler() {}
 
@@ -26,6 +27,9 @@ public class InputHandler {
                 break;
             case Z:
                 command = keyZ_;
+                break;
+            case ESCAPE:
+                command = keyEscape;
                 break;
             default:
                 command = null;

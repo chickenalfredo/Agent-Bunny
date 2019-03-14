@@ -5,9 +5,13 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import core.App;
 import core.utils.MenuEventHandlers;
 import javafx.geometry.*;
 import java.io.*;
+import javafx.scene.input.KeyEvent;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
 
 public class GameSettings {
 
@@ -21,12 +25,31 @@ public class GameSettings {
         GameSettings = new Scene(menu);
         GameSettings.getStylesheets().clear();
         GameSettings.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+        GameSettings.setOnKeyPressed(new EscKey());
         return GameSettings;
     }
 
-    public static HBox mainMenu() {
+    public static class EscKey implements EventHandler<KeyEvent> {
+        public void handle(KeyEvent key) {
+            if (key.getCode() == KeyCode.ESCAPE) {
+                if (menu.getChildren().contains(graphicsMenu)) {
+                    menu.getChildren().remove(graphicsMenu);
+                } else {
+                    App.getGameWindow().setScene(TitleScene.display());
+                }
+            }
+        }
+    }
 
-        Label menuHeading = new Label("Game Menu");
+    static public HBox mainMenu() {
+        if (App.getGameWindow().getScene() == GameScene.getScene()) {
+            Button resumeGame = new Button("Resume Game"); 
+            resumeGame.setOnAction(new MenuEventHandlers.resumeGame());
+            mainMenu = new VBox(5,resumeGame);
+        } else{ 
+            mainMenu = new VBox(5);
+        }
+
         Button controls = new Button("View Controls");
         Button keymapping = new Button("Keybinds");
         Button graphics = new Button("Video Settings");
@@ -37,7 +60,7 @@ public class GameSettings {
         TitleMenu.setOnAction(new MenuEventHandlers.goToTitle());
         exit.setOnAction(new MenuEventHandlers.ExitGameEvent()); 
 
-        mainMenu = new VBox(5, menuHeading, controls, keymapping, graphics, TitleMenu, exit);
+        mainMenu.getChildren().addAll(controls, keymapping, graphics, TitleMenu, exit);
         mainMenu.setAlignment(Pos.CENTER);
         HBox menu = new HBox(5, mainMenu);
         menu.setAlignment(Pos.CENTER);
@@ -66,8 +89,6 @@ public class GameSettings {
         }
 
         fullscreen.setOnAction(new MenuEventHandlers.setFullScreen());
-        
-        
         if (graphicsMenu == null) {
         HBox screenResolutions = new HBox(5, resolutionLabel, graphicsOptions); 
         screenResolutions.setAlignment(Pos.CENTER);
@@ -78,5 +99,14 @@ public class GameSettings {
         menu.getChildren().add(graphicsMenu);
         }
         catch(IllegalArgumentException e) {}
+
+    }
+
+    public static Scene getScene() {
+        return GameSettings;
+    }
+
+    public static void setScene(Scene scene) {
+        GameSettings = scene; 
     }
 }

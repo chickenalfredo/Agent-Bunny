@@ -70,4 +70,8 @@ public class GameScene {
         Pane gameUI = new Pane();
         return gameUI;
     }
+
+    public static Scene getScene() {
+        return GameScene;
+    }
 }
