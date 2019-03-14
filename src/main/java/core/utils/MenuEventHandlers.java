@@ -26,8 +26,6 @@ public class MenuEventHandlers {
 
     public static class OpenSettingsEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            System.out.println(App.getGameWindow().getScene());
-            System.out.println(GameScene.getScene());
             if (App.getGameWindow().getScene() == GameScene.getScene()) {
                 popUpMenu = new Stage();
                 popUpMenu.setWidth(ScreenBuilder.getPrimaryScreenBounds().getWidth() / 2);
