@@ -1,9 +1,6 @@
 package core.external.entity;
 
-import java.util.List;
-
 import core.sprite.Entity;
-import core.sprite.Sprite;
 
 /**
  * 
@@ -11,7 +8,6 @@ import core.sprite.Sprite;
 public class Hero extends Entity {
 
     private int lives = 3;
-
 
     public Hero(double x, double y, double width, double height) {
         super(x, y, width, height);
@@ -43,10 +39,6 @@ public class Hero extends Entity {
 
     public void attack(Entity enemyToAttack) {
         enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
-    }
-
-    public void attack(List<Sprite> world) {
-        getPhysicsComponent().attack(world);
     }
 
     public void jump() {

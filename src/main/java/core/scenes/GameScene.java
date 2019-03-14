@@ -13,6 +13,7 @@ import java.io.File;
 import core.command.Command;
 import core.external.entity.Hero;
 import core.external.level.Chapter1Level1;
+import core.external.weapon.Sword;
 import core.map.GameMap;
 import core.screens.ScreenBuilder;
 import core.sprite.Sprite;
@@ -41,6 +42,9 @@ public class GameScene {
         Canvas canvas = new Canvas(3*screenWidth, screenHeight);
         camera.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
+
+        hero.addWeapon(new Sword(0,0,20,20));
+
 
         class GameLoop implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {

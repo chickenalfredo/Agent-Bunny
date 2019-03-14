@@ -176,11 +176,4 @@ public class PhysicsComponent {
         }
     }
 
-    /**
-     * 
-     */
-    public void attack(List<Sprite> world) {
-        System.out.println("Attack...");
-    }
-
 }

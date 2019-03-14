@@ -1,5 +1,10 @@
 package core.sprite;
 
+import java.util.ArrayList;
+import java.util.List;
+
+import core.components.AttackComponent;
+
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
@@ -9,22 +14,57 @@ public abstract class Entity extends Sprite {
     private int health = 100;
     private int attackPower = 1;
     private boolean isEnemy = false;
+    private AttackComponent attackComponent = new AttackComponent();
+    private ArrayList<Weapon> weaponsOwned = new ArrayList<Weapon>();
 
     /**
      * Constructor that calls the constructor of the Sprite class and sets name,
      * health, and speed for the Character
      * 
      * @see Sprite class
-     * @param entityX      The x coordinate of the entity to set
-     * @param entityY      The y coordinate of the entity to set
-     * @param entityWidth  The width of the entity to set
-     * @param entityHeight The height of the entity to set
+     * @param entityX
+     *                         The x coordinate of the entity to set
+     * @param entityY
+     *                         The y coordinate of the entity to set
+     * @param entityWidth
+     *                         The width of the entity to set
+     * @param entityHeight
+     *                         The height of the entity to set
      */
     public Entity(double entityX, double entityY, double entityWidth, double entityHeight) {
         super(entityX, entityY, entityWidth, entityHeight);
     }
 
-    public Entity(double entityX, double entityY, double entityWidth, double entityHeight, String image) {
+    /**
+     * @return the weaponsOwned
+     */
+    public ArrayList<Weapon> getWeaponsOwned() {
+        return weaponsOwned;
+    }
+
+    /**
+     * @param weaponsOwned
+     *                         the weaponsOwned to set
+     */
+    public void setWeaponsOwned(ArrayList<Weapon> weaponsOwned) {
+        this.weaponsOwned = weaponsOwned;
+    }
+
+    /**
+     * @return the attackComponent
+     */
+	public AttackComponent getAttackComponent() {
+		return attackComponent;
+	}
+
+	/**
+	 * @param attackComponent the attackComponent to set
+	 */
+	public void setAttackComponent(AttackComponent attackComponent) {
+		this.attackComponent = attackComponent;
+	}
+
+	public Entity(double entityX, double entityY, double entityWidth, double entityHeight, String image) {
         super(entityX, entityY, entityWidth, entityHeight, image);
     }
 
@@ -82,6 +122,15 @@ public abstract class Entity extends Sprite {
 
     public void move(String key, boolean isKeyPressedEvent) {
         this.getPhysicsComponent().moveEntity(key, isKeyPressedEvent);
+    }
+
+    public void attackCollider(List<Sprite> world) {
+        attackComponent.update(this, world);
+    }
+
+    public void addWeapon(Weapon weapon) {
+        if (weapon != null)
+            weaponsOwned.add(weapon);
     }
 
 }
