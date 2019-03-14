@@ -66,7 +66,7 @@ public class MenuEventHandlers {
 
     public static class setFullScreen implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            if (popUpMenu.getScene() != null) {
+            if (popUpMenu != null) {
                 popUpMenu.hide();
             }
             if(!App.getGameWindow().isFullScreen()) {
