@@ -30,3 +30,9 @@
     -fx-background-image: url("../assets/Wall_BG.png");
     -fx-background-size: cover;
 }
+
+
+#backgroound {
+    -fx-background-image: url("../assets/Wall_BG.png");
+    -fx-background-size: cover;
+}
