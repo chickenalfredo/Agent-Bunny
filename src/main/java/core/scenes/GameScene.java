@@ -21,7 +21,7 @@ import java.util.List;
 
 public class GameScene {
 
-    private static Hero hero = new Hero(1, 0, 100, 100, "src/main/resources/assets/Hero.png");
+    private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
     private static Scene GameScene;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
