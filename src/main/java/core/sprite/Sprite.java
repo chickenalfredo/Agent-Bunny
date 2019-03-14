@@ -2,6 +2,7 @@ package core.sprite;
 
 import core.components.GraphicsComponent;
 import core.components.PhysicsComponent;
+import javafx.scene.Node;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -19,7 +20,7 @@ import java.io.FileInputStream;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite {
+public abstract class Sprite extends Node{
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
@@ -75,7 +76,7 @@ public abstract class Sprite {
         return new Rectangle((int)getX(), (int)getY(), (int)width, (int)height);
     }
 
-    protected PhysicsComponent getPhysicsComponent() {
+    public PhysicsComponent getPhysicsComponent() {
         return physics;
     }
 
