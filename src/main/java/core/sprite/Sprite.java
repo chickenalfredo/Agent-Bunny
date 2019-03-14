@@ -20,7 +20,7 @@ import java.io.FileInputStream;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite extends Node{
+public abstract class Sprite {
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
@@ -76,7 +76,7 @@ public abstract class Sprite extends Node{
         return new Rectangle((int)getX(), (int)getY(), (int)width, (int)height);
     }
 
-    public PhysicsComponent getPhysicsComponent() {
+    protected PhysicsComponent getPhysicsComponent() {
         return physics;
     }
 

@@ -2,14 +2,11 @@ package core.scenes;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
-import javafx.geometry.Bounds;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.Pane;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ScrollPane;
-import javafx.scene.image.ImageView;
 import core.utils.InputHandler;
 import java.io.File;
 
@@ -32,14 +29,15 @@ public class GameScene {
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
     private static GameMap level1 = new Chapter1Level1();
     private static List<Sprite> spritesList = level1.getSprite();
-    public static double oldmove;
 
     public static Scene display() {
         Pane root = initScene();
         Pane camera = new Pane();
         root.getChildren().add(camera);
+
         GameScene = new Scene(root);
         GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+
         Canvas canvas = new Canvas(3*screenWidth, screenHeight);
         camera.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
@@ -52,6 +50,7 @@ public class GameScene {
                 }
             }
         }
+
         GameScene.setOnKeyPressed(new GameLoop());
         GameScene.setOnKeyReleased(new GameLoop());
         new AnimationTimer() {

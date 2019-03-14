@@ -34,6 +34,6 @@
 
 #backgroound {
     -fx-background-image: url("../assets/Wall_BG.png");
-    -fx-background-size: repeat;
+    -fx-background-size: cover;
 }
 
