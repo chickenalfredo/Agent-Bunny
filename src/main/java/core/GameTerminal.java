@@ -6,7 +6,6 @@ import core.external.entity.*;
 import core.external.level.*;
 import java.util.Scanner;
 import java.util.List;
-import core.utils.SimulationManager;
 
 /**
  * Terminal output for Demo 1
@@ -23,7 +22,6 @@ public class GameTerminal {
      */
     public static boolean print() {
         List<Sprite> sprite = level1.getSprite();
-        SimulationManager input;
         Scanner userInput = new Scanner(System.in);
         Hero player = new Hero(0.0, 0.0, 5.0, 5.0);
 
@@ -37,28 +35,23 @@ public class GameTerminal {
         System.out.println(getDisplay());
         printMessage();
         String key = userInput.nextLine();
-        input = new SimulationManager(key);
-        
 
-
-        if (input.isSimulationInput(key)) {
-            if (input.simulateCollision(player, sprite)) {
-                System.out.println("Collision detected");
-            } else {
-                System.out.println("No Collision");
-                player.move(key);
-            }
-        } else if (key.equalsIgnoreCase("e")) {
-            System.exit(0);
-        } else if (key.equalsIgnoreCase("c")) {
-            System.out.println("Checkpoint not yet implemented");
-        } else if (key.equalsIgnoreCase("r")) {
-            System.out.println("Restart not yet implemented");
-        } else {
-            System.out.println("Invalid Input");
-        }
-
-
+        // if (input.isSimulationInput(key)) {
+        //     if (input.simulateCollision(player, sprite)) {
+        //         System.out.println("Collision detected");
+        //     } else {
+        //         System.out.println("No Collision");
+        //         player.move(key);
+        //     }
+        // } else if (key.equalsIgnoreCase("e")) {
+        //     System.exit(0);
+        // } else if (key.equalsIgnoreCase("c")) {
+        //     System.out.println("Checkpoint not yet implemented");
+        // } else if (key.equalsIgnoreCase("r")) {
+        //     System.out.println("Restart not yet implemented");
+        // } else {
+        //     System.out.println("Invalid Input");
+        // }
 
         return true;
     }
@@ -98,8 +91,6 @@ public class GameTerminal {
         str.append("s: move down\n");
         str.append("d: move right\n\n");
         str.append("e: close the game\n");
-        str.append("r: return gamestate to startup position\n");
-        str.append("c: return to last checkpoint");
         str.append("\n----------------------------");
         str.append("\nEnter an action");
         System.out.println(str.toString());

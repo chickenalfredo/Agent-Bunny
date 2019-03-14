@@ -12,6 +12,8 @@ import core.sprite.Sprite;
  */
 public class Collision {
 
+    public Collision() {}
+
     /**
      * Returns whether a collision has occured between two static objects.
      */
@@ -56,6 +58,13 @@ public class Collision {
     }
 
     /**
+     * 
+     */
+    public CollisionPacket collisionData(Sprite actor, Sprite collider) {
+        return new CollisionPacket(actor, collider);
+    }
+
+        /**
      * Returns whether a collision has occured between an AABB object and a swept
      * AABB object
      */
