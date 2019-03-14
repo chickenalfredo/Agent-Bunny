@@ -1,5 +1,6 @@
 package core.math;
 
+import core.sprite.Coordinate;
 import core.sprite.Sprite;
 
 /**
@@ -12,6 +13,36 @@ import core.sprite.Sprite;
 public class Collision {
 
     public Collision() {}
+
+    /**
+     * Returns whether a collision has occured between two static objects.
+     */
+    public boolean intersection() {
+        return false;
+    }
+
+    /**
+     * Returns whether a collision has occured between a moving object and a static
+     * object
+     */
+    public boolean sweep() {
+        return false;
+    }
+
+    /**
+     * Returns whether a collision has occured between an AABB and a point
+     */
+    public boolean intersectPoint(Coordinate point) {
+        return false;
+    }
+
+    /**
+     * Returns whether a collision has occured between an AABB and a segment
+     * (raycast)
+     */
+    public boolean intersectRaySegment(Coordinate pos, Coordinate delta, int paddingX, int paddingY) {
+        return false;
+    }
 
     /**
      * Returns true or false, depending on whether the provided Sprite objects
@@ -31,6 +62,21 @@ public class Collision {
      */
     public CollisionPacket collisionData(Sprite actor, Sprite collider) {
         return new CollisionPacket(actor, collider);
+    }
+
+        /**
+     * Returns whether a collision has occured between an AABB object and a swept
+     * AABB object
+     */
+    public boolean sweptAABB(Sprite hero, Coordinate pos) {
+        return false;
+    }
+
+    /**
+     * Returns whether a single object has swept into a static object
+     */
+    public boolean sweepInto(Sprite staticColliders, Coordinate delta) {
+        return false;
     }
 
 }
