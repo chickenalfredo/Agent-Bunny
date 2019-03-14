@@ -1,7 +1,6 @@
 package core.external.entity;
 
 import core.sprite.Entity;
-import core.sprite.Sprite;
 
 /**
  * 
@@ -50,21 +49,6 @@ public class Hero extends Entity {
     public void jump() {
         getPhysicsComponent().jump();
         System.out.println("Hero jumps...");
-    }
-
-    public void doubleJump() {
-        System.out.println("Hero double jumps...");
-        getPhysicsComponent().doubleJump();
-    }
-
-    public void dash() {
-        System.out.println("Hero dashes...");
-        getPhysicsComponent().dash();
-    }
-
-    public void duck() {
-        System.out.println("Hero ducks...");
-        getPhysicsComponent().duck();
     }
 
 }

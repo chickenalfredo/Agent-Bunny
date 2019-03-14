@@ -2,7 +2,6 @@ package core.external.weapon;
 
 import core.sprite.Entity;
 import core.sprite.Melee;
-import core.sprite.Sprite;
 
 public class Unarmed extends Melee {
 
@@ -10,7 +9,6 @@ public class Unarmed extends Melee {
 
     public Unarmed(double x, double y, double width, double height) {
         super(x, y, width, height);
-        // setWeaponDamage(PHYSICAL_BASE_DAMAGE);
     }
 
     public double getPhysicalBaseDamage() {
@@ -19,7 +17,6 @@ public class Unarmed extends Melee {
 
     @Override
     public double damageEnemy(Entity enemy) {
-        // return this.getWeaponDamage();
         return 0.0;
     }
 

@@ -14,20 +14,10 @@ public class Boss extends AbstractEnemy {
     public Boss(double x, double y) {
         super(x, y);
     }
-
-    
-    public void dodge() {
-    }
-
-    
-    public void guard() {
-    }
-
     
     public void attack(Entity entityToAttack) {
     }
 
-    
     public void collisionResolution(Sprite sprite) {
     }
 
