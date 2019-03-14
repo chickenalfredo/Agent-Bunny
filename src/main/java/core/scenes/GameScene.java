@@ -55,16 +55,12 @@ public class GameScene {
         GameScene.setOnKeyReleased(new GameLoop());
         new AnimationTimer() {
             public void handle(long time) {
-<<<<<<< HEAD
-                gc.clearRect(0,0, screenWidth, screenHeight);
-                hero.update(spritesList, gc);
-=======
                 camera.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
->>>>>>> 6ea38032a2661faec919dab269642886b0a289bd
                 for (Sprite sprite : spritesList) {
                     sprite.update(spritesList, gc);
                 }
+                hero.update(spritesList, gc);
             }
         }.start();
 
