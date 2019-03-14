@@ -55,10 +55,10 @@ public class GameScene {
         new AnimationTimer() {
             public void handle(long time) {
                 gc.clearRect(0,0, screenWidth, screenHeight);
+                hero.update(spritesList, gc);
                 for (Sprite sprite : spritesList) {
                     sprite.update(spritesList, gc);
                 }
-                hero.update(spritesList, gc);
             }
         }.start();
 
