@@ -13,6 +13,7 @@ public class App extends Application{
         init();
         gameWindow = ScreenBuilder.defaultScreen(primaryStage);
         gameWindow.setScene(TitleScene.display());
+        gameWindow.setMaximized(true);
         gameWindow.show();
     }
 
