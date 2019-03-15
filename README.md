@@ -58,6 +58,10 @@ Please read [CONTRIBUTING.md](https://github.com/chickenalfredo/Animation-Game/b
 * [**Brett Paffrath**](https://github.com/BrettPaffrath)
 * [**Harry**](https://github.com/HeDoLe)
 
+## References
+
+Please read [REFERENCES.md](https://github.com/chickenalfredo/Animation-Game/blob/master/REFERENCES.md) for an updated list of all sources used in the project.
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](https://github.com/chickenalfredo/Animation-Game/blob/master/LICENSE.md) file for details
