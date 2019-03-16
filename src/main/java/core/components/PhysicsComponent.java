@@ -153,7 +153,7 @@ public class PhysicsComponent {
             falling = true;
         }
         if (packet.getCollisionSide().equals("bottom")) {
-            actor.setY(collider.getY() + actor.getHeight());
+            actor.setY(collider.getY() + collider.getHeight());
             velocityY = 0;
         }
         if (packet.getCollisionSide().equals("right")) {
