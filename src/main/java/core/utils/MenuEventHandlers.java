@@ -76,9 +76,6 @@ public class MenuEventHandlers {
             }
         }
     }
-<<<<<<< HEAD
-    
-=======
 
     public static class resumeGame implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -94,5 +91,4 @@ public class MenuEventHandlers {
         return popUpMenu;
     }
 
->>>>>>> 18c450725d01d1602a37401f8d4505759fcc3fd9
 }
