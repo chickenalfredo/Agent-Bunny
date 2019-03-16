@@ -116,9 +116,11 @@ public class PhysicsComponent {
         if (isKeyPressedEvent) {
             switch (key) {
             case "a":
+                setVelocityX(0);
                 setVelocityX(-7);
                 break;
             case "d":
+                setVelocityX(0);
                 setVelocityX(7);
                 break;
             }
