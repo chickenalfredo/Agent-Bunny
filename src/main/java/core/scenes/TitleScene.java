@@ -38,5 +38,5 @@ public class TitleScene {
 
         return menu;
     }
-} 
 
+} 

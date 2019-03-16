@@ -13,6 +13,7 @@ import java.io.File;
 import core.command.Command;
 import core.external.entity.Hero;
 import core.external.level.Chapter1Level1;
+import core.external.weapon.Sword;
 import core.map.GameMap;
 import core.screens.ScreenBuilder;
 import core.sprite.Sprite;
@@ -22,6 +23,7 @@ import java.util.List;
 public class GameScene {
 
     private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
+    private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
     private static Scene GameScene;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
@@ -41,6 +43,8 @@ public class GameScene {
         Canvas canvas = new Canvas(3*screenWidth, screenHeight);
         camera.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
+
+        hero.addWeapon(sword);
 
         class GameLoop implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {
@@ -63,9 +67,9 @@ public class GameScene {
                 hero.update(spritesList, gc);
             }
         }.start();
-
         return GameScene;
     }
+
     public static Pane initScene() {
         Pane gameUI = new Pane();
         return gameUI;

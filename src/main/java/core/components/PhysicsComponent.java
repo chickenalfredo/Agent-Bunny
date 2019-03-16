@@ -19,8 +19,7 @@ public class PhysicsComponent {
     private boolean falling = true;
     private boolean jumping = false;
 
-    public PhysicsComponent() {
-    }
+    public PhysicsComponent() {}
 
     /**
      * @return the velocityX
@@ -174,13 +173,6 @@ public class PhysicsComponent {
             jumping = true;
             falling = true;
         }
-    }
-
-    /**
-     * 
-     */
-    public void attack(List<Sprite> world) {
-        System.out.println("Attack...");
     }
 
 }

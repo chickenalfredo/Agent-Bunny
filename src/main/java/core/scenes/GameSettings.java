@@ -109,4 +109,5 @@ public class GameSettings {
     public static void setScene(Scene scene) {
         GameSettings = scene; 
     }
+    
 }

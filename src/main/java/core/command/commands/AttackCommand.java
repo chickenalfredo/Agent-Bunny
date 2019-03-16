@@ -8,10 +8,9 @@ import core.sprite.Sprite;
 
 public class AttackCommand extends Command {
 
-    public AttackCommand() {
-    }
+    public AttackCommand() {}
 
     public void execute(Hero actor, List<Sprite> world) {
-        actor.attack(world);
+        actor.attackCollider(world);
     }
 }

@@ -1,8 +1,6 @@
 package core.external.entity;
 
 import core.sprite.AbstractEnemy;
-import core.sprite.Entity;
-import core.sprite.Sprite;
 
 public class Boss extends AbstractEnemy {
 
@@ -15,10 +13,4 @@ public class Boss extends AbstractEnemy {
         super(x, y);
     }
     
-    public void attack(Entity entityToAttack) {
-    }
-
-    public void collisionResolution(Sprite sprite) {
-    }
-
 }

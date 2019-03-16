@@ -21,4 +21,5 @@ public class ScreenBuilder {
     public static Rectangle2D getPrimaryScreenBounds() {
         return primaryScreenBounds;
     }
+
 }

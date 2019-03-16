@@ -6,6 +6,10 @@ public abstract class Weapon extends Sprite {
         super(x, y, width, height);
     }
 
+    public Weapon(double x, double y, double width, double height, String image) {
+        super(x, y, width, height, image);
+    }
+
     public abstract double damageEnemy(Entity enemy);
 
 }
