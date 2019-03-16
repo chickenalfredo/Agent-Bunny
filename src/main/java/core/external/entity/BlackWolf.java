@@ -1,8 +1,6 @@
 package core.external.entity;
 
 import core.sprite.AbstractEnemy;
-import core.sprite.Entity;
-import core.sprite.Sprite;
 
 /**
  * This class implements the AI and behaviours of strong hostile npc in the
@@ -31,12 +29,6 @@ public class BlackWolf extends AbstractEnemy {
 
     public BlackWolf(double x, double y) {
         super(x, y);
-    }
-
-    public void attack(Entity entityToAttack) {
-    }
-    
-    public void collisionResolution(Sprite sprite) {
     }
 
 }

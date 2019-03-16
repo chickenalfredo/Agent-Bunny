@@ -19,8 +19,7 @@ public class PhysicsComponent {
     private boolean falling = true;
     private boolean jumping = false;
 
-    public PhysicsComponent() {
-    }
+    public PhysicsComponent() {}
 
     /**
      * @return the velocityX

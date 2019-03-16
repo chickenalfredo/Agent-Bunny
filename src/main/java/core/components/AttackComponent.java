@@ -1,9 +1,9 @@
 package core.components;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import core.math.Collision;
+import core.sprite.AbstractEnemy;
 import core.sprite.Entity;
 import core.sprite.Sprite;
 import core.sprite.Weapon;
@@ -21,10 +21,11 @@ public class AttackComponent {
     private void attackCollider(Entity actor, List<Sprite> world) {
         Collision collision = new Collision();
         Weapon weapon = actor.getWeaponsOwned().get(0);
-        
         for (Sprite collider : world) {
-            if (collision.intersectAABB(weapon, collider)) {
-                System.out.println("guess an attack collision occured...");
+            if (collider instanceof AbstractEnemy && !actor.equals(collider)) {
+                if (collision.intersectAABB(weapon, collider)) {
+                    System.out.println("Collision detected between " + weapon.getClass().getSimpleName() + " and " + collider.getClass().getSimpleName());
+                }
             }
         }
     }

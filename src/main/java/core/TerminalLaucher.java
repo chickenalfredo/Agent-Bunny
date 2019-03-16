@@ -17,4 +17,5 @@ public class TerminalLaucher{
 			resume = GameTerminal.print();
 		}
 	}
+	
 }

@@ -23,6 +23,7 @@ import java.util.List;
 public class GameScene {
 
     private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
+    private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
     private static Scene GameScene;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
@@ -43,8 +44,7 @@ public class GameScene {
         camera.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
 
-        hero.addWeapon(new Sword(0,0,20,20));
-
+        hero.addWeapon(sword);
 
         class GameLoop implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {
@@ -65,13 +65,15 @@ public class GameScene {
                     sprite.update(spritesList, gc);
                 }
                 hero.update(spritesList, gc);
+                // sword.update(spritesList, gc);
             }
         }.start();
-
         return GameScene;
     }
+
     public static Pane initScene() {
         Pane gameUI = new Pane();
         return gameUI;
     }
+
 }

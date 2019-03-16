@@ -5,9 +5,9 @@ import core.screens.ScreenBuilder;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class App extends Application{
+public class App extends Application {
 
-        private static Stage gameWindow;
+    private static Stage gameWindow;
 
     public void start(Stage primaryStage) {
         init();
@@ -23,4 +23,5 @@ public class App extends Application{
     public static Stage getGameWindow() {
         return gameWindow;
     }
+    
 }

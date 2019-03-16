@@ -79,4 +79,5 @@ public class GameSettings {
         }
         catch(IllegalArgumentException e) {}
     }
+    
 }

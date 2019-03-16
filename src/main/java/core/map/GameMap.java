@@ -169,4 +169,5 @@ public class GameMap {
 	public void setHighestGamePoint(int point) {
 		this.highestGamePoint = point;
 	}
+	
 }

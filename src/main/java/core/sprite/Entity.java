@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 import core.components.AttackComponent;
+import core.components.WeaponComponent;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
@@ -15,6 +17,7 @@ public abstract class Entity extends Sprite {
     private int attackPower = 1;
     private boolean isEnemy = false;
     private AttackComponent attackComponent = new AttackComponent();
+    private WeaponComponent weaponComponent = new WeaponComponent();
     private ArrayList<Weapon> weaponsOwned = new ArrayList<Weapon>();
 
     /**
@@ -128,9 +131,19 @@ public abstract class Entity extends Sprite {
         attackComponent.update(this, world);
     }
 
+    public void update(List<Sprite> world, GraphicsContext gc) {
+        super.update(world, gc);
+        getPhysicsComponent().update(this, world);
+        if (!weaponsOwned.isEmpty())
+            weaponComponent.update(this, weaponsOwned.get(0), getGraphicsComponent() , gc);
+    }
     public void addWeapon(Weapon weapon) {
         if (weapon != null)
             weaponsOwned.add(weapon);
+    }
+
+    public void attack(Entity enemyToAttack) {
+        enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
     }
 
 }

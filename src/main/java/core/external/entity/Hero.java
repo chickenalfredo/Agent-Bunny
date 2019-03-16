@@ -37,10 +37,6 @@ public class Hero extends Entity {
         lives += oneUp;
     }
 
-    public void attack(Entity enemyToAttack) {
-        enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
-    }
-
     public void jump() {
         getPhysicsComponent().jump();
     }
