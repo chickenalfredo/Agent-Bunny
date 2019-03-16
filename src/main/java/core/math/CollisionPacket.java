@@ -5,6 +5,7 @@ import core.sprite.Sprite;
 public class CollisionPacket {
 
     private Sprite actor, collider;
+    private boolean isColliding = false;
     private String side = "";
 
     public CollisionPacket(Sprite actor, Sprite collider) {
@@ -13,14 +14,48 @@ public class CollisionPacket {
         setCollisionSide();
     }
 
+    public Sprite getActor() {
+        return actor;
+    }
+
+    public Sprite getCollider() {
+        return collider;
+    }
+
+    /**
+     * @return the isColliding
+     */
+    public boolean isColliding() {
+        return isColliding;
+    }
+
+    /**
+     * @param isColliding the isColliding to set
+     */
+    public void setColliding(boolean isColliding) {
+        this.isColliding = isColliding;
+    }
+
     /**
      * 
      */
     private void setCollisionSide() {
-        if (topCollision()) side = "top";
-        if (bottomCollision()) side = "bottom";
-        if (leftCollision()) side = "left";
-        if (rightCollision()) side = "right";
+        if (topCollision()) {
+            side = "top";
+            setColliding(true);
+        }
+        if (bottomCollision()) {
+            side = "bottom";
+            setColliding(true);
+        }
+        if (leftCollision()) {
+            side = "left";
+            setColliding(true);
+        }
+        if (rightCollision()) {
+            side = "right";
+            setColliding(true);
+        }
     }
 
     /**
@@ -34,8 +69,7 @@ public class CollisionPacket {
      * 
      */
     private boolean topCollision() {
-        return getTopBoundCollision() < getBottomBoundCollision()
-                && getTopBoundCollision() < getLeftBoundCollision()
+        return getTopBoundCollision() < getBottomBoundCollision() && getTopBoundCollision() < getLeftBoundCollision()
                 && getTopBoundCollision() < getRightBoundCollision();
     }
 
@@ -43,8 +77,7 @@ public class CollisionPacket {
      * 
      */
     private boolean bottomCollision() {
-        return getBottomBoundCollision() < getTopBoundCollision()
-                && getBottomBoundCollision() < getLeftBoundCollision()
+        return getBottomBoundCollision() < getTopBoundCollision() && getBottomBoundCollision() < getLeftBoundCollision()
                 && getBottomBoundCollision() < getRightBoundCollision();
     }
 
@@ -52,8 +85,7 @@ public class CollisionPacket {
      * 
      */
     private boolean leftCollision() {
-        return getLeftBoundCollision() < getRightBoundCollision()
-                && getLeftBoundCollision() < getTopBoundCollision()
+        return getLeftBoundCollision() < getRightBoundCollision() && getLeftBoundCollision() < getTopBoundCollision()
                 && getLeftBoundCollision() < getBottomBoundCollision();
     }
 
@@ -61,8 +93,7 @@ public class CollisionPacket {
      * 
      */
     private boolean rightCollision() {
-        return getRightBoundCollision() < getLeftBoundCollision()
-                && getRightBoundCollision() < getTopBoundCollision()
+        return getRightBoundCollision() < getLeftBoundCollision() && getRightBoundCollision() < getTopBoundCollision()
                 && getRightBoundCollision() < getBottomBoundCollision();
     }
 

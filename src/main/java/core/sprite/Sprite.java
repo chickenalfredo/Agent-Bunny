@@ -110,12 +110,10 @@ public abstract class Sprite {
      */
     public void update(List<Sprite> world, GraphicsContext gc) {
         graphics.update(this, gc);
-        if (this instanceof Entity) 
-            physics.update(this, world);
     }
 
     /**
-     * Constructs and initializes a Sprite as specified by the Sprite object
+     * Costructs and initializes a Sprite as specified by the Sprite object
      * 
      * @param sprite - The Sprite to copy to this object
      */
@@ -242,6 +240,10 @@ public abstract class Sprite {
      */
     public void setTerminalChar(char terminalChar) {
         this.terminalChar = terminalChar;
+    }
+
+    public GraphicsComponent getGraphicsComponent() {
+        return graphics;
     }
 
     /*

@@ -104,4 +104,5 @@ public class GameTerminal {
     public static String getDisplay() {
         return level1.generateMapTerminal();
     }
+    
 }
