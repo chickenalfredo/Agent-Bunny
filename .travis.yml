@@ -5,8 +5,6 @@ script: "mvn cobertura:cobertura"
 after_success:
   - bash <(curl -s https://codecov.io/bash)
 
-  sudo: false   # Linux OS: run in container
-
 sudo: false   # Linux OS: run in container
 
 matrix:
