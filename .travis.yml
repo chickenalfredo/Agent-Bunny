@@ -7,34 +7,27 @@ after_success:
 
   sudo: false   # Linux OS: run in container
 
+sudo: false   # Linux OS: run in container
+
 matrix:
   include:
-    # Ubuntu Linux (trusty) / Oracle JDK 8 / Headed (AWT Robot)
+    # Headed Linux
+    - os: linux
+      dist: trusty
+      jdk: oraclejdk8
+    # Headless Linux
     - os: linux
       dist: trusty
       jdk: oraclejdk8
       env:
-        - _JAVA_OPTIONS="-Dtestfx.robot=awt"
-    # Ubuntu Linux (trusty) / Oracle JDK 8 / Headed (Glass Robot) / HiDPI
-    - os: linux
-      dist: trusty
-      jdk: oraclejdk8
-      env:
-        - _JAVA_OPTIONS="-Dtestfx.robot=glass -Dglass.gtk.uiScale=2.0"
-    # Ubuntu Linux (trusty) / Oracle JDK 8 / Headless
-    - os: linux
-      dist: trusty
-      jdk: oraclejdk8
-      env:
-        - _JAVA_OPTIONS="-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw"
-    # macOS / Oracle JDK 8 / Headless
+        - _JAVA_OPTIONS="-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Dprism.text=t2k -Dtestfx.setup.timeout=2500"
+    # Headless macOS
     - os: osx
-      osx_image: xcode9.4
-      jdk: oraclejdk8
+      osx_image: xcode9
       env:
-        - _JAVA_OPTIONS="-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Dprism.verbose=true"
+        - _JAVA_OPTIONS="-Djava.awt.headless=true -Dtestfx.robot=glass -Dtestfx.headless=true -Dprism.order=sw -Dprism.text=t2k -Dtestfx.setup.timeout=2500"
     # Headed macOS is not currently possible on Travis.
-
+ 
 addons:
   apt:
     packages:
@@ -61,4 +54,3 @@ cache:
   directories:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
-    - $HOME/.m2
