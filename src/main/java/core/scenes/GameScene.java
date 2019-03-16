@@ -65,7 +65,6 @@ public class GameScene {
                     sprite.update(spritesList, gc);
                 }
                 hero.update(spritesList, gc);
-                // sword.update(spritesList, gc);
             }
         }.start();
         return GameScene;
@@ -76,10 +75,7 @@ public class GameScene {
         return gameUI;
     }
 
-<<<<<<< HEAD
-=======
     public static Scene getScene() {
         return GameScene;
     }
->>>>>>> 18c450725d01d1602a37401f8d4505759fcc3fd9
 }
