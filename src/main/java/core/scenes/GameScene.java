@@ -66,7 +66,7 @@ public class GameScene {
         GameScene.setOnKeyReleased(new GameLoop());
         new AnimationTimer() {
             public void handle(long time) {
-                camera.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
+                canvas.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
                 for (Sprite sprite : spritesList) {
                     sprite.update(spritesList, gc);
