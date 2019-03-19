@@ -27,8 +27,8 @@ import java.util.List;
 
 public class GameScene {
 
-    private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
-    private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
+    // private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
+    // private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
     private static StackPane root;
     private static HBox gameMenu;
     private static Scene GameScene;
@@ -75,7 +75,8 @@ public class GameScene {
 
         new AnimationTimer() {
             public void handle(long time) {
-                canvas.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
+                if (hero.getX() > (screenWidth / 2) - hero.getWidth() / 2)
+                    canvas.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
                 for (Sprite sprite : spritesList) {
                     sprite.update(spritesList, gc);
