@@ -96,10 +96,13 @@ public class GameSettings {
         graphicsMenu.setAlignment(Pos.CENTER);
         }
         try {
-        menu.getChildren().add(graphicsMenu);
+            if (App.getGameWindow().getScene() == GameScene.getScene()) {
+                GameScene.getGameMenu().getChildren().add(graphicsMenu);
+            }else {
+            menu.getChildren().add(graphicsMenu);
+            }
         }
         catch(IllegalArgumentException e) {}
-
     }
 
     public static Scene getScene() {
