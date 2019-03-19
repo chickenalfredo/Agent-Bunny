@@ -159,10 +159,11 @@ public class PhysicsComponent {
             velocityY = 0;
         }
         if (packet.getCollisionSide().equals("right")) {
-            actor.setX(collider.getX() + actor.getWidth());
+            actor.setX(collider.getX() + actor.getWidth() + 1);
         }
         if (packet.getCollisionSide().equals("left")) {
-            actor.setX(collider.getX() - actor.getWidth());
+            actor.setX(collider.getX() - actor.getWidth() - 1);
+            
         }
     }
 
