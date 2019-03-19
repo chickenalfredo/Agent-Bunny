@@ -79,16 +79,7 @@ public class MenuEventHandlers {
 
     public static class resumeGame implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            popUpMenu.hide();
-            popUpMenu = null;
+            GameScene.removeGameMenu();
         }
     }
-
-    /**
-     * @return the popUpMenu
-     */
-    public static Stage getPopUpMenu() {
-        return popUpMenu;
-    }
-
 }

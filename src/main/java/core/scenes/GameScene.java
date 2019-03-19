@@ -2,9 +2,13 @@ package core.scenes;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.Group;
+import javafx.scene.layout.StackPane;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
@@ -22,6 +26,11 @@ import core.sprite.Sprite;
 import java.util.List;
 
 public class GameScene {
+
+    private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
+    private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
+    private static StackPane root;
+    private static HBox gameMenu;
     private static Scene GameScene;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
@@ -36,8 +45,8 @@ public class GameScene {
     
 
     public static Scene display() {
-        Pane root = initScene();
-        Group camera = new Group();
+        root = initScene();
+        Pane camera = new Pane();
         root.getChildren().add(camera);
 
         GameScene = new Scene(root);
@@ -66,9 +75,8 @@ public class GameScene {
 
         new AnimationTimer() {
             public void handle(long time) {
-                if (hero.getX() > (screenWidth / 2) - hero.getWidth() / 2)
-                    camera.relocate(-hero.getX() + ((screenWidth - hero.getWidth()) / 2), 0);
-                gc.clearRect(0, 0, 3 * screenWidth, screenHeight);
+                canvas.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
+                gc.clearRect(0,0, 3*screenWidth, screenHeight);
                 for (Sprite sprite : spritesList) {
                     sprite.update(spritesList, gc);
                 }
@@ -78,12 +86,31 @@ public class GameScene {
         return GameScene;
     }
 
-    public static Pane initScene() {
-        Pane gameUI = new Pane();
+    public static StackPane initScene() {
+        StackPane gameUI = new StackPane();
         return gameUI;
     }
 
     public static Scene getScene() {
         return GameScene;
+    }
+
+    public static Pane getRoot() {
+        return root;
+    }
+
+    public static void addToRoot(Node toAdd) {
+        gameMenu = (HBox)toAdd;
+        root.getChildren().add(gameMenu);
+        root.setAlignment(Pos.CENTER);
+        gameMenu.setAlignment(Pos.CENTER);    
+    }
+
+    public static void removeGameMenu() {
+        root.getChildren().remove(gameMenu);
+    }
+
+    public static HBox getGameMenu() {
+        return gameMenu;
     }
 }
