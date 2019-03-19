@@ -27,8 +27,8 @@ import java.util.List;
 
 public class GameScene {
 
-    private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
-    private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
+    // private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
+    // private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
     private static StackPane root;
     private static HBox gameMenu;
     private static Scene GameScene;
@@ -36,8 +36,13 @@ public class GameScene {
     private static InputHandler inputHandler = new InputHandler();
     private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
+    private static Hero hero = new Hero(0, 0, (screenWidth * 0.035), (screenHeight * 0.063),
+            "src/main/resources/assets/Hero.png");
+    private static Sword sword = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063),
+            "src/main/resources/assets/Float_Tile_Middle.png");
     private static GameMap level1 = new Chapter1Level1();
     private static List<Sprite> spritesList = level1.getSprite();
+    
 
     public static Scene display() {
         root = initScene();
@@ -47,11 +52,14 @@ public class GameScene {
         GameScene = new Scene(root);
         GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
 
-        Canvas canvas = new Canvas(3*screenWidth, screenHeight);
+        Canvas canvas = new Canvas(3 * screenWidth, screenHeight);
         camera.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
 
         hero.addWeapon(sword);
+
+        System.out.println(screenWidth + ": " + screenWidth * 0.031);
+        System.out.println(screenHeight + ": " + screenHeight * 0.057);
 
         class GameLoop implements EventHandler<KeyEvent> {
             public void handle(KeyEvent event) {
@@ -64,9 +72,11 @@ public class GameScene {
 
         GameScene.setOnKeyPressed(new GameLoop());
         GameScene.setOnKeyReleased(new GameLoop());
+
         new AnimationTimer() {
             public void handle(long time) {
-                canvas.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
+                if (hero.getX() > (screenWidth / 2) - hero.getWidth() / 2)
+                    canvas.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
                 for (Sprite sprite : spritesList) {
                     sprite.update(spritesList, gc);
