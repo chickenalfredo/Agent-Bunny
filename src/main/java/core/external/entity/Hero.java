@@ -16,18 +16,8 @@ public class Hero extends Entity {
         setAttackPower(25);
     }
 
-    public Hero(double x, double y, double width, double height, String image) {
-        super(x, y, width, height, image);
-        setTerminalChar('H');
-        setAttackPower(25);
-    }
-
     public Hero(Hero player) {
         super(player.getX(), player.getY(), player.getWidth(), player.getHeight());
-    }
-
-    public Hero(double x, double y) {
-        super(x, y);
     }
 
     public int getLives() {

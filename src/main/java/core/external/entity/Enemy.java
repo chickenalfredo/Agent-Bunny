@@ -23,12 +23,4 @@ public class Enemy extends Entity {
         setTerminalChar('M');
     }
 
-    public Enemy(double x, double y, double width, double height, String image) {
-        super(x, y, width, height, image);
-    }
-
-    public Enemy(double x, double y) {
-        super(x, y);
-    }
-
 }

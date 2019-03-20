@@ -8,10 +8,6 @@ public abstract class Melee extends Weapon implements MeleeType {
         super(x, y, width, height);
     }
 
-    public Melee(double x, double y, double width, double height, String image) {
-        super(x, y, width, height, image);
-    }
-
     @Override
     public double damageEnemy(Entity enemy) {
         return 0;
