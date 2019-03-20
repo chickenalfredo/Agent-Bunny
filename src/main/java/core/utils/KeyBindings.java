@@ -1,0 +1,123 @@
+package core.utils;
+
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.VBox;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
+import javafx.geometry.Pos;
+import core.App;
+import core.scenes.GameScene;
+import core.scenes.GameSettings;
+import core.scenes.KeyBindingScene;
+
+public class KeyBindings {
+
+    private static String left = "A";
+    private static String right = "D";
+    private static String jump = "SPACE";
+    private static String attack = "Z";
+    private static String menu = "ESCAPE";
+
+    public static String getLeftKey() {
+        return left;
+    }
+
+    public static class setLeftKey implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            left = String.valueOf(event.getCode());
+            ((Button)((VBox)KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(1)).setText(getLeftKey());
+        }
+    }
+
+    public static String getRightKey() {
+        return right;
+    }
+
+    public static class setRightKey implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            right = String.valueOf(event.getCode());
+            ((Button)((VBox)KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(2)).setText(getRightKey());
+        }
+    }
+
+    public static String getJumpKey() {
+        return jump;
+    }
+
+    public static class setJumpKey implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            jump = String.valueOf(event.getCode());
+            ((Button)((VBox)KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(3)).setText(getJumpKey());
+            System.out.println(((Button)((VBox)KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(3)).getText());
+        }
+    }
+
+    public static String getAttackKey() {
+        return attack;
+    }
+
+    public static class setAttackKey implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            attack = String.valueOf(event.getCode());
+            ((Button)((VBox)KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(4)).setText(getAttackKey());
+        }
+    }
+
+    public static String getMenuKey() {
+        return menu;
+    }
+
+    public static class setMenuKey implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            menu = String.valueOf(event.getCode());
+            ((Button)((VBox)KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(5)).setText(getMenuKey());
+
+        }
+    }
+
+    public static class removeKeyListener implements EventHandler<KeyEvent> {
+        @Override
+        public void handle(KeyEvent event) {
+            
+            if (App.getGameWindow().getScene() == GameScene.getScene()) {
+                App.getGameWindow().getScene().setOnKeyReleased(new GameScene.GameLoop());
+                App.getGameWindow().getScene().setOnKeyPressed(new GameScene.GameLoop());
+            }else {
+                App.getGameWindow().getScene().setOnKeyPressed(new GameSettings.EscKey());
+            }
+        }
+    }
+
+    
+    public static class BindKeyButtons implements EventHandler<ActionEvent> {
+
+        @Override
+        public void handle(ActionEvent event) {
+            Object source = event.getSource();
+            if (source instanceof Button) {
+                if (((Button)source).getText().equals(getLeftKey())) {
+                    App.getGameWindow().getScene().setOnKeyPressed(new setLeftKey());
+                }else if (((Button)source).getText().equals(getRightKey())) {
+                    App.getGameWindow().getScene().setOnKeyPressed(new setRightKey());
+                }else if (((Button)source).getText().equals(getJumpKey())) {
+                    App.getGameWindow().getScene().setOnKeyPressed(new setJumpKey());
+                }else if (((Button)source).getText().equals(getAttackKey())) {
+                    App.getGameWindow().getScene().setOnKeyPressed(new setAttackKey());
+                }else if (((Button)source).getText().equals(getMenuKey())) {
+                    App.getGameWindow().getScene().setOnKeyPressed(new setMenuKey());
+                }else{}
+
+                App.getGameWindow().getScene().setOnKeyReleased(new removeKeyListener());
+                
+            }    
+        }
+    }
+
+}

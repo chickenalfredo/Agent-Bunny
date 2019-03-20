@@ -10,8 +10,6 @@ import core.screens.ScreenBuilder;
 
 public class MenuEventHandlers {
 
-    private static Stage popUpMenu;
-
     public static class NewGameEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
             App.getGameWindow().setScene(GameScene.display());
@@ -26,34 +24,18 @@ public class MenuEventHandlers {
 
     public static class OpenSettingsEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            if (App.getGameWindow().getScene() == GameScene.getScene()) {
-                popUpMenu = new Stage();
-                popUpMenu.setWidth(ScreenBuilder.getPrimaryScreenBounds().getWidth() / 2);
-                popUpMenu.setHeight(ScreenBuilder.getPrimaryScreenBounds().getHeight() / 2);
-                popUpMenu.initModality(Modality.APPLICATION_MODAL);
-                popUpMenu.setTitle("AGENT BUNNY: Game Settings");
-                popUpMenu.setScene(GameSettings.display());
-                popUpMenu.showAndWait();
-            } else {
                 App.getGameWindow().setScene(GameSettings.display());
-            }
         }
     }
 
     public static class goToTitle implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            if (popUpMenu != null) {
-                popUpMenu.hide();
-            }
             App.getGameWindow().setScene(TitleScene.display());
         }
     }
 
     public static class ExitGameEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            if (popUpMenu != null) {
-                popUpMenu.hide();
-            }
             App.getGameWindow().close();
         }
     }
@@ -66,9 +48,6 @@ public class MenuEventHandlers {
 
     public static class setFullScreen implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            if (popUpMenu != null) {
-                popUpMenu.hide();
-            }
             if(!App.getGameWindow().isFullScreen()) {
                 App.getGameWindow().setFullScreen(true);
             } else {
@@ -80,6 +59,12 @@ public class MenuEventHandlers {
     public static class resumeGame implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
             GameScene.removeGameMenu();
+        }
+    }
+
+    public static class KeyBinding implements EventHandler<ActionEvent> {
+        public void handle(ActionEvent leftClick) {
+            KeyBindingScene.display();
         }
     }
 }

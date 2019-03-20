@@ -61,15 +61,6 @@ public class GameScene {
         System.out.println(screenWidth + ": " + screenWidth * 0.031);
         System.out.println(screenHeight + ": " + screenHeight * 0.057);
 
-        class GameLoop implements EventHandler<KeyEvent> {
-            public void handle(KeyEvent event) {
-                Command command = inputHandler.handleInput(event);
-                if (command != null) {
-                    command.execute(hero, spritesList);
-                }
-            }
-        }
-
         GameScene.setOnKeyPressed(new GameLoop());
         GameScene.setOnKeyReleased(new GameLoop());
 
@@ -85,6 +76,15 @@ public class GameScene {
             }
         }.start();
         return GameScene;
+    }
+
+    public static class GameLoop implements EventHandler<KeyEvent> {
+        public void handle(KeyEvent event) {
+            Command command = inputHandler.handleInput(event);
+            if (command != null) {
+                command.execute(hero, spritesList);
+            }
+        }
     }
 
     public static StackPane initScene() {
