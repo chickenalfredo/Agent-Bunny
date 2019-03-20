@@ -21,7 +21,7 @@ public class GameTerminal {
      * Print string to the terminal
      */
     public static boolean print() {
-        List<Sprite> sprite = level1.getSprite();
+        List<Sprite> sprite = level1.getSprites();
         Scanner userInput = new Scanner(System.in);
         Hero player = new Hero(0.0, 0.0, 5.0, 5.0);
 

@@ -1,6 +1,6 @@
 package core.external.entity;
 
-import core.sprite.AbstractEnemy;
+import core.sprite.Entity;
 
 /**
  * This class implements the AI and behaviours of weak hostile npc in the game.
@@ -8,7 +8,7 @@ import core.sprite.AbstractEnemy;
  * 
  * @author Harry Lee
  */
-public class Monster extends AbstractEnemy {
+public class Enemy extends Entity {
 
     /**
      * This is the constructor for this class that extends from Entity class.
@@ -18,16 +18,16 @@ public class Monster extends AbstractEnemy {
      * @param entityWidth  This is the width of the entity's size.
      * @param entityHeight This is the height of the entity's size.
      */
-    public Monster(double x, double y, double width, double height) {
+    public Enemy(double x, double y, double width, double height) {
         super(x, y, width, height);
         setTerminalChar('M');
     }
 
-    public Monster(double x, double y, double width, double height, String image) {
+    public Enemy(double x, double y, double width, double height, String image) {
         super(x, y, width, height, image);
     }
 
-    public Monster(double x, double y) {
+    public Enemy(double x, double y) {
         super(x, y);
     }
 

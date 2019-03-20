@@ -1,11 +1,10 @@
 package core.sprite;
 
-import core.components.GraphicsComponent;
-import core.components.PhysicsComponent;
+import core.ecs.Component;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.google.gson.GsonBuilder;
 import java.io.FileInputStream;
@@ -24,8 +23,7 @@ public abstract class Sprite {
     private double width, height;
     private char terminalChar;
     private Image image;
-    private PhysicsComponent physics = new PhysicsComponent();
-    private GraphicsComponent graphics = new GraphicsComponent();
+    private ArrayList<Component> m_components = new ArrayList<Component>();
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -72,18 +70,24 @@ public abstract class Sprite {
         setImage(image);
     }
 
+      /**
+     * Costructs and initializes a Sprite as specified by the Sprite object
+     * 
+     * @param sprite - The Sprite to copy to this object
+     */
+    public Sprite(Sprite sprite) {
+        if (coordinate == null)
+            coordinate = new Coordinate();
+        coordinate.setLocation(sprite.getCoordinate());
+        width = sprite.width;
+        height = sprite.height;
+    }
+
     /**
      * @return the image
      */
     public Image getImage() {
         return image;
-    }
-
-    /**
-     * 
-     */
-    public PhysicsComponent getPhysicsComponent() {
-        return physics;
     }
 
     /**
@@ -105,25 +109,33 @@ public abstract class Sprite {
         }
     }
 
-    /**
-     * 
-     */
-    public void update(List<Sprite> world, GraphicsContext gc) {
-        graphics.update(this, gc);
+    public void update(World world, GraphicsContext gc) {
+        for (Component c : m_components) {
+            c.update(this, world);
+            c.render(this, gc);
+        }
     }
 
-    /**
-     * Costructs and initializes a Sprite as specified by the Sprite object
-     * 
-     * @param sprite - The Sprite to copy to this object
-     */
-    public Sprite(Sprite sprite) {
-        if (coordinate == null)
-            coordinate = new Coordinate();
-        coordinate.setLocation(sprite.getCoordinate());
-        width = sprite.width;
-        height = sprite.height;
+    public void addComponents(Component... component) {
+        for (Component c : component) {
+            m_components.add(c);
+        }
     }
+
+    public <T extends Component> T getComponent(String componentName, Class<T> type) {
+        for (Component c : m_components) {
+            if (c.getClass().getSimpleName().toString().equals(componentName)) {
+                return type.cast(c);
+            }
+        }
+        return null;
+    }
+
+    public ArrayList<Component> getComponents() {
+        return m_components;
+    }
+
+  
 
     /**
      * Returns the coordinate of this Sprites bounding rectangles top left corner
@@ -240,10 +252,6 @@ public abstract class Sprite {
      */
     public void setTerminalChar(char terminalChar) {
         this.terminalChar = terminalChar;
-    }
-
-    public GraphicsComponent getGraphicsComponent() {
-        return graphics;
     }
 
     /*

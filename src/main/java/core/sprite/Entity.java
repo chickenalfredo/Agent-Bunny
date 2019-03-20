@@ -1,10 +1,11 @@
 package core.sprite;
 
 import java.util.ArrayList;
-import java.util.List;
 
-import core.components.AttackComponent;
-import core.components.WeaponComponent;
+import core.ecs.components.AttackComponent;
+import core.ecs.components.PhysicsComponent;
+import core.ecs.components.RenderComponent;
+import core.ecs.components.WeaponComponent;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -16,7 +17,6 @@ public abstract class Entity extends Sprite {
     private int health = 100;
     private int attackPower = 1;
     private boolean isEnemy = false;
-    private AttackComponent attackComponent = new AttackComponent();
     private WeaponComponent weaponComponent = new WeaponComponent();
     private ArrayList<Weapon> weaponsOwned = new ArrayList<Weapon>();
 
@@ -52,20 +52,6 @@ public abstract class Entity extends Sprite {
     public void setWeaponsOwned(ArrayList<Weapon> weaponsOwned) {
         this.weaponsOwned = weaponsOwned;
     }
-
-    /**
-     * @return the attackComponent
-     */
-	public AttackComponent getAttackComponent() {
-		return attackComponent;
-	}
-
-	/**
-	 * @param attackComponent the attackComponent to set
-	 */
-	public void setAttackComponent(AttackComponent attackComponent) {
-		this.attackComponent = attackComponent;
-	}
 
 	public Entity(double entityX, double entityY, double entityWidth, double entityHeight, String image) {
         super(entityX, entityY, entityWidth, entityHeight, image);
@@ -124,19 +110,20 @@ public abstract class Entity extends Sprite {
     }
 
     public void move(String key, boolean isKeyPressedEvent) {
-        this.getPhysicsComponent().moveEntity(key, isKeyPressedEvent);
+        getComponent("PhysicsComponent", PhysicsComponent.class).moveEntity(key, isKeyPressedEvent);
     }
 
-    public void attackCollider(List<Sprite> world) {
-        attackComponent.update(this, world);
+    public void attackCollider(World world) {
+        getComponent("AttackComponent", AttackComponent.class).update(this, world);
     }
 
-    public void update(List<Sprite> world, GraphicsContext gc) {
+    public void update(World world, GraphicsContext gc) {
         super.update(world, gc);
-        getPhysicsComponent().update(this, world);
+        getComponent("PhysicsComponent", PhysicsComponent.class).update(this, world);
         if (!weaponsOwned.isEmpty())
-            weaponComponent.update(this, weaponsOwned.get(0), getGraphicsComponent() , gc);
+            weaponComponent.update(this, weaponsOwned.get(0), gc);
     }
+
     public void addWeapon(Weapon weapon) {
         if (weapon != null)
             weaponsOwned.add(weapon);

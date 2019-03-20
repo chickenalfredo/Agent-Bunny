@@ -1,5 +1,6 @@
 package core.external.entity;
 
+import core.ecs.components.PhysicsComponent;
 import core.sprite.Entity;
 
 /**
@@ -38,7 +39,7 @@ public class Hero extends Entity {
     }
 
     public void jump() {
-        getPhysicsComponent().jump();
+        getComponent("PhysicsComponent", PhysicsComponent.class).jump();
     }
 
 }
