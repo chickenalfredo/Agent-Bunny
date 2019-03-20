@@ -4,9 +4,6 @@ import core.scenes.*;
 import core.App;
 import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
-import core.screens.ScreenBuilder;
 
 public class MenuEventHandlers {
 

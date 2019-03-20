@@ -3,14 +3,9 @@ package core.scenes;
 import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.*;
 import javafx.scene.Node;
 import javafx.scene.Scene;
-import core.utils.MenuEventHandlers;
-import java.io.File;
-
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.*;
 import core.App;
