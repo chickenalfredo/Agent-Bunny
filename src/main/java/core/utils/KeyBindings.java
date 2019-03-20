@@ -2,7 +2,7 @@ package core.utils;
 
 import javafx.scene.control.Button;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import core.App;
@@ -29,7 +29,7 @@ public class KeyBindings {
                     && String.valueOf(event.getCode()) != attack && String.valueOf(event.getCode()) != menu) {
 
                 left = String.valueOf(event.getCode());
-                ((Button) ((VBox) KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(1))
+                ((Button) ((HBox) KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(1))
                         .setText(getLeftKey());
             }
         }
@@ -46,7 +46,7 @@ public class KeyBindings {
                     && String.valueOf(event.getCode()) != attack && String.valueOf(event.getCode()) != menu) {
 
                 right = String.valueOf(event.getCode());
-                ((Button) ((VBox) KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(2))
+                ((Button) ((HBox) KeyBindingScene.getKeyMenu().getChildren().get(2)).getChildren().get(1))
                         .setText(getRightKey());
             }
         }
@@ -63,7 +63,7 @@ public class KeyBindings {
                     && String.valueOf(event.getCode()) != attack && String.valueOf(event.getCode()) != menu) {
 
                 jump = String.valueOf(event.getCode());
-                ((Button) ((VBox) KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(3))
+                ((Button) ((HBox) KeyBindingScene.getKeyMenu().getChildren().get(3)).getChildren().get(1))
                         .setText(getJumpKey());
             }
         }
@@ -80,7 +80,7 @@ public class KeyBindings {
                     && String.valueOf(event.getCode()) != right && String.valueOf(event.getCode()) != menu) {
 
                 attack = String.valueOf(event.getCode());
-                ((Button) ((VBox) KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(4))
+                ((Button) ((HBox) KeyBindingScene.getKeyMenu().getChildren().get(4)).getChildren().get(1))
                         .setText(getAttackKey());
             }
         }
@@ -98,7 +98,7 @@ public class KeyBindings {
                     && String.valueOf(event.getCode()) != attack && String.valueOf(event.getCode()) != right) {
                
                 menu = String.valueOf(event.getCode());
-                ((Button) ((VBox) KeyBindingScene.getKeyMenu().getChildren().get(1)).getChildren().get(5))
+                ((Button) ((HBox) KeyBindingScene.getKeyMenu().getChildren().get(5)).getChildren().get(1))
                         .setText(getMenuKey());
             }
 

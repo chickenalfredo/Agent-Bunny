@@ -15,9 +15,9 @@ import core.scenes.GameSettings;
 public class KeyBindingScene<ClickEvent> {
 
     private static Scene KeyBindingsScene;
-    private static HBox keyMenu;
+    private static VBox keyMenu;
 
-    public static HBox display() {
+    public static VBox display() {
         try {
             if (App.getGameWindow().getScene() == GameScene.getScene()
                     && !GameScene.getGameMenu().getChildren().contains(keyMenu)) {
@@ -33,7 +33,7 @@ public class KeyBindingScene<ClickEvent> {
         return keyMenu;
     }
 
-    public static HBox initScene() {
+    public static VBox initScene() {
 
         Label menuTitle = new Label("Actions:");
         Label leftKey = new Label("Move Left: ");
@@ -41,8 +41,6 @@ public class KeyBindingScene<ClickEvent> {
         Label jumpKey = new Label("Jump: ");
         Label attackKey = new Label("Attack: ");
         Label menuKey = new Label("Open Menu: ");
-        VBox labels = new VBox(5, menuTitle, leftKey, rightKey, jumpKey, attackKey, menuKey);
-        labels.setAlignment(Pos.CENTER);
 
         Label keyBindLabel = new Label("KeyBindings:");
         Button button_LeftKey = new Button(KeyBindings.getLeftKey());
@@ -50,25 +48,32 @@ public class KeyBindingScene<ClickEvent> {
         Button button_JumpKey = new Button(KeyBindings.getJumpKey());
         Button button_AttackKey = new Button(KeyBindings.getAttackKey());
         Button button_MenuKey = new Button(KeyBindings.getMenuKey());
-        VBox buttons = new VBox(5, keyBindLabel, button_LeftKey, button_RightKey, button_JumpKey, button_AttackKey,
-                button_MenuKey);
-        buttons.setAlignment(Pos.CENTER);
 
-        HBox menu = new HBox(5, labels, buttons);
-        menu.setAlignment(Pos.CENTER);
+        HBox headers = new HBox(20, menuTitle, keyBindLabel);
+        HBox moveLeft = new HBox(20, leftKey, button_LeftKey);
+        HBox moveRight = new HBox(20, rightKey, button_RightKey);
+        HBox jump = new HBox(20, jumpKey, button_JumpKey);
+        HBox attack = new HBox(20, attackKey, button_AttackKey);
+        HBox menu = new HBox(20, menuKey, button_MenuKey);
 
-        for (Node node : buttons.getChildren()) {
-            if (node instanceof Button) {
-                ((Button) node).setOnAction(new KeyBindings.BindKeyButtons());
+        VBox keyMenu = new VBox(8, headers, moveLeft, moveRight, jump, attack, menu);
+        keyMenu.setAlignment(Pos.CENTER);
+
+        for (Node node : keyMenu.getChildren()) {
+            ((HBox) node).setAlignment(Pos.CENTER);
+            for (Node button : ((HBox) node).getChildren()) {
+                if (button instanceof Button) {
+                    ((Button) button).setOnAction(new KeyBindings.BindKeyButtons());
+                }
             }
         }
 
         menu.setAlignment(Pos.CENTER);
 
-        return menu;
+        return keyMenu;
     }
 
-    public static HBox getKeyMenu() {
+    public static VBox getKeyMenu() {
         return keyMenu;
     }
 
