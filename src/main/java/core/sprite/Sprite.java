@@ -1,14 +1,11 @@
 package core.sprite;
 
-import core.components.GraphicsComponent;
-import core.components.PhysicsComponent;
+import core.ecs.Component;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
-import java.util.List;
+import java.util.ArrayList;
 
 import com.google.gson.GsonBuilder;
-import java.io.FileInputStream;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A
@@ -23,9 +20,7 @@ public abstract class Sprite {
     private Coordinate coordinate = new Coordinate();
     private double width, height;
     private char terminalChar;
-    private Image image;
-    private PhysicsComponent physics = new PhysicsComponent();
-    private GraphicsComponent graphics = new GraphicsComponent();
+    private ArrayList<Component> m_components = new ArrayList<Component>();
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -48,71 +43,6 @@ public abstract class Sprite {
     }
 
     /**
-     * 
-     */
-    public Sprite(double x, double y) {
-        coordinate = new Coordinate(x, y);
-    }
-
-    /**
-     * 
-     */
-    public Sprite(double x, double y, double width, double height, String image) {
-        coordinate = new Coordinate(x, y);
-        this.width = width;
-        this.height = height;
-        setImage(image);
-    }
-
-    /**
-     * 
-     */
-    public Sprite(double x, double y, String image) {
-        coordinate = new Coordinate(x, y);
-        setImage(image);
-    }
-
-    /**
-     * @return the image
-     */
-    public Image getImage() {
-        return image;
-    }
-
-    /**
-     * 
-     */
-    public PhysicsComponent getPhysicsComponent() {
-        return physics;
-    }
-
-    /**
-     * @param image the image to set
-     */
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    /**
-     * 
-     */
-    public void setImage(String filename) {
-        try {
-            Image i = new Image(new FileInputStream(filename), this.getWidth(), this.getHeight(), false, true);
-            setImage(i);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 
-     */
-    public void update(List<Sprite> world, GraphicsContext gc) {
-        graphics.update(this, gc);
-    }
-
-    /**
      * Costructs and initializes a Sprite as specified by the Sprite object
      * 
      * @param sprite - The Sprite to copy to this object
@@ -123,6 +53,28 @@ public abstract class Sprite {
         coordinate.setLocation(sprite.getCoordinate());
         width = sprite.width;
         height = sprite.height;
+    }
+
+    public void update(World world, GraphicsContext gc) {
+        for (Component c : m_components) {
+            c.update(this, world);
+            c.render(this, gc);
+        }
+    }
+
+    public void addComponents(Component... component) {
+        for (Component c : component) {
+            m_components.add(c);
+        }
+    }
+
+    public <T extends Component> T getComponent(String componentName, Class<T> type) {
+        for (Component c : m_components) {
+            if (c.getClass().getSimpleName().toString().equals(componentName)) {
+                return type.cast(c);
+            }
+        }
+        return null;
     }
 
     /**
@@ -240,10 +192,6 @@ public abstract class Sprite {
      */
     public void setTerminalChar(char terminalChar) {
         this.terminalChar = terminalChar;
-    }
-
-    public GraphicsComponent getGraphicsComponent() {
-        return graphics;
     }
 
     /*

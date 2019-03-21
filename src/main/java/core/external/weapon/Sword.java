@@ -11,12 +11,16 @@ public class Sword extends Melee {
         super(x, y, width, height);
     }
 
-    public Sword(double x, double y, double width, double height, String image) {
-        super(x, y, width, height, image);
-    }
-
     public double getSwordBaseDamage() {
         return SWORD_BASE_DAMAGE;
+    }
+
+    public double getDamage() {
+        return SWORD_BASE_DAMAGE + DAMAGE;
+    }
+
+    public double getRange() {
+        return RANGE;
     }
 
     @Override

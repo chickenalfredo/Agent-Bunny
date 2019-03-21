@@ -4,7 +4,6 @@ import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -16,19 +15,11 @@ import core.utils.InputHandler;
 import java.io.File;
 
 import core.command.Command;
-import core.external.entity.Hero;
-import core.external.level.Chapter1Level1;
-import core.external.weapon.Sword;
-import core.map.GameMap;
 import core.screens.ScreenBuilder;
-import core.sprite.Sprite;
-
-import java.util.List;
+import core.sprite.World;
 
 public class GameScene {
 
-    // private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
-    // private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
     private static StackPane root;
     private static HBox gameMenu;
     private static Scene GameScene;
@@ -36,15 +27,11 @@ public class GameScene {
     private static InputHandler inputHandler = new InputHandler();
     private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
-    private static Hero hero = new Hero(0, 0, (screenWidth * 0.035), (screenHeight * 0.063),
-            "src/main/resources/assets/Hero.png");
-    private static Sword sword = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063),
-            "src/main/resources/assets/Float_Tile_Middle.png");
-    private static GameMap level1 = new Chapter1Level1();
-    private static List<Sprite> spritesList = level1.getSprite();
+    private static World world;
     
 
     public static Scene display() {
+        world = new World();
         root = initScene();
         Pane camera = new Pane();
         root.getChildren().add(camera);
@@ -56,8 +43,6 @@ public class GameScene {
         camera.getChildren().add(canvas);
         gc = canvas.getGraphicsContext2D();
 
-        hero.addWeapon(sword);
-
         System.out.println(screenWidth + ": " + screenWidth * 0.031);
         System.out.println(screenHeight + ": " + screenHeight * 0.057);
 
@@ -65,7 +50,7 @@ public class GameScene {
             public void handle(KeyEvent event) {
                 Command command = inputHandler.handleInput(event);
                 if (command != null) {
-                    command.execute(hero, spritesList);
+                    command.execute(world.getHero(), world);
                 }
             }
         }
@@ -75,13 +60,10 @@ public class GameScene {
 
         new AnimationTimer() {
             public void handle(long time) {
-                if (hero.getX() > (screenWidth / 2) - hero.getWidth() / 2)
-                    canvas.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
+                if (world.getHero().getX() > (screenWidth / 2) - world.getHero().getWidth() / 2)
+                    canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
-                for (Sprite sprite : spritesList) {
-                    sprite.update(spritesList, gc);
-                }
-                hero.update(spritesList, gc);
+                world.update(gc);
             }
         }.start();
         return GameScene;

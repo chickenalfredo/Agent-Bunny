@@ -1,17 +1,17 @@
-package core.components;
+package core.ecs.components;
 
-import java.util.List;
-
+import core.ecs.Component;
 import core.math.Collision;
 import core.math.CollisionPacket;
 import core.sprite.Entity;
 import core.sprite.Sprite;
 import core.sprite.TileObject;
+import core.sprite.World;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class PhysicsComponent {
+public class PhysicsComponent extends Component {
 
     private double velocityX = 0.0f;
     private double velocityY = 0.0f;
@@ -94,7 +94,7 @@ public class PhysicsComponent {
     /**
      * 
      */
-    public void update(Sprite actor, List<Sprite> world) {
+    public void update(Sprite actor, World world) {
         actor.setX(actor.getX() + velocityX);
         actor.setY(actor.getY() + velocityY);
         applyGravity(actor, world);
@@ -104,7 +104,7 @@ public class PhysicsComponent {
     /**
      * 
      */
-    private void applyGravity(Sprite actor, List<Sprite> world) {
+    private void applyGravity(Sprite actor, World world) {
         if (actor instanceof Entity)
             velocityY += force;
     }
@@ -132,9 +132,9 @@ public class PhysicsComponent {
     /**
      * 
      */
-    public void collisionDetection(Sprite actor, List<Sprite> world) {
+    public void collisionDetection(Sprite actor, World world) {
         Collision collision = new Collision();
-        for (Sprite collider : world) {
+        for (Sprite collider : world.getEntities()) {
             if (collider instanceof TileObject && collision.intersectAABB(actor, collider)) {
                 collisionResolution(actor, collider);
             }
