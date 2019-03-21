@@ -15,6 +15,14 @@ public class Sword extends Melee {
         return SWORD_BASE_DAMAGE;
     }
 
+    public double getDamage() {
+        return SWORD_BASE_DAMAGE + DAMAGE;
+    }
+
+    public double getRange() {
+        return RANGE;
+    }
+
     @Override
     public double damageEnemy(Entity enemy) {
         return 0.0;

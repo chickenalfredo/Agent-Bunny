@@ -8,4 +8,8 @@ public abstract class Weapon extends Sprite {
 
     public abstract double damageEnemy(Entity enemy);
 
+    public abstract double getDamage();
+
+    public abstract double getRange();
+
 }

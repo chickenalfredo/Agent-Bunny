@@ -23,12 +23,12 @@ public class Chapter1Level1 extends GameMap {
 
 		List<Sprite> sprites = new ArrayList<Sprite>();
 
-		Hero hero = new Hero(0, 0, (screenWidth * 0.035), (screenHeight * 0.063));
-        hero.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(hero, "src/main/resources/assets/Hero.png"), new HealthComponent(), new CollidableComponent(), new WeaponComponent());
-        
-        Sword sword = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
+		Sword sword = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
         sword.addComponents(new RenderComponent(sword, "src/main/resources/assets/Float_Tile_Middle.png"));
-        hero.addWeapon(sword);
+
+		Hero hero = new Hero(0, 0, (screenWidth * 0.035), (screenHeight * 0.063));
+        hero.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(hero, "src/main/resources/assets/Hero.png"), new HealthComponent(), new CollidableComponent(), new WeaponComponent(sword));
+        // hero.addWeapon(sword);
 
 		Enemy monster = new Enemy(1000, 200, (screenWidth * 0.035), (screenHeight * 0.063));
 		monster.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(monster, "src/main/resources/assets/Beetle.png"), new HealthComponent(), new AIComponent(), new CollidableComponent());

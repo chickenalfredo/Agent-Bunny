@@ -22,7 +22,9 @@ public class World {
     }
 
     public void createEntity() {}
-    public void destroyEntity() {}
+    public void destroyEntity(Sprite actor) {
+        level.removeSprite(actor);
+    }
 
     public void addComponent() {}
     public void removeComponent() {}
@@ -49,6 +51,7 @@ public class World {
     }
 
     public void update(GraphicsContext gc) {
+        m_entities = level.getSprites();
         for (Sprite s : m_entities) {
             s.update(this, gc);
         }
