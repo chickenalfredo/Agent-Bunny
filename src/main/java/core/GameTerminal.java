@@ -31,27 +31,28 @@ public class GameTerminal {
             }
         }
 
-
         System.out.println(getDisplay());
         printMessage();
         String key = userInput.nextLine();
 
         // if (input.isSimulationInput(key)) {
-        //     if (input.simulateCollision(player, sprite)) {
-        //         System.out.println("Collision detected");
-        //     } else {
-        //         System.out.println("No Collision");
-        //         player.move(key);
-        //     }
-        // } else if (key.equalsIgnoreCase("e")) {
-        //     System.exit(0);
-        // } else if (key.equalsIgnoreCase("c")) {
-        //     System.out.println("Checkpoint not yet implemented");
-        // } else if (key.equalsIgnoreCase("r")) {
-        //     System.out.println("Restart not yet implemented");
+        // if (input.simulateCollision(player, sprite)) {
+        // System.out.println("Collision detected");
         // } else {
-        //     System.out.println("Invalid Input");
+        // System.out.println("No Collision");
+        // player.move(key);
         // }
+        // } else if (key.equalsIgnoreCase("e")) {
+        // System.exit(0);
+        // } else if (key.equalsIgnoreCase("c")) {
+        // System.out.println("Checkpoint not yet implemented");
+        // } else if (key.equalsIgnoreCase("r")) {
+        // System.out.println("Restart not yet implemented");
+        // } else {
+        // System.out.println("Invalid Input");
+        // }
+
+        userInput.close();
 
         return true;
     }
@@ -104,5 +105,5 @@ public class GameTerminal {
     public static String getDisplay() {
         return level1.generateMapTerminal();
     }
-    
+
 }

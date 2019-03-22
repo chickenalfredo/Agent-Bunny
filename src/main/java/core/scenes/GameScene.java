@@ -64,7 +64,7 @@ public class GameScene {
         public void handle(KeyEvent event) {
             Command command = inputHandler.handleInput(event);
             if (command != null) {
-                command.execute(hero, spritesList);
+                command.execute(world.getHero(), world);
             }
         }
     }
