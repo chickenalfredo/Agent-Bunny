@@ -2,7 +2,6 @@ package core.sprite;
 
 import java.util.ArrayList;
 
-import core.ecs.Component;
 import core.external.entity.Hero;
 import core.external.level.Chapter1Level1;
 import core.map.GameMap;
@@ -10,7 +9,6 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class World {
 
-    private ArrayList<Component> m_components = new ArrayList<Component>();
     private ArrayList<Sprite> m_entities = new ArrayList<Sprite>();
     private Hero hero;
     private GameMap level;
@@ -22,16 +20,21 @@ public class World {
     }
 
     public void createEntity() {}
+
     public void destroyEntity(Sprite actor) {
         level.removeSprite(actor);
     }
 
     public void addComponent() {}
+
     public void removeComponent() {}
+
     public void getComponent() {}
 
     public void addSystem() {}
+
     public void updateSystems() {}
+    
     public void removeSystem() {}
 
     public Hero getHero() {

@@ -13,7 +13,6 @@ public class Hero extends Entity {
     public Hero(double x, double y, double width, double height) {
         super(x, y, width, height);
         setTerminalChar('H');
-        // setAttackPower(25);
     }
 
     public Hero(Hero player) {
