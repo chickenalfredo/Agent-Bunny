@@ -12,7 +12,6 @@ import core.sprite.*;
  * @param String
  *                   name of the level
  */
-
 public class GameMap {
 
 	private ArrayList<Sprite> sprite = new ArrayList<Sprite>();
@@ -25,6 +24,10 @@ public class GameMap {
 
 	public GameMap() {}
 
+    /**
+     * 
+     * @param name
+     */
 	public GameMap(String name) {
 		this.name = name;
 	}
@@ -81,6 +84,9 @@ public class GameMap {
 		return ret;
 	}
 
+    /**
+     * 
+     */
 	private void setSpritesOnTerminalMap() {
 		// for (Sprite each : sprite) {
 		// 	Coordinate currentCoord = each.getCoordinate();
@@ -90,6 +96,9 @@ public class GameMap {
 		// }
 	}
 
+    /**
+     * 
+     */
 	private void setTerminalMap() {
 		map = new char[ROW][COLUMN];
 		for (int i = 0; i < ROW; i++) {
@@ -99,6 +108,9 @@ public class GameMap {
 		}
 	}
 
+    /**
+     * 
+     */
 	private void generateTerminalBounds() {
 		// for (int i = 0; i < COLUMN; i++) {
 		// 	addSprite(new Wall(i*5, 0, 5.0, 5.0));

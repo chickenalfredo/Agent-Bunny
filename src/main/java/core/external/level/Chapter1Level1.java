@@ -19,6 +19,9 @@ public class Chapter1Level1 extends GameMap {
 	private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
 
+    /**
+     * 
+     */
 	public Chapter1Level1() {
 
 		List<Sprite> sprites = new ArrayList<Sprite>();

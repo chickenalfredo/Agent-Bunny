@@ -1,6 +1,9 @@
 package core.ecs.components;
 
 import core.ecs.Component;
+import core.sprite.Sprite;
+import core.sprite.World;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
@@ -9,8 +12,27 @@ public class CheckPointComponent extends Component {
 
     public CheckPointComponent() {}
 
-    public void update() {
-        // System.out.println("updating CheckPoint...");
+    /**
+     * 
+     * @param actor
+     * @param world
+     */
+    @Override
+    public void update(Sprite actor, World world) {
+
     }
+
+    /**
+     * 
+     * @param actor
+     * @param gc
+     * @param delta
+     */
+    @Override
+    public void render(Sprite actor, GraphicsContext gc, long delta) {
+
+    }
+
+
     
 }

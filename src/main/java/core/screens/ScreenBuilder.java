@@ -3,10 +3,18 @@ import javafx.stage.Stage;
 import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 
+/**
+ * 
+ */
 public class ScreenBuilder {
 
     private static Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
+    /**
+     * 
+     * @param primaryStage
+     * @return
+     */
     public static Stage defaultScreen(Stage primaryStage) {
         primaryStage.setX(primaryScreenBounds.getMinX());
         primaryStage.setY(primaryScreenBounds.getMinY());

@@ -5,6 +5,9 @@ import core.command.Command;
 import core.command.commands.*;
 import core.utils.KeyBindings;
 
+/**
+ * 
+ */
 public class InputHandler {
 
     private JumpCommand keySpaceBar_ = new JumpCommand();
@@ -13,11 +16,16 @@ public class InputHandler {
     public InputHandler() {
     }
 
+    /**
+     * 
+     * @param event
+     * @return
+     */
     public Command handleInput(KeyEvent event) {
         Command command;
         String key = String.valueOf(event.getCode());
         boolean isKeyPressed = event.getEventType() == KeyEvent.KEY_PRESSED;
-        
+
         if (key.equalsIgnoreCase(KeyBindings.getLeftKey())) {
             command = new MoveCommand("a", isKeyPressed);
         } else if (key.equalsIgnoreCase(KeyBindings.getRightKey())) {
