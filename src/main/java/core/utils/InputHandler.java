@@ -10,11 +10,7 @@ import core.utils.KeyBindings;
  */
 public class InputHandler {
 
-    private JumpCommand keySpaceBar_ = new JumpCommand();
-    private AttackCommand keyZ_ = new AttackCommand();
-
-    public InputHandler() {
-    }
+    public InputHandler() {}
 
     /**
      * 
@@ -31,9 +27,9 @@ public class InputHandler {
         } else if (key.equalsIgnoreCase(KeyBindings.getRightKey())) {
             command = new MoveCommand("d", isKeyPressed);
         } else if (key.equalsIgnoreCase(KeyBindings.getJumpKey())) {
-            command = keySpaceBar_;
+            command = new JumpCommand();
         } else if (key.equalsIgnoreCase(KeyBindings.getAttackKey())) {
-            command = keyZ_;
+            command = new AttackCommand(isKeyPressed);
         } else if (key.equalsIgnoreCase(KeyBindings.getMenuKey())) {
             command = new MenuCommand(isKeyPressed);
         } else {
