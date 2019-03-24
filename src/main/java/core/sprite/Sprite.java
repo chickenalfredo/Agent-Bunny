@@ -36,6 +36,9 @@ public abstract class Sprite {
      * @param height
      *                   - The height of the Sprites bounding rectangle
      */
+
+    public Sprite() {}
+    
     public Sprite(double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
         this.width = width;

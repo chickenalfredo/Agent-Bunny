@@ -1,6 +1,7 @@
 package core.ecs.components;
 
 import java.io.FileInputStream;
+import java.io.Serializable;
 
 import core.ecs.Component;
 import core.sprite.Sprite;

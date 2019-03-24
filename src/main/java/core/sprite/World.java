@@ -1,5 +1,6 @@
 package core.sprite;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.external.entity.Hero;
@@ -7,7 +8,7 @@ import core.external.level.Chapter1Level1;
 import core.map.GameMap;
 import javafx.scene.canvas.GraphicsContext;
 
-public class World {
+public class World implements Serializable {
 
     private ArrayList<Sprite> m_entities = new ArrayList<Sprite>();
     private Hero hero;
