@@ -12,10 +12,10 @@ import core.scenes.KeyBindingScene;
 
 public class KeyBindings {
 
-    private static String left = "A";
-    private static String right = "D";
-    private static String jump = "SPACE";
-    private static String attack = "Z";
+    private static String left = "LEFT";
+    private static String right = "RIGHT";
+    private static String jump = "UP";
+    private static String attack = "DOWN";
     private static String menu = "ESCAPE";
 
     public static String getLeftKey() {
