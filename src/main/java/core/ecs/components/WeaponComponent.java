@@ -1,5 +1,6 @@
 package core.ecs.components;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.ecs.Component;

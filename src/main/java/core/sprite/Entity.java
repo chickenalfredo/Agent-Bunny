@@ -1,5 +1,7 @@
 package core.sprite;
 
+import java.io.Serializable;
+
 import core.ecs.components.AttackComponent;
 import core.ecs.components.PhysicsComponent;
 import core.ecs.components.WeaponComponent;
@@ -9,7 +11,11 @@ import javafx.scene.canvas.GraphicsContext;
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
  */
-public abstract class Entity extends Sprite {
+public abstract class Entity extends Sprite implements Serializable {
+
+    public Entity() {
+        super(null);
+    }
 
     public Entity(double entityX, double entityY, double entityWidth, double entityHeight) {
         super(entityX, entityY, entityWidth, entityHeight);

@@ -71,7 +71,7 @@ public class GameSettings {
 
     public static void graphicsMenu() {
 
-        RadioButton fullscreen = new RadioButton("Toggle Fullscreen");
+        CheckBox fullscreen = new CheckBox("Toggle Fullscreen");
         Label resolutionLabel = new Label("Available Resolutions: ");
         ComboBox<String> graphicsOptions = new ComboBox<String>();
 

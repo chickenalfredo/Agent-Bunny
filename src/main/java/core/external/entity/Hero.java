@@ -1,14 +1,20 @@
 package core.external.entity;
 
+import java.io.Serializable;
+
 import core.ecs.components.PhysicsComponent;
 import core.sprite.Entity;
 
 /**
  * 
  */
-public class Hero extends Entity {
+public class Hero extends Entity implements Serializable{
 
     private int lives = 3;
+
+    public Hero() {
+        super();
+    }
 
     public Hero(double x, double y, double width, double height) {
         super(x, y, width, height);

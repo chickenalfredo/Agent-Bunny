@@ -9,12 +9,13 @@ import core.sprite.Sprite;
 import core.sprite.TileObject;
 
 import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
  * 
  */
-public class Chapter1Level1 extends GameMap {
+public class Chapter1Level1 extends GameMap implements Serializable {
 
 	private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();

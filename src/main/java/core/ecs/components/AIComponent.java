@@ -1,5 +1,7 @@
 package core.ecs.components;
 
+import java.io.Serializable;
+
 import core.ecs.Component;
 
 /**
