@@ -27,7 +27,7 @@ public class RenderComponent extends Component implements Serializable {
         setImage(actor, filename);
         this.fileName = filename;
     }
-        
+
     /**
      * 
      * @param actor
@@ -48,7 +48,7 @@ public class RenderComponent extends Component implements Serializable {
     public void render(Sprite actor, GraphicsContext gc, long delta) {
         if (image == null) {
             setImage(actor, fileName);
-            }
+        }
         gc.drawImage(image, actor.getX(), actor.getY());
     }
 

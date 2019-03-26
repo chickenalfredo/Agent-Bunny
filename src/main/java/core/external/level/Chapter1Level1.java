@@ -38,13 +38,13 @@ public class Chapter1Level1 extends GameMap implements Serializable {
         sword3.addComponents(new RenderComponent(sword3, "src/main/resources/assets/Float_Tile_Middle.png"));
 
 		Hero hero = new Hero(0, 0, (screenWidth * 0.035), (screenHeight * 0.063));
-        hero.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(hero, "src/main/resources/assets/Hero.png"), new HealthComponent(), new CollidableComponent(), new WeaponComponent(sword));
+        hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(), new RenderComponent(hero, "src/main/resources/assets/Hero.png"), new HealthComponent(), new CollidableComponent(), new WeaponComponent(sword));
 
 		Enemy monster = new Enemy(1000, 200, (screenWidth * 0.035), (screenHeight * 0.063));
-		monster.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(monster, "src/main/resources/assets/Beetle.png"), new HealthComponent(), new AIComponent(monster), new CollidableComponent(), new WeaponComponent(sword2));
+		monster.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(), new RenderComponent(monster, "src/main/resources/assets/Beetle.png"), new HealthComponent(), new AIComponent(monster), new CollidableComponent(), new WeaponComponent(sword2));
 		
 		Enemy wolf = new Enemy(200.0, 300.0, (screenWidth * 0.035), (screenHeight * 0.063));
-		wolf.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(wolf, "src/main/resources/assets/Cyclops.png"), new HealthComponent(), new AIComponent(wolf), new CollidableComponent(), new WeaponComponent(sword3));
+		wolf.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(), new RenderComponent(wolf, "src/main/resources/assets/Cyclops.png"), new HealthComponent(), new AIComponent(wolf), new CollidableComponent(), new WeaponComponent(sword3));
 		
 		TileObject endPoint = new TileObject(1200, 900, (screenWidth * 0.035), (screenHeight * 0.063));
 		endPoint.addComponents(new RenderComponent(endPoint, "src/main/resources/assets/Door.png"), new CollidableComponent(), new EndPointComponent());
