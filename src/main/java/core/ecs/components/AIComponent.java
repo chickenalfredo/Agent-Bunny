@@ -50,51 +50,11 @@ public class AIComponent extends Component implements Serializable {
     }
 
     private void moveScript(Enemy actor) {
-
         if (travellingRight && actor.getX() < (initialX + maxDistance)) {
-
             actor.move("d", true);
         } else {
-
-        }
-
-        // travelRight(actor);
-        // travelLeft(actor);
-
-        // if (actor.getX() < (initialX + maxDistance)) {
-        //     actor.move("d", true);
-
-        // } else if (actor.getX() > (initialX + maxDistance)){
-        //     actor.move("a", true); 
-        // }
-
-        // if (actor.getX() < (initialX + maxDistance)) {
-        //     actor.move("d", true);
-        // } else {
-        //     actor.move("d", false); 
-        // }
-
-        // if (actor.getX() > (initialX + maxDistance)) {
-        //     actor.move("a", true);
-        // } else {
-        //     actor.move("a", false); 
-        // }
-
-
-    }
-
-    private void travelRight(Enemy actor) {
-        if (actor.getX() < (initialX + maxDistance)) {
-            actor.move("d", true);
-
-        }
-    }
-
-    private void travelLeft(Enemy actor) {
-        if (actor.getX() > (initialX + maxDistance)) {
             actor.move("a", true);
-
         }
     }
-    
+
 }
