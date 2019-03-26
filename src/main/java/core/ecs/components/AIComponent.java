@@ -3,6 +3,7 @@ package core.ecs.components;
 import java.io.Serializable;
 
 import core.ecs.Component;
+import core.external.entity.Enemy;
 import core.sprite.Sprite;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
@@ -12,7 +13,19 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class AIComponent extends Component implements Serializable {
 
-    public AIComponent() {}
+    private static final long serialVersionUID = 7300058353639188186L;
+
+    private Enemy enemy;
+    private double initialX;
+    private double initialY;
+    private double maxDistance = 600;
+    private boolean travellingRight = true;
+
+    public AIComponent(Sprite actor) {
+        enemy = Enemy.class.cast(actor);
+        initialX = enemy.getX();
+        initialY = enemy.getY();
+    }
 
     /**
      * 
@@ -21,7 +34,8 @@ public class AIComponent extends Component implements Serializable {
      */
     @Override
     public void update(Sprite actor, World world) {
-
+        enemy.attackCollider(world);
+        moveScript(enemy);
     }
 
     /**
@@ -34,5 +48,13 @@ public class AIComponent extends Component implements Serializable {
     public void render(Sprite actor, GraphicsContext gc, long delta) {
         
     }
-    
+
+    private void moveScript(Enemy actor) {
+        if (travellingRight && actor.getX() < (initialX + maxDistance)) {
+            actor.move("d", true);
+        } else {
+            actor.move("a", true);
+        }
+    }
+
 }
