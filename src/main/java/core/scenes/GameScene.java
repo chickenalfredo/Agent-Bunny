@@ -31,7 +31,6 @@ public class GameScene {
     private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
     private static World world;
-    
     /**
      * 
      * @return

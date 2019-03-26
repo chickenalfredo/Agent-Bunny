@@ -24,13 +24,13 @@ public class Animation {
     private double height;
     private GraphicsContext gc;
 
-    public Animation(Image image, Sprite actor, String action) {
+    public Rectangle2D animate(Image image, Sprite actor, String action) {
         imageView = new ImageView(image);
         if (actor instanceof Hero) {
             this.numOfColumns = 8;
             this.numOfRows = 12;
             this.offsetX = 12;
-            this.offsetY = 40;
+            this.offsetY = 6;
             this.width = (actor.getWidth() - offsetX) / numOfColumns;
             this.height = (actor.getHeight() - offsetY) / numOfRows;
             if (action.equalsIgnoreCase("attack")) {
@@ -52,7 +52,8 @@ public class Animation {
             
         } else if (actor instanceof Enemy) {}
         
-        animationCycle();
+        Rectangle2D viewPort = animationCycle();
+        return viewPort;
     }
 
     public int getRow() {
@@ -71,8 +72,15 @@ public class Animation {
         this.imageView = aImageView;
     }
 
-    protected void animationCycle() {
+    protected Rectangle2D animationCycle() {
         for (int i = 0; i <= numOfFrames; i++) {
+            if (i > 0) {
+                try {
+                    Thread.sleep(4000 / numOfFrames);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
             // int index = (int) Math.round(fractionOfCycle * (numOfFrames-1));
 
             // check which row this index falls into based on the number of rows in the
@@ -86,20 +94,17 @@ public class Animation {
             double y = (row * height) + offsetY;
 
             // indicate which part of the image should be displayed
-            imageView.setViewport(new Rectangle2D(x, y, width, height));
+            Rectangle2D rect = new Rectangle2D(x, y, width, height);
 
-            
             if (column == numOfColumns) {
                 this.row += 1;
                 column = 0;
             } else {
-                this.column = this.column + 1; 
+                this.column = this.column + 1;
             }
-            try {
-                Thread.sleep(4000 / numOfFrames);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
-            }
+            return rect;
         }
+        Rectangle2D rectIdle = new Rectangle2D(offsetX, offsetY, width, height);
+        return rectIdle;
     }
 }

@@ -2,6 +2,7 @@ package core.sprite;
 
 import java.util.ArrayList;
 
+import core.animations.Animation;
 import core.external.entity.Hero;
 import core.external.level.Chapter1Level1;
 import core.map.GameMap;
@@ -14,6 +15,7 @@ public class World {
 
     private ArrayList<Sprite> m_entities = new ArrayList<Sprite>();
     private Hero hero;
+    private Animation animationSystem;
     private GameMap level;
 
     /**
