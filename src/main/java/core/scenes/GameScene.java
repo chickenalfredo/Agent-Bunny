@@ -18,6 +18,9 @@ import core.command.Command;
 import core.screens.ScreenBuilder;
 import core.sprite.World;
 
+/**
+ * 
+ */
 public class GameScene {
 
     private static StackPane root;
@@ -29,7 +32,10 @@ public class GameScene {
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
     private static World world;
     
-
+    /**
+     * 
+     * @return
+     */
     public static Scene display() {
         world = new World();
         root = initScene();
@@ -54,12 +60,15 @@ public class GameScene {
                 if (world.getHero().getX() > (screenWidth / 2) - world.getHero().getWidth() / 2)
                     canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
-                world.update(gc);
+                world.update(gc, time);
             }
         }.start();
         return GameScene;
     }
 
+    /**
+     * 
+     */
     public static class GameLoop implements EventHandler<KeyEvent> {
         public void handle(KeyEvent event) {
             Command command = inputHandler.handleInput(event);
@@ -69,19 +78,35 @@ public class GameScene {
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     public static StackPane initScene() {
         StackPane gameUI = new StackPane();
         return gameUI;
     }
 
+    /**
+     * 
+     * @return
+     */
     public static Scene getScene() {
         return GameScene;
     }
 
+    /**
+     * 
+     * @return
+     */
     public static Pane getRoot() {
         return root;
     }
 
+    /**
+     * 
+     * @param toAdd
+     */
     public static void addToRoot(Node toAdd) {
         gameMenu = (HBox)toAdd;
         root.getChildren().add(gameMenu);
@@ -89,11 +114,19 @@ public class GameScene {
         gameMenu.setAlignment(Pos.CENTER);    
     }
 
+    /**
+     * 
+     */
     public static void removeGameMenu() {
         root.getChildren().remove(gameMenu);
     }
 
+    /**
+     * 
+     * @return
+     */
     public static HBox getGameMenu() {
         return gameMenu;
     }
+    
 }
