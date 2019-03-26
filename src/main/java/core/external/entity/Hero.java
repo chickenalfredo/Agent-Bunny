@@ -1,56 +1,63 @@
 package core.external.entity;
 
-import java.util.List;
+import java.io.Serializable;
 
+import core.ecs.components.PhysicsComponent;
 import core.sprite.Entity;
-import core.sprite.Sprite;
 
 /**
  * 
  */
-public class Hero extends Entity {
+public class Hero extends Entity implements Serializable{
 
+    private static final long serialVersionUID = 674276147323632966L;
     private int lives = 3;
 
+    public Hero() {
+        super();
+    }
 
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public Hero(double x, double y, double width, double height) {
         super(x, y, width, height);
         setTerminalChar('H');
-        setAttackPower(25);
     }
 
-    public Hero(double x, double y, double width, double height, String image) {
-        super(x, y, width, height, image);
-        setTerminalChar('H');
-        setAttackPower(25);
-    }
-
+    /**
+     * 
+     * @param player
+     */
     public Hero(Hero player) {
         super(player.getX(), player.getY(), player.getWidth(), player.getHeight());
     }
 
-    public Hero(double x, double y) {
-        super(x, y);
-    }
-
+    /**
+     * 
+     * @return
+     */
     public int getLives() {
         return lives;
     }
 
+    /**
+     * 
+     * @param oneUp
+     */
     public void setLives(int oneUp) {
         lives += oneUp;
     }
 
-    public void attack(Entity enemyToAttack) {
-        enemyToAttack.setHealth(enemyToAttack.getHealth() - this.getAttackPower());
-    }
-
-    public void attack(List<Sprite> world) {
-        getPhysicsComponent().attack(world);
-    }
-
+    /**
+     * 
+     */
     public void jump() {
-        getPhysicsComponent().jump();
+        getComponent("PhysicsComponent", PhysicsComponent.class).jump();
     }
 
 }

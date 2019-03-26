@@ -1,87 +1,60 @@
 package core.sprite;
 
+import java.io.Serializable;
+
+import core.ecs.components.AttackComponent;
+import core.ecs.components.PhysicsComponent;
+import core.ecs.components.WeaponComponent;
+
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
  * new generic entities that will be further defined by concrete subclasses.
  */
-public abstract class Entity extends Sprite {
+public abstract class Entity extends Sprite implements Serializable {
 
-    private int health = 100;
-    private int attackPower = 1;
-    private boolean isEnemy = false;
+    private static final long serialVersionUID = 2915461139373660808L;
+
+    public Entity() {
+        super(null);
+    }
 
     /**
-     * Constructor that calls the constructor of the Sprite class and sets name,
-     * health, and speed for the Character
      * 
-     * @see Sprite class
-     * @param entityX      The x coordinate of the entity to set
-     * @param entityY      The y coordinate of the entity to set
-     * @param entityWidth  The width of the entity to set
-     * @param entityHeight The height of the entity to set
+     * @param entityX
+     * @param entityY
+     * @param entityWidth
+     * @param entityHeight
      */
     public Entity(double entityX, double entityY, double entityWidth, double entityHeight) {
         super(entityX, entityY, entityWidth, entityHeight);
     }
 
-    public Entity(double entityX, double entityY, double entityWidth, double entityHeight, String image) {
-        super(entityX, entityY, entityWidth, entityHeight, image);
-    }
-
-
-    public Entity(double x, double y) {
-        super(x, y);
-    }
-
-    public Entity(double x, double y, String image) {
-        super(x, y, image);
+    /**
+     * 
+     * @param world
+     */
+    public void update(World world) {
+        super.update(world);
+        if (getComponent("WeaponComponent", WeaponComponent.class) != null) {
+            getComponent("WeaponComponent", WeaponComponent.class).update(this, world);
+        }
     }
 
     /**
-     * Returns a boolean to tell if the character's health has reached 0
      * 
-     * @return boolean
+     * @param key
+     * @param isKeyPressedEvent
      */
-    public boolean isDead() {
-        return (health <= 0);
-    }
-
-    public int getAttackPower() {
-        return attackPower;
-    }
-
-    public void setAttackPower(int attackPower) {
-        this.attackPower = attackPower;
-    }
-
-    /**
-     * Returns the value of the entity's health
-     * 
-     * @return health
-     */
-    public int getHealth() {
-        return health;
-    }
-
-    /**
-     * Sets the value of the entity's health
-     * 
-     * @param entityHealth The value of health to set.
-     */
-    public void setHealth(int entityHealth) {
-        health = entityHealth;
-    }
-
-    protected void setIsEnemy(boolean isEnemy) {
-        this.isEnemy = isEnemy;
-    }
-
-    public boolean getIsEnemy() {
-        return isEnemy;
-    }
-
     public void move(String key, boolean isKeyPressedEvent) {
-        this.getPhysicsComponent().moveEntity(key, isKeyPressedEvent);
+        getComponent("PhysicsComponent", PhysicsComponent.class).moveEntity(key, isKeyPressedEvent);
+    }
+
+    /**
+     * 
+     * @param world
+     */
+    public void attackCollider(World world) {
+        getComponent("AttackComponent", AttackComponent.class).update(this, world);
     }
 
 }

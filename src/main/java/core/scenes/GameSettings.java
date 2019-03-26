@@ -5,10 +5,17 @@ import javafx.collections.ObservableList;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
+import core.App;
 import core.utils.MenuEventHandlers;
 import javafx.geometry.*;
 import java.io.*;
+import javafx.scene.input.KeyEvent;
+import javafx.event.EventHandler;
+import javafx.scene.input.KeyCode;
 
+/**
+ * 
+ */
 public class GameSettings {
 
     private static Scene GameSettings;
@@ -16,37 +23,72 @@ public class GameSettings {
     private static VBox mainMenu;
     private static VBox graphicsMenu;
 
+    /**
+     * 
+     * @return
+     */
     public static Scene display() {
         menu = mainMenu();
         GameSettings = new Scene(menu);
         GameSettings.getStylesheets().clear();
         GameSettings.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+        GameSettings.setOnKeyPressed(new EscKey());
         return GameSettings;
     }
 
-    public static HBox mainMenu() {
+    /**
+     * 
+     */
+    public static class EscKey implements EventHandler<KeyEvent> {
+        public void handle(KeyEvent key) {
+            if (key.getCode() == KeyCode.ESCAPE) {
+                if (menu.getChildren().contains(graphicsMenu)) {
+                    menu.getChildren().remove(graphicsMenu);
+                } else if (menu.getChildren().contains(KeyBindingScene.getKeyMenu())) {
+                    menu.getChildren().remove(KeyBindingScene.getKeyMenu());
+                } else {
+                    App.getGameWindow().setScene(TitleScene.display());
+                }
+            }
+        }
+    }
 
-        Label menuHeading = new Label("Game Menu");
-        Button controls = new Button("View Controls");
+    /**
+     * 
+     * @return
+     */
+    static public HBox mainMenu() {
+        if (App.getGameWindow().getScene() == GameScene.getScene()) {
+            Button resumeGame = new Button("Resume Game");
+            resumeGame.setOnAction(new MenuEventHandlers.resumeGame());
+            mainMenu = new VBox(5, resumeGame);
+        } else {
+            mainMenu = new VBox(5);
+        }
+
         Button keymapping = new Button("Keybinds");
         Button graphics = new Button("Video Settings");
         Button TitleMenu = new Button("Return to Title Screen");
         Button exit = new Button("Exit Game");
 
+        keymapping.setOnAction(new MenuEventHandlers.KeyBinding());
         graphics.setOnAction(new MenuEventHandlers.GraphicsMenuEvent());
         TitleMenu.setOnAction(new MenuEventHandlers.goToTitle());
-        exit.setOnAction(new MenuEventHandlers.ExitGameEvent()); 
+        exit.setOnAction(new MenuEventHandlers.ExitGameEvent());
 
-        mainMenu = new VBox(5, menuHeading, controls, keymapping, graphics, TitleMenu, exit);
+        mainMenu.getChildren().addAll(keymapping, graphics, TitleMenu, exit);
         mainMenu.setAlignment(Pos.CENTER);
         HBox menu = new HBox(5, mainMenu);
         menu.setAlignment(Pos.CENTER);
         return menu;
-    } 
+    }
 
+    /**
+     * 
+     */
     public static void graphicsMenu() {
 
-        RadioButton fullscreen = new RadioButton("Toggle Fullscreen");
+        CheckBox fullscreen = new CheckBox("Toggle Fullscreen");
         Label resolutionLabel = new Label("Available Resolutions: ");
         ComboBox<String> graphicsOptions = new ComboBox<String>();
 
@@ -54,29 +96,53 @@ public class GameSettings {
             ObservableList<String> resolutions = FXCollections.observableArrayList();
             String line;
             while ((line = br.readLine()) != null) {
-               resolutions.add(line);
+                resolutions.add(line);
             }
             graphicsOptions.setItems(resolutions);
-        }
-        catch (FileNotFoundException e ) {
+        } catch (FileNotFoundException e) {
             System.out.println("Unable to find file");
-        }
-        catch (IOException h) {
+        } catch (IOException h) {
             System.out.println("an IO exception occured");
         }
 
         fullscreen.setOnAction(new MenuEventHandlers.setFullScreen());
-        
-        
         if (graphicsMenu == null) {
-        HBox screenResolutions = new HBox(5, resolutionLabel, graphicsOptions); 
-        screenResolutions.setAlignment(Pos.CENTER);
-        graphicsMenu = new VBox(5, fullscreen, screenResolutions);
-        graphicsMenu.setAlignment(Pos.CENTER);
+            HBox screenResolutions = new HBox(5, resolutionLabel, graphicsOptions);
+            screenResolutions.setAlignment(Pos.CENTER);
+            graphicsMenu = new VBox(5, fullscreen, screenResolutions);
+            graphicsMenu.setAlignment(Pos.CENTER);
         }
         try {
-        menu.getChildren().add(graphicsMenu);
+            if (App.getGameWindow().getScene() == GameScene.getScene()) {
+                GameScene.getGameMenu().getChildren().add(graphicsMenu);
+            } else {
+                menu.getChildren().add(graphicsMenu);
+            }
+        } catch (IllegalArgumentException e) {
         }
-        catch(IllegalArgumentException e) {}
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static Scene getScene() {
+        return GameSettings;
+    }
+
+    /**
+     * 
+     * @param scene
+     */
+    public static void setScene(Scene scene) {
+        GameSettings = scene;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static HBox getMenu() {
+        return menu;
     }
 }

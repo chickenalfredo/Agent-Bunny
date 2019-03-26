@@ -1,5 +1,7 @@
 package core.sprite;
 
+import java.io.Serializable;
+
 import com.google.gson.GsonBuilder;
 
 /**
@@ -7,8 +9,9 @@ import com.google.gson.GsonBuilder;
  * 
  * @author Daniel Contreras
  */
-public class Coordinate {
+public class Coordinate implements Serializable {
 
+    private static final long serialVersionUID = 9672459078749444L;
     private double x, y;
 
     /**
@@ -88,10 +91,18 @@ public class Coordinate {
         y = coordinate.getX();
     }
 
+    /**
+     * 
+     * @param x
+     */
     public void setX(double x) {
         this.x = x;
     }
 
+    /**
+     * 
+     * @param y
+     */
     public void setY(double y) {
         this.y = y;
     }

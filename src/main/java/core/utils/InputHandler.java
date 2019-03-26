@@ -3,34 +3,38 @@ package core.utils;
 import javafx.scene.input.KeyEvent;
 import core.command.Command;
 import core.command.commands.*;
+import core.utils.KeyBindings;
 
+/**
+ * 
+ */
 public class InputHandler {
 
-    private JumpCommand keySpaceBar_ = new JumpCommand();      
-    private AttackCommand keyZ_ = new AttackCommand();   
-    
     public InputHandler() {}
 
+    /**
+     * 
+     * @param event
+     * @return
+     */
     public Command handleInput(KeyEvent event) {
         Command command;
+        String key = String.valueOf(event.getCode());
         boolean isKeyPressed = event.getEventType() == KeyEvent.KEY_PRESSED;
-        switch (event.getCode()) {
-            case A:
-                command = new MoveCommand("a", isKeyPressed);
-                break;
-            case D:
-                command = new MoveCommand("d", isKeyPressed);
-                break;
-            case SPACE:
-                command = keySpaceBar_;
-                break;
-            case Z:
-                command = keyZ_;
-                break;
-            default:
-                command = null;
+
+        if (key.equalsIgnoreCase(KeyBindings.getLeftKey())) {
+            command = new MoveCommand("a", isKeyPressed);
+        } else if (key.equalsIgnoreCase(KeyBindings.getRightKey())) {
+            command = new MoveCommand("d", isKeyPressed);
+        } else if (key.equalsIgnoreCase(KeyBindings.getJumpKey())) {
+            command = new JumpCommand();
+        } else if (key.equalsIgnoreCase(KeyBindings.getAttackKey())) {
+            command = new AttackCommand(isKeyPressed);
+        } else if (key.equalsIgnoreCase(KeyBindings.getMenuKey())) {
+            command = new MenuCommand(isKeyPressed);
+        } else {
+            command = null;
         }
         return command;
     }
-
 }

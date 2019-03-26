@@ -5,14 +5,20 @@ import core.screens.ScreenBuilder;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
-public class App extends Application{
+/**
+ * 
+ */
+public class App extends Application {
 
-        private static Stage gameWindow;
+    private static Stage gameWindow;
 
+    @Override
     public void start(Stage primaryStage) {
         init();
         gameWindow = ScreenBuilder.defaultScreen(primaryStage);
         gameWindow.setScene(TitleScene.display());
+        gameWindow.isFocused();
+        gameWindow.setMaximized(true);
         gameWindow.show();
     }
 
@@ -22,4 +28,5 @@ public class App extends Application{
     public static Stage getGameWindow() {
         return gameWindow;
     }
+    
 }

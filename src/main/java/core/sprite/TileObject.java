@@ -1,32 +1,25 @@
 package core.sprite;
 
+import java.io.Serializable;
+
 import core.sprite.Sprite;
 
 /**
  * @author Daniel Contreras
  */
-public abstract class TileObject extends Sprite {
+public class TileObject extends Sprite implements Serializable {
 
-    private boolean isCollidable;
+    private static final long serialVersionUID = -2520946764976634859L;
 
+    /**
+     * 
+     * @param x
+     * @param y
+     * @param width
+     * @param height
+     */
     public TileObject(double x, double y, double width, double height) {
         super(x, y, width, height);
-    }
-
-    public TileObject(double x, double y, double width, double height, String image) {
-        super(x, y, width, height, image);
-    }
-
-    public TileObject(double x, double y) {
-        super(x, y);
-    }
-
-    public boolean getIsCollidable() {
-        return isCollidable;
-    }
-
-    public void setIsCollidable(boolean isCollidable) {
-        this.isCollidable = isCollidable;
     }
 
 }

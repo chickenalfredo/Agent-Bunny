@@ -34,3 +34,7 @@ buildNumber.properties
 .mvn/wrapper/maven-wrapper.jar
 .classpath
 .settings/
+.idea/
+.idea
+
+world.ser

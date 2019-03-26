@@ -7,10 +7,17 @@ import core.utils.MenuEventHandlers;
 import java.io.File;
 import javafx.geometry.*;
 
+/**
+ * 
+ */
 public class TitleScene {
 
     private static Scene TitleScene;
 
+    /**
+     * 
+     * @return
+     */
     public static Scene display() {
         VBox root = initScene();
         TitleScene = new Scene(root);
@@ -19,6 +26,10 @@ public class TitleScene {
         return TitleScene;
     }
        
+    /**
+     * 
+     * @return
+     */
     public static VBox initScene() {
 
         Label gameTitle = new Label("AGENT BUNNY");
@@ -38,5 +49,5 @@ public class TitleScene {
 
         return menu;
     }
-} 
 
+} 

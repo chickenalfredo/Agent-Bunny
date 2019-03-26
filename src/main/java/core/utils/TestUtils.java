@@ -23,4 +23,5 @@ public class TestUtils {
     public static void validateAccessors(final Class<?> clazz) {
         ACCESSOR_VALIDATOR.validate(PojoClassFactory.getPojoClass(clazz));
     }
+    
 }
