@@ -8,16 +8,29 @@ public class CollisionPacket {
     private boolean isColliding = false;
     private String side = "";
 
+    /**
+     * 
+     * @param actor
+     * @param collider
+     */
     public CollisionPacket(Sprite actor, Sprite collider) {
         this.actor = actor;
         this.collider = collider;
         setCollisionSide();
     }
 
+    /**
+     * 
+     * @return
+     */
     public Sprite getActor() {
         return actor;
     }
 
+    /**
+     * 
+     * @return
+     */
     public Sprite getCollider() {
         return collider;
     }
@@ -60,6 +73,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     public String getCollisionSide() {
         return side;
@@ -67,6 +81,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private boolean topCollision() {
         return getTopBoundCollision() < getBottomBoundCollision() && getTopBoundCollision() < getLeftBoundCollision()
@@ -75,6 +90,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private boolean bottomCollision() {
         return getBottomBoundCollision() < getTopBoundCollision() && getBottomBoundCollision() < getLeftBoundCollision()
@@ -83,6 +99,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private boolean leftCollision() {
         return getLeftBoundCollision() < getRightBoundCollision() && getLeftBoundCollision() < getTopBoundCollision()
@@ -91,6 +108,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private boolean rightCollision() {
         return getRightBoundCollision() < getLeftBoundCollision() && getRightBoundCollision() < getTopBoundCollision()
@@ -99,6 +117,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private double getTopBoundCollision() {
         return actor.getY() + actor.getHeight() - collider.getY();
@@ -106,6 +125,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private double getBottomBoundCollision() {
         return collider.getY() + collider.getHeight() - actor.getY();
@@ -113,6 +133,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private double getLeftBoundCollision() {
         return actor.getX() + actor.getWidth() - collider.getX();
@@ -120,6 +141,7 @@ public class CollisionPacket {
 
     /**
      * 
+     * @return
      */
     private double getRightBoundCollision() {
         return collider.getX() + collider.getWidth() - actor.getX();

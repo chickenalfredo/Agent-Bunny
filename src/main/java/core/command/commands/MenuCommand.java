@@ -6,14 +6,27 @@ import core.sprite.World;
 import javafx.scene.layout.HBox;
 import core.scenes.*;
 
+/**
+ * 
+ */
 public class MenuCommand extends Command {
 
     private boolean isKeyPressed;
 
+    /**
+     * 
+     * @param isKeyPressed
+     */
     public MenuCommand(boolean isKeyPressed) {
         this.isKeyPressed = isKeyPressed;
     }
 
+    /**
+     * 
+     * @param actor
+     * @param world
+     */
+    @Override
     public void execute(Hero actor, World world) {
         if (isKeyPressed) {
             if (!GameScene.getRoot().getChildren().contains(GameScene.getGameMenu())) {
