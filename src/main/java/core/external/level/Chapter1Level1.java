@@ -37,6 +37,15 @@ public class Chapter1Level1 extends GameMap implements Serializable {
         Sword sword3 = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
         sword3.addComponents(new RenderComponent(sword3, "src/main/resources/assets/Float_Tile_Middle.png"));
 
+		TileObject healthBar = new TileObject(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
+		healthBar.addComponents(new RenderComponent(healthBar, "src/main/resources/assets/Float_Tile_Middle.png"));
+		
+		TileObject healthBar2 = new TileObject(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
+		healthBar2.addComponents(new RenderComponent(healthBar2, "src/main/resources/assets/Float_Tile_Middle.png"));
+		
+		TileObject healthBar3 = new TileObject(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
+        healthBar3.addComponents(new RenderComponent(healthBar3, "src/main/resources/assets/Float_Tile_Middle.png"));
+
 		Hero hero = new Hero(0, 0, (screenWidth * 0.035), (screenHeight * 0.063));
         hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(), new RenderComponent(hero, "src/main/resources/assets/Hero.png"), new HealthComponent(), new CollidableComponent(), new WeaponComponent(sword));
 

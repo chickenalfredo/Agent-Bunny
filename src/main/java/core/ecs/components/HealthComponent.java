@@ -7,6 +7,7 @@ import core.external.entity.Hero;
 import core.scenes.GameScene;
 import core.sprite.Entity;
 import core.sprite.Sprite;
+import core.sprite.TileObject;
 import core.sprite.World;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.text.Text;
@@ -20,6 +21,8 @@ public class HealthComponent extends Component implements Serializable {
     private static final long serialVersionUID = 8145295134277021389L;
     private double health = 100;
     private double maxHealth = 100;
+    private TileObject healthBar;
+
     //private transient Text healthDisplay = new Text();
     //private transient ProgressBar healthBar = new ProgressBar();
 
@@ -30,6 +33,10 @@ public class HealthComponent extends Component implements Serializable {
         healthBar.setStyle("-fx-accent: maroon; -fx-control-inner-background: tomato;");
         healthDisplay.setStyle("-fx-fill: white; -fx-font-size: 18pt;");
         */
+    }
+
+    public HealthComponent(TileObject healthBar) {
+        this.healthBar = healthBar; 
     }
 
     /**
@@ -59,6 +66,7 @@ public class HealthComponent extends Component implements Serializable {
     @Override
     public void render(Sprite actor, GraphicsContext gc, long delta) {
         // TODO: Render health animations using sprite sheets
+        healthBar.getComponent("RenderComponent", RenderComponent.class).render(healthBar, gc, delta);
     }
 
     /**
