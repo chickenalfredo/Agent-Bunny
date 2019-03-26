@@ -105,6 +105,7 @@ public class PhysicsComponent extends Component implements Serializable {
     public void update(Sprite actor, World world) {
         if (this.actor == null) {
             this.actor = actor;
+            actor.getComponent("StateComponent", StateComponent.class).setState(State.IDLE);
         }
         actor.setX(actor.getX() + velocityX);
         actor.setY(actor.getY() + velocityY);
