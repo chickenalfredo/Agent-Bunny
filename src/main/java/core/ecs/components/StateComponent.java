@@ -23,7 +23,7 @@ public class StateComponent extends Component {
 
     @Override
     public void update(Sprite actor, World world) {
-        System.out.println(actor.getClass().getSimpleName() + " : " + getState());
+        // System.out.println(actor.getClass().getSimpleName() + " : " + getState());
     }
 
     @Override
