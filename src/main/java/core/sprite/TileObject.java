@@ -9,6 +9,8 @@ import core.sprite.Sprite;
  */
 public class TileObject extends Sprite implements Serializable {
 
+    private static final long serialVersionUID = -2520946764976634859L;
+
     /**
      * 
      * @param x

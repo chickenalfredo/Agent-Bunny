@@ -18,6 +18,7 @@ import com.google.gson.GsonBuilder;
  */
 public abstract class Sprite implements Serializable{
 
+    private static final long serialVersionUID = 2166442457747983306L;
     private Coordinate coordinate = new Coordinate();
     private double width, height;
     private char terminalChar;

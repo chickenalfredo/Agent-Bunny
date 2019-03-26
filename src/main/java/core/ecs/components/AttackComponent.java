@@ -12,6 +12,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class AttackComponent extends Component implements Serializable {
 
+    private static final long serialVersionUID = 3268417276316679100L;
     private double attackPower;
     private Sprite collider, actor;
     private WeaponComponent weaponComponent;

@@ -5,6 +5,8 @@ package core.sprite;
  */
 public abstract class Weapon extends Sprite {
 
+    private static final long serialVersionUID = 2777260606508988144L;
+
     /**
      * 
      * @param x

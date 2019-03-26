@@ -14,6 +14,7 @@ import javafx.scene.image.Image;
  */
 public class RenderComponent extends Component implements Serializable {
 
+    private static final long serialVersionUID = 1898382905294065884L;
     private transient Image image;
     private String fileName;
 

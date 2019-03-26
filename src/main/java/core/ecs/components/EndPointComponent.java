@@ -12,7 +12,10 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class EndPointComponent extends Component implements Serializable {
 
-    public EndPointComponent() {}
+    private static final long serialVersionUID = 9105405338139605646L;
+
+    public EndPointComponent() {
+    }
 
     /**
      * 

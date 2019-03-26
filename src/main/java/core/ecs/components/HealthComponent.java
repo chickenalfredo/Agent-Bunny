@@ -17,6 +17,7 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class HealthComponent extends Component implements Serializable {
 
+    private static final long serialVersionUID = 8145295134277021389L;
     private double health = 100;
     private double maxHealth = 100;
     //private transient Text healthDisplay = new Text();
