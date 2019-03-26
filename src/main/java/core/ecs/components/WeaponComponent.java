@@ -1,5 +1,6 @@
 package core.ecs.components;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.ecs.Component;
@@ -8,10 +9,7 @@ import core.sprite.Weapon;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
 
-/**
- * 
- */
-public class WeaponComponent extends Component {
+public class WeaponComponent extends Component implements Serializable {
 
     private ArrayList<Weapon> m_weapons = new ArrayList<Weapon>();
 
