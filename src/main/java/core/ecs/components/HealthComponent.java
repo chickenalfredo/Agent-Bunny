@@ -10,6 +10,7 @@ import core.sprite.Sprite;
 import core.sprite.World;
 import javafx.scene.control.ProgressBar;
 import javafx.scene.text.Text;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
@@ -30,6 +31,12 @@ public class HealthComponent extends Component implements Serializable {
         */
     }
 
+    /**
+     * 
+     * @param actor
+     * @param world
+     */
+    @Override
     public void update(Sprite actor, World world) {
         if (actor instanceof Entity) {
             if (actor instanceof Hero) {
@@ -40,6 +47,17 @@ public class HealthComponent extends Component implements Serializable {
                 world.destroyEntity(actor);
             }
         }
+    }
+
+    /**
+     * 
+     * @param actor
+     * @param gc
+     * @param delta
+     */
+    @Override
+    public void render(Sprite actor, GraphicsContext gc, long delta) {
+        // TODO: Render health animations using sprite sheets
     }
 
     /**
@@ -56,10 +74,18 @@ public class HealthComponent extends Component implements Serializable {
         this.health = health;
     }
 
+    /**
+     * 
+     * @param damage
+     */
     public void takeDamage(double damage) {
         health -= damage;
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean isAlive() {
         return health > 0;
     }

@@ -90,10 +90,18 @@ public class Coordinate implements Serializable {
         y = coordinate.getX();
     }
 
+    /**
+     * 
+     * @param x
+     */
     public void setX(double x) {
         this.x = x;
     }
 
+    /**
+     * 
+     * @param y
+     */
     public void setY(double y) {
         this.y = y;
     }

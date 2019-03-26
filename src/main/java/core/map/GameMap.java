@@ -26,6 +26,10 @@ public class GameMap implements Serializable {
 
 	public GameMap() {}
 
+    /**
+     * 
+     * @param name
+     */
 	public GameMap(String name) {
 		this.name = name;
 	}
@@ -82,6 +86,9 @@ public class GameMap implements Serializable {
 		return ret;
 	}
 
+    /**
+     * 
+     */
 	private void setSpritesOnTerminalMap() {
 		// for (Sprite each : sprite) {
 		// 	Coordinate currentCoord = each.getCoordinate();
@@ -91,6 +98,9 @@ public class GameMap implements Serializable {
 		// }
 	}
 
+    /**
+     * 
+     */
 	private void setTerminalMap() {
 		map = new char[ROW][COLUMN];
 		for (int i = 0; i < ROW; i++) {
@@ -100,6 +110,9 @@ public class GameMap implements Serializable {
 		}
 	}
 
+    /**
+     * 
+     */
 	private void generateTerminalBounds() {
 		// for (int i = 0; i < COLUMN; i++) {
 		// 	addSprite(new Wall(i*5, 0, 5.0, 5.0));

@@ -5,6 +5,7 @@ import java.io.Serializable;
 
 import core.ecs.Component;
 import core.sprite.Sprite;
+import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -16,22 +17,45 @@ public class RenderComponent extends Component implements Serializable {
     private transient Image image;
     private String fileName;
 
+    /**
+     * 
+     * @param actor
+     * @param filename
+     */
     public RenderComponent(Sprite actor, String filename) {
         setImage(actor, filename);
         this.fileName = filename;
     }
+        
+    /**
+     * 
+     * @param actor
+     * @param world
+     */
+    @Override
+    public void update(Sprite actor, World world) {
 
-    public void update(Sprite actor, GraphicsContext gc) {
-        System.out.println("updated");
     }
 
-    public void render(Sprite actor, GraphicsContext gc) {
+    /**
+     * 
+     * @param actor
+     * @param gc
+     * @param delta
+     */
+    @Override
+    public void render(Sprite actor, GraphicsContext gc, long delta) {
         if (image == null) {
-        setImage(actor, fileName);
-        }
+            setImage(actor, fileName);
+            }
         gc.drawImage(image, actor.getX(), actor.getY());
     }
 
+    /**
+     * 
+     * @param actor
+     * @param filename
+     */
     private void setImage(Sprite actor, String filename) {
         try {
             image = new Image(new FileInputStream(filename), actor.getWidth(), actor.getHeight(), false, true);

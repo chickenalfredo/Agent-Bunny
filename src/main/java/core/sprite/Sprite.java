@@ -59,19 +59,44 @@ public abstract class Sprite implements Serializable{
         height = sprite.height;
     }
 
-    public void update(World world, GraphicsContext gc) {
+    /**
+     * 
+     * @param world
+     */
+    public void update(World world) {
         for (Component c : m_components) {
             c.update(this, world);
-            c.render(this, gc);
         }
     }
 
+    /**
+     * 
+     * @param gc
+     * @param delta
+     */
+    public void render(GraphicsContext gc, long delta) {
+        for (Component c : m_components) {
+            c.render(this, gc, delta);
+        }
+    }
+
+    /**
+     * 
+     * @param component
+     */
     public void addComponents(Component... component) {
         for (Component c : component) {
             m_components.add(c);
         }
     }
 
+    /**
+     * 
+     * @param <T>
+     * @param componentName
+     * @param type
+     * @return
+     */
     public <T extends Component> T getComponent(String componentName, Class<T> type) {
         for (Component c : m_components) {
             if (c.getClass().getSimpleName().toString().equals(componentName)) {
@@ -149,6 +174,7 @@ public abstract class Sprite implements Serializable{
 
     /**
      * 
+     * @param width
      */
     public void setWidth(double width) {
         this.width = width;
@@ -156,6 +182,7 @@ public abstract class Sprite implements Serializable{
 
     /**
      * 
+     * @param height
      */
     public void setHeight(double height) {
         this.height = height;
@@ -176,6 +203,7 @@ public abstract class Sprite implements Serializable{
 
     /**
      * 
+     * @param x
      */
     public void setX(double x) {
         coordinate.setX(x);
@@ -183,6 +211,7 @@ public abstract class Sprite implements Serializable{
 
     /**
      * 
+     * @param y
      */
     public void setY(double y) {
         coordinate.setY(y);

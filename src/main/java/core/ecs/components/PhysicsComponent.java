@@ -9,6 +9,7 @@ import core.sprite.Entity;
 import core.sprite.Sprite;
 import core.sprite.TileObject;
 import core.sprite.World;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
@@ -17,7 +18,7 @@ public class PhysicsComponent extends Component implements Serializable {
 
     private double velocityX = 0.0f;
     private double velocityY = 0.0f;
-    private double force = 0.5f;
+    private double force = 1.5f;
     private boolean falling = true;
     private boolean jumping = false;
 
@@ -95,6 +96,8 @@ public class PhysicsComponent extends Component implements Serializable {
 
     /**
      * 
+     * @param actor
+     * @param world
      */
     public void update(Sprite actor, World world) {
         actor.setX(actor.getX() + velocityX);
@@ -105,6 +108,8 @@ public class PhysicsComponent extends Component implements Serializable {
 
     /**
      * 
+     * @param actor
+     * @param world
      */
     private void applyGravity(Sprite actor, World world) {
         if (actor instanceof Entity)
@@ -113,17 +118,19 @@ public class PhysicsComponent extends Component implements Serializable {
 
     /**
      * 
+     * @param key
+     * @param isKeyPressedEvent
      */
     public void moveEntity(String key, boolean isKeyPressedEvent) {
         if (isKeyPressedEvent) {
             switch (key) {
             case "a":
                 setVelocityX(0);
-                setVelocityX(-7);
+                setVelocityX(-10);
                 break;
             case "d":
                 setVelocityX(0);
-                setVelocityX(7);
+                setVelocityX(10);
                 break;
             }
         } else {
@@ -133,6 +140,8 @@ public class PhysicsComponent extends Component implements Serializable {
 
     /**
      * 
+     * @param actor
+     * @param world
      */
     public void collisionDetection(Sprite actor, World world) {
         Collision collision = new Collision();
@@ -145,6 +154,8 @@ public class PhysicsComponent extends Component implements Serializable {
 
     /**
      * 
+     * @param actor
+     * @param collider
      */
     private void collisionResolution(Sprite actor, Sprite collider) {
         CollisionPacket packet = new CollisionPacket(actor, collider);
@@ -165,7 +176,7 @@ public class PhysicsComponent extends Component implements Serializable {
         }
         if (packet.getCollisionSide().equals("left")) {
             actor.setX(collider.getX() - actor.getWidth() - 1);
-            
+
         }
     }
 
@@ -174,10 +185,15 @@ public class PhysicsComponent extends Component implements Serializable {
      */
     public void jump() {
         if (!(jumping || falling)) {
-            setVelocityY(-15);
+            setVelocityY(-30);
             jumping = true;
             falling = true;
         }
+    }
+
+    @Override
+    public void render(Sprite actor, GraphicsContext gc, long delta) {
+
     }
 
 }

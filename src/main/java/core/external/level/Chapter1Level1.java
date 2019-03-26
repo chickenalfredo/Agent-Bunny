@@ -20,6 +20,9 @@ public class Chapter1Level1 extends GameMap implements Serializable {
 	private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
 
+    /**
+     * 
+     */
 	public Chapter1Level1() {
 
 		List<Sprite> sprites = new ArrayList<Sprite>();
@@ -27,15 +30,20 @@ public class Chapter1Level1 extends GameMap implements Serializable {
 		Sword sword = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
         sword.addComponents(new RenderComponent(sword, "src/main/resources/assets/Float_Tile_Middle.png"));
 
+        Sword sword2 = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
+        sword2.addComponents(new RenderComponent(sword2, "src/main/resources/assets/Float_Tile_Middle.png"));
+
+        Sword sword3 = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
+        sword3.addComponents(new RenderComponent(sword3, "src/main/resources/assets/Float_Tile_Middle.png"));
+
 		Hero hero = new Hero(0, 0, (screenWidth * 0.035), (screenHeight * 0.063));
         hero.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(hero, "src/main/resources/assets/Hero.png"), new HealthComponent(), new CollidableComponent(), new WeaponComponent(sword));
-        // hero.addWeapon(sword);
 
 		Enemy monster = new Enemy(1000, 200, (screenWidth * 0.035), (screenHeight * 0.063));
-		monster.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(monster, "src/main/resources/assets/Beetle.png"), new HealthComponent(), new AIComponent(), new CollidableComponent());
+		monster.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(monster, "src/main/resources/assets/Beetle.png"), new HealthComponent(), new AIComponent(), new CollidableComponent(), new WeaponComponent(sword2));
 		
 		Enemy wolf = new Enemy(200.0, 300.0, (screenWidth * 0.035), (screenHeight * 0.063));
-		wolf.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(wolf, "src/main/resources/assets/Cyclops.png"), new HealthComponent(), new AIComponent(), new CollidableComponent());
+		wolf.addComponents(new PhysicsComponent(), new AttackComponent(), new RenderComponent(wolf, "src/main/resources/assets/Cyclops.png"), new HealthComponent(), new AIComponent(), new CollidableComponent(), new WeaponComponent(sword3));
 		
 		TileObject endPoint = new TileObject(1200, 900, (screenWidth * 0.035), (screenHeight * 0.063));
 		endPoint.addComponents(new RenderComponent(endPoint, "src/main/resources/assets/Door.png"), new CollidableComponent(), new EndPointComponent());

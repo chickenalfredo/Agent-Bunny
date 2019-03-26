@@ -20,6 +20,9 @@ import core.command.Command;
 import core.screens.ScreenBuilder;
 import core.sprite.World;
 
+/**
+ * 
+ */
 public class GameScene {
 
     private static StackPane root;
@@ -34,14 +37,14 @@ public class GameScene {
     
 
     public static Scene display(World aWorld) {
-        if (aWorld == null) {
-            System.out.println("world is null");
-        }
-        if (aWorld.getEntities() == null) {
-            System.out.println("world has no entities");
-        }else {
-            System.out.println(aWorld.getHero().toString());
-        }
+        // if (aWorld == null) {
+        //     System.out.println("world is null");
+        // }
+        // if (aWorld.getEntities() == null) {
+        //     System.out.println("world has no entities");
+        // }else {
+        //     System.out.println(aWorld.getHero().toString());
+        // }
         world = aWorld;
         root = new StackPane();
         initScene();
@@ -58,12 +61,15 @@ public class GameScene {
                 if (world.getHero().getX() > (screenWidth / 2) - world.getHero().getWidth() / 2)
                     canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
-                world.update(gc);
+                world.update(gc, time);
             }
         }.start();
         return GameScene;
     }
 
+    /**
+     * 
+     */
     public static class GameLoop implements EventHandler<KeyEvent> {
         public void handle(KeyEvent event) {
             Command command = inputHandler.handleInput(event);
@@ -94,14 +100,26 @@ public class GameScene {
         GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
     }
 
+    /**
+     * 
+     * @return
+     */
     public static Scene getScene() {
         return GameScene;
     }
 
+    /**
+     * 
+     * @return
+     */
     public static Pane getRoot() {
         return root;
     }
 
+    /**
+     * 
+     * @param toAdd
+     */
     public static void addToRoot(Node toAdd) {
         gameMenu = (HBox)toAdd;
         root.getChildren().add(gameMenu);
@@ -109,10 +127,17 @@ public class GameScene {
         gameMenu.setAlignment(Pos.CENTER);    
     }
 
+    /**
+     * 
+     */
     public static void removeGameMenu() {
         root.getChildren().remove(gameMenu);
     }
 
+    /**
+     * 
+     * @return
+     */
     public static HBox getGameMenu() {
         return gameMenu;
     }

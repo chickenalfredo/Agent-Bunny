@@ -13,6 +13,9 @@ import javafx.scene.input.KeyEvent;
 import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 
+/**
+ * 
+ */
 public class GameSettings {
 
     private static Scene GameSettings;
@@ -20,6 +23,10 @@ public class GameSettings {
     private static VBox mainMenu;
     private static VBox graphicsMenu;
 
+    /**
+     * 
+     * @return
+     */
     public static Scene display() {
         menu = mainMenu();
         GameSettings = new Scene(menu);
@@ -29,6 +36,9 @@ public class GameSettings {
         return GameSettings;
     }
 
+    /**
+     * 
+     */
     public static class EscKey implements EventHandler<KeyEvent> {
         public void handle(KeyEvent key) {
             if (key.getCode() == KeyCode.ESCAPE) {
@@ -43,6 +53,10 @@ public class GameSettings {
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     static public HBox mainMenu() {
         if (App.getGameWindow().getScene() == GameScene.getScene()) {
             Button resumeGame = new Button("Resume Game");
@@ -69,6 +83,9 @@ public class GameSettings {
         return menu;
     }
 
+    /**
+     * 
+     */
     public static void graphicsMenu() {
 
         CheckBox fullscreen = new CheckBox("Toggle Fullscreen");
@@ -105,14 +122,26 @@ public class GameSettings {
         }
     }
 
+    /**
+     * 
+     * @return
+     */
     public static Scene getScene() {
         return GameSettings;
     }
 
+    /**
+     * 
+     * @param scene
+     */
     public static void setScene(Scene scene) {
         GameSettings = scene;
     }
 
+    /**
+     * 
+     * @return
+     */
     public static HBox getMenu() {
         return menu;
     }
