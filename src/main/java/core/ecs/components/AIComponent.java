@@ -7,7 +7,7 @@ import core.ecs.Component;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class AIComponent extends Component {
+public class AIComponent extends Component implements Serializable {
 
     public AIComponent() {}
 

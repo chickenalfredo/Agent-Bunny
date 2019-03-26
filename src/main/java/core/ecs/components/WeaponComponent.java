@@ -8,7 +8,7 @@ import core.sprite.Sprite;
 import core.sprite.Weapon;
 import javafx.scene.canvas.GraphicsContext;
 
-public class WeaponComponent extends Component {
+public class WeaponComponent extends Component implements Serializable {
 
     private ArrayList<Weapon> m_weapons = new ArrayList<Weapon>();
 

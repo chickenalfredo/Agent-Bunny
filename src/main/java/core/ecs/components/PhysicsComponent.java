@@ -13,7 +13,7 @@ import core.sprite.World;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class PhysicsComponent extends Component {
+public class PhysicsComponent extends Component implements Serializable {
 
     private double velocityX = 0.0f;
     private double velocityY = 0.0f;

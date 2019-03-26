@@ -9,7 +9,7 @@ import core.sprite.World;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class EndPointComponent extends Component {
+public class EndPointComponent extends Component implements Serializable {
 
     public EndPointComponent() {}
 

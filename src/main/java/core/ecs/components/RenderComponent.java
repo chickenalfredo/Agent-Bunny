@@ -11,17 +11,24 @@ import javafx.scene.image.Image;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class RenderComponent extends Component {
+public class RenderComponent extends Component implements Serializable {
 
-    private Image image;
+    private transient Image image;
+    private String fileName;
 
     public RenderComponent(Sprite actor, String filename) {
         setImage(actor, filename);
+        this.fileName = filename;
     }
 
-    public void update(Sprite actor, GraphicsContext gc) {}
+    public void update(Sprite actor, GraphicsContext gc) {
+        System.out.println("updated");
+    }
 
     public void render(Sprite actor, GraphicsContext gc) {
+        if (image == null) {
+        setImage(actor, fileName);
+        }
         gc.drawImage(image, actor.getX(), actor.getY());
     }
 

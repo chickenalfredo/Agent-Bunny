@@ -9,7 +9,7 @@ import core.sprite.World;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class CollidableComponent extends Component {
+public class CollidableComponent extends Component implements Serializable {
 
     public CollidableComponent() {}
 

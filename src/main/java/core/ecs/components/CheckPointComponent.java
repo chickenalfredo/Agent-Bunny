@@ -7,7 +7,7 @@ import core.ecs.Component;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class CheckPointComponent extends Component {
+public class CheckPointComponent extends Component implements Serializable {
 
     public CheckPointComponent() {}
 

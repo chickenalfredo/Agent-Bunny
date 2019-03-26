@@ -11,7 +11,7 @@ import core.sprite.Sprite;
 import core.sprite.Weapon;
 import core.sprite.World;
 
-public class AttackComponent extends Component {
+public class AttackComponent extends Component implements Serializable {
 
     private double attackPower;
     private Sprite collider;
