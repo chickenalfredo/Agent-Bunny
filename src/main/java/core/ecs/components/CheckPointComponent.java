@@ -32,7 +32,5 @@ public class CheckPointComponent extends Component {
     public void render(Sprite actor, GraphicsContext gc, long delta) {
 
     }
-
-
     
 }

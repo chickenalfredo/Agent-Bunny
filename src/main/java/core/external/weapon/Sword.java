@@ -25,7 +25,7 @@ public class Sword extends Melee {
      * 
      * @return
      */
-    public double getSwordBaseDamage() {
+    public double getBaseDamage() {
         return SWORD_BASE_DAMAGE;
     }
 
