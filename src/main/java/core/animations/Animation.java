@@ -34,21 +34,21 @@ public class Animation {
             this.width = (actor.getWidth() - offsetX) / numOfColumns;
             this.height = (actor.getHeight() - offsetY) / numOfRows;
             if (action.equalsIgnoreCase("attack")) {
-                this.row = 0;
-                this.column = 0;
-                this.numOfFrames = 0;
+                this.row = 5;
+                this.column = 5;
+                this.numOfFrames = 8;
             }else if (action.equalsIgnoreCase("run")) {
-                this.row = 0;
+                this.row = 1;
                 this.column = 0;
-                this.numOfFrames = 0;
+                this.numOfFrames = 6;
             }else if (action.equalsIgnoreCase("jump")) {
-                this.row = 0;
+                this.row = 1;
                 this.column = 0;
-                this.numOfFrames = 0;
+                this.numOfFrames = 8;
             }}else if (action.equalsIgnoreCase("idle")) {
                 this.row = 0;
                 this.column = 0;
-                this.numOfFrames = 0;
+                this.numOfFrames = 4;
             
         } else if (actor instanceof Enemy) {}
         
@@ -93,7 +93,7 @@ public class Animation {
                 this.row += 1;
                 column = 0;
             } else {
-                this.column = this.column + 1;
+                this.column = this.column + 1; 
             }
             try {
                 Thread.sleep(4000 / numOfFrames);
