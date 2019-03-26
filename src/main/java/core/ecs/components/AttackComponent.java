@@ -1,5 +1,7 @@
 package core.ecs.components;
 
+import java.io.Serializable;
+
 import core.ecs.Component;
 import core.math.Collision;
 import core.sprite.Entity;
@@ -8,11 +10,9 @@ import core.sprite.Weapon;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
 
-/**
- * 
- */
-public class AttackComponent extends Component {
+public class AttackComponent extends Component implements Serializable {
 
+    private static final long serialVersionUID = 3268417276316679100L;
     private double attackPower;
     private Sprite collider, actor;
     private WeaponComponent weaponComponent;

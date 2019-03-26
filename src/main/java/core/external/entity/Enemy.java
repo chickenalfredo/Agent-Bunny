@@ -1,5 +1,7 @@
 package core.external.entity;
 
+import java.io.Serializable;
+
 import core.sprite.Entity;
 
 /**
@@ -8,7 +10,9 @@ import core.sprite.Entity;
  * 
  * @author Harry Lee
  */
-public class Enemy extends Entity {
+public class Enemy extends Entity implements Serializable {
+
+    private static final long serialVersionUID = 2769579462364610950L;
 
     /**
      * This is the constructor for this class that extends from Entity class.

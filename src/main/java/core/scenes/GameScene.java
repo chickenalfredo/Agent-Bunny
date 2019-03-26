@@ -7,13 +7,15 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ProgressBar;
 import core.utils.InputHandler;
 import java.io.File;
-
+import javafx.scene.shape.Rectangle;
 import core.command.Command;
 import core.screens.ScreenBuilder;
 import core.sprite.World;
@@ -26,27 +28,27 @@ public class GameScene {
     private static StackPane root;
     private static HBox gameMenu;
     private static Scene GameScene;
+    private static Canvas canvas;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
-    private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
-    private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
+    public static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
+    public static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
     private static World world;
-    /**
-     * 
-     * @return
-     */
-    public static Scene display() {
-        world = new World();
-        root = initScene();
-        Pane camera = new Pane();
-        root.getChildren().add(camera);
+    
 
-        GameScene = new Scene(root);
-        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
-
-        Canvas canvas = new Canvas(3 * screenWidth, screenHeight);
-        camera.getChildren().add(canvas);
-        gc = canvas.getGraphicsContext2D();
+    public static Scene display(World aWorld) {
+        // if (aWorld == null) {
+        //     System.out.println("world is null");
+        // }
+        // if (aWorld.getEntities() == null) {
+        //     System.out.println("world has no entities");
+        // }else {
+        //     System.out.println(aWorld.getHero().toString());
+        // }
+        world = aWorld;
+        root = new StackPane();
+        initScene();
+        
 
         System.out.println(screenWidth + ": " + screenWidth * 0.031);
         System.out.println(screenHeight + ": " + screenHeight * 0.057);
@@ -77,13 +79,25 @@ public class GameScene {
         }
     }
 
-    /**
-     * 
-     * @return
-     */
-    public static StackPane initScene() {
-        StackPane gameUI = new StackPane();
-        return gameUI;
+    public static void initScene() {
+        Pane camera = new Pane();
+        
+
+        root.getChildren().add(camera);
+
+        canvas = new Canvas(3 * screenWidth, screenHeight);
+        camera.getChildren().add(canvas);
+        gc = canvas.getGraphicsContext2D();
+
+        gc.strokeText("hi", 150, 100);
+        
+        //StackPane healthBar = new StackPane(world.getHero().getComponent("HealthComponent", HealthComponent.class).getHealthBar(), world.getHero().getComponent("HealthComponent", HealthComponent.class).getHealthDisplay());
+        //healthBar.setAlignment(Pos.TOP_LEFT);
+       // root.getChildren().add(healthBar);
+
+
+        GameScene = new Scene(root);
+        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
     }
 
     /**
@@ -127,5 +141,11 @@ public class GameScene {
     public static HBox getGameMenu() {
         return gameMenu;
     }
-    
+
+    /**
+     * @return the world
+     */
+    public static World getWorld() {
+        return world;
+    }
 }
