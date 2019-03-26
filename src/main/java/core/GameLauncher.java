@@ -18,6 +18,8 @@ public class GameLauncher {
             System.out.println("Please enter a valid input:");
             main(null);
         }
+
+        input.close();
     }
     
 }

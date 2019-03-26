@@ -1,14 +1,12 @@
 package core.sprite;
 
-import core.components.GraphicsComponent;
-import core.components.PhysicsComponent;
+import core.ecs.Component;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 
-import java.util.List;
+import java.io.Serializable;
+import java.util.ArrayList;
 
 import com.google.gson.GsonBuilder;
-import java.io.FileInputStream;
 
 /**
  * Holds data for goemetry and textures for drawing sprites on the screen. A
@@ -18,14 +16,12 @@ import java.io.FileInputStream;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite {
+public abstract class Sprite implements Serializable{
 
     private Coordinate coordinate = new Coordinate();
     private double width, height;
     private char terminalChar;
-    private Image image;
-    private PhysicsComponent physics = new PhysicsComponent();
-    private GraphicsComponent graphics = new GraphicsComponent();
+    private ArrayList<Component> m_components = new ArrayList<Component>();
 
     /**
      * Constructs and initializes a Sprite with specified position and size.
@@ -41,75 +37,13 @@ public abstract class Sprite {
      * @param height
      *                   - The height of the Sprites bounding rectangle
      */
+
+    public Sprite() {}
+    
     public Sprite(double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
         this.width = width;
         this.height = height;
-    }
-
-    /**
-     * 
-     */
-    public Sprite(double x, double y) {
-        coordinate = new Coordinate(x, y);
-    }
-
-    /**
-     * 
-     */
-    public Sprite(double x, double y, double width, double height, String image) {
-        coordinate = new Coordinate(x, y);
-        this.width = width;
-        this.height = height;
-        setImage(image);
-    }
-
-    /**
-     * 
-     */
-    public Sprite(double x, double y, String image) {
-        coordinate = new Coordinate(x, y);
-        setImage(image);
-    }
-
-    /**
-     * @return the image
-     */
-    public Image getImage() {
-        return image;
-    }
-
-    /**
-     * 
-     */
-    public PhysicsComponent getPhysicsComponent() {
-        return physics;
-    }
-
-    /**
-     * @param image the image to set
-     */
-    public void setImage(Image image) {
-        this.image = image;
-    }
-
-    /**
-     * 
-     */
-    public void setImage(String filename) {
-        try {
-            Image i = new Image(new FileInputStream(filename), this.getWidth(), this.getHeight(), false, true);
-            setImage(i);
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    /**
-     * 
-     */
-    public void update(List<Sprite> world, GraphicsContext gc) {
-        graphics.update(this, gc);
     }
 
     /**
@@ -123,6 +57,53 @@ public abstract class Sprite {
         coordinate.setLocation(sprite.getCoordinate());
         width = sprite.width;
         height = sprite.height;
+    }
+
+    /**
+     * 
+     * @param world
+     */
+    public void update(World world) {
+        for (Component c : m_components) {
+            c.update(this, world);
+        }
+    }
+
+    /**
+     * 
+     * @param gc
+     * @param delta
+     */
+    public void render(GraphicsContext gc, long delta) {
+        for (Component c : m_components) {
+            c.render(this, gc, delta);
+        }
+    }
+
+    /**
+     * 
+     * @param component
+     */
+    public void addComponents(Component... component) {
+        for (Component c : component) {
+            m_components.add(c);
+        }
+    }
+
+    /**
+     * 
+     * @param <T>
+     * @param componentName
+     * @param type
+     * @return
+     */
+    public <T extends Component> T getComponent(String componentName, Class<T> type) {
+        for (Component c : m_components) {
+            if (c.getClass().getSimpleName().toString().equals(componentName)) {
+                return type.cast(c);
+            }
+        }
+        return null;
     }
 
     /**
@@ -193,6 +174,7 @@ public abstract class Sprite {
 
     /**
      * 
+     * @param width
      */
     public void setWidth(double width) {
         this.width = width;
@@ -200,6 +182,7 @@ public abstract class Sprite {
 
     /**
      * 
+     * @param height
      */
     public void setHeight(double height) {
         this.height = height;
@@ -220,6 +203,7 @@ public abstract class Sprite {
 
     /**
      * 
+     * @param x
      */
     public void setX(double x) {
         coordinate.setX(x);
@@ -227,6 +211,7 @@ public abstract class Sprite {
 
     /**
      * 
+     * @param y
      */
     public void setY(double y) {
         coordinate.setY(y);
@@ -240,10 +225,6 @@ public abstract class Sprite {
      */
     public void setTerminalChar(char terminalChar) {
         this.terminalChar = terminalChar;
-    }
-
-    public GraphicsComponent getGraphicsComponent() {
-        return graphics;
     }
 
     /*

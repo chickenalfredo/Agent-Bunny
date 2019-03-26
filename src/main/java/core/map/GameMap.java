@@ -1,9 +1,8 @@
 package core.map;
 
-import java.util.List;
+import java.io.Serializable;
 import java.util.ArrayList;
 
-import core.external.tile.Wall;
 import core.sprite.*;
 
 /**
@@ -15,9 +14,9 @@ import core.sprite.*;
  *                   name of the level
  */
 
-public class GameMap {
+public class GameMap implements Serializable {
 
-	private List<Sprite> sprite = new ArrayList<Sprite>();
+	private ArrayList<Sprite> sprite = new ArrayList<Sprite>();
 	private Sprite checkPoint;
 	private String name;
 	private int highestGamePoint;
@@ -27,6 +26,10 @@ public class GameMap {
 
 	public GameMap() {}
 
+    /**
+     * 
+     * @param name
+     */
 	public GameMap(String name) {
 		this.name = name;
 	}
@@ -36,7 +39,7 @@ public class GameMap {
 	 * 
 	 * @return List<Sprite> - all sprite in the map
 	 */
-	public List<Sprite> getSprite() {
+	public ArrayList<Sprite> getSprites() {
 		return new ArrayList<Sprite>(this.sprite);
 	}
 
@@ -83,15 +86,21 @@ public class GameMap {
 		return ret;
 	}
 
+    /**
+     * 
+     */
 	private void setSpritesOnTerminalMap() {
-		for (Sprite each : sprite) {
-			Coordinate currentCoord = each.getCoordinate();
-			int columnY = (int) (currentCoord.getY() / 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
-			int rowX = (int) (currentCoord.getX() / 5);
-			map[columnY][rowX] = each.getTerminalChar();
-		}
+		// for (Sprite each : sprite) {
+		// 	Coordinate currentCoord = each.getCoordinate();
+		// 	int columnY = (int) (currentCoord.getY() / 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
+		// 	int rowX = (int) (currentCoord.getX() / 5);
+		// 	map[columnY][rowX] = each.getTerminalChar();
+		// }
 	}
 
+    /**
+     * 
+     */
 	private void setTerminalMap() {
 		map = new char[ROW][COLUMN];
 		for (int i = 0; i < ROW; i++) {
@@ -101,15 +110,18 @@ public class GameMap {
 		}
 	}
 
+    /**
+     * 
+     */
 	private void generateTerminalBounds() {
-		for (int i = 0; i < COLUMN; i++) {
-			addSprite(new Wall(i*5, 0, 5.0, 5.0));
-			addSprite(new Wall((i)*5, (ROW-1)*5, 5.0, 5.0));
-		}
-		for (int i = 0; i < ROW; i++) {
-			addSprite(new Wall(0, i*5, 5.0, 5.0));
-			addSprite(new Wall((COLUMN-1)*5, (i)*5, 5.0, 5.0));
-		}
+		// for (int i = 0; i < COLUMN; i++) {
+		// 	addSprite(new Wall(i*5, 0, 5.0, 5.0));
+		// 	addSprite(new Wall((i)*5, (ROW-1)*5, 5.0, 5.0));
+		// }
+		// for (int i = 0; i < ROW; i++) {
+		// 	addSprite(new Wall(0, i*5, 5.0, 5.0));
+		// 	addSprite(new Wall((COLUMN-1)*5, (i)*5, 5.0, 5.0));
+		// }
 	}
 
 	/**
