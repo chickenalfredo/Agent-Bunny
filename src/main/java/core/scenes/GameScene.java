@@ -15,7 +15,6 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.ProgressBar;
 import core.utils.InputHandler;
 import java.io.File;
-import javafx.scene.shape.Rectangle;
 import core.command.Command;
 import core.screens.ScreenBuilder;
 import core.sprite.World;
