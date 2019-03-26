@@ -1,7 +1,7 @@
 <html>
 	<head>
 		<title>Level Editor - Cloudy Yunfan</title>
-		<script src="http://hit.uju.ng/jquery-3.2.1.min.js?1.7"></script>
+		<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 		<script src="https://unpkg.com/feather-icons"></script>
 		<style>
 			body{
@@ -86,6 +86,7 @@
 				background-color: transparent;
 				margin: 5px;
 				overflow: hidden;
+				cursor: pointer;
 			}
 
 			.btn:hover{
@@ -117,14 +118,15 @@
 				position: relative;
 				width: 100%;
 				height: 100%;
-				min-width: 34px;
-				min-height: 34px;
+				width: 34px;
+				height: 34px;
 				outline: none !important;
 				border: 0.25px dashed #e5e5e5;
 				background-color: #fcfcfc;
 				margin: 0px;
 				padding: 0px;
 			}
+
 
 			.block img{
 				margin: 0px;
@@ -175,11 +177,11 @@
 		<div class="header">
 			<div class="btn-wrapper">
 				<!--<button class="btn btn-main" disabled><i data-feather="rotate-ccw"></i></button>-->
-				<button class="btn btn-main" id="clear-map"><i data-feather="trash-2"></i></button>
-				<button class="btn btn-main" id="pen-tool"><i data-feather="pen-tool"></i></button>
-				<button class="btn btn-main" id="map-setting"><i data-feather="settings"></i></button>
-				<button class="btn btn-main" id="generate-map"><i data-feather="code"></i></button>
-				<button class="btn btn-main" id="edit-map"><i data-feather="map"></i></button>
+				<button class="btn btn-main" id="clear-map" title="Clear Map"><i data-feather="trash-2"></i></button>
+				<button class="btn btn-main" id="pen-tool" title="Pen Tool"><i data-feather="pen-tool"></i></button>
+				<button class="btn btn-main" id="map-setting" title="Map Size"><i data-feather="settings"></i></button>
+				<button class="btn btn-main" id="generate-map" title="Java Code"><i data-feather="code"></i></button>
+				<button class="btn btn-main" id="edit-map" title="Map Design"><i data-feather="map"></i></button>
 			</div>
 		</div>
 
@@ -230,7 +232,7 @@
 			var w = 30;
 			var down = false; // mouse down
 			var mapJson = {};
-			var pen_tool = {'path':'', 'jPath': '', 'sprite_components': [], 'size': []};
+			var pen_tool = {'jPath': '', 'sprite_components': [], 'size': []};
 
 			const ASSETS_DIRECTORY = '../resources/assets/';
 
@@ -240,7 +242,7 @@
 				},
 				"Block": {
 					"grass4": [1, 2, 3, 4],
-					"floatblock": ["left", "middle_1", "middle_2", "right"],
+					"floatblock": {"left": null, "middle": [1, 2], "right": null},
 				},
 				"CheckPoint":{
 					"checkpoint": [1, 2],
@@ -257,50 +259,64 @@
 			$('#pen-tool-float-select-wrapper').html('');
 
 			var pen_tool_increment = 0;
-			for(each in spriteDirectoryList){
-				var path = '';
-				for(each2 in spriteDirectoryList[each]){
-					for(each33 of spriteDirectoryList[each][each2]){
+			readSpriteDirectory2PenTool(Array(), spriteDirectoryList);
+			function readSpriteDirectory2PenTool(spriteComponents, directoryArray){
 
-						var bWidth = 0;
-						var bHeight = 0;
-						var each3 = '';
-
-						if(each33 instanceof Array){
-							each3 = each33[0];
-							bWidth = each33[1];
-							bHeight = each33[2];
-							console.log(bWidth);
-						}else{
-							each3 = each33;
-							bWidth = 1;
-							bHeight = 1;
-						}
-
-						path = ASSETS_DIRECTORY + each + '_' + each2 + '_' + each3 + '.png';
-						jPath = each + '_' + each2 + '_' + each3 + '.png';
-
-						$('#pen-tool-float-select-wrapper').append('<button class="btn btn-main btn-pen-tool-select" id="' + each + '_' + each2 + '_' + each3 + '" title="' + each + ' ' + each2 + ' ' + each33 + '"><img class="btn-image" src="' + path + '" jClass="' + each + '" jType="' + each2 + '" jNumber="' + each3 + '" bWidth="' + bWidth + '" bHeight="' + bHeight + '" jPath="' + jPath + '"></button>');
-					}
+				if(spriteComponents.length == 2){
+					console.log(spriteComponents);
 					pen_tool_increment ++;
-					$('#pen-tool-float-select-wrapper').append('<div class="float-select-hr" id="pen_tool_hr_' + pen_tool_increment + '"></div>');
+			 		$('#pen-tool-float-select-wrapper').append('<div class="float-select-hr" id="pen_tool_hr_' + pen_tool_increment + '"></div>');
 				}
+
+
+				if(directoryArray instanceof Array || directoryArray == null){
+
+					if(directoryArray == null){
+						directoryArray = [-9999];
+					}
+
+					for(each of directoryArray){
+
+						var newSpriteComponents = JSON.parse(JSON.stringify(spriteComponents));
+						if(each != -9999){
+							newSpriteComponents.push(each);
+						}
+						
+						console.log(newSpriteComponents);
+						var id = newSpriteComponents.join('_');
+						var title = newSpriteComponents.join(' ');
+						var jPath = id + '.png';
+						var path = ASSETS_DIRECTORY + jPath;
+					
+						var bWidth = 1;
+		 				var bHeight = 1;
+
+						$('#pen-tool-float-select-wrapper').append('<button class="btn btn-main btn-pen-tool-select" id="' + id + '" title="' + title + '" bWidth="' + bWidth + '" bHeight="' + bHeight + '" jPath="' + jPath + '"><img class="btn-image" src="' + path + '"></button>');
+					}
+
+					return;
+				}
+
+
+				for(each in directoryArray){
+					var newSpriteComponents = JSON.parse(JSON.stringify(spriteComponents));
+					newSpriteComponents.push(each);
+					readSpriteDirectory2PenTool(newSpriteComponents, directoryArray[each]);
+				}
+
 			}
 
-			$('#pen_tool_hr_' + pen_tool_increment).hide();
+			$('#pen_tool_hr_1').hide();
 
 
 			$('.btn-pen-tool-select').click(function(){
 				$('.btn-pen-tool-select').removeAttr('select');
 				$('#pen-tool-float-select').offset({left: 0, top: 0});
 				$('#pen-tool-float-select').hide();
-				pen_tool['path'] = $(this).find("img").attr('src');
-				pen_tool['jPath'] = $(this).find("img").attr('jPath');
-				pen_tool['sprite_components'][0] = $(this).find("img").attr('jClass');
-				pen_tool['sprite_components'][1] = $(this).find("img").attr('jType');
-				pen_tool['sprite_components'][2] = $(this).find("img").attr('jNumber');
-				pen_tool['size'][0] = $(this).find("img").attr('bWidth');
-				pen_tool['size'][1] = $(this).find("img").attr('bHeight');
+				pen_tool['jPath'] = $(this).attr('jPath');
+				pen_tool['sprite_components'] = $(this).attr('id').split('_');
+				pen_tool['size'][0] = $(this).attr('bWidth') * 1;
+				pen_tool['size'][1] = $(this).attr('bHeight') * 1;
 				$(this).attr('select', 'true');
 				console.log(pen_tool);
 			});
@@ -356,7 +372,7 @@
 						if(mapJson['block'][t][i] == null){
 							inside += '<td><button class="block" id="h' + t + 'w' + i + '" x="' + t + '" y="' + i + '"></button></td>';
 						}else{
-							inside += '<td><button class="block" id="h' + t + 'w' + i + '" x="' + t + '" y="' + i + '"><img class="btn-block" src="' + mapJson['block'][t][i]['path'] + '"></img></button></td>';
+							inside += '<td><button class="block" id="h' + t + 'w' + i + '" x="' + t + '" y="' + i + '" none_border="true"><img class="btn-block" src="' + ASSETS_DIRECTORY + mapJson['block'][t][i]['jPath'] + '"></img></button></td>';
 						}
 					}
 					$('#map').append('<tr id="h' + t + '">' + inside + '</tr>');
@@ -383,39 +399,18 @@
 					var x = parseInt($(this).attr('x'));
 					var y = parseInt($(this).attr('y'));
 					
-
 					if(pen_tool['sprite_components'][0] == 'Eraser'){
 						$(this).html('');
 						$(this).removeAttr('none_border');
 						mapJson['block'][x][y] = null;
 					}else{
 						$(this).html('');
-						$(this).html('<img class="btn-block" src="' + pen_tool['path'] + '"></img>');
+						$(this).html('<img class="btn-block" src="' + ASSETS_DIRECTORY + pen_tool['jPath'] + '"></img>');
 						$(this).attr('none_border', 'true');
 						mapJson['block'][x][y] = JSON.parse(JSON.stringify(pen_tool));
 					}
 
-					// var bWidth = parseInt(pen_tool['size'][0]);
-					// var bHeight = parseInt(pen_tool['size'][1]);
-
-					//$(this).parent().attr('colspan', bWidth);
-					//$(this).parent().attr('rowspan', bHeight);
-
-					// console.log(bWidth, bHeight);
-
-					/**
-					for(var t = 0; t < bWidth; t ++){
-						for(var t2 = 0; t2 < bHeight; t2 ++){
-							var selector = "#h" + (x + t) + "w" + (y + t2);
-							if(selector != '#' + this.id){
-								$(selector).parent().hide();
-								$(selector).attr('spanX', x);
-								$(selector).attr('spanY', y);
-							}
-							console.log(selector, this.id);
-						}
-					}
-					**/
+					coalesceBlocks();
 
 				});
 
@@ -431,10 +426,15 @@
 					$(this).click();
 				});
 
+				$('.block').mouseup(function(){
+					coalesceBlocks();
+				});
+
 				
 
 				$("#map-container").mouseenter(function(){
 					down = false;
+					coalesceBlocks();
 				},function(){
 					
 				})
@@ -462,6 +462,58 @@
 					drawNewMap();
 				}
 			});
+
+
+			// This function is for coalesce blocks to beautify map
+			function coalesceBlocks(){
+
+				for(var t = 0; t < h; t ++){
+					for(var i = 0; i < w; i ++){
+						var each = mapJson['block'][t][i];
+						var next = mapJson['block'][t][i + 1];
+
+						if(each == null || next == null || next == undefined || each['sprite_components'].length != next['sprite_components'].length){
+							continue;
+						}
+
+						var componentDifferentDepth = 0;
+						for(comp in each['sprite_components']){
+							if(each['sprite_components'][comp] != next['sprite_components'][comp]){
+								componentDifferentDepth ++;
+							}
+						}
+
+						if(componentDifferentDepth > 1){
+							continue;
+						}
+
+
+						var listArray = spriteDirectoryList;
+						for(every of each['sprite_components']){
+							if(listArray[every] == undefined || listArray instanceof Array){
+								continue;
+							}
+							listArray = listArray[every];
+						}
+
+						var compsLength = listArray.length;
+						var eachCompsLength = each['sprite_components'].length;
+						var eachIndex = listArray.indexOf(1 * each['sprite_components'][eachCompsLength - 1]);
+						var nextIndex = (eachIndex + 1) % compsLength;
+
+						next['sprite_components'][eachCompsLength - 1] = "" + listArray[nextIndex];
+						next['jPath'] = next['sprite_components'].join('_') + '.png';
+						$('#h' + t + 'w' + (i + 1)).find('img').attr('src', ASSETS_DIRECTORY + next['jPath']);
+
+					}
+				}
+
+			}
+
+
+
+
+
 
 
 			function generateJava(){
@@ -532,10 +584,6 @@ public class LevelName extends GameMap {\n\
 
 						var block = mapThis['sprite_components'][0];
 						var nameVar = mapThis['sprite_components'][1] + varIncrement;
-						var width = mapThis['size'][0];
-						var height = mapThis['size'][1];
-						var left = i;
-						var top = t;
 						var imgPath = mapThis['jPath'];
 
 						var newObject = 'TileObject';
@@ -567,9 +615,19 @@ public class LevelName extends GameMap {\n\
 							paramComponents += ', ' + comp;
 						}
 
+						// relative position and size
+
+						var editorSize = 34; // tile size set in style sheet 34px
+						var screenSize = 50; // screen tile size 50px
+
+						var width = '(' + mapThis['size'][0] + ' / ' + w + ') * (' + screenSize + ' / ' + editorSize + ') * (screenWidth / ' + screenSize + ') * ' + screenSize;
+						var height = '(' + mapThis['size'][1] + ' / ' + h + ') * (' + screenSize + ' / ' + editorSize + ') * (screenWidth / ' + screenSize + ') * ' + screenSize;
+						var left = '(' + i + ' / ' + w + ') * (' + screenSize + ' / ' + editorSize + ') * (screenWidth / ' + screenSize + ') * ' + screenSize;
+						var top = '(' + t + ' / ' + h + ') * (' + screenSize + ' / ' + editorSize + ') * (screenHeight / ' + screenSize + ') * ' + screenSize;
+
+
 						tiles_lines += '\n\
-		\n\
-		TileObject ' + nameVar + ' = new ' + newObject + '(' + top + ' * 50, ' + left + ' * 50, ' + height + ' * 50, ' + width + ' * 50);\n\
+		TileObject ' + nameVar + ' = new ' + newObject + '(' + top + ', ' + left + ', ' + height + ' * 50, ' + width + ' * 50);\n\
 		' + nameVar + '.addComponents(new RenderComponent(' + nameVar + ', "src/main/resources/assets/' + imgPath + '") ' + paramComponents + ');\n\
 		sprites.add(' + nameVar + ');\n\
 		\n\
