@@ -1,11 +1,9 @@
 package core;
 
-import core.sprite.*;
 import core.map.*;
-import core.external.entity.*;
+import core.sprite.World;
 import core.external.level.*;
 import java.util.Scanner;
-import java.util.List;
 
 /**
  * Terminal output for Demo 1
@@ -15,43 +13,16 @@ import java.util.List;
  */
 public class GameTerminal {
 
-    private static GameMap level1;
+    private static World world;
 
     /**
      * Print string to the terminal
      */
     public static boolean print() {
-        List<Sprite> sprite = level1.getSprite();
-        Scanner userInput = new Scanner(System.in);
-        Hero player = new Hero(0.0, 0.0, 5.0, 5.0);
-
-        for (Sprite each : sprite) {
-            if (each instanceof Hero) {
-                player = (Hero) each;
-            }
-        }
-
-
-        System.out.println(getDisplay());
+        init();
         printMessage();
-        String key = userInput.nextLine();
 
-        // if (input.isSimulationInput(key)) {
-        //     if (input.simulateCollision(player, sprite)) {
-        //         System.out.println("Collision detected");
-        //     } else {
-        //         System.out.println("No Collision");
-        //         player.move(key);
-        //     }
-        // } else if (key.equalsIgnoreCase("e")) {
-        //     System.exit(0);
-        // } else if (key.equalsIgnoreCase("c")) {
-        //     System.out.println("Checkpoint not yet implemented");
-        // } else if (key.equalsIgnoreCase("r")) {
-        //     System.out.println("Restart not yet implemented");
-        // } else {
-        //     System.out.println("Invalid Input");
-        // }
+        // TODO: Finish terminal version
 
         return true;
     }
@@ -77,7 +48,6 @@ public class GameTerminal {
         str += "********************************\n";
         str += "********************************\n";
         System.out.println(str);
-        level1 = new Chapter1Level1();
     }
 
     /**
@@ -102,7 +72,11 @@ public class GameTerminal {
      * @return String - get terminal string to be print on the terminal
      */
     public static String getDisplay() {
-        return level1.generateMapTerminal();
+        return "";
     }
-    
+
+    private static void init() {
+        world = new World();
+    }
+
 }

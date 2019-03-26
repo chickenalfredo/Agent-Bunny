@@ -1,0 +1,609 @@
+<html>
+	<head>
+		<title>Level Editor - Cloudy Yunfan</title>
+		<script src="http://hit.uju.ng/jquery-3.2.1.min.js?1.7"></script>
+		<script src="https://unpkg.com/feather-icons"></script>
+		<style>
+			body{
+				background-color: #f7f9fc;
+				padding: 0px;
+				margin: 0px;
+			}
+
+
+			td{
+				background: #ededed;
+				padding: 0px;
+				margin: 0px;
+			}
+
+			.header{
+				height: 80px;
+				position: fixed;
+				width: 100%;
+				background: #fff;
+				box-shadow: 0px 0px 20px #ededed;
+				z-index: 998;
+			}
+
+			.float-select{
+				position: fixed;
+				background-color: #fff;
+				box-shadow: 0px 0px 8px #f2f2f2;
+				top: 0px;
+				left: 0px;
+				width: 64px;
+				z-index: 999;
+				border-radius: 50px;
+				height: 60%;
+				overflow: hidden;
+			}
+
+			.float-select-wrapper{
+				overflow-x: hidden;
+				overflow-y: scroll;
+				width: calc(100% + 17px);
+				position: relative;
+				height: 100%;
+				margin: 0px;
+			}
+
+			#map-margin{
+				margin-top: -10%;
+				padding: 20%;
+				position: absolute;
+			}
+
+			#map{
+				padding: 0px;
+				margin: 0px;
+				width: auto;
+				border-collapse: collapse;
+				box-shadow: 0px 0px 20px #ededed;
+			}
+
+			#map-container{
+				overflow: scroll;
+				position: fixed;
+				height: calc(100% - 80px);
+				width: 100%;
+				top: 80px;
+				padding: 0px;
+			}
+
+			#generate-java-code{
+				top: 80px;
+				height: calc(100% - 80px);
+				position: fixed;
+				width: 100%;
+			}
+
+			.btn{
+				outline: none !important;
+				border: none;
+				padding: 10px 15px;
+				transition: .2s all;
+				background-color: transparent;
+				margin: 5px;
+				overflow: hidden;
+			}
+
+			.btn:hover{
+				box-shadow: 0px 0px 8px #f2f2f2;
+				background-color: #f2f2f2;
+			}
+
+			.btn[disabled]{
+				color: #d3d3d3;
+				background-color: transparent;
+				box-shadow: none;
+			}
+
+			.btn-main{
+				border-radius: 50%;
+				padding: 15px;
+				height: 54px;
+				width: 54px;
+			}
+
+			.btn-wrapper{
+				position: absolute;
+				top: 50%;
+				left: 50%;
+				transform: translate(-50%, -50%);
+			}
+
+			.block{
+				position: relative;
+				width: 100%;
+				height: 100%;
+				min-width: 34px;
+				min-height: 34px;
+				outline: none !important;
+				border: 0.25px dashed #e5e5e5;
+				background-color: #fcfcfc;
+				margin: 0px;
+				padding: 0px;
+			}
+
+			.block img{
+				margin: 0px;
+			}
+
+			.btn-image{
+				height: 24px;
+				width: 24px;
+				top: 0px;
+				left: 0px;
+				margin: 0px;
+			}
+
+			.btn-block{
+				height: 100%;
+				width: 100%;
+				top: 0px;
+				left: 0px;
+				margin: 0px;
+				position: relative;
+			}
+
+			.float-select-hr{
+				width: 30%;
+				margin: 10px auto;
+				border: 0.5px solid #cecece;
+			}
+
+			.block[none_border=true]{
+				border: none !important; 
+			}
+
+			.btn-pen-tool-select[select=true]{
+				background-color: #eee;
+			}
+
+			#java-code{
+				width: 100%;
+				height: 100%;
+				font-family: 'Consolas';
+				font-weight: 100;
+			}
+
+		</style>
+	</head>
+	<body>
+
+		<div class="header">
+			<div class="btn-wrapper">
+				<!--<button class="btn btn-main" disabled><i data-feather="rotate-ccw"></i></button>-->
+				<button class="btn btn-main" id="clear-map"><i data-feather="trash-2"></i></button>
+				<button class="btn btn-main" id="pen-tool"><i data-feather="pen-tool"></i></button>
+				<button class="btn btn-main" id="map-setting"><i data-feather="settings"></i></button>
+				<button class="btn btn-main" id="generate-map"><i data-feather="code"></i></button>
+				<button class="btn btn-main" id="edit-map"><i data-feather="map"></i></button>
+			</div>
+		</div>
+
+		<div class="float-select" id="pen-tool-float-select">
+			<div class="float-select-wrapper" id="pen-tool-float-select-wrapper"></div>
+		</div>
+
+		<div id="map-container">
+			<div id="map-margin"><table id="map"></table></div>
+		</div>
+
+		<div id="generate-java-code">
+			<textarea id="java-code"></textarea>
+		</div>
+
+		<script>
+			$('.float-select').hide();
+			$('#generate-java-code').hide();
+			$('#edit-map').toggle();
+
+			$('#pen-tool').click(function(){
+				var offset = $(this).offset();
+				$('#pen-tool-float-select').offset({top: offset.top - 5, left: offset.left - 5});
+				$('#pen-tool-float-select').fadeIn(100);
+			});
+
+			$('#generate-map').click(function(){
+				$('#map-container').fadeOut(500);
+				$('#generate-java-code').fadeIn(500);
+				$('#edit-map').toggle();
+				$('#generate-map').toggle();
+				generateJava();
+			});
+
+			$('#edit-map').click(function(){
+				$('#edit-map').toggle();
+				$('#generate-map').toggle();
+				$('#generate-java-code').fadeOut(500);
+				$('#map-container').fadeIn(500);
+				drawCodeMap();
+			});
+
+		</script>
+
+
+		<script>
+			var h = 20;
+			var w = 30;
+			var down = false; // mouse down
+			var mapJson = {};
+			var pen_tool = {'path':'', 'jPath': '', 'sprite_components': [], 'size': []};
+
+			const ASSETS_DIRECTORY = '../resources/assets/';
+
+			var spriteDirectoryList = {
+				"Eraser":{
+					"eraser": [0]
+				},
+				"Block": {
+					"grass4": [1, 2, 3, 4],
+					"floatblock": ["left", "middle_1", "middle_2", "right"],
+				},
+				"CheckPoint":{
+					"checkpoint": [1, 2],
+				},
+				"EndPoint": {
+					"endpoint": [1],
+				},
+				"Decoration": {
+					"box": [1, 2],
+					"grass": [1],
+				},
+			}
+
+			$('#pen-tool-float-select-wrapper').html('');
+
+			var pen_tool_increment = 0;
+			for(each in spriteDirectoryList){
+				var path = '';
+				for(each2 in spriteDirectoryList[each]){
+					for(each33 of spriteDirectoryList[each][each2]){
+
+						var bWidth = 0;
+						var bHeight = 0;
+						var each3 = '';
+
+						if(each33 instanceof Array){
+							each3 = each33[0];
+							bWidth = each33[1];
+							bHeight = each33[2];
+							console.log(bWidth);
+						}else{
+							each3 = each33;
+							bWidth = 1;
+							bHeight = 1;
+						}
+
+						path = ASSETS_DIRECTORY + each + '_' + each2 + '_' + each3 + '.png';
+						jPath = each + '_' + each2 + '_' + each3 + '.png';
+
+						$('#pen-tool-float-select-wrapper').append('<button class="btn btn-main btn-pen-tool-select" id="' + each + '_' + each2 + '_' + each3 + '" title="' + each + ' ' + each2 + ' ' + each33 + '"><img class="btn-image" src="' + path + '" jClass="' + each + '" jType="' + each2 + '" jNumber="' + each3 + '" bWidth="' + bWidth + '" bHeight="' + bHeight + '" jPath="' + jPath + '"></button>');
+					}
+					pen_tool_increment ++;
+					$('#pen-tool-float-select-wrapper').append('<div class="float-select-hr" id="pen_tool_hr_' + pen_tool_increment + '"></div>');
+				}
+			}
+
+			$('#pen_tool_hr_' + pen_tool_increment).hide();
+
+
+			$('.btn-pen-tool-select').click(function(){
+				$('.btn-pen-tool-select').removeAttr('select');
+				$('#pen-tool-float-select').offset({left: 0, top: 0});
+				$('#pen-tool-float-select').hide();
+				pen_tool['path'] = $(this).find("img").attr('src');
+				pen_tool['jPath'] = $(this).find("img").attr('jPath');
+				pen_tool['sprite_components'][0] = $(this).find("img").attr('jClass');
+				pen_tool['sprite_components'][1] = $(this).find("img").attr('jType');
+				pen_tool['sprite_components'][2] = $(this).find("img").attr('jNumber');
+				pen_tool['size'][0] = $(this).find("img").attr('bWidth');
+				pen_tool['size'][1] = $(this).find("img").attr('bHeight');
+				$(this).attr('select', 'true');
+				console.log(pen_tool);
+			});
+
+			$('#Eraser_eraser_0').click();
+
+
+			drawNewMap();
+
+			$('#clear-map').click(function(){
+				if(confirm('Are you sure to clear the whole map?')){
+					drawNewMap();
+				}
+			});
+
+			function drawNewMap(){
+				mapJson = {};
+				mapJson['size'] = {};
+				mapJson['block'] = [];
+				mapJson['size']['h'] = h;
+				mapJson['size']['w'] = w;
+
+
+				$('#map').html('');
+				for(var t = 0; t < h; t ++){
+					var inside = '';
+					mapJson['block'][t] = Array();
+					for(var i = 0; i < w; i ++){
+						inside += '<td><button class="block" id="h' + t + 'w' + i + '" x="' + t + '" y="' + i + '"></button></td>';
+						mapJson['block'][t][i] = null;
+					}
+					$('#map').append('<tr id="h' + t + '">' + inside + '</tr>');
+				}
+
+				drawMap();
+			}
+
+			function drawCodeMap(){
+				var text = $('#java-code').val();
+
+				var json = substr(text, '<!----level_editor----', '---->');
+				mapJson = JSON.parse(json);
+
+				console.log(mapJson);
+
+				w = mapJson['size']['w'];
+				h = mapJson['size']['h'];
+
+				$('#map').html('');
+				for(var t = 0; t < h; t ++){
+					var inside = '';
+					for(var i = 0; i < w; i ++){
+						if(mapJson['block'][t][i] == null){
+							inside += '<td><button class="block" id="h' + t + 'w' + i + '" x="' + t + '" y="' + i + '"></button></td>';
+						}else{
+							inside += '<td><button class="block" id="h' + t + 'w' + i + '" x="' + t + '" y="' + i + '"><img class="btn-block" src="' + mapJson['block'][t][i]['path'] + '"></img></button></td>';
+						}
+					}
+					$('#map').append('<tr id="h' + t + '">' + inside + '</tr>');
+				}
+
+				drawMap();
+			}
+
+
+			function drawMap(){
+
+				$("body").mousedown(function(){
+					down = true;
+				});
+
+				$("body").mouseup(function(){
+					down = false;
+				});
+
+
+				// Draw block here
+				$(".block").click(function(){
+
+					var x = parseInt($(this).attr('x'));
+					var y = parseInt($(this).attr('y'));
+					
+
+					if(pen_tool['sprite_components'][0] == 'Eraser'){
+						$(this).html('');
+						$(this).removeAttr('none_border');
+						mapJson['block'][x][y] = null;
+					}else{
+						$(this).html('');
+						$(this).html('<img class="btn-block" src="' + pen_tool['path'] + '"></img>');
+						$(this).attr('none_border', 'true');
+						mapJson['block'][x][y] = JSON.parse(JSON.stringify(pen_tool));
+					}
+
+					// var bWidth = parseInt(pen_tool['size'][0]);
+					// var bHeight = parseInt(pen_tool['size'][1]);
+
+					//$(this).parent().attr('colspan', bWidth);
+					//$(this).parent().attr('rowspan', bHeight);
+
+					// console.log(bWidth, bHeight);
+
+					/**
+					for(var t = 0; t < bWidth; t ++){
+						for(var t2 = 0; t2 < bHeight; t2 ++){
+							var selector = "#h" + (x + t) + "w" + (y + t2);
+							if(selector != '#' + this.id){
+								$(selector).parent().hide();
+								$(selector).attr('spanX', x);
+								$(selector).attr('spanY', y);
+							}
+							console.log(selector, this.id);
+						}
+					}
+					**/
+
+				});
+
+				$(".block").hover(function(){
+					if(down){
+						$(this).click();
+					}
+				},function(){
+					
+				})
+
+				$(".block").mousedown(function(){
+					$(this).click();
+				});
+
+				
+
+				$("#map-container").mouseenter(function(){
+					down = false;
+				},function(){
+					
+				})
+
+
+
+			}
+			
+
+			$('#map-setting').click(function(){
+				var height = prompt('Height of the map (default 20): ');
+
+				if(height == ''){
+					height = 20;
+				}
+
+				var width = prompt('Width of the map (default 30): ');
+				if(width == ''){
+					width = 30;
+				}
+
+				if(confirm('This will clear and redraw the current map, are you sure?')){
+					h = height;
+					w = width;
+					drawNewMap();
+				}
+			});
+
+
+			function generateJava(){
+
+				const import_lines = '\n\
+package core.external.level;\n\
+\n\
+import core.ecs.components.*;\n\
+import core.external.entity.*;\n\
+import core.external.weapon.*;\n\
+import core.map.*;\n\
+import core.screens.ScreenBuilder;\n\
+import core.sprite.*;\n\
+\n\
+import java.util.List;\n\
+import java.util.ArrayList;\n\
+\n\
+				';
+
+				const level_editor_json = JSON.stringify(mapJson);
+				const level_editor_json_lines = '\n\
+		/**\n\
+		 ** !!! DO NOT DELETE THE FOLLOWING COMMENTS AS THEY ARE FOR RE-EDITING IN THE LEVEL EDITOR: \n\
+		 	<!----level_editor----'+ level_editor_json + '---->\n\
+		 **/\n\
+ \n\
+				';
+
+				const constructor_head_lines = '\n\
+public class LevelName extends GameMap {\n\
+\n\
+	private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();\n\
+	private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();\n\
+		\n\
+	public LevelName() {\n\
+		\n\
+		List<Sprite> sprites = new ArrayList<Sprite>();\n\
+		\n\
+		\n\
+				';	
+
+				const constructor_tail_line = '\n\
+		\n\
+		for (Sprite sprite : sprites) {\n\
+			super.addSprite(sprite);\n\
+		}\n\
+		\n\
+	}\n\
+	\n\
+}\n\
+				';
+
+
+				var tiles_lines = '';
+				var varIncrement = 0;
+
+				// Loop for all tiles
+				for(var t = 0; t < h; t ++){
+					for(var i = 0; i < w; i ++){
+						varIncrement ++;
+
+						var mapThis = mapJson['block'][t][i];
+						console.log(mapThis);
+
+						if(mapThis == undefined || mapThis == '' || mapThis == null){
+							continue;
+						}
+
+						var block = mapThis['sprite_components'][0];
+						var nameVar = mapThis['sprite_components'][1] + varIncrement;
+						var width = mapThis['size'][0];
+						var height = mapThis['size'][1];
+						var left = i;
+						var top = t;
+						var imgPath = mapThis['jPath'];
+
+						var newObject = 'TileObject';
+
+						var spriteComponents = Array();
+
+						if(block == 'Hero' || block == 'Enemy' || block == 'Block' || block == 'Treasure' || block == 'CheckPoint' || block == 'EndPoint'){
+							spriteComponents.push('new CollidableComponent()');
+						}
+						if(block == 'Hero' || block == 'Enemy'){
+							spriteComponents.push('new PhysicsComponent()');
+							spriteComponents.push('new AttackComponent()');
+							spriteComponents.push('new HealthComponent()');
+						}
+						if(block == 'Hero'){
+							spriteComponents.push('new WeaponComponent()');
+							newObject = 'Hero';
+						}
+						if(block == 'Enemy'){
+							spriteComponents.push('new AIComponent()');
+							newObject = 'Enemy';
+						}
+						if(block == 'CheckPoint' || block == 'EndPoint'){
+							spriteComponents.push('new EndPointComponent()');
+						}
+
+						var paramComponents = '';
+						for(comp of spriteComponents){
+							paramComponents += ', ' + comp;
+						}
+
+						tiles_lines += '\n\
+		\n\
+		TileObject ' + nameVar + ' = new ' + newObject + '(' + top + ' * 50, ' + left + ' * 50, ' + height + ' * 50, ' + width + ' * 50);\n\
+		' + nameVar + '.addComponents(new RenderComponent(' + nameVar + ', "src/main/resources/assets/' + imgPath + '") ' + paramComponents + ');\n\
+		sprites.add(' + nameVar + ');\n\
+		\n\
+						';
+					}
+				}
+
+				const output = import_lines + constructor_head_lines + tiles_lines + level_editor_json_lines + constructor_tail_line;
+
+				$('#java-code').val(output);
+
+			}
+
+		</script>
+
+		<script>
+			let substr = function(str, left, right){
+
+				let leftIndex = str.indexOf(left) + left.length;
+				let rightIndex = str.indexOf(right, leftIndex);
+				let strLength = rightIndex - leftIndex;
+
+
+				if(left < 0 || strLength < 0){
+					return '';
+				}
+				return str.substr(leftIndex, strLength);
+
+			}
+		</script>
+
+		<script>
+	      feather.replace()
+	    </script>
+
+	</body>
+</html>

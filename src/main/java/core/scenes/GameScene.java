@@ -2,80 +2,142 @@ package core.scenes;
 
 import javafx.animation.AnimationTimer;
 import javafx.event.EventHandler;
+import javafx.geometry.Pos;
 import javafx.scene.input.KeyEvent;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.ProgressBar;
 import core.utils.InputHandler;
 import java.io.File;
-
+import javafx.scene.shape.Rectangle;
 import core.command.Command;
-import core.external.entity.Hero;
-import core.external.level.Chapter1Level1;
-import core.external.weapon.Sword;
-import core.map.GameMap;
 import core.screens.ScreenBuilder;
-import core.sprite.Sprite;
+import core.sprite.World;
 
-import java.util.List;
-
+/**
+ * 
+ */
 public class GameScene {
 
-    private static Hero hero = new Hero(0, 0, 100, 100, "src/main/resources/assets/Hero.png");
-    private static Sword sword = new Sword(0.0, 0.0, 100, 20, "src/main/resources/assets/Float_Tile_Middle.png");
+    private static StackPane root;
+    private static HBox gameMenu;
     private static Scene GameScene;
+    private static Canvas canvas;
     private static GraphicsContext gc;
     private static InputHandler inputHandler = new InputHandler();
-    private static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
-    private static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
-    private static GameMap level1 = new Chapter1Level1();
-    private static List<Sprite> spritesList = level1.getSprite();
+    public static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
+    public static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
+    private static World world;
+    
 
-    public static Scene display() {
-        Pane root = initScene();
-        Pane camera = new Pane();
-        root.getChildren().add(camera);
+    public static Scene display(World aWorld) {
+        world = aWorld;
+        root = new StackPane();
+        initScene();
 
-        GameScene = new Scene(root);
-        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
-
-        Canvas canvas = new Canvas(3*screenWidth, screenHeight);
-        camera.getChildren().add(canvas);
-        gc = canvas.getGraphicsContext2D();
-
-        hero.addWeapon(sword);
-
-        class GameLoop implements EventHandler<KeyEvent> {
-            public void handle(KeyEvent event) {
-                Command command = inputHandler.handleInput(event);
-                if (command != null) {
-                    command.execute(hero, spritesList);
-                }
-            }
-        }
+        System.out.println(screenWidth + ": " + screenWidth * 0.031);
+        System.out.println(screenHeight + ": " + screenHeight * 0.057);
 
         GameScene.setOnKeyPressed(new GameLoop());
         GameScene.setOnKeyReleased(new GameLoop());
+
         new AnimationTimer() {
             public void handle(long time) {
-                camera.relocate(-hero.getX() + ((screenWidth - hero.getWidth())/2), 0);               
+                if (world.getHero().getX() > (screenWidth / 2) - world.getHero().getWidth() / 2)
+                    canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
-                for (Sprite sprite : spritesList) {
-                    sprite.update(spritesList, gc);
-                }
-                hero.update(spritesList, gc);
+                world.update(gc, time);
+                System.out.println(world.getHero().getX() + ", " + world.getHero().getY());
             }
         }.start();
         return GameScene;
     }
 
-    public static Pane initScene() {
-        Pane gameUI = new Pane();
-        return gameUI;
+    /**
+     * 
+     */
+    public static class GameLoop implements EventHandler<KeyEvent> {
+        public void handle(KeyEvent event) {
+            Command command = inputHandler.handleInput(event);
+            if (command != null) {
+                command.execute(world.getHero(), world);
+            }
+        }
     }
 
+    public static void initScene() {
+        Pane camera = new Pane();
+        
+
+        root.getChildren().add(camera);
+
+        canvas = new Canvas(3 * screenWidth, screenHeight);
+        camera.getChildren().add(canvas);
+        gc = canvas.getGraphicsContext2D();
+
+        gc.strokeText("hi", 150, 100);
+        
+        //StackPane healthBar = new StackPane(world.getHero().getComponent("HealthComponent", HealthComponent.class).getHealthBar(), world.getHero().getComponent("HealthComponent", HealthComponent.class).getHealthDisplay());
+        //healthBar.setAlignment(Pos.TOP_LEFT);
+       // root.getChildren().add(healthBar);
+
+
+        GameScene = new Scene(root);
+        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+    }
+
+    /**
+     * 
+     * @return
+     */
     public static Scene getScene() {
         return GameScene;
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static Pane getRoot() {
+        return root;
+    }
+
+    /**
+     * 
+     * @param toAdd
+     */
+    public static void addToRoot(Node toAdd) {
+        gameMenu = (HBox)toAdd;
+        root.getChildren().add(gameMenu);
+        root.setAlignment(Pos.CENTER);
+        gameMenu.setAlignment(Pos.CENTER);    
+    }
+
+    /**
+     * 
+     */
+    public static void removeGameMenu() {
+        root.getChildren().remove(gameMenu);
+    }
+
+    /**
+     * 
+     * @return
+     */
+    public static HBox getGameMenu() {
+        return gameMenu;
+    }
+
+    /**
+     * @return the world
+     */
+    public static World getWorld() {
+        return world;
     }
 }
