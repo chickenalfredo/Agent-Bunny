@@ -37,18 +37,9 @@ public class GameScene {
     
 
     public static Scene display(World aWorld) {
-        // if (aWorld == null) {
-        //     System.out.println("world is null");
-        // }
-        // if (aWorld.getEntities() == null) {
-        //     System.out.println("world has no entities");
-        // }else {
-        //     System.out.println(aWorld.getHero().toString());
-        // }
         world = aWorld;
         root = new StackPane();
         initScene();
-        
 
         System.out.println(screenWidth + ": " + screenWidth * 0.031);
         System.out.println(screenHeight + ": " + screenHeight * 0.057);
@@ -62,6 +53,7 @@ public class GameScene {
                     canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
                 world.update(gc, time);
+                System.out.println(world.getHero().getX() + ", " + world.getHero().getY());
             }
         }.start();
         return GameScene;

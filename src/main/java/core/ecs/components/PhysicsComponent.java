@@ -179,7 +179,6 @@ public class PhysicsComponent extends Component implements Serializable {
             falling = false;
         } else {
             falling = true;
-            // TODO: falling render
             actor.getComponent("StateComponent", StateComponent.class).setState(State.FALLING);
         }
         if (packet.getCollisionSide().equals("bottom")) {
@@ -191,7 +190,6 @@ public class PhysicsComponent extends Component implements Serializable {
         }
         if (packet.getCollisionSide().equals("left")) {
             actor.setX(collider.getX() - actor.getWidth() - 1);
-
         }
     }
 
@@ -203,11 +201,9 @@ public class PhysicsComponent extends Component implements Serializable {
             setVelocityY(-30);
             jumping = true;
             falling = true;
-            // TODO: jump render
             actor.getComponent("StateComponent", StateComponent.class).setState(State.JUMPING);
         } else {
             actor.getComponent("StateComponent", StateComponent.class).setState(State.IDLE);
-
         }
     }
 

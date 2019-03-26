@@ -42,9 +42,9 @@ public class WeaponComponent extends Component implements Serializable {
      */
     @Override
     public void render(Sprite actor, GraphicsContext gc, long delta) {
-        // TODO: Render weapon animations using sprite sheets
-
-        getEquippedWeapon().getComponent("RenderComponent", RenderComponent.class).render(getEquippedWeapon(), gc, delta);
+        if (getEquippedWeapon().getComponent("RenderComponent", RenderComponent.class) != null) {
+            getEquippedWeapon().getComponent("RenderComponent", RenderComponent.class).render(getEquippedWeapon(), gc, delta);
+        }
     }
 
     /**
