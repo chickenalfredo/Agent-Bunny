@@ -61,7 +61,6 @@ public class MenuEventHandlers {
 
     public static class KeyBinding implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
-            if (GameSettings.getMenu().getChildren().contains(KeyBin)
             KeyBindingScene.display();
         }
     }
