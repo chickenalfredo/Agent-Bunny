@@ -3,6 +3,7 @@ package core.sprite;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+import core.animations.Animation;
 import core.external.entity.Hero;
 import core.external.level.Chapter1Level1;
 import core.map.GameMap;
@@ -13,6 +14,7 @@ public class World implements Serializable {
     private static final long serialVersionUID = -593390538413494469L;
     private ArrayList<Sprite> m_entities = new ArrayList<Sprite>();
     private Hero hero;
+    private Animation animationSystem;
     private GameMap level;
 
     /**
