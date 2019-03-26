@@ -3,6 +3,7 @@ package core.ecs.components;
 import core.ecs.Component;
 import core.sprite.Sprite;
 import core.sprite.World;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
@@ -11,8 +12,25 @@ public class CollidableComponent extends Component {
 
     public CollidableComponent() {}
 
+    /**
+     * 
+     * @param actor
+     * @param world
+     */
+    @Override
     public void update(Sprite actor, World world) {
-        // System.out.println("updating Collidable...");
+
+    }
+
+    /**
+     * 
+     * @param actor
+     * @param gc
+     * @param delta
+     */
+    @Override
+    public void render(Sprite actor, GraphicsContext gc, long delta) {
+
     }
     
 }

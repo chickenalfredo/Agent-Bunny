@@ -4,6 +4,7 @@ import core.ecs.Component;
 import core.external.entity.Enemy;
 import core.sprite.Sprite;
 import core.sprite.World;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
@@ -14,6 +15,12 @@ public class HealthComponent extends Component {
 
     public HealthComponent() {}
 
+    /**
+     * 
+     * @param actor
+     * @param world
+     */
+    @Override
     public void update(Sprite actor, World world) {
         if (actor instanceof Enemy) {
             if (!isAlive()) {
@@ -21,6 +28,17 @@ public class HealthComponent extends Component {
                 world.destroyEntity(actor);
             }
         }
+    }
+
+    /**
+     * 
+     * @param actor
+     * @param gc
+     * @param delta
+     */
+    @Override
+    public void render(Sprite actor, GraphicsContext gc, long delta) {
+        // TODO: Render health animations using sprite sheets
     }
 
     /**
@@ -37,10 +55,18 @@ public class HealthComponent extends Component {
         this.health = health;
     }
 
+    /**
+     * 
+     * @param damage
+     */
     public void takeDamage(double damage) {
         health -= damage;
     }
 
+    /**
+     * 
+     * @return
+     */
     public boolean isAlive() {
         return health > 0;
     }

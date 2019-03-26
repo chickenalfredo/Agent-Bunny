@@ -3,7 +3,6 @@ package core.sprite;
 import core.ecs.components.AttackComponent;
 import core.ecs.components.PhysicsComponent;
 import core.ecs.components.WeaponComponent;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
  * The abstract Entity class extends Sprite with characteristics for creating
@@ -11,22 +10,41 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public abstract class Entity extends Sprite {
 
+    /**
+     * 
+     * @param entityX
+     * @param entityY
+     * @param entityWidth
+     * @param entityHeight
+     */
     public Entity(double entityX, double entityY, double entityWidth, double entityHeight) {
         super(entityX, entityY, entityWidth, entityHeight);
     }
 
-    public void update(World world, GraphicsContext gc) {
-        super.update(world, gc);
-        getComponent("PhysicsComponent", PhysicsComponent.class).update(this, world);
+    /**
+     * 
+     * @param world
+     */
+    public void update(World world) {
+        super.update(world);
         if (getComponent("WeaponComponent", WeaponComponent.class) != null) {
-            getComponent("WeaponComponent", WeaponComponent.class).update(this, gc);
+            getComponent("WeaponComponent", WeaponComponent.class).update(this, world);
         }
     }
 
+    /**
+     * 
+     * @param key
+     * @param isKeyPressedEvent
+     */
     public void move(String key, boolean isKeyPressedEvent) {
         getComponent("PhysicsComponent", PhysicsComponent.class).moveEntity(key, isKeyPressedEvent);
     }
 
+    /**
+     * 
+     * @param world
+     */
     public void attackCollider(World world) {
         getComponent("AttackComponent", AttackComponent.class).update(this, world);
     }

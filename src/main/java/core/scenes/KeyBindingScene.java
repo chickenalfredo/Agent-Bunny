@@ -12,11 +12,19 @@ import core.App;
 import core.utils.KeyBindings;
 import core.scenes.GameSettings;
 
+/**
+ * 
+ * @param <ClickEvent>
+ */
 public class KeyBindingScene<ClickEvent> {
 
     private static Scene KeyBindingsScene;
     private static VBox keyMenu;
 
+    /**
+     * 
+     * @return
+     */
     public static VBox display() {
         try {
             if (App.getGameWindow().getScene() == GameScene.getScene()
@@ -33,6 +41,10 @@ public class KeyBindingScene<ClickEvent> {
         return keyMenu;
     }
 
+    /**
+     * 
+     * @return
+     */
     public static VBox initScene() {
 
         Label menuTitle = new Label("Actions:");
@@ -73,10 +85,18 @@ public class KeyBindingScene<ClickEvent> {
         return keyMenu;
     }
 
+    /**
+     * 
+     * @return
+     */
     public static VBox getKeyMenu() {
         return keyMenu;
     }
 
+    /**
+     * 
+     * @param handler
+     */
     public static void setOnKeyPressed(EventHandler<KeyEvent> handler) {
         if (handler != null) {
             KeyBindingsScene.setOnKeyPressed(handler);
@@ -85,10 +105,17 @@ public class KeyBindingScene<ClickEvent> {
         }
     }
 
+    /**
+     * 
+     * @param handler
+     */
     public static void setOnKeyReleased(EventHandler<KeyEvent> handler) {
         KeyBindingsScene.setOnKeyReleased(handler);
     }
 
+    /**
+     * 
+     */
     public static class EscKey implements EventHandler<KeyEvent> {
         public void handle(KeyEvent key) {
             if (key.getCode() == KeyCode.ESCAPE) {
