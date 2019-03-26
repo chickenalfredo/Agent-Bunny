@@ -7,6 +7,8 @@ import core.sprite.interfaces.MeleeType;
  */
 public abstract class Melee extends Weapon implements MeleeType {
 
+    private static final long serialVersionUID = 9179458578213535173L;
+
     /**
      * 
      * @param x

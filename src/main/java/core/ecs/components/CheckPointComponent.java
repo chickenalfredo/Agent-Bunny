@@ -12,7 +12,10 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class CheckPointComponent extends Component implements Serializable {
 
-    public CheckPointComponent() {}
+    private static final long serialVersionUID = -6593422309670952733L;
+
+    public CheckPointComponent() {
+    }
 
     /**
      * 

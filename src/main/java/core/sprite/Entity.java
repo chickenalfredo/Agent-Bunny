@@ -12,6 +12,8 @@ import core.ecs.components.WeaponComponent;
  */
 public abstract class Entity extends Sprite implements Serializable {
 
+    private static final long serialVersionUID = 2915461139373660808L;
+
     public Entity() {
         super(null);
     }

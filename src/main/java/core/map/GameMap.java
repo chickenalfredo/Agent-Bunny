@@ -16,6 +16,7 @@ import core.sprite.*;
 
 public class GameMap implements Serializable {
 
+	private static final long serialVersionUID = 6155530831197383076L;
 	private ArrayList<Sprite> sprite = new ArrayList<Sprite>();
 	private Sprite checkPoint;
 	private String name;

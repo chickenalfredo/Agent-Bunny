@@ -12,6 +12,8 @@ import core.sprite.Entity;
  */
 public class Enemy extends Entity implements Serializable {
 
+    private static final long serialVersionUID = 2769579462364610950L;
+
     /**
      * This is the constructor for this class that extends from Entity class.
      * 

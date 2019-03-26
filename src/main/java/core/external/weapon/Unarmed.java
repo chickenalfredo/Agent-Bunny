@@ -8,6 +8,7 @@ import core.sprite.Melee;
  */
 public class Unarmed extends Melee {
 
+    private static final long serialVersionUID = 6626015764573341584L;
     private final double UNARMED_BASE_DAMAGE = 5;
 
     /**

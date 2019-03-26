@@ -12,7 +12,10 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class AIComponent extends Component implements Serializable {
 
-    public AIComponent() {}
+    private static final long serialVersionUID = 7300058353639188186L;
+
+    public AIComponent() {
+    }
 
     /**
      * 

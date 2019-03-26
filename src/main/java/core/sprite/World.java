@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class World implements Serializable {
 
+    private static final long serialVersionUID = -593390538413494469L;
     private ArrayList<Sprite> m_entities = new ArrayList<Sprite>();
     private Hero hero;
     private GameMap level;

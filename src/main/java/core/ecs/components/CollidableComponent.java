@@ -12,7 +12,10 @@ import javafx.scene.canvas.GraphicsContext;
  */
 public class CollidableComponent extends Component implements Serializable {
 
-    public CollidableComponent() {}
+    private static final long serialVersionUID = 6590243342522210291L;
+
+    public CollidableComponent() {
+    }
 
     /**
      * 
