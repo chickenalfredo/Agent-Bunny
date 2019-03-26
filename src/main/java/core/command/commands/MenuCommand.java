@@ -1,25 +1,41 @@
 package core.command.commands;
 
-import java.util.List;
-
 import core.command.Command;
 import core.external.entity.Hero;
-import core.sprite.Sprite;
-import core.utils.MenuEventHandlers;
-import core.utils.MenuEventHandlers.OpenSettingsEvent;
-import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.event.Event;
+import core.sprite.World;
+import javafx.scene.layout.HBox;
+import core.scenes.*;
 
+/**
+ * 
+ */
 public class MenuCommand extends Command {
 
-    Button settings = new Button();
+    private boolean isKeyPressed;
 
-    public MenuCommand() {
-        settings.setOnAction(new MenuEventHandlers.OpenSettingsEvent());
+    /**
+     * 
+     * @param isKeyPressed
+     */
+    public MenuCommand(boolean isKeyPressed) {
+        this.isKeyPressed = isKeyPressed;
     }
 
-    public void execute(Hero actor, List<Sprite> world) {
-        Event.fireEvent(settings, new ActionEvent());
+    /**
+     * 
+     * @param actor
+     * @param world
+     */
+    @Override
+    public void execute(Hero actor, World world) {
+        if (isKeyPressed) {
+            if (!GameScene.getRoot().getChildren().contains(GameScene.getGameMenu())) {
+                HBox gameMenu = GameSettings.mainMenu();
+                GameScene.addToRoot(gameMenu);
+            }else {
+                GameScene.removeGameMenu();
+            }
+        }
+        
     }
 }
