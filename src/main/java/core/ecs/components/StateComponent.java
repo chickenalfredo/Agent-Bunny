@@ -1,11 +1,15 @@
 package core.ecs.components;
 
+import java.io.Serializable;
+
 import core.ecs.Component;
 import core.sprite.Sprite;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
 
-public class StateComponent extends Component {
+public class StateComponent extends Component implements Serializable {
+
+    private static final long serialVersionUID = -4659225797520082884L;
 
     public enum State {
         RUNNING, JUMPING, FALLING, IDLE, ATTACKING
