@@ -1,5 +1,7 @@
 package core.ecs;
 
+import java.io.Serializable;
+
 import core.sprite.Sprite;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;

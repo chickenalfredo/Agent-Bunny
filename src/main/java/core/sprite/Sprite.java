@@ -3,6 +3,7 @@ package core.sprite;
 import core.ecs.Component;
 import javafx.scene.canvas.GraphicsContext;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.google.gson.GsonBuilder;
@@ -15,8 +16,9 @@ import com.google.gson.GsonBuilder;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite {
+public abstract class Sprite implements Serializable{
 
+    private static final long serialVersionUID = 2166442457747983306L;
     private Coordinate coordinate = new Coordinate();
     private double width, height;
     private char terminalChar;
@@ -36,6 +38,9 @@ public abstract class Sprite {
      * @param height
      *                   - The height of the Sprites bounding rectangle
      */
+
+    public Sprite() {}
+    
     public Sprite(double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
         this.width = width;

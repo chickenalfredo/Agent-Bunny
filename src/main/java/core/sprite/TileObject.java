@@ -1,11 +1,15 @@
 package core.sprite;
 
+import java.io.Serializable;
+
 import core.sprite.Sprite;
 
 /**
  * @author Daniel Contreras
  */
-public class TileObject extends Sprite {
+public class TileObject extends Sprite implements Serializable {
+
+    private static final long serialVersionUID = -2520946764976634859L;
 
     /**
      * 

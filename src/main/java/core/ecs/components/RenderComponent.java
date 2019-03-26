@@ -1,6 +1,7 @@
 package core.ecs.components;
 
 import java.io.FileInputStream;
+import java.io.Serializable;
 
 import core.ecs.Component;
 import core.sprite.Sprite;
@@ -11,9 +12,11 @@ import javafx.scene.image.Image;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class RenderComponent extends Component {
+public class RenderComponent extends Component implements Serializable {
 
-    private Image image;
+    private static final long serialVersionUID = 1898382905294065884L;
+    private transient Image image;
+    private String fileName;
 
     /**
      * 
@@ -22,8 +25,9 @@ public class RenderComponent extends Component {
      */
     public RenderComponent(Sprite actor, String filename) {
         setImage(actor, filename);
+        this.fileName = filename;
     }
-
+        
     /**
      * 
      * @param actor
@@ -42,6 +46,9 @@ public class RenderComponent extends Component {
      */
     @Override
     public void render(Sprite actor, GraphicsContext gc, long delta) {
+        if (image == null) {
+            setImage(actor, fileName);
+            }
         gc.drawImage(image, actor.getX(), actor.getY());
     }
 

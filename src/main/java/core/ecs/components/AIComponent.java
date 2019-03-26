@@ -1,5 +1,7 @@
 package core.ecs.components;
 
+import java.io.Serializable;
+
 import core.ecs.Component;
 import core.sprite.Sprite;
 import core.sprite.World;
@@ -8,9 +10,12 @@ import javafx.scene.canvas.GraphicsContext;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public class AIComponent extends Component {
+public class AIComponent extends Component implements Serializable {
 
-    public AIComponent() {}
+    private static final long serialVersionUID = 7300058353639188186L;
+
+    public AIComponent() {
+    }
 
     /**
      * 
