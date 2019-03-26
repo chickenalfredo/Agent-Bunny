@@ -66,7 +66,7 @@ public class HealthComponent extends Component implements Serializable {
     @Override
     public void render(Sprite actor, GraphicsContext gc, long delta) {
         // TODO: Render health animations using sprite sheets
-        healthBar.getComponent("RenderComponent", RenderComponent.class);
+        healthBar.getComponent("RenderComponent", RenderComponent.class).render(healthBar, gc, delta);
     }
 
     /**
