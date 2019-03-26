@@ -1,5 +1,6 @@
 package core.map;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.sprite.*;
@@ -12,7 +13,8 @@ import core.sprite.*;
  * @param String
  *                   name of the level
  */
-public class GameMap {
+
+public class GameMap implements Serializable {
 
 	private ArrayList<Sprite> sprite = new ArrayList<Sprite>();
 	private Sprite checkPoint;
