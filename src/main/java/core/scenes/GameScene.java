@@ -53,7 +53,7 @@ public class GameScene {
                     canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
                 world.update(gc, time);
-                System.out.println(world.getHero().getX() + ", " + world.getHero().getY());
+                // System.out.println(world.getHero().getX() + ", " + world.getHero().getY());
             }
         }.start();
         return GameScene;
