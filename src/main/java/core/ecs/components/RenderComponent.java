@@ -5,7 +5,7 @@ import java.io.FileInputStream;
 import java.io.Serializable;
 
 import core.ecs.Component;
-import core.external.entity.Hero;
+import core.sprite.Entity;
 import core.sprite.Sprite;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
@@ -48,22 +48,59 @@ public class RenderComponent extends Component implements Serializable {
      */
     @Override
     public void render(Sprite actor, GraphicsContext gc, long delta) {
-        if (actor instanceof Hero) {
-            switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
-            case RUNNING:
-                animate(actor, "src/main/resources/assets/move_right/");
-                break;
-            case ATTACKING:
-                animate(actor, "src/main/resources/assets/attack/");
-                break;
-            case JUMPING:
-                animate(actor, "src/main/resources/assets/jump/");
-                break;
-            case FALLING:
-                animate(actor, "src/main/resources/assets/falling/");
-                break;
-            default:
-                animate(actor, "src/main/resources/assets/idle/");
+        if (actor instanceof Entity) {
+            if (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState() == StateComponent.ConcurrentState.NONE) {
+                if (actor.getComponent("StateComponent", StateComponent.class).getDirection() == StateComponent.Direction.LEFT) {
+                    switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
+                        case RUNNING:
+                            animate(actor, "resources/assets/move_left/");
+                            break;
+                        case IDLE:
+                            animate(actor, "resources/assets/idle_left/");
+                            break;
+                    }
+                } else {
+                    switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
+                        case RUNNING:
+                            animate(actor, "resources/assets/move_right/");
+                            break;
+                        case IDLE:
+                            animate(actor, "resources/assets/idle_right/");
+                            break;
+                    }
+                }
+            } else {
+                if (actor.getComponent("StateComponent", StateComponent.class).getDirection() == StateComponent.Direction.LEFT) {
+                    // facing left + concurrent
+                    switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
+                        case ATTACKING:
+                            animate(actor, "resources/assets/attack_left/");
+                            break;
+                        case JUMPING:
+                            animate(actor, "resources/assets/jump_left/");
+                            break;
+                        case FALLING:
+                            animate(actor, "resources/assets/falling_left/");
+                            break;
+                        case NONE:
+                            break;
+                    }
+                } else {
+                    // facing right + concurrent
+                    switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
+                        case ATTACKING:
+                            animate(actor, "resources/assets/attack_right/");
+                            break;
+                        case JUMPING:
+                            animate(actor, "resources/assets/jump_right/");
+                            break;
+                        case FALLING:
+                            animate(actor, "resources/assets/falling_right/");
+                            break;
+                        case NONE:
+                            break;
+                    }
+                }
             }
         }
         if (image == null) {
@@ -92,7 +129,7 @@ public class RenderComponent extends Component implements Serializable {
             for (File c : directoryListing) {
                 setImage(actor, c.toString());
             }
-        } 
+        }
     }
 
 }

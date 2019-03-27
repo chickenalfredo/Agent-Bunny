@@ -88,7 +88,7 @@ public class GameScene {
 
 
         GameScene = new Scene(root);
-        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+        GameScene.getStylesheets().add((new File("resources/css/style.css")).toURI().toString());
     }
 
     /**

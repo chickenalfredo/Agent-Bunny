@@ -23,16 +23,30 @@ public class HealthComponent extends Component implements Serializable {
     private double maxHealth = 100;
     private TileObject healthBar;
 
-    //private transient Text healthDisplay = new Text();
-    //private transient ProgressBar healthBar = new ProgressBar();
+    // private transient Text healthDisplay = new Text();
+    // private transient ProgressBar healthBar = new ProgressBar();
 
     public HealthComponent() {
         /*
-        healthBar.setMinHeight(GameScene.screenHeight*0.03);
-        healthBar.setMinWidth(GameScene.screenWidth*0.15);
-        healthBar.setStyle("-fx-accent: maroon; -fx-control-inner-background: tomato;");
-        healthDisplay.setStyle("-fx-fill: white; -fx-font-size: 18pt;");
-        */
+         * healthBar.setMinHeight(GameScene.screenHeight*0.03);
+         * healthBar.setMinWidth(GameScene.screenWidth*0.15); healthBar.
+         * setStyle("-fx-accent: maroon; -fx-control-inner-background: tomato;");
+         * healthDisplay.setStyle("-fx-fill: white; -fx-font-size: 18pt;");
+         */
+    }
+
+    /**
+     * @return the maxHealth
+     */
+    public double getMaxHealth() {
+        return maxHealth;
+    }
+
+    /**
+     * @param maxHealth the maxHealth to set
+     */
+    public void setMaxHealth(double maxHealth) {
+        this.maxHealth = maxHealth;
     }
 
     public HealthComponent(TileObject healthBar) {
