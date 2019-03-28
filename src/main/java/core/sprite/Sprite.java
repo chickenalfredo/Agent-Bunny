@@ -16,10 +16,10 @@ import com.google.gson.GsonBuilder;
  * 
  * @author Daniel Contreras
  */
-public abstract class Sprite implements Serializable{
+public abstract class Sprite implements Serializable {
 
     private static final long serialVersionUID = 2166442457747983306L;
-    private Coordinate coordinate = new Coordinate();
+    private Coordinate coordinate;
     private double width, height;
     private char terminalChar;
     private ArrayList<Component> m_components = new ArrayList<Component>();
@@ -27,24 +27,23 @@ public abstract class Sprite implements Serializable{
     /**
      * Constructs and initializes a Sprite with specified position and size.
      * 
-     * @param x
-     *                   - The x position on the coordinate plane of the top left
-     *                   corner of the bounding rectangle
-     * @param y
-     *                   - The y position on the coordinate plane of the top left
-     *                   corner of the bounding rectangle
-     * @param width
-     *                   - The width of the Sprites bounding rectangle
-     * @param height
-     *                   - The height of the Sprites bounding rectangle
+     * @param x      - The x position on the coordinate plane of the top left corner
+     *               of the bounding rectangle
+     * @param y      - The y position on the coordinate plane of the top left corner
+     *               of the bounding rectangle
+     * @param width  - The width of the Sprites bounding rectangle
+     * @param height - The height of the Sprites bounding rectangle
      */
-
-    public Sprite() {}
-    
     public Sprite(double x, double y, double width, double height) {
         coordinate = new Coordinate(x, y);
         this.width = width;
         this.height = height;
+    }
+
+    public Sprite() {
+        coordinate = new Coordinate();
+        width = 1;
+        height = 1;
     }
 
     /**
@@ -190,13 +189,13 @@ public abstract class Sprite implements Serializable{
     }
 
     /**
-     * Sets the coordinate of the Sprite which represents the top-left most
-     * corner of the bounding box. 
+     * Sets the coordinate of the Sprite which represents the top-left most corner
+     * of the bounding box.
      * 
-     * @param x      - The x position on the coordinate plane of the top left corner
-     *               of the bounding rectangle
-     * @param y      - The y position on the coordinate plane of the top left corner
-     *               of the bounding rectangle
+     * @param x - The x position on the coordinate plane of the top left corner of
+     *          the bounding rectangle
+     * @param y - The y position on the coordinate plane of the top left corner of
+     *          the bounding rectangle
      */
     public void setCoordinate(double x, double y) {
         coordinate.setLocation(x, y);

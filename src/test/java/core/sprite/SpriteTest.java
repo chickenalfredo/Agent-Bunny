@@ -9,11 +9,9 @@ import org.junit.Test;
  */
 public class SpriteTest 
 {
-    /**
-     * Rigorous Test :-)
-     */
+    
     @Test
-    public void shouldAnswerWithTrue()
+    public void test_copy_constructor()
     {
         assertTrue( true );
     }

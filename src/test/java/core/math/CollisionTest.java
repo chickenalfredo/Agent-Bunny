@@ -4,7 +4,6 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
-import core.sprite.Coordinate;
 import core.external.entity.Hero;
 
 public class CollisionTest 
@@ -42,7 +41,7 @@ public class CollisionTest
     }
 
     @Test
-    public void test_intersectAABB_from_the_left_with_collision() 
+    public void test_intersectAABB_from_the_right_with_collision() 
     {
         Collision c = new Collision();
         assertTrue(c.intersectAABB(new Hero(15.0, 20.0, 5.0, 5.0), new Hero(11.0, 20.0, 5.0, 5.0)));
@@ -57,7 +56,7 @@ public class CollisionTest
     }
 
     @Test
-    public void test_intersectAABB_from_the_right_with_collision() 
+    public void test_intersectAABB_from_the_left_with_collision() 
     {
         Collision c = new Collision();
         assertTrue(c.intersectAABB(new Hero(15.0, 20.0, 5.0, 5.0), new Hero(19.0, 20.0, 5.0, 5.0)));
@@ -70,6 +69,15 @@ public class CollisionTest
         Collision c = new Collision();
         assertTrue(c.intersectAABB(new Hero(15.0, 20.0, 5.0, 5.0), new Hero(15.0, 16.0, 5.0, 5.0)));
 
+    }
+
+    @Test
+    public void test_collisionData() 
+    {
+        Hero h = new Hero(15.0, 20.0, 5.0, 5.0);
+        Hero h1 = new Hero(15.0, 16.0, 5.0, 5.0);
+        Collision c = new Collision();
+        assertTrue(c.collisionData(h, h1) instanceof CollisionPacket);
     }
 
 }
