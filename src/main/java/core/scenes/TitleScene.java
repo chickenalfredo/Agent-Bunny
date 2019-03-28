@@ -1,10 +1,15 @@
 package core.scenes;
 
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.*;
 import javafx.scene.Scene;
 import core.utils.MenuEventHandlers;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+
 import javafx.geometry.*;
 
 /**
@@ -25,14 +30,20 @@ public class TitleScene {
         TitleScene.getStylesheets().add((new File("resources/css/style.css")).toURI().toString());
         return TitleScene;
     }
-       
+
     /**
      * 
      * @return
      */
     public static VBox initScene() {
 
-        Label gameTitle = new Label("AGENT BUNNY");
+        Label gameTitle = new Label();
+        try {
+            gameTitle.setGraphic(new ImageView(new Image(new FileInputStream("resources/assets/Game_title_cropped.png"), GameScene.screenWidth * 0.483, GameScene.screenHeight * 0.155, true, true)));
+        } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
         Button startNewGame = new Button("New Game");
         Button startLoadGame = new Button("Continue");
         Button Settings = new Button("Settings");
