@@ -170,6 +170,12 @@
 				font-weight: 100;
 			}
 
+			.float-object-config{
+				position: fixed;
+				top: 0px;
+				left: 0px;
+			}
+
 		</style>
 	</head>
 	<body>
@@ -187,6 +193,10 @@
 
 		<div class="float-select" id="pen-tool-float-select">
 			<div class="float-select-wrapper" id="pen-tool-float-select-wrapper"></div>
+		</div>
+
+		<div class="float-object-config" id="pen-tool-float-select">
+			
 		</div>
 
 		<div id="map-container">
@@ -531,6 +541,7 @@ import core.sprite.*;\n\
 import java.util.List;\n\
 import java.util.ArrayList;\n\
 \n\
+\n\
 				';
 
 				const level_editor_json = JSON.stringify(mapJson);
@@ -562,6 +573,7 @@ public class LevelName extends GameMap {\n\
 		}\n\
 		\n\
 	}\n\
+	\n\
 	\n\
 }\n\
 				';
