@@ -29,13 +29,13 @@ public class Chapter1Level1 extends GameMap implements Serializable {
 		List<Sprite> sprites = new ArrayList<Sprite>();
 
 		Sword sword = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
-        sword.addComponents(new RenderComponent(sword, null));
+        // sword.addComponents(new RenderComponent(sword, "resources/assets/Float_Tile_Middle.png"));
 
         Sword sword2 = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
-        sword2.addComponents(new RenderComponent(sword2, null));
+        // sword2.addComponents(new RenderComponent(sword2, "resources/assets/Float_Tile_Middle.png"));
 
         Sword sword3 = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
-        sword3.addComponents(new RenderComponent(sword3, null));
+        // sword3.addComponents(new RenderComponent(sword3, "resources/assets/Float_Tile_Middle.png"));
 
 		TileObject healthBar = new TileObject(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
 		healthBar.addComponents(new RenderComponent(healthBar, "resources/assets/Float_Tile_Middle.png"));

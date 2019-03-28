@@ -10,6 +10,7 @@ import core.sprite.Sprite;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
+import javafx.scene.paint.Color;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
@@ -26,8 +27,10 @@ public class RenderComponent extends Component implements Serializable {
      * @param filename
      */
     public RenderComponent(Sprite actor, String filename) {
-        setImage(actor, filename);
-        this.fileName = filename;
+        if (filename != null) {
+            setImage(actor, filename);
+            this.fileName = filename;
+        }
     }
 
     /**
@@ -104,9 +107,11 @@ public class RenderComponent extends Component implements Serializable {
             }
         }
         if (image == null) {
-            setImage(actor, fileName);
+            // setImage(actor, fileName);
+            drawRectangle(actor, gc);
+        } else {
+            gc.drawImage(image, actor.getX(), actor.getY());
         }
-        gc.drawImage(image, actor.getX(), actor.getY());
     }
 
     /**
@@ -130,6 +135,11 @@ public class RenderComponent extends Component implements Serializable {
                 setImage(actor, c.toString());
             }
         }
+    }
+
+    private void drawRectangle(Sprite actor, GraphicsContext gc) {
+        gc.setFill(Color.GREEN);
+        gc.fillRect(actor.getX(), actor.getY(), actor.getWidth(), actor.getHeight());
     }
 
 }

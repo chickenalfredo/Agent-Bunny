@@ -147,4 +147,20 @@ public class CoordinateTest
         ToStringVerifier.forClass(Coordinate.class).verify();
     }
 
+    @Test
+    public void test_normalize_length_greater_than_zero() 
+    {
+        Coordinate c = new Coordinate(5,10);
+        Double n = c.normalize();
+        assertEquals(11.180339887498949, n, 0);
+    }
+
+    @Test
+    public void test_normalize_length_less_than_zero() 
+    {
+        Coordinate c = new Coordinate(0,0);
+        Double n = c.normalize();
+        assertEquals(0, n, 0);
+    }
+
 }

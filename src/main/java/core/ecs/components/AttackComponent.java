@@ -88,11 +88,10 @@ public class AttackComponent extends Component implements Serializable {
      * 
      */
     private void resolveAttackCollision() {
-        // Get weapon + attackpower + attack type
-        System.out.println("Enemy health: " + collider.getComponent("HealthComponent", HealthComponent.class).getHealth());
+        // System.out.println("Enemy health: " + collider.getComponent("HealthComponent", HealthComponent.class).getHealth());
         collider.getComponent("HealthComponent", HealthComponent.class).takeDamage(attackPower);
-        System.out.println("Damage dealt by " + actor.getClass().getSimpleName() + ": " + attackPower);
-        System.out.println("Enemy health: " + collider.getComponent("HealthComponent", HealthComponent.class).getHealth());
+        // System.out.println("Damage dealt by " + actor.getClass().getSimpleName() + ": " + attackPower);
+        // System.out.println("Enemy health: " + collider.getComponent("HealthComponent", HealthComponent.class).getHealth());
         
     }
 

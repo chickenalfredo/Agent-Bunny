@@ -5,7 +5,7 @@ import core.sprite.Sprite;
 public class CollisionPacket {
 
     private Sprite actor, collider;
-    private boolean isColliding = false;
+    private final boolean isColliding;
     private String side = "";
 
     /**
@@ -16,7 +16,7 @@ public class CollisionPacket {
     public CollisionPacket(Sprite actor, Sprite collider) {
         this.actor = actor;
         this.collider = collider;
-        setCollisionSide();
+        isColliding = setCollisionSide();
     }
 
     /**
@@ -43,32 +43,26 @@ public class CollisionPacket {
     }
 
     /**
-     * @param isColliding the isColliding to set
-     */
-    public void setColliding(boolean isColliding) {
-        this.isColliding = isColliding;
-    }
-
-    /**
      * 
      */
-    private void setCollisionSide() {
+    private boolean setCollisionSide() {
         if (topCollision()) {
             side = "top";
-            setColliding(true);
+            return true;
         }
         if (bottomCollision()) {
             side = "bottom";
-            setColliding(true);
+            return true;
         }
         if (leftCollision()) {
             side = "left";
-            setColliding(true);
+            return true;
         }
         if (rightCollision()) {
             side = "right";
-            setColliding(true);
+            return true;
         }
+        return false;
     }
 
     /**
