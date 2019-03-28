@@ -7,7 +7,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -52,11 +51,12 @@ public class GameScene {
                     canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
                 gc.clearRect(0,0, 3*screenWidth, screenHeight);
                 world.update(gc, time);
-                // System.out.println(world.getHero().getX() + ", " + world.getHero().getY());
             }
         }.start();
         return GameScene;
     }
+
+
 
     /**
      * 
@@ -88,7 +88,7 @@ public class GameScene {
 
 
         GameScene = new Scene(root);
-        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+        GameScene.getStylesheets().add((new File("resources/css/style.css")).toURI().toString());
     }
 
     /**

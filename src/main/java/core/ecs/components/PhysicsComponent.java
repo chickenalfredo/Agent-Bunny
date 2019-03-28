@@ -2,7 +2,10 @@ package core.ecs.components;
 
 import java.io.Serializable;
 
+import com.sun.javafx.scene.traversal.Direction;
+
 import core.ecs.Component;
+import core.ecs.components.StateComponent.ConcurrentState;
 import core.ecs.components.StateComponent.State;
 import core.math.Collision;
 import core.math.CollisionPacket;
@@ -106,6 +109,7 @@ public class PhysicsComponent extends Component implements Serializable {
         if (this.actor == null) {
             this.actor = actor;
             actor.getComponent("StateComponent", StateComponent.class).setState(State.IDLE);
+            actor.getComponent("StateComponent", StateComponent.class).setConcurrentState(ConcurrentState.NONE);
         }
         actor.setX(actor.getX() + velocityX);
         actor.setY(actor.getY() + velocityY);
@@ -134,19 +138,18 @@ public class PhysicsComponent extends Component implements Serializable {
             case "a":
                 setVelocityX(0);
                 setVelocityX(-10);
-                // TODO: running right render
                 actor.getComponent("StateComponent", StateComponent.class).setState(State.RUNNING);
+                actor.getComponent("StateComponent", StateComponent.class).setDirection(StateComponent.Direction.LEFT);
                 break;
             case "d":
                 setVelocityX(0);
                 setVelocityX(10);
-                // TODO: running left render
                 actor.getComponent("StateComponent", StateComponent.class).setState(State.RUNNING);
+                actor.getComponent("StateComponent", StateComponent.class).setDirection(StateComponent.Direction.RIGHT);
                 break;
             }
         } else {
             setVelocityX(0);
-            // TODO: idle render
             actor.getComponent("StateComponent", StateComponent.class).setState(State.IDLE);
         }
     }
@@ -177,9 +180,13 @@ public class PhysicsComponent extends Component implements Serializable {
             velocityY = 0;
             jumping = false;
             falling = false;
+            if (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState() == StateComponent.ConcurrentState.FALLING) {
+                actor.getComponent("StateComponent", StateComponent.class).setConcurrentState(ConcurrentState.NONE);
+            }
+
         } else {
             falling = true;
-            actor.getComponent("StateComponent", StateComponent.class).setState(State.FALLING);
+            // actor.getComponent("StateComponent", StateComponent.class).setConcurrentState(ConcurrentState.FALLING);
         }
         if (packet.getCollisionSide().equals("bottom")) {
             actor.setY(collider.getY() + collider.getHeight());
@@ -201,9 +208,9 @@ public class PhysicsComponent extends Component implements Serializable {
             setVelocityY(-30);
             jumping = true;
             falling = true;
-            actor.getComponent("StateComponent", StateComponent.class).setState(State.JUMPING);
+            actor.getComponent("StateComponent", StateComponent.class).setConcurrentState(ConcurrentState.JUMPING);
         } else {
-            actor.getComponent("StateComponent", StateComponent.class).setState(State.IDLE);
+            actor.getComponent("StateComponent", StateComponent.class).setConcurrentState(ConcurrentState.FALLING);
         }
     }
 

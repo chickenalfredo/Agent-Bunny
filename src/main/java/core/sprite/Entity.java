@@ -14,19 +14,19 @@ public abstract class Entity extends Sprite implements Serializable {
 
     private static final long serialVersionUID = 2915461139373660808L;
 
-    public Entity() {
-        super(null);
-    }
-
     /**
      * 
-     * @param entityX
-     * @param entityY
-     * @param entityWidth
-     * @param entityHeight
+     * @param x
+     * @param y
+     * @param width
+     * @param height
      */
-    public Entity(double entityX, double entityY, double entityWidth, double entityHeight) {
-        super(entityX, entityY, entityWidth, entityHeight);
+    public Entity(double x, double y, double width, double height) {
+        super(x, y, width, height);
+    }
+
+    public Entity() {
+        super();
     }
 
     /**

@@ -27,4 +27,12 @@ public class Enemy extends Entity implements Serializable {
         setTerminalChar('M');
     }
 
+    /**
+     * 
+     * @param enemy
+     */
+    public Enemy(Hero enemy) {
+        this(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
+    }
+
 }
