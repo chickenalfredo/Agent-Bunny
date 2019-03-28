@@ -7,7 +7,6 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
@@ -33,7 +32,7 @@ public class GameScene {
     public static double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     public static double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
     private static World world;
-    
+    private static boolean animationTimer = false;
 
     public static Scene display(World aWorld) {
         world = aWorld;
@@ -46,15 +45,17 @@ public class GameScene {
         GameScene.setOnKeyPressed(new GameLoop());
         GameScene.setOnKeyReleased(new GameLoop());
 
-        new AnimationTimer() {
-            public void handle(long time) {
-                if (world.getHero().getX() > (screenWidth / 2) - world.getHero().getWidth() / 2)
-                    canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth())/2), 0);               
-                gc.clearRect(0,0, 3*screenWidth, screenHeight);
-                world.update(gc, time);
-                // System.out.println(world.getHero().getX() + ", " + world.getHero().getY());
-            }
-        }.start();
+        if (animationTimer == false) {
+            new AnimationTimer() {
+                public void handle(long time) {
+                    if (world.getHero().getX() > (screenWidth / 2) - world.getHero().getWidth() / 2)
+                        canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth()) / 2), 0);
+                    gc.clearRect(0, 0, 3 * screenWidth, screenHeight);
+                    world.update(gc, time);
+                }
+            }.start();
+        }
+        animationTimer = true;
         return GameScene;
     }
 
@@ -72,7 +73,6 @@ public class GameScene {
 
     public static void initScene() {
         Pane camera = new Pane();
-        
 
         root.getChildren().add(camera);
 
@@ -81,14 +81,17 @@ public class GameScene {
         gc = canvas.getGraphicsContext2D();
 
         gc.strokeText("hi", 150, 100);
-        
-        //StackPane healthBar = new StackPane(world.getHero().getComponent("HealthComponent", HealthComponent.class).getHealthBar(), world.getHero().getComponent("HealthComponent", HealthComponent.class).getHealthDisplay());
-        //healthBar.setAlignment(Pos.TOP_LEFT);
-       // root.getChildren().add(healthBar);
 
+        // StackPane healthBar = new
+        // StackPane(world.getHero().getComponent("HealthComponent",
+        // HealthComponent.class).getHealthBar(),
+        // world.getHero().getComponent("HealthComponent",
+        // HealthComponent.class).getHealthDisplay());
+        // healthBar.setAlignment(Pos.TOP_LEFT);
+        // root.getChildren().add(healthBar);
 
         GameScene = new Scene(root);
-        GameScene.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+        GameScene.getStylesheets().add((new File("resources/css/style.css")).toURI().toString());
     }
 
     /**
@@ -112,10 +115,10 @@ public class GameScene {
      * @param toAdd
      */
     public static void addToRoot(Node toAdd) {
-        gameMenu = (HBox)toAdd;
+        gameMenu = (HBox) toAdd;
         root.getChildren().add(gameMenu);
         root.setAlignment(Pos.CENTER);
-        gameMenu.setAlignment(Pos.CENTER);    
+        gameMenu.setAlignment(Pos.CENTER);
     }
 
     /**

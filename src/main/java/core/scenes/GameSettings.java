@@ -31,7 +31,7 @@ public class GameSettings {
         menu = mainMenu();
         GameSettings = new Scene(menu);
         GameSettings.getStylesheets().clear();
-        GameSettings.getStylesheets().add((new File("src/main/resources/css/style.css")).toURI().toString());
+        GameSettings.getStylesheets().add((new File("resources/css/style.css")).toURI().toString());
         GameSettings.setOnKeyPressed(new EscKey());
         return GameSettings;
     }
@@ -92,7 +92,7 @@ public class GameSettings {
         Label resolutionLabel = new Label("Available Resolutions: ");
         ComboBox<String> graphicsOptions = new ComboBox<String>();
 
-        try (BufferedReader br = new BufferedReader(new FileReader("src/main/resources/configs/settings.config"))) {
+        try (BufferedReader br = new BufferedReader(new FileReader("resources/configs/settings.config"))) {
             ObservableList<String> resolutions = FXCollections.observableArrayList();
             String line;
             while ((line = br.readLine()) != null) {
