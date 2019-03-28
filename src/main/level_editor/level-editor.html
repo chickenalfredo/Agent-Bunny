@@ -410,7 +410,7 @@
 						mapJson['block'][x][y] = JSON.parse(JSON.stringify(pen_tool));
 					}
 
-					coalesceBlocks();
+					//oalesceBlocks();
 
 				});
 
@@ -427,7 +427,7 @@
 				});
 
 				$('.block').mouseup(function(){
-					coalesceBlocks();
+					setTimeout(coalesceBlocks, 1);
 				});
 
 				
@@ -597,6 +597,7 @@ public class LevelName extends GameMap {\n\
 							spriteComponents.push('new PhysicsComponent()');
 							spriteComponents.push('new AttackComponent()');
 							spriteComponents.push('new HealthComponent()');
+							spriteComponents.push('new StateComponent()');
 						}
 						if(block == 'Hero'){
 							spriteComponents.push('new WeaponComponent()');
@@ -617,13 +618,11 @@ public class LevelName extends GameMap {\n\
 
 						// relative position and size
 
-						var editorSize = 34; // tile size set in style sheet 34px
-						var screenSize = 50; // screen tile size 50px
-
-						var width = '(' + mapThis['size'][0] + ' / ' + w + ') * (' + screenSize + ' / ' + editorSize + ') * (screenWidth / ' + screenSize + ') * ' + screenSize;
-						var height = '(' + mapThis['size'][1] + ' / ' + h + ') * (' + screenSize + ' / ' + editorSize + ') * (screenWidth / ' + screenSize + ') * ' + screenSize;
-						var left = '(' + i + ' / ' + w + ') * (' + screenSize + ' / ' + editorSize + ') * (screenWidth / ' + screenSize + ') * ' + screenSize;
-						var top = '(' + t + ' / ' + h + ') * (' + screenSize + ' / ' + editorSize + ') * (screenHeight / ' + screenSize + ') * ' + screenSize;
+						var ratio = '(screenHeight * 0.063)';
+						var width = ratio;
+						var height = ratio;
+						var left = i + ' * ' + ratio;
+						var top = t + ' * ' + ratio;
 
 
 						tiles_lines += '\n\
