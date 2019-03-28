@@ -18,7 +18,6 @@
 
 ### Coalesce blocks
 	Without: 
-	![Without](withou.gif)
+![Without](withou.gif)
 	With:
-	![With](with.gif)
-	
+![With](with.gif)
