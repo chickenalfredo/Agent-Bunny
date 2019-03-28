@@ -8,14 +8,10 @@ import core.sprite.Entity;
 /**
  * 
  */
-public class Hero extends Entity implements Serializable{
+public class Hero extends Entity implements Serializable {
 
     private static final long serialVersionUID = 674276147323632966L;
     private int lives = 3;
-
-    public Hero() {
-        super();
-    }
 
     /**
      * 
@@ -34,7 +30,7 @@ public class Hero extends Entity implements Serializable{
      * @param player
      */
     public Hero(Hero player) {
-        super(player.getX(), player.getY(), player.getWidth(), player.getHeight());
+        this(player.getX(), player.getY(), player.getWidth(), player.getHeight());
     }
 
     /**

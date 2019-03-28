@@ -1,12 +1,14 @@
 package core.external.weapon;
 
+import java.io.Serializable;
+
 import core.sprite.Entity;
 import core.sprite.Melee;
 
 /**
  * 
  */
-public class Sword extends Melee {
+public class Sword extends Melee implements Serializable {
 
     private static final long serialVersionUID = 9149336230444330916L;
     private final double SWORD_BASE_DAMAGE = 15;

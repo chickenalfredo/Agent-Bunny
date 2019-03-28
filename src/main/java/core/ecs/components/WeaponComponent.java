@@ -29,9 +29,14 @@ public class WeaponComponent extends Component implements Serializable {
      */
     @Override
     public void update(Sprite actor, World world) {
-        getEquippedWeapon().setX(actor.getX() + actor.getWidth());
+        if (actor.getComponent("StateComponent", StateComponent.class).getDirection() == StateComponent.Direction.RIGHT) {
+            getEquippedWeapon().setX(actor.getX() + actor.getWidth());
+        } else {
+            getEquippedWeapon().setX(actor.getX());
+        }
         getEquippedWeapon().setY(actor.getY());
         getEquippedWeapon().setWidth(getEquippedWeaponRange());
+        getEquippedWeapon().setHeight(actor.getHeight());
     }
 
     /**
