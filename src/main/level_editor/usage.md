@@ -17,7 +17,7 @@
 	2. Switch back to `Map Design` panel
 
 ### Coalesce blocks
-	Without: 
-![Without](withou.gif)
-	With:
+Without: 
+![Without](without.gif)
+With:
 ![With](with.gif)
