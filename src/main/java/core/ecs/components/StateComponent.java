@@ -61,8 +61,8 @@ public class StateComponent extends Component implements Serializable {
 
     @Override
     public void update(Sprite actor, World world) {
-        if (actor instanceof Hero)
-            System.out.println(actor.getClass().getSimpleName() + " : " + getState());
+        // if (actor instanceof Hero)
+        //     System.out.println(actor.getClass().getSimpleName() + " : " + getState());
     }
 
     @Override

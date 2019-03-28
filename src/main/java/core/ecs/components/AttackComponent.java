@@ -3,6 +3,7 @@ package core.ecs.components;
 import java.io.Serializable;
 
 import core.ecs.Component;
+import core.external.entity.Hero;
 import core.math.Collision;
 import core.sprite.Entity;
 import core.sprite.Sprite;
@@ -16,6 +17,8 @@ public class AttackComponent extends Component implements Serializable {
     private double attackPower;
     private Sprite collider, actor;
     private WeaponComponent weaponComponent;
+    private long lastAttack = 0;
+    private long cooldownTime = 2500;
 
     public AttackComponent() {}
 
@@ -47,9 +50,15 @@ public class AttackComponent extends Component implements Serializable {
      */
     public void update(Entity actor, World world) {
         init(actor);
-        if (weaponComponent != null) 
+        if (weaponComponent != null) {
             attackPower = weaponComponent.getEquippedWeaponDamage();
-        attackCollider(actor, world);
+        }
+        if (!attackOffCooldown()) {
+            attackCollider(actor, world);
+            if (actor instanceof Hero) {
+                System.out.println("Attacking...");
+            }
+        }
     }
 
     /**
@@ -88,10 +97,7 @@ public class AttackComponent extends Component implements Serializable {
      * 
      */
     private void resolveAttackCollision() {
-        // System.out.println("Enemy health: " + collider.getComponent("HealthComponent", HealthComponent.class).getHealth());
         collider.getComponent("HealthComponent", HealthComponent.class).takeDamage(attackPower);
-        // System.out.println("Damage dealt by " + actor.getClass().getSimpleName() + ": " + attackPower);
-        // System.out.println("Enemy health: " + collider.getComponent("HealthComponent", HealthComponent.class).getHealth());
         
     }
 
@@ -99,6 +105,15 @@ public class AttackComponent extends Component implements Serializable {
         this.actor = actor;
         if (actor.getComponent("WeaponComponent", WeaponComponent.class) != null)
             weaponComponent = actor.getComponent("WeaponComponent", WeaponComponent.class);
+    }
+
+    public boolean attackOffCooldown() {
+        long time = System.currentTimeMillis();
+        if (time > lastAttack + cooldownTime) {
+            lastAttack = time;
+            return true;
+        }
+        return false;
     }
 
 }

@@ -9,6 +9,7 @@ import core.sprite.Sprite;
 import core.sprite.TileObject;
 
 import java.util.List;
+import java.io.File;
 import java.io.Serializable;
 import java.util.ArrayList;
 
@@ -60,24 +61,30 @@ public class Chapter1Level1 extends GameMap implements Serializable {
 		endPoint.addComponents(new RenderComponent(endPoint, "resources/assets/Door.png"), new CollidableComponent(), new EndPointComponent());
 
 		TileObject checkPoint = new TileObject(2000, 900, (screenWidth * 0.035), (screenHeight * 0.063));
-		checkPoint.addComponents(new RenderComponent(checkPoint, "resources/assets/Door.png"), new CollidableComponent(), new EndPointComponent());
+		checkPoint.addComponents(new RenderComponent(checkPoint, "resources/assets/CheckPoint_checkpoint_1.png"), new CollidableComponent(), new EndPointComponent());
+        
+		TileObject block1 = new TileObject(screenWidth*.20, screenHeight*.75, (screenWidth * 0.035), (screenHeight * 0.063));
+		block1.addComponents(new RenderComponent(block1, "resources/assets/Block_floatblock_left.png"), new CollidableComponent());
 		
-		TileObject block1 = new TileObject(500.0, 1050.0, (screenWidth * 0.035), (screenHeight * 0.063));
-		block1.addComponents(new RenderComponent(block1, "resources/assets/Grass.png"), new CollidableComponent());
+		TileObject block2 = new TileObject((block1.getWidth() + block1.getX() - 1), screenHeight*.75, (screenWidth * 0.035), (screenHeight * 0.063));
+		block2.addComponents(new RenderComponent(block2, "resources/assets/Block_floatblock_middle_1.png"), new CollidableComponent());
 		
-		TileObject block2 = new TileObject((block1.getWidth() + block1.getX()), 1050.0, (screenWidth * 0.035), (screenHeight * 0.063));
-		block2.addComponents(new RenderComponent(block2, "resources/assets/Grass.png"), new CollidableComponent());
+		TileObject block3 = new TileObject((block2.getWidth() + block2.getX() - 1), screenHeight*.75, (screenWidth * 0.035), (screenHeight * 0.063));
+		block3.addComponents(new RenderComponent(block3, "resources/assets/Block_floatblock_middle_2.png"), new CollidableComponent());
 		
-		TileObject block3 = new TileObject((block2.getWidth() + block2.getX()), 1050.0, (screenWidth * 0.035), (screenHeight * 0.063));
-		block3.addComponents(new RenderComponent(block3, "resources/assets/Grass.png"), new CollidableComponent());
-		
-		TileObject block4 = new TileObject((block3.getWidth() + block3.getX()), 1050.0, (screenWidth * 0.035), (screenHeight * 0.063));
-		block4.addComponents(new RenderComponent(block4, "resources/assets/Grass.png"), new CollidableComponent());
+		TileObject block4 = new TileObject((block3.getWidth() + block3.getX() - 1), screenHeight*.75, (screenWidth * 0.035), (screenHeight * 0.063));
+		block4.addComponents(new RenderComponent(block4, "resources/assets/Block_floatblock_right.png"), new CollidableComponent());
 
-
+        // TODO: This is very inefficient
 		for (int i = 0; i < screenWidth * 3; i += (screenWidth * 0.035)) {
-			TileObject wall = new TileObject(i, screenHeight - (screenHeight * 0.063), (screenWidth * 0.035), (screenHeight * 0.063));
-			wall.addComponents(new RenderComponent(wall, "resources/assets/Grass.png"), new CollidableComponent());
+            TileObject wall = new TileObject(i, screenHeight - (screenHeight * 0.063), (screenWidth * 0.035), (screenHeight * 0.063));
+            File dir = new File("resources/assets/ground/");
+            File[] directoryListing = dir.listFiles();
+            if (directoryListing != null) {
+                for (File c : directoryListing) {
+                    wall.addComponents(new RenderComponent(wall, c.toString()), new CollidableComponent());
+                }
+            }
 			sprites.add(wall);
 		}
 		
