@@ -12,11 +12,21 @@
 
 ## Features:
 
-### Re-editing map
-	1. Paste java code back to the input box in `Java Code` panel
-	2. Switch back to `Map Design` panel
+### Erasing
+The `Earser` pen is on the top of `Pen Tool` selection, use it to draw on the block you want to earse.
 
-### Coalesce blocks
+### Clearing
+The button `Clear Map` will clear all the tiles on the map and resize the map.
+
+### Resizing
+The button `Map Size` is for setting the map size, and its unit is tile.
+Resizing map will clear the whole map.
+
+### Re-editing map
+1. Paste java code back to the input box in `Java Code` panel
+2. Switch back to `Map Design` panel
+
+### Coalescing blocks
 Without: 
 ![Without](without.gif)
 With:
