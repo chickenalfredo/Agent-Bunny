@@ -18,7 +18,7 @@ public class AttackComponent extends Component implements Serializable {
     private Sprite collider, actor;
     private WeaponComponent weaponComponent;
     private long lastAttack = 0;
-    private long cooldownTime = 2500;
+    private long cooldownTime = 1000;
 
     public AttackComponent() {}
 
