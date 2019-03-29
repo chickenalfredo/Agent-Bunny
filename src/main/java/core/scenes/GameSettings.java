@@ -89,6 +89,7 @@ public class GameSettings {
     public static void graphicsMenu() {
 
         CheckBox fullscreen = new CheckBox("Toggle Fullscreen");
+        fullscreen.setStyle("-fx-text-fill: white;");
         Label resolutionLabel = new Label("Available Resolutions: ");
         ComboBox<String> graphicsOptions = new ComboBox<String>();
 

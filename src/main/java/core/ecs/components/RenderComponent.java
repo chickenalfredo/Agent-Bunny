@@ -8,6 +8,7 @@ import core.ecs.Component;
 import core.external.entity.Hero;
 import core.sprite.Entity;
 import core.sprite.Sprite;
+import core.sprite.Weapon;
 import core.sprite.World;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -25,6 +26,7 @@ public class RenderComponent extends Component implements Serializable {
     private int index = 0;
     private String lastDirectory = "";
     private String lastAttackDirectory = "";
+    private String filename;
 
     /**
      * 
@@ -117,7 +119,11 @@ public class RenderComponent extends Component implements Serializable {
             }
         }
         if (image == null) {
-            drawRectangle(actor, gc);
+            if (actor instanceof Weapon) {
+                drawRectangle(actor, gc);
+            } else {
+            setImage(actor, filename);
+            }
         } else {
             gc.drawImage(image, actor.getX(), actor.getY());
         }
