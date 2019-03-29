@@ -20,7 +20,6 @@ public class RenderComponent extends Component implements Serializable {
 
     private static final long serialVersionUID = 1898382905294065884L;
     private transient Image image;
-    // private String fileName = null;
     private long lastAnimation = 0;
     private long durationTime = 115;
     private int index = 0;
@@ -35,7 +34,6 @@ public class RenderComponent extends Component implements Serializable {
     public RenderComponent(Sprite actor, String filename) {
         if (filename != null) {
             setImage(actor, filename);
-            // this.fileName = filename;
         }
     }
 
