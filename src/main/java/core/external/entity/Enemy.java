@@ -13,6 +13,7 @@ import core.sprite.Entity;
 public class Enemy extends Entity implements Serializable {
 
     private static final long serialVersionUID = 2769579462364610950L;
+    private String name;
 
     /**
      * This is the constructor for this class that extends from Entity class.
@@ -22,17 +23,33 @@ public class Enemy extends Entity implements Serializable {
      * @param entityWidth  This is the width of the entity's size.
      * @param entityHeight This is the height of the entity's size.
      */
-    public Enemy(double x, double y, double width, double height) {
+    public Enemy(double x, double y, double width, double height, String name) {
         super(x, y, width, height);
         setTerminalChar('M');
+        this.setName(name);
     }
-
+    
     /**
      * 
      * @param enemy
      */
-    public Enemy(Hero enemy) {
-        this(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight());
+    public Enemy(Enemy enemy) {
+        this(enemy.getX(), enemy.getY(), enemy.getWidth(), enemy.getHeight(), enemy.getName());
     }
+
+    /**
+     * @return the name
+     */
+    public String getName() {
+        return name;
+    }
+
+    /**
+     * @param name the name to set
+     */
+    public void setName(String name) {
+        this.name = name;
+    }
+
 
 }

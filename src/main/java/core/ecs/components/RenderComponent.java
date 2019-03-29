@@ -5,6 +5,7 @@ import java.io.FileInputStream;
 import java.io.Serializable;
 
 import core.ecs.Component;
+import core.external.entity.Enemy;
 import core.external.entity.Hero;
 import core.sprite.Entity;
 import core.sprite.Sprite;
@@ -27,6 +28,8 @@ public class RenderComponent extends Component implements Serializable {
     private String lastDirectory = "";
     private String lastAttackDirectory = "";
     private String filename;
+    private String actorSimpleName;
+    private String actorName = "";
 
     /**
      * 
@@ -36,6 +39,10 @@ public class RenderComponent extends Component implements Serializable {
     public RenderComponent(Sprite actor, String filename) {
         if (filename != null) {
             setImage(actor, filename);
+            actorSimpleName = actor.getClass().getSimpleName() + "/";
+        }
+        if (actor instanceof Enemy) {
+            actorName = Enemy.class.cast(actor).getName() + "/";
         }
     }
 
@@ -64,19 +71,19 @@ public class RenderComponent extends Component implements Serializable {
                         .getDirection() == StateComponent.Direction.LEFT) {
                     switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
                     case RUNNING:
-                        animate(actor, "resources/assets/move_left/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "move_left/");
                         break;
                     case IDLE:
-                        animate(actor, "resources/assets/idle_left/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "idle_left/");
                         break;
                     }
                 } else {
                     switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
                     case RUNNING:
-                        animate(actor, "resources/assets/move_right/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "move_right/");
                         break;
                     case IDLE:
-                        animate(actor, "resources/assets/idle_right/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "idle_right/");
                         break;
                     }
                 }
@@ -86,14 +93,14 @@ public class RenderComponent extends Component implements Serializable {
                     // facing left + concurrent
                     switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
                     case ATTACKING:
-                        animate(actor, "resources/assets/attack_left/");
-                        // animateAttacks(actor);
+                        // animate(actor, "resources/assets/attack_left/");
+                        animateAttacks(actor);
                         break;
                     case JUMPING:
-                        animate(actor, "resources/assets/jump_left/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "jump_left/");
                         break;
                     case FALLING:
-                        animate(actor, "resources/assets/falling_left/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "falling_left/");
                         break;
                     case NONE:
                         break;
@@ -102,15 +109,15 @@ public class RenderComponent extends Component implements Serializable {
                     // facing right + concurrent
                     switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
                     case ATTACKING:
-                        animate(actor, "resources/assets/attack/k1/");
-                        // animateAttacks(actor);
+                        // animate(actor, "resources/assets/attack/k1/");
+                        animateAttacks(actor);
                         // animate(actor, "resources/assets/attack/k3/");
                         break;
                     case JUMPING:
-                        animate(actor, "resources/assets/jump_right/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "jump_right/");
                         break;
                     case FALLING:
-                        animate(actor, "resources/assets/falling_right/");
+                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "falling_right/");
                         break;
                     case NONE:
                         break;
@@ -122,7 +129,7 @@ public class RenderComponent extends Component implements Serializable {
             if (actor instanceof Weapon) {
                 drawRectangle(actor, gc);
             } else {
-            setImage(actor, filename);
+                setImage(actor, filename);
             }
         } else {
             gc.drawImage(image, actor.getX(), actor.getY());
@@ -175,18 +182,28 @@ public class RenderComponent extends Component implements Serializable {
     }
 
     private void animateAttacks(Sprite actor) {
-        // TODO
-        System.out.println(lastAttackDirectory);
-        if (lastAttackDirectory.equals("resources/assets/attack/k3/")) {
-            animate(actor, "resources/assets/attack/k1/");
-            lastAttackDirectory = "resources/assets/attack/k1/";
-        } else if (lastAttackDirectory.equals("resources/assets/attack/k2/")) {
-            animate(actor, "resources/assets/attack/k3/");
-            lastAttackDirectory = "resources/assets/attack/k3/";
+
+        if (actor.getComponent("StateComponent", StateComponent.class).getState() == StateComponent.State.RUNNING) {
+            if (actor.getComponent("StateComponent", StateComponent.class).getDirection() == StateComponent.Direction.RIGHT) {
+                animate(actor, "resources/assets/" + actorSimpleName + actorName + "attack_right_running/");
+            } else {
+                animate(actor, "resources/assets/" + actorSimpleName + actorName + "attack_left_running/");
+            }
         } else {
-            animate(actor, "resources/assets/attack/k2/");
-            lastAttackDirectory = "resources/assets/attack/k2/";
+            if (actor.getComponent("StateComponent", StateComponent.class).getDirection() == StateComponent.Direction.RIGHT) {
+                animate(actor, "resources/assets/" + actorSimpleName + actorName + "attack_right_idle/");
+            } else {
+                animate(actor, "resources/assets/" + actorSimpleName + actorName + "attack_left_idle/");
+            }
         }
+
+        if (actor.getComponent("StateComponent", StateComponent.class).getState() == StateComponent.State.RUNNING
+                && actor.getComponent("StateComponent", StateComponent.class).getDirection() == StateComponent.Direction.RIGHT) {
+            animate(actor, "directory");
+        } else {
+
+        }
+
     }
 
 }

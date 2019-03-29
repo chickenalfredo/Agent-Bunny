@@ -40,7 +40,7 @@ public class AIComponent extends Component implements Serializable {
     @Override
     public void update(Sprite actor, World world) {
         if (actor.getComponent("AttackComponent", AttackComponent.class).attackOffCooldown() && (enemy.getComponent("AttackComponent", AttackComponent.class).collisionDetected((Entity)world.getHero(), enemy.getComponent("WeaponComponent", WeaponComponent.class).getEquippedWeapon(), world))) {
-        enemy.attackCollider(world);
+            // enemy.attackCollider(world);
         }
         moveScript(enemy);
     }
