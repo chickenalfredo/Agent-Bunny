@@ -3,6 +3,7 @@ package core.ecs.components;
 import java.io.Serializable;
 
 import core.ecs.Component;
+import core.external.entity.Enemy;
 import core.external.entity.Hero;
 import core.math.Collision;
 import core.sprite.Entity;
@@ -80,10 +81,10 @@ public class AttackComponent extends Component implements Serializable {
      * @param world
      * @return
      */
-    private boolean collisionDetected(Entity actor, Weapon weapon, World world) {
+    boolean collisionDetected(Entity actor, Weapon weapon, World world) {
         Collision collision = new Collision();
         for (Sprite collider : world.getEntities()) {
-            if (collider instanceof Entity && !actor.equals(collider)) {
+            if (collider instanceof Entity && !actor.equals(collider) && !(collider instanceof Enemy && actor instanceof Enemy)) {
                 if (collision.intersectAABB(weapon, collider)) {
                     this.collider = collider;
                     return true;
