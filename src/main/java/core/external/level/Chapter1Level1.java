@@ -37,7 +37,7 @@ public class Chapter1Level1 extends GameMap implements Serializable {
         hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(), new RenderComponent(hero, "resources/assets/Hero.png"), new HealthComponent(healthBar), new CollidableComponent(), new WeaponComponent(sword));
         sprites.add(hero);
 
-        Enemy alienBug = new Enemy(1000, 200, (screenWidth * 0.035), (screenHeight * 0.063), "alien_bug");
+        Enemy alienBug = new Enemy(100.00, 200.0, (screenWidth * 0.035), (screenHeight * 0.063), "alien_bug");
         Sword sword2 = new Sword(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));
         sword2.addComponents(new RenderComponent(sword2, null));
         TileObject healthBar2 = new TileObject(0.0, 0.0, (screenWidth * 0.035), (screenHeight * 0.063));

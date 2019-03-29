@@ -15,6 +15,12 @@ public class Enemy extends Entity implements Serializable {
     private static final long serialVersionUID = 2769579462364610950L;
     private String name;
 
+    public Enemy(double x, double y, double width, double height) {
+        super(x, y, width, height);
+        setTerminalChar('M');
+        this.setName(name);
+    }
+
     /**
      * This is the constructor for this class that extends from Entity class.
      * 
