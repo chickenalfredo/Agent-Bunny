@@ -1,21 +1,10 @@
 package core.component.components;
 
 import core.component.Component;
+import core.component.state.*;
 
 public class StateComponent implements Component {
     
-    public enum Direction {
-        LEFT, RIGHT
-    }
-
-    public enum State {
-        RUNNING, IDLE
-    }
-
-    public enum ConcurrentState {
-        ATTACKING, JUMPING, FALLING, NONE
-    }
-
     private State state;
     private ConcurrentState concurrentState;
     private Direction direction;
