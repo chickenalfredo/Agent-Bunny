@@ -3,6 +3,15 @@ package core.component.components;
 import core.component.Component;
 import core.component.state.*;
 
+/**
+ * This component will allow an Entity to have the data necessary for having a
+ * state. An entity can have three different states that all run concurrent to 
+ * one another. 
+ * 
+ * @see State
+ * @see ConcurrentState
+ * @see Direction
+ */
 public class StateComponent implements Component {
     
     private State state;

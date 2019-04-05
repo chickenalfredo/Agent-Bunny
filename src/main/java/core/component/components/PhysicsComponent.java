@@ -2,6 +2,11 @@ package core.component.components;
 
 import core.component.Component;
 
+/**
+ * This component will allow an Entity to have the data necessary for having physics. 
+ * This component is necessary for all non-static objects as this data will cause
+ * all Entities with this component to experience gravity.
+ */
 public class PhysicsComponent implements Component {
     
     private float force = 1.5f;

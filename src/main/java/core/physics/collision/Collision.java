@@ -29,6 +29,8 @@ public class Collision {
     }
 
     /**
+     * Returns a packet of information regarding the collision. The packet will
+     * include the side the collision occured and who was involved in the collision
      * 
      * @param actor
      * @param collider

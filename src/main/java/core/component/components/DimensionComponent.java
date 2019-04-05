@@ -2,6 +2,11 @@ package core.component.components;
 
 import core.component.Component;
 
+/**
+ * This component will allow an Entity to have the data necessary for having
+ * dimensions. Every Entity should have this component as it is necessary 
+ * data for rendering Entities properly.
+ */
 public class DimensionComponent implements Component {
     
     private float width;

@@ -1,5 +1,3 @@
 package core.system;
 
-public interface System {
-
-}
+public interface System {}

@@ -2,6 +2,11 @@ package core.component.components;
 
 import core.component.Component;
 
+/**
+ * This component will allow an Entity to have the data necessary for having health
+ * data. This class defines the Entities current health, max health and whether or not
+ * the Object is alive.
+ */
 public class HealthComponent implements Component {
  
     private float maxHP;

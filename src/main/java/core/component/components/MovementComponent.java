@@ -2,6 +2,10 @@ package core.component.components;
 
 import core.component.Component;
 
+/**
+ * This component will allow an Entity to have the data necessary for movement. This 
+ * class will define the Entities velocity in relation to their current state.
+ */
 public class MovementComponent implements Component {
     
     private float velocityX = 0.0f;

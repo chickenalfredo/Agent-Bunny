@@ -2,6 +2,11 @@ package core.component.components;
 
 import core.component.Component;
 
+/**
+ * This component will allow an Entity to have the data necessary for having a position in
+ * the 2D plane. All Entities that are to be rendered and have a position on the screen are
+ * to have this component.
+ */
 public class PositionComponent implements Component {
     
     private float x;

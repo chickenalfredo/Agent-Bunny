@@ -3,10 +3,15 @@ package core.game;
 import java.io.Serializable;
 import java.util.ArrayList;
 import core.entity.Entity;
+import core.entity.attributes.Type;
 import core.entity.attributes.TypeAttribute;
 import core.game.map.Level;
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * This class is the world that contains all GameObjects in the level. The
+ * World can add, remove, retrieve and update itself.
+ */
 public class World implements Serializable {
 
     private static final long serialVersionUID = -593390538413494469L;
@@ -16,7 +21,8 @@ public class World implements Serializable {
     private GameMap level;
 
     /**
-     * 
+     * On construction the world will initialize itself by retrieving the setting up the
+     * Level and retrieving the Hero for easy access
      */
     public World() {
         init();
@@ -36,29 +42,34 @@ public class World implements Serializable {
     }
 
     /**
-     * 
-     * @return
+     * @return The Hero Entity
      */
     public Entity getHero() {
         return hero;
     }
 
     /**
-     * 
+     * Sets the Hero Entity
      */
     private void setHero() {
         for (Entity s : m_entities) {
-            if (s.getAttribute(TypeAttribute.class) != null && s.getAttribute(TypeAttribute.class).getType().equals(TypeAttribute.Type.HERO)) {
+            if (s.getAttribute(TypeAttribute.class) != null && s.getAttribute(TypeAttribute.class).getType().equals(Type.HERO)) {
                 hero = s;
             }
         }
     }
 
+    /**
+     * Adds the specified Entity to the game World
+     * 
+     * @param actor
+     */
     public void createEntity(Entity actor) {
         level.addEntity(actor);
     }
 
     /**
+     * Destroys the specified Entity from the game World
      * 
      * @param actor
      */
@@ -67,6 +78,7 @@ public class World implements Serializable {
     }
 
     /**
+     * Retrieves all Entities currently in the World
      * 
      * @return
      */
@@ -75,7 +87,8 @@ public class World implements Serializable {
     }
 
     /**
-     * 
+     * Initializes the World by retrieving all Entities in the Level
+     * and setting the Hero for easy retrieval
      */
     private void init() {
         level = new Level();

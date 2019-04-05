@@ -4,6 +4,11 @@ import core.component.components.DimensionComponent;
 import core.component.components.PositionComponent;
 import core.entity.GameObject;
 
+/**
+ * This class will contain data regarding the collision that occured.
+ * The data will include the game objects that collided, whether or not
+ * they did collide and the side that collision occured.
+ */
 public class CollisionPacket {
 
     private GameObject actor, collider;
@@ -11,6 +16,7 @@ public class CollisionPacket {
     private String side = "";
 
     /**
+     * Constructs a packet with the specified GameObjects
      * 
      * @param actor
      * @param collider
@@ -22,16 +28,14 @@ public class CollisionPacket {
     }
 
     /**
-     * 
-     * @return
+     * @return  The GameObject who is colliding
      */
     public GameObject getActor() {
         return actor;
     }
 
     /**
-     * 
-     * @return
+     * @return  The GameObject being collided with
      */
     public GameObject getCollider() {
         return collider;
@@ -45,7 +49,7 @@ public class CollisionPacket {
     }
 
     /**
-     * 
+     * Sets the side the collision occured on
      */
     private boolean setCollisionSide() {
         if (topCollision()) {
@@ -68,16 +72,14 @@ public class CollisionPacket {
     }
 
     /**
-     * 
-     * @return
+     * @return  The side the collision occured on
      */
     public String getCollisionSide() {
         return side;
     }
 
     /**
-     * 
-     * @return
+     * @return  True or false depending on whether or not the collision happened on the top side of the collider
      */
     private boolean topCollision() {
         return getTopBoundCollision() < getBottomBoundCollision() && getTopBoundCollision() < getLeftBoundCollision()
@@ -85,8 +87,7 @@ public class CollisionPacket {
     }
 
     /**
-     * 
-     * @return
+     * @return  True or false depending on whether or not the collision happened on the bottom side of the collider
      */
     private boolean bottomCollision() {
         return getBottomBoundCollision() < getTopBoundCollision() && getBottomBoundCollision() < getLeftBoundCollision()
@@ -94,8 +95,7 @@ public class CollisionPacket {
     }
 
     /**
-     * 
-     * @return
+     * @return  True or false depending on whether or not the collision happened on the left side of the collider
      */
     private boolean leftCollision() {
         return getLeftBoundCollision() < getRightBoundCollision() && getLeftBoundCollision() < getTopBoundCollision()
@@ -103,8 +103,7 @@ public class CollisionPacket {
     }
 
     /**
-     * 
-     * @return
+     * @return  True or false depending on whether or not the collision happened on the right side of the collider
      */
     private boolean rightCollision() {
         return getRightBoundCollision() < getLeftBoundCollision() && getRightBoundCollision() < getTopBoundCollision()
@@ -112,32 +111,28 @@ public class CollisionPacket {
     }
 
     /**
-     * 
-     * @return
+     * @return  The top bounding side of the bounding box
      */
     private double getTopBoundCollision() {
         return actor.getComponent(PositionComponent.class).getY() + actor.getComponent(DimensionComponent.class).getHeight() - collider.getComponent(PositionComponent.class).getY();
     }
 
     /**
-     * 
-     * @return
+     * @return  The bottom bounding side of the bounding box
      */
     private double getBottomBoundCollision() {
         return collider.getComponent(PositionComponent.class).getY() + collider.getComponent(DimensionComponent.class).getHeight() - actor.getComponent(PositionComponent.class).getY();
     }
 
     /**
-     * 
-     * @return
+     * @return  The left bounding side of the bounding box
      */
     private double getLeftBoundCollision() {
         return actor.getComponent(PositionComponent.class).getX() + actor.getComponent(DimensionComponent.class).getWidth() - collider.getComponent(PositionComponent.class).getX();
     }
 
     /**
-     * 
-     * @return
+     * @return  The right bounding side of the bounding box
      */
     private double getRightBoundCollision() {
         return collider.getComponent(PositionComponent.class).getX() + collider.getComponent(DimensionComponent.class).getWidth() - actor.getComponent(PositionComponent.class).getX();
