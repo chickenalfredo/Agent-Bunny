@@ -9,11 +9,34 @@ import core.component.Component;
  */
 public class HealthComponent implements Component {
  
-    private float maxHP;
+    private final float MAX_HP;
     private float currentHP;
     private boolean isAlive = true;
 
-    public HealthComponent() {}
+    /**
+     * Constructs this health component with the default max health value
+     * of 100
+     */
+    public HealthComponent() {
+        MAX_HP = 100f;
+        setCurrentHP(MAX_HP);
+    }
+
+    /**
+     * Constructs this health component with the specified max health. Max health
+     * must be a value larger than 25. If a value less than 25 is provided, the default
+     * 25 will be used instead
+     * 
+     * @param maxHP
+     */
+    public HealthComponent(float maxHP) {
+        if (maxHP >= 25) {
+            MAX_HP = maxHP;
+        } else {
+            MAX_HP = 25f;
+        }
+        setCurrentHP(MAX_HP);
+    }
 
     /**
      * @return the isAlive
@@ -44,17 +67,10 @@ public class HealthComponent implements Component {
     }
 
     /**
-     * @return the maxHP
+     * @return the MAX_HP
      */
     public float getMaxHP() {
-        return maxHP;
-    }
-
-    /**
-     * @param maxHP the maxHP to set
-     */
-    public void setMaxHP(float maxHP) {
-        this.maxHP = maxHP;
+        return MAX_HP;
     }
 
 }

@@ -9,10 +9,24 @@ import core.component.Component;
  */
 public class DimensionComponent implements Component {
     
-    private float width;
-    private float height;
+    private float width = 0;
+    private float height = 0;
 
+    /** Default constructor sets width and height to zero */
     public DimensionComponent() {}
+
+    /**
+     * Consrtucts this Dimension with provided width and height. The provided
+     * width and height must be greater than or equal to zero. If a value
+     * less than zero is provided the default value of zero will be used
+     * 
+     * @param width
+     * @param height
+     */
+    public DimensionComponent(float width, float height) {
+        setWidth(width);
+        setHeight(height);
+    }
 
     /**
      * @return the height
@@ -25,7 +39,11 @@ public class DimensionComponent implements Component {
      * @param height the height to set
      */
     public void setHeight(float height) {
-        this.height = height;
+        if (height >= 0) {
+            this.height = height;
+        } else {
+            this.height = 0;
+        }
     }
 
     /**
@@ -39,7 +57,11 @@ public class DimensionComponent implements Component {
      * @param width the width to set
      */
     public void setWidth(float width) {
-        this.width = width;
+        if (width >= 0) {
+            this.width = width;
+        } else {
+            this.width = 0;
+        }
     }
 
 }

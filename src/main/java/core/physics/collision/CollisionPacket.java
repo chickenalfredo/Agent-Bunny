@@ -13,7 +13,7 @@ public class CollisionPacket {
 
     private Entity actor, collider;
     private final boolean isColliding;
-    private String side = "";
+    private Side side;
 
     /**
      * Constructs a packet with the specified GameObjects
@@ -53,28 +53,30 @@ public class CollisionPacket {
      */
     private boolean setCollisionSide() {
         if (topCollision()) {
-            side = "top";
+            side = Side.TOP;
+            
             return true;
         }
         if (bottomCollision()) {
-            side = "bottom";
+            side = Side.BOTTOM;
             return true;
         }
         if (leftCollision()) {
-            side = "left";
+            side = Side.LEFT;
             return true;
         }
         if (rightCollision()) {
-            side = "right";
+            side = Side.RIGHT;
             return true;
         }
+        side = Side.NONE;
         return false;
     }
 
     /**
      * @return  The side the collision occured on
      */
-    public String getCollisionSide() {
+    public Side getCollisionSide() {
         return side;
     }
 

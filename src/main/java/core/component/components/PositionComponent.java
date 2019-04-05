@@ -12,7 +12,26 @@ public class PositionComponent implements Component {
     private float x;
     private float y;
 
-    public PositionComponent() {}
+    /**
+     * Constructs this position with the default vector position at (0,0)
+     */
+    public PositionComponent() {
+        setX(0f);
+        setY(0f);
+    }
+
+    /**
+     * Constructs this position with the specified vector position. If
+     * the position provided is less than 0, the default value zero will be 
+     * used instead.
+     * 
+     * @param x
+     * @param y
+     */
+    public PositionComponent(float x, float y) {
+        setX(x);
+        setY(y);
+    }
 
     /**
      * @return the y
@@ -25,7 +44,11 @@ public class PositionComponent implements Component {
      * @param y the y to set
      */
     public void setY(float y) {
-        this.y = y;
+        if (y < 0) {
+            this.y = 0;
+        } else {
+            this.y = y;
+        }
     }
 
     /**
@@ -39,7 +62,11 @@ public class PositionComponent implements Component {
      * @param x the x to set
      */
     public void setX(float x) {
-        this.x = x;
+        if (x < 0) {
+            this.x = 0;
+        } else {
+            this.x = x;
+        }
     }
 
 }
