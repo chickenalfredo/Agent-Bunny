@@ -2,7 +2,7 @@ package core.physics.collision;
 
 import core.component.components.DimensionComponent;
 import core.component.components.PositionComponent;
-import core.entity.GameObject;
+import core.entity.Entity;
 
 /**
  * This class will contain data regarding the collision that occured.
@@ -11,7 +11,7 @@ import core.entity.GameObject;
  */
 public class CollisionPacket {
 
-    private GameObject actor, collider;
+    private Entity actor, collider;
     private final boolean isColliding;
     private String side = "";
 
@@ -21,23 +21,23 @@ public class CollisionPacket {
      * @param actor
      * @param collider
      */
-    public CollisionPacket(GameObject actor, GameObject collider) {
+    public CollisionPacket(Entity actor, Entity collider) {
         this.actor = actor;
         this.collider = collider;
         isColliding = setCollisionSide();
     }
 
     /**
-     * @return  The GameObject who is colliding
+     * @return  The Entity who is colliding
      */
-    public GameObject getActor() {
+    public Entity getActor() {
         return actor;
     }
 
     /**
-     * @return  The GameObject being collided with
+     * @return  The Entity being collided with
      */
-    public GameObject getCollider() {
+    public Entity getCollider() {
         return collider;
     }
 
