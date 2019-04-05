@@ -1,8 +1,8 @@
 package core.command.commands;
 
 import core.command.Command;
-import core.external.entity.Hero;
-import core.sprite.World;
+import core.entity.Entity;
+import core.game.World;
 import javafx.scene.layout.HBox;
 import core.scenes.*;
 
@@ -27,7 +27,7 @@ public class MenuCommand extends Command {
      * @param world
      */
     @Override
-    public void execute(Hero actor, World world) {
+    public void execute(Entity actor, World world) {
         if (isKeyPressed) {
             if (!GameScene.getRoot().getChildren().contains(GameScene.getGameMenu())) {
                 HBox gameMenu = GameSettings.mainMenu();

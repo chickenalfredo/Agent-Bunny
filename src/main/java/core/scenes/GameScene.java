@@ -11,12 +11,13 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.control.ProgressBar;
 import core.utils.InputHandler;
 import java.io.File;
 import core.command.Command;
+import core.component.components.DimensionComponent;
+import core.component.components.PositionComponent;
 import core.screens.ScreenBuilder;
-import core.sprite.World;
+import core.game.World;
 
 /**
  * 
@@ -48,8 +49,8 @@ public class GameScene {
         if (animationTimer == false) {
             new AnimationTimer() {
                 public void handle(long time) {
-                    if (world.getHero().getX() > (screenWidth / 2) - world.getHero().getWidth() / 2)
-                        canvas.relocate(-world.getHero().getX() + ((screenWidth - world.getHero().getWidth()) / 2), 0);
+                    if (world.getHero().getComponent(PositionComponent.class).getX() > (screenWidth / 2) - world.getHero().getComponent(DimensionComponent.class).getWidth() / 2)
+                        canvas.relocate(-world.getHero().getComponent(PositionComponent.class).getX() + ((screenWidth - world.getHero().getComponent(DimensionComponent.class).getWidth()) / 2), 0);
                     gc.clearRect(0, 0, 3 * screenWidth, screenHeight);
                     world.update(gc, time);
                 }

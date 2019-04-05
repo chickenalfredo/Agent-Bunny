@@ -1,11 +1,8 @@
 package core.command.commands;
 
 import core.command.Command;
-import core.ecs.components.AttackComponent;
-import core.ecs.components.StateComponent;
-import core.ecs.components.StateComponent.ConcurrentState;
-import core.external.entity.Hero;
-import core.sprite.World;
+import core.entity.Entity;
+import core.game.World;
 
 /**
  * 
@@ -28,12 +25,8 @@ public class AttackCommand extends Command {
      * @param world
      */
     @Override
-    public void execute(Hero actor, World world) {
-        if (isKeyPressed && actor.getComponent("AttackComponent", AttackComponent.class).attackOffCooldown()) {
-            actor.attackCollider(world);
-            actor.getComponent("StateComponent", StateComponent.class).setConcurrentState(ConcurrentState.ATTACKING);
-        } else {
-            actor.getComponent("StateComponent", StateComponent.class).setConcurrentState(ConcurrentState.NONE);
-        }
+    public void execute(Entity actor, World world) {
+        // actor.attackCollider(world);
+        System.out.println("Attacking...");
     }
 }

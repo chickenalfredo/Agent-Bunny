@@ -1,8 +1,8 @@
 package core.command.commands;
 
 import core.command.Command;
-import core.external.entity.Hero;
-import core.sprite.World;
+import core.entity.Entity;
+import core.game.World;
 
 /**
  * 
@@ -17,7 +17,8 @@ public class JumpCommand extends Command {
      * @param world
      */
     @Override
-    public void execute(Hero actor, World world) {
-        actor.jump();
+    public void execute(Entity actor, World world) {
+        // actor.jump();
+        System.out.println("Jumping...");
     }
 }
