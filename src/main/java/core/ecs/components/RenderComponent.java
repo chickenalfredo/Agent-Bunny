@@ -39,8 +39,8 @@ public class RenderComponent extends Component implements Serializable {
     public RenderComponent(Sprite actor, String filename) {
         if (filename != null) {
             setImage(actor, filename);
-            actorSimpleName = actor.getClass().getSimpleName() + "/";
         }
+        actorSimpleName = actor.getClass().getSimpleName() + "/";
         if (actor instanceof Enemy) {
             actorName = Enemy.class.cast(actor).getName() + "/";
         }
@@ -64,73 +64,73 @@ public class RenderComponent extends Component implements Serializable {
      */
     @Override
     public void render(Sprite actor, GraphicsContext gc, long delta) {
-        if (actor instanceof Entity) {
-            if (actor.getComponent("StateComponent", StateComponent.class)
-                    .getConcurrentState() == StateComponent.ConcurrentState.NONE) {
-                if (actor.getComponent("StateComponent", StateComponent.class)
-                        .getDirection() == StateComponent.Direction.LEFT) {
-                    switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
-                    case RUNNING:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "move_left/");
-                        break;
-                    case IDLE:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "idle_left/");
-                        break;
-                    }
-                } else {
-                    switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
-                    case RUNNING:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "move_right/");
-                        break;
-                    case IDLE:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "idle_right/");
-                        break;
-                    }
-                }
-            } else {
-                if (actor.getComponent("StateComponent", StateComponent.class)
-                        .getDirection() == StateComponent.Direction.LEFT) {
-                    // facing left + concurrent
-                    switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
-                    case ATTACKING:
-                        // animate(actor, "resources/assets/attack_left/");
-                        animateAttacks(actor);
-                        break;
-                    case JUMPING:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "jump_left/");
-                        break;
-                    case FALLING:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "falling_left/");
-                        break;
-                    case NONE:
-                        break;
-                    }
-                } else {
-                    // facing right + concurrent
-                    switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
-                    case ATTACKING:
-                        // animate(actor, "resources/assets/attack/k1/");
-                        animateAttacks(actor);
-                        // animate(actor, "resources/assets/attack/k3/");
-                        break;
-                    case JUMPING:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "jump_right/");
-                        break;
-                    case FALLING:
-                        animate(actor, "resources/assets/" + actorSimpleName + actorName + "falling_right/");
-                        break;
-                    case NONE:
-                        break;
-                    }
-                }
-            }
-        }
+        // if (actor instanceof Entity) {
+        //     if (actor.getComponent("StateComponent", StateComponent.class)
+        //             .getConcurrentState() == StateComponent.ConcurrentState.NONE) {
+        //         if (actor.getComponent("StateComponent", StateComponent.class)
+        //                 .getDirection() == StateComponent.Direction.LEFT) {
+        //             switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
+        //             case RUNNING:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "move_left/");
+        //                 break;
+        //             case IDLE:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "idle_left/");
+        //                 break;
+        //             }
+        //         } else {
+        //             switch (actor.getComponent("StateComponent", StateComponent.class).getState()) {
+        //             case RUNNING:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "move_right/");
+        //                 break;
+        //             case IDLE:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "idle_right/");
+        //                 break;
+        //             }
+        //         }
+        //     } else {
+        //         if (actor.getComponent("StateComponent", StateComponent.class)
+        //                 .getDirection() == StateComponent.Direction.LEFT) {
+        //             // facing left + concurrent
+        //             switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
+        //             case ATTACKING:
+        //                 // animate(actor, "resources/assets/attack_left/");
+        //                 animateAttacks(actor);
+        //                 break;
+        //             case JUMPING:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "jump_left/");
+        //                 break;
+        //             case FALLING:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "falling_left/");
+        //                 break;
+        //             case NONE:
+        //                 break;
+        //             }
+        //         } else {
+        //             // facing right + concurrent
+        //             switch (actor.getComponent("StateComponent", StateComponent.class).getConcurrentState()) {
+        //             case ATTACKING:
+        //                 // animate(actor, "resources/assets/attack/k1/");
+        //                 animateAttacks(actor);
+        //                 // animate(actor, "resources/assets/attack/k3/");
+        //                 break;
+        //             case JUMPING:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "jump_right/");
+        //                 break;
+        //             case FALLING:
+        //                 animate(actor, "resources/assets/" + actorSimpleName + actorName + "falling_right/");
+        //                 break;
+        //             case NONE:
+        //                 break;
+        //             }
+        //         }
+        //     }
+        // }
         if (image == null) {
-            if (actor instanceof Weapon) {
+            // if (actor instanceof Weapon) {
                 drawRectangle(actor, gc);
-            } else {
-                setImage(actor, filename);
-            }
+            // } else {
+                // setImage(actor, filename);
+            // }
         } else {
             gc.drawImage(image, actor.getX(), actor.getY());
         }
