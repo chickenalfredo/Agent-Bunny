@@ -3,6 +3,7 @@ package core.system;
 import java.util.ArrayList;
 
 import core.entity.EntityManager;
+import core.system.systems.AnimationSystem;
 import core.system.systems.RenderSystem;
 import javafx.scene.layout.StackPane;
 
@@ -15,15 +16,16 @@ public class SystemManager {
             s.init(entityManager);
         }
     }
-
     
 	public void init(StackPane root) {
         for (SystemComponent s : m_systems) {
             if (s instanceof RenderSystem) {
                 RenderSystem tmp = (RenderSystem) s;
                 tmp.init(root);
+            } else if (s instanceof AnimationSystem) {
+                AnimationSystem tmp = (AnimationSystem) s;
+                tmp.init(root);
             }
-            
         }
 	}
 

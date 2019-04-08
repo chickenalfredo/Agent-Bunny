@@ -48,7 +48,8 @@ public class Manager {
                 new CombatSystem(), 
                 new MovementSystem(), 
                 new PhysicsSystem(), 
-                new RenderSystem()
+                new RenderSystem(),
+                new AnimationSystem()
             );
     }
 
