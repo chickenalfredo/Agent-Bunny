@@ -7,39 +7,48 @@ import core.entity.attributes.Type;
 import core.entity.attributes.TypeAttribute;
 import core.game.map.Level;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.layout.StackPane;
 
 /**
- * This class is the world that contains all GameObjects in the level. The
- * World can add, remove, retrieve and update itself.
+ * This class is the world that contains all GameObjects in the level. The World
+ * can add, remove, retrieve and update itself.
  */
 public class World implements Serializable {
 
     private static final long serialVersionUID = -593390538413494469L;
     private ArrayList<Entity> m_entities;
-    private ArrayList<System> m_systems;
     private Entity hero;
     private GameMap level;
+    private Manager manager;
 
     /**
-     * On construction the world will initialize itself by retrieving the setting up the
-     * Level and retrieving the Hero for easy access
+     * On construction the world will initialize itself by retrieving the setting up
+     * the Level and retrieving the Hero for easy access
      */
     public World() {
-        init();
+        level = new Level();
+        m_entities = level.getEntities();
+        setHero();
+        manager = new Manager();
     }
+
+    public void init(StackPane root) {
+        manager.init(root);
+        manager.init(this);
+	}
 
     /**
      * 
      * @param gc
      * @param delta
      */
-    public void update(GraphicsContext gc, long delta) {
-        m_entities = level.getEntities();
-        for (Entity s : m_entities) {
-            // s.update(this);
-            // s.render(gc, delta);
-        }
+    public void update(long delta) {
+        manager.update(delta);
     }
+
+    public void render(StackPane root, long time) {
+        manager.render(root, time);
+	}
 
     /**
      * @return The Hero Entity
@@ -86,14 +95,8 @@ public class World implements Serializable {
         return new ArrayList<Entity>(level.getEntities());
     }
 
-    /**
-     * Initializes the World by retrieving all Entities in the Level
-     * and setting the Hero for easy retrieval
-     */
-    private void init() {
-        level = new Level();
-        m_entities = level.getEntities();
-        setHero();
-    }
+	
+
+	
 
 }

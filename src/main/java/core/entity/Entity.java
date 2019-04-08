@@ -52,7 +52,7 @@ public class Entity {
      */
     public <T extends Attribute> T getAttribute(Class<T> type) {
         for (Attribute c : m_attributes) {
-            if (c.getClass().getSimpleName().toString().equals(type.cast(c).getClass().getSimpleName().toString())) {
+            if (type.isInstance(c)) {
                 return type.cast(c);
             }
         }

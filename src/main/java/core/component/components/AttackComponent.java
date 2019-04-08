@@ -16,6 +16,13 @@ public class AttackComponent implements Component {
 
     public AttackComponent() {}
 
+    public AttackComponent(float attackDamage, float attackRange, float attackSpeed, long cooldownTime) {
+        this.attackDamage = attackDamage;
+        this.attackRange = attackRange;
+        this.attackSpeed = attackSpeed;
+        this.cooldownTime = cooldownTime;
+    }
+
     /**
      * @return the cooldownTime
      */
