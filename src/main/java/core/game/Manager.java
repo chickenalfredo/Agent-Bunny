@@ -43,14 +43,14 @@ public class Manager {
 
     private void initSystems() {
         systemManager.addSystems(
-                new AISystem(), 
-                new CollisionSystem(), 
-                new CombatSystem(), 
-                new MovementSystem(), 
-                new PhysicsSystem(), 
-                new RenderSystem(),
-                new AnimationSystem()
-            );
+            new AISystem(), 
+            new CollisionSystem(), 
+            new CombatSystem(), 
+            new MovementSystem(), 
+            new PhysicsSystem(), 
+            new RenderSystem(),
+            new AnimationSystem()
+        );
     }
 
 }

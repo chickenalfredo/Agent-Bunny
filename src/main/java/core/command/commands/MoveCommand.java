@@ -3,6 +3,7 @@ package core.command.commands;
 import core.command.Command;
 import core.entity.Entity;
 import core.game.World;
+import core.system.systems.MovementSystem;
 
 /**
  * 
@@ -29,7 +30,8 @@ public class MoveCommand extends Command {
      */
     @Override
     public void execute(Entity actor, World world) {
-        // actor.move(key, isKeyPressedEvent);
-        System.out.println("Moving...");
+        world.getManager().getSystemManager().getSystem(MovementSystem.class).requestUpdate(actor);
+        world.getManager().getSystemManager().getSystem(MovementSystem.class).setKey(key);
+        world.getManager().getSystemManager().getSystem(MovementSystem.class).setKeyPressedEvent(isKeyPressedEvent);
     }
 }

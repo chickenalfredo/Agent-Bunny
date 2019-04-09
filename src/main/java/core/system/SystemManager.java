@@ -50,8 +50,13 @@ public class SystemManager {
         }
     }
 
-    public void getSystem() {
-
+    public <T extends SystemComponent> T getSystem(Class<T> type) {
+        for (SystemComponent c : m_systems) {
+            if (type.isInstance(c)) {
+                return type.cast(c);
+            }
+        }
+        return null;
     }
 
     public void enableSystem() {

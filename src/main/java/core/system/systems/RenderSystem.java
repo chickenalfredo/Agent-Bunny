@@ -29,16 +29,6 @@ public class RenderSystem extends SystemComponent {
     }
 
     @Override
-    public void preUpdate() {
-        System.out.println("Pre-updating Render System...");
-    }
-
-    @Override
-    public void postUpdate() {
-        System.out.println("Post-updating Render System...");
-    }
-
-    @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
             if (e.getComponent(RenderComponent.class) != null) {
@@ -55,12 +45,14 @@ public class RenderSystem extends SystemComponent {
     @Override
     public void render(StackPane root, long time) {
         for (Entity e : getSystemEntities()) {
-            e.getComponent(RenderComponent.class).getGroup().setTranslateX(
-                xOffset + (e.getComponent(RenderComponent.class).getGroup().getBoundsInLocal().getWidth()/2) +
-                e.getComponent(PositionComponent.class).getX());
-            e.getComponent(RenderComponent.class).getGroup().setTranslateY(
-                yOffset + ((e.getComponent(RenderComponent.class).getGroup().getBoundsInLocal().getHeight()/2)) +
-                e.getComponent(PositionComponent.class).getY());
+            e.getComponent(RenderComponent.class).getGroup()
+                    .setTranslateX(xOffset
+                            + (e.getComponent(RenderComponent.class).getGroup().getBoundsInLocal().getWidth() / 2)
+                            + e.getComponent(PositionComponent.class).getX());
+            e.getComponent(RenderComponent.class).getGroup()
+                    .setTranslateY(yOffset
+                            + ((e.getComponent(RenderComponent.class).getGroup().getBoundsInLocal().getHeight() / 2))
+                            + e.getComponent(PositionComponent.class).getY());
         }
     }
 

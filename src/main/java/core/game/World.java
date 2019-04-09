@@ -47,7 +47,11 @@ public class World implements Serializable {
 
     public void render(StackPane root, long time) {
         manager.render(root, time);
-	}
+    }
+    
+    public Manager getManager() {
+        return manager;
+    }
 
     /**
      * @return The Hero Entity
@@ -93,9 +97,5 @@ public class World implements Serializable {
     public ArrayList<Entity> getEntities() {
         return new ArrayList<Entity>(level.getEntities());
     }
-
-	
-
-	
 
 }

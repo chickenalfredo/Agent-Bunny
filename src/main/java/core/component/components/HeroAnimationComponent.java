@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.ArrayList;
 
 import core.component.Component;
+import core.entity.Entity;
 import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,6 +12,8 @@ import javafx.scene.image.ImageView;
 public class HeroAnimationComponent implements Component {
 
     private Group group = new Group();
+    private final double ACTOR_WIDTH;
+    private final double ACTOR_HEIGHT;
 
     private ArrayList<ImageView> runningAnimations = new ArrayList<ImageView>();
     private ArrayList<ImageView> jumpingAnimations = new ArrayList<ImageView>();
@@ -19,99 +22,101 @@ public class HeroAnimationComponent implements Component {
     private ArrayList<ImageView> runShootAnimations = new ArrayList<ImageView>();
     private ArrayList<ImageView> idleShootAnimations = new ArrayList<ImageView>();
 
-    private Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11, run_12, run_13, run_14, run_15, run_16;
-    private ImageView run1, run2, run3, run4, run5, run6, run7, run8, run9, run10, run11, run12, run13, run14, run15, run16;
+    private static Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11, run_12, run_13, run_14, run_15, run_16;
+    private static ImageView run1, run2, run3, run4, run5, run6, run7, run8, run9, run10, run11, run12, run13, run14, run15, run16;
 
-    private Image jump_1, jump_2, jump_3, jump_4;
-    private ImageView jump1, jump2, jump3, jump4;
+    private static Image jump_1, jump_2, jump_3, jump_4;
+    private static ImageView jump1, jump2, jump3, jump4;
     
-    private Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11, idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20;
-    private ImageView idle1, idle2, idle3, idle4, idle5, idle6, idle7, idle8, idle9, idle10, idle11, idle12, idle13, idle14, idle15, idle16, idle17, idle18, idle19, idle20;
+    private static Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11, idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20;
+    private static ImageView idle1, idle2, idle3, idle4, idle5, idle6, idle7, idle8, idle9, idle10, idle11, idle12, idle13, idle14, idle15, idle16, idle17, idle18, idle19, idle20;
 
-    private Image falling_1, falling_2, falling_3, falling_4, falling_5, falling_6, falling_7, falling_8, falling_9, falling_10, falling_11;
-    private ImageView falling1, falling2, falling3, falling4, falling5, falling6, falling7, falling8, falling9, falling10, falling11;
+    private static Image falling_1, falling_2, falling_3, falling_4, falling_5, falling_6, falling_7, falling_8, falling_9, falling_10, falling_11;
+    private static ImageView falling1, falling2, falling3, falling4, falling5, falling6, falling7, falling8, falling9, falling10, falling11;
 
-    private Image run_shoot_1, run_shoot_2, run_shoot_3, run_shoot_4, run_shoot_5, run_shoot_6, run_shoot_7, run_shoot_8, run_shoot_9, run_shoot_10, run_shoot_11, run_shoot_12, run_shoot_13, run_shoot_14, run_shoot_15, run_shoot_16;
-    private ImageView rShoot1, rShoot2, rShoot3, rShoot4, rShoot5, rShoot6, rShoot7, rShoot8, rShoot9, rShoot10, rShoot11, rShoot12, rShoot13, rShoot14, rShoot15, rShoot16;
+    private static Image run_shoot_1, run_shoot_2, run_shoot_3, run_shoot_4, run_shoot_5, run_shoot_6, run_shoot_7, run_shoot_8, run_shoot_9, run_shoot_10, run_shoot_11, run_shoot_12, run_shoot_13, run_shoot_14, run_shoot_15, run_shoot_16;
+    private static ImageView rShoot1, rShoot2, rShoot3, rShoot4, rShoot5, rShoot6, rShoot7, rShoot8, rShoot9, rShoot10, rShoot11, rShoot12, rShoot13, rShoot14, rShoot15, rShoot16;
 
-    private Image idle_shoot;
-    private ImageView idleShoot;
+    private static Image idle_shoot;
+    private static ImageView idleShoot;
 
-    public HeroAnimationComponent() {
+    public HeroAnimationComponent(Entity actor) {
+        ACTOR_WIDTH = actor.getComponent(DimensionComponent.class).getWidth();
+        ACTOR_HEIGHT = actor.getComponent(DimensionComponent.class).getHeight();
         try {
-            run_1 = new Image(new File("resources/assets/Hero/move_right/r_run_1.png").toURI().toString());
-            run_2 = new Image(new File("resources/assets/Hero/move_right/r_run_2.png").toURI().toString());
-            run_3 = new Image(new File("resources/assets/Hero/move_right/r_run_3.png").toURI().toString());
-            run_4 = new Image(new File("resources/assets/Hero/move_right/r_run_4.png").toURI().toString());
-            run_5 = new Image(new File("resources/assets/Hero/move_right/r_run_5.png").toURI().toString());
-            run_6 = new Image(new File("resources/assets/Hero/move_right/r_run_6.png").toURI().toString());
-            run_7 = new Image(new File("resources/assets/Hero/move_right/r_run_7.png").toURI().toString());
-            run_8 = new Image(new File("resources/assets/Hero/move_right/r_run_8.png").toURI().toString());
-            run_9 = new Image(new File("resources/assets/Hero/move_right/r_run_9.png").toURI().toString());
-            run_10 = new Image(new File("resources/assets/Hero/move_right/r_run_10.png").toURI().toString());
-            run_11 = new Image(new File("resources/assets/Hero/move_right/r_run_11.png").toURI().toString());
-            run_12 = new Image(new File("resources/assets/Hero/move_right/r_run_12.png").toURI().toString());
-            run_13 = new Image(new File("resources/assets/Hero/move_right/r_run_13.png").toURI().toString());
-            run_14 = new Image(new File("resources/assets/Hero/move_right/r_run_14.png").toURI().toString());
-            run_15 = new Image(new File("resources/assets/Hero/move_right/r_run_15.png").toURI().toString());
-            run_16 = new Image(new File("resources/assets/Hero/move_right/r_run_16.png").toURI().toString());
+            run_1 = new Image(new File("resources/assets/Hero/move_right/r_run_1.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_2 = new Image(new File("resources/assets/Hero/move_right/r_run_2.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_3 = new Image(new File("resources/assets/Hero/move_right/r_run_3.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_4 = new Image(new File("resources/assets/Hero/move_right/r_run_4.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_5 = new Image(new File("resources/assets/Hero/move_right/r_run_5.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_6 = new Image(new File("resources/assets/Hero/move_right/r_run_6.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_7 = new Image(new File("resources/assets/Hero/move_right/r_run_7.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_8 = new Image(new File("resources/assets/Hero/move_right/r_run_8.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_9 = new Image(new File("resources/assets/Hero/move_right/r_run_9.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_10 = new Image(new File("resources/assets/Hero/move_right/r_run_10.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_11 = new Image(new File("resources/assets/Hero/move_right/r_run_11.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_12 = new Image(new File("resources/assets/Hero/move_right/r_run_12.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_13 = new Image(new File("resources/assets/Hero/move_right/r_run_13.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_14 = new Image(new File("resources/assets/Hero/move_right/r_run_14.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_15 = new Image(new File("resources/assets/Hero/move_right/r_run_15.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_16 = new Image(new File("resources/assets/Hero/move_right/r_run_16.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
 
-            jump_1 = new Image(new File("resources/assets/Hero/jump_right/r_jump_1.png").toURI().toString());
-            jump_2 = new Image(new File("resources/assets/Hero/jump_right/r_jump_2.png").toURI().toString());
-            jump_3 = new Image(new File("resources/assets/Hero/jump_right/r_jump_3.png").toURI().toString());
-            jump_4 = new Image(new File("resources/assets/Hero/jump_right/r_jump_4.png").toURI().toString());
+            jump_1 = new Image(new File("resources/assets/Hero/jump_right/r_jump_1.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            jump_2 = new Image(new File("resources/assets/Hero/jump_right/r_jump_2.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            jump_3 = new Image(new File("resources/assets/Hero/jump_right/r_jump_3.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            jump_4 = new Image(new File("resources/assets/Hero/jump_right/r_jump_4.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
 
-            idle_1 = new Image(new File("resources/assets/Hero/idle_right/r_idle_1.png").toURI().toString());
-            idle_2 = new Image(new File("resources/assets/Hero/idle_right/r_idle_2.png").toURI().toString());
-            idle_3 = new Image(new File("resources/assets/Hero/idle_right/r_idle_3.png").toURI().toString());
-            idle_4 = new Image(new File("resources/assets/Hero/idle_right/r_idle_4.png").toURI().toString());
-            idle_5 = new Image(new File("resources/assets/Hero/idle_right/r_idle_5.png").toURI().toString());
-            idle_6 = new Image(new File("resources/assets/Hero/idle_right/r_idle_6.png").toURI().toString());
-            idle_7 = new Image(new File("resources/assets/Hero/idle_right/r_idle_7.png").toURI().toString());
-            idle_8 = new Image(new File("resources/assets/Hero/idle_right/r_idle_8.png").toURI().toString());
-            idle_9 = new Image(new File("resources/assets/Hero/idle_right/r_idle_9.png").toURI().toString());
-            idle_10 = new Image(new File("resources/assets/Hero/idle_right/r_idle_10.png").toURI().toString());
-            idle_11 = new Image(new File("resources/assets/Hero/idle_right/r_idle_11.png").toURI().toString());
-            idle_12 = new Image(new File("resources/assets/Hero/idle_right/r_idle_12.png").toURI().toString());
-            idle_13 = new Image(new File("resources/assets/Hero/idle_right/r_idle_13.png").toURI().toString());
-            idle_14 = new Image(new File("resources/assets/Hero/idle_right/r_idle_14.png").toURI().toString());
-            idle_15 = new Image(new File("resources/assets/Hero/idle_right/r_idle_15.png").toURI().toString());
-            idle_16 = new Image(new File("resources/assets/Hero/idle_right/r_idle_16.png").toURI().toString());
-            idle_17 = new Image(new File("resources/assets/Hero/idle_right/r_idle_17.png").toURI().toString());
-            idle_18 = new Image(new File("resources/assets/Hero/idle_right/r_idle_18.png").toURI().toString());
-            idle_19 = new Image(new File("resources/assets/Hero/idle_right/r_idle_19.png").toURI().toString());
-            idle_20 = new Image(new File("resources/assets/Hero/idle_right/r_idle_20.png").toURI().toString());
+            idle_1 = new Image(new File("resources/assets/Hero/idle_right/r_idle_1.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_2 = new Image(new File("resources/assets/Hero/idle_right/r_idle_2.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_3 = new Image(new File("resources/assets/Hero/idle_right/r_idle_3.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_4 = new Image(new File("resources/assets/Hero/idle_right/r_idle_4.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_5 = new Image(new File("resources/assets/Hero/idle_right/r_idle_5.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_6 = new Image(new File("resources/assets/Hero/idle_right/r_idle_6.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_7 = new Image(new File("resources/assets/Hero/idle_right/r_idle_7.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_8 = new Image(new File("resources/assets/Hero/idle_right/r_idle_8.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_9 = new Image(new File("resources/assets/Hero/idle_right/r_idle_9.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_10 = new Image(new File("resources/assets/Hero/idle_right/r_idle_10.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_11 = new Image(new File("resources/assets/Hero/idle_right/r_idle_11.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_12 = new Image(new File("resources/assets/Hero/idle_right/r_idle_12.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_13 = new Image(new File("resources/assets/Hero/idle_right/r_idle_13.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_14 = new Image(new File("resources/assets/Hero/idle_right/r_idle_14.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_15 = new Image(new File("resources/assets/Hero/idle_right/r_idle_15.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_16 = new Image(new File("resources/assets/Hero/idle_right/r_idle_16.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_17 = new Image(new File("resources/assets/Hero/idle_right/r_idle_17.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_18 = new Image(new File("resources/assets/Hero/idle_right/r_idle_18.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_19 = new Image(new File("resources/assets/Hero/idle_right/r_idle_19.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            idle_20 = new Image(new File("resources/assets/Hero/idle_right/r_idle_20.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
 
-            falling_1 = new Image(new File("resources/assets/Hero/falling_right/r_falling_1.png").toURI().toString());
-            falling_2 = new Image(new File("resources/assets/Hero/falling_right/r_falling_2.png").toURI().toString());
-            falling_3 = new Image(new File("resources/assets/Hero/falling_right/r_falling_3.png").toURI().toString());
-            falling_4 = new Image(new File("resources/assets/Hero/falling_right/r_falling_4.png").toURI().toString());
-            falling_5 = new Image(new File("resources/assets/Hero/falling_right/r_falling_5.png").toURI().toString());
-            falling_6 = new Image(new File("resources/assets/Hero/falling_right/r_falling_6.png").toURI().toString());
-            falling_7 = new Image(new File("resources/assets/Hero/falling_right/r_falling_7.png").toURI().toString());
-            falling_8 = new Image(new File("resources/assets/Hero/falling_right/r_falling_8.png").toURI().toString());
-            falling_9 = new Image(new File("resources/assets/Hero/falling_right/r_falling_9.png").toURI().toString());
-            falling_10 = new Image(new File("resources/assets/Hero/falling_right/r_falling_10.png").toURI().toString());
-            falling_11 = new Image(new File("resources/assets/Hero/falling_right/r_falling_11.png").toURI().toString());
+            falling_1 = new Image(new File("resources/assets/Hero/falling_right/r_falling_1.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_2 = new Image(new File("resources/assets/Hero/falling_right/r_falling_2.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_3 = new Image(new File("resources/assets/Hero/falling_right/r_falling_3.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_4 = new Image(new File("resources/assets/Hero/falling_right/r_falling_4.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_5 = new Image(new File("resources/assets/Hero/falling_right/r_falling_5.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_6 = new Image(new File("resources/assets/Hero/falling_right/r_falling_6.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_7 = new Image(new File("resources/assets/Hero/falling_right/r_falling_7.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_8 = new Image(new File("resources/assets/Hero/falling_right/r_falling_8.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_9 = new Image(new File("resources/assets/Hero/falling_right/r_falling_9.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_10 = new Image(new File("resources/assets/Hero/falling_right/r_falling_10.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            falling_11 = new Image(new File("resources/assets/Hero/falling_right/r_falling_11.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
 
-            run_shoot_1 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_1.png").toURI().toString());
-            run_shoot_2 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_2.png").toURI().toString());
-            run_shoot_3 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_3.png").toURI().toString());
-            run_shoot_4 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_4.png").toURI().toString());
-            run_shoot_5 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_5.png").toURI().toString());
-            run_shoot_6 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_6.png").toURI().toString());
-            run_shoot_7 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_7.png").toURI().toString());
-            run_shoot_8 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_8.png").toURI().toString());
-            run_shoot_9 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_9.png").toURI().toString());
-            run_shoot_10 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_10.png").toURI().toString());
-            run_shoot_11 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_11.png").toURI().toString());
-            run_shoot_12 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_12.png").toURI().toString());
-            run_shoot_13 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_13.png").toURI().toString());
-            run_shoot_14 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_14.png").toURI().toString());
-            run_shoot_15 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_15.png").toURI().toString());
-            run_shoot_16 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_16.png").toURI().toString());
+            run_shoot_1 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_1.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_2 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_2.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_3 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_3.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_4 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_4.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_5 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_5.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_6 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_6.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_7 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_7.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_8 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_8.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_9 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_9.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_10 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_10.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_11 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_11.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_12 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_12.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_13 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_13.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_14 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_14.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_15 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_15.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
+            run_shoot_16 = new Image(new File("resources/assets/Hero/attack_right_running/r_run_shoot_16.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
 
-            idle_shoot = new Image(new File("resources/assets/Hero/attack_right_idle/r_stand_shoot.png").toURI().toString());
+            idle_shoot = new Image(new File("resources/assets/Hero/attack_right_idle/r_stand_shoot.png").toURI().toString(), ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -124,7 +129,7 @@ public class HeroAnimationComponent implements Component {
         setRunningAndShootingAnimation();
     }
 
-    private void initImageViews() {
+    private static void initImageViews() {
         run1 = new ImageView(run_1);
         run2 = new ImageView(run_2);
         run3 = new ImageView(run_3);

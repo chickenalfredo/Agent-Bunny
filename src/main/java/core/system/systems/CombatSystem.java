@@ -21,16 +21,6 @@ public class CombatSystem extends SystemComponent {
     }
 
     @Override
-    public void preUpdate() {
-        System.out.println("Pre-updating Combat System...");
-    }
-
-    @Override
-    public void postUpdate() {
-        System.out.println("Post-updating Combat System...");
-    }
-
-    @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
             if (e.getComponent(AttackComponent.class) != null && e.getComponent(HealthComponent.class) != null) {

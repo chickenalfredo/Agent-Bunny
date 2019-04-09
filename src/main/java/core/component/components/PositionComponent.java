@@ -8,7 +8,7 @@ import core.component.Component;
  * to have this component.
  */
 public class PositionComponent implements Component {
-    
+
     private float x;
     private float y;
 

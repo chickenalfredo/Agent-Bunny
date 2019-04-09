@@ -1,6 +1,7 @@
 package core.system.systems;
 
 import core.component.components.HeroAnimationComponent;
+import core.component.components.PositionComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.screens.ScreenBuilder;
@@ -30,9 +31,9 @@ public class AnimationSystem extends SystemComponent {
         for (Entity e : entityManager.getEntities()) {
             if (e.getComponent(HeroAnimationComponent.class) != null) {
                 addSystemEntity(e);
+                root.getChildren().add(e.getComponent(HeroAnimationComponent.class).getGroup());
             }
         }
-        root.getChildren().add(getSystemEntities().get(0).getComponent(HeroAnimationComponent.class).getGroup());
     }
 
     public void init(StackPane root) {
@@ -40,27 +41,24 @@ public class AnimationSystem extends SystemComponent {
 	}
 
     @Override
-    public void preUpdate() {
-
-    }
-
-    @Override
     public void update(long delta) {
-
-    }
-
-    @Override
-    public void postUpdate() {
 
     }
 
     @Override
     public void render(StackPane root, long time) {
         long curTime = System.currentTimeMillis();
-        if (curTime > lastTime + 50) {
+        if (curTime > lastTime + 100) {
             for (Entity e : getSystemEntities()) {
-                if (i > e.getComponent(HeroAnimationComponent.class).animateIdle().size() - 1) 
+                if (i >= e.getComponent(HeroAnimationComponent.class).animateRunning().size()) {
                     i = 0;
+                }
+                e.getComponent(HeroAnimationComponent.class).getGroup().setTranslateX(
+                    xOffset + (e.getComponent(HeroAnimationComponent.class).getGroup().getBoundsInLocal().getWidth()/2) +
+                    e.getComponent(PositionComponent.class).getX());
+                e.getComponent(HeroAnimationComponent.class).getGroup().setTranslateY(
+                    yOffset + ((e.getComponent(HeroAnimationComponent.class).getGroup().getBoundsInLocal().getHeight()/2)) +
+                    e.getComponent(PositionComponent.class).getY());    
                 e.getComponent(HeroAnimationComponent.class).getGroup().getChildren().setAll(e.getComponent(HeroAnimationComponent.class).animateIdle().get(i));
                 lastTime = curTime;
                 i++;
