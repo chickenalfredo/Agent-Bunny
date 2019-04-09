@@ -3,6 +3,7 @@ package core.command.commands;
 import core.command.Command;
 import core.entity.Entity;
 import core.game.World;
+import core.system.systems.CombatSystem;
 
 /**
  * 
@@ -26,7 +27,6 @@ public class AttackCommand extends Command {
      */
     @Override
     public void execute(Entity actor, World world) {
-        // actor.attackCollider(world);
-        System.out.println("Attacking...");
+        world.getManager().getSystemManager().getSystem(CombatSystem.class).requestUpdate(actor);
     }
 }

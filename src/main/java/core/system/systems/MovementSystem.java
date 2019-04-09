@@ -1,5 +1,6 @@
 package core.system.systems;
 
+import core.component.components.PhysicsComponent;
 import core.component.components.PositionComponent;
 import core.component.components.StateComponent;
 import core.component.components.VelocityComponent;
@@ -10,8 +11,8 @@ import javafx.scene.layout.StackPane;
 
 public class MovementSystem extends SystemComponent {
 
-    private String key;
-    private boolean isKeyPressedEvent;
+    private String key = null;
+    private boolean isKeyPressedEvent = false;
 
     public MovementSystem() {
         setEnabled(true);
@@ -49,7 +50,12 @@ public class MovementSystem extends SystemComponent {
 
     @Override
     public void update(long delta) {
-        moveEntity(key, isKeyPressedEvent);
+        if (key.equals("a") || key.equals("d")) {
+            moveEntity(key, isKeyPressedEvent);
+        }
+        if (key.equals("jump") && isKeyPressedEvent) {
+            jump();
+        }
         setNeedsUpdate(false);
     }
 
@@ -82,6 +88,16 @@ public class MovementSystem extends SystemComponent {
             }
         } else {
             getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+        }
+    }
+
+    private void jump() {
+        if (!(getRequester().getComponent(PhysicsComponent.class).isJumping() || getRequester().getComponent(PhysicsComponent.class).isFalling())) {
+            getRequester().getComponent(VelocityComponent.class).setVelocityY(-30);
+            getRequester().getComponent(PhysicsComponent.class).setJumping(true);
+            getRequester().getComponent(PhysicsComponent.class).setFalling(true);
+        } else {
+            
         }
     }
 

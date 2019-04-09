@@ -27,7 +27,7 @@ public class InputHandler {
         } else if (key.equalsIgnoreCase(KeyBindings.getRightKey())) {
             command = new MoveCommand("d", isKeyPressed);
         } else if (key.equalsIgnoreCase(KeyBindings.getJumpKey())) {
-            command = new JumpCommand();
+            command = new JumpCommand("jump", isKeyPressed);
         } else if (key.equalsIgnoreCase(KeyBindings.getAttackKey())) {
             command = new AttackCommand(isKeyPressed);
         } else if (key.equalsIgnoreCase(KeyBindings.getMenuKey())) {

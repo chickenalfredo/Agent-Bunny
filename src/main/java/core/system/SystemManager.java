@@ -16,8 +16,8 @@ public class SystemManager {
             s.init(entityManager);
         }
     }
-    
-	public void init(StackPane root) {
+
+    public void init(StackPane root) {
         for (SystemComponent s : m_systems) {
             if (s instanceof RenderSystem) {
                 RenderSystem tmp = (RenderSystem) s;
@@ -27,11 +27,11 @@ public class SystemManager {
                 tmp.init(root);
             }
         }
-	}
+    }
 
     public void update(long delta) {
         for (SystemComponent s : m_systems) {
-            if (s.needsUpdate() && s.enabled()) 
+            if (s.needsUpdate() && s.enabled())
                 s.update(delta);
         }
     }
@@ -42,7 +42,7 @@ public class SystemManager {
                 s.render(root, time);
             }
         }
-	}
+    }
 
     public void addSystems(SystemComponent... systems) {
         for (SystemComponent s : systems) {
@@ -66,10 +66,5 @@ public class SystemManager {
     public void disableSystem() {
 
     }
-
-
-	
-
-	
 
 }

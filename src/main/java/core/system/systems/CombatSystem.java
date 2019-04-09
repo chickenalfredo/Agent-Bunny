@@ -18,6 +18,7 @@ public class CombatSystem extends SystemComponent {
     @Override
     public void update(long delta) {
         System.out.println("Updating Combat System...");
+        setNeedsUpdate(false);
     }
 
     @Override
