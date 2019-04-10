@@ -35,6 +35,10 @@ public class RenderComponent implements Component {
         imageView.setCacheHint(CacheHint.SPEED);
     }
 
+    public Image getImage() {
+        return image;
+    }
+
     public ImageView getImageView() {
         return imageView;
     }

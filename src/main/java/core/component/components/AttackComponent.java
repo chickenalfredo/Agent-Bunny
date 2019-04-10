@@ -11,15 +11,13 @@ public class AttackComponent implements Component {
 
     private float attackDamage;
     private float attackRange;
-    private float attackSpeed;
     private long cooldownTime;
 
     public AttackComponent() {}
 
-    public AttackComponent(float attackDamage, float attackRange, float attackSpeed, long cooldownTime) {
+    public AttackComponent(float attackDamage, float attackRange, long cooldownTime) {
         this.attackDamage = attackDamage;
         this.attackRange = attackRange;
-        this.attackSpeed = attackSpeed;
         this.cooldownTime = cooldownTime;
     }
 
@@ -49,20 +47,6 @@ public class AttackComponent implements Component {
      */
     public void setAttackRange(float attackRange) {
         this.attackRange = attackRange;
-    }
-
-    /**
-     * @return the attackSpeed
-     */
-    public float getAttackSpeed() {
-        return attackSpeed;
-    }
-
-    /**
-     * @param attackSpeed the attackSpeed to set
-     */
-    public void setAttackSpeed(float attackSpeed) {
-        this.attackSpeed = attackSpeed;
     }
 
     /**

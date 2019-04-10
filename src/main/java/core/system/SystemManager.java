@@ -6,6 +6,7 @@ import core.entity.EntityManager;
 import core.system.systems.AnimationSystem;
 import core.system.systems.RenderSystem;
 import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class SystemManager {
 
@@ -17,14 +18,14 @@ public class SystemManager {
         }
     }
 
-    public void init(StackPane root) {
+    public void init(GraphicsContext gc) {
         for (SystemComponent s : m_systems) {
             if (s instanceof RenderSystem) {
                 RenderSystem tmp = (RenderSystem) s;
-                tmp.init(root);
+                tmp.init(gc);
             } else if (s instanceof AnimationSystem) {
                 AnimationSystem tmp = (AnimationSystem) s;
-                tmp.init(root);
+                tmp.init(gc);
             }
         }
     }
@@ -36,10 +37,10 @@ public class SystemManager {
         }
     }
 
-    public void render(StackPane root, long time) {
+    public void render(GraphicsContext gc, long time) {
         for (SystemComponent s : m_systems) {
             if (s.needsRender() && s.enabled()) {
-                s.render(root, time);
+                s.render(gc, time);
             }
         }
     }

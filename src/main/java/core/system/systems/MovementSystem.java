@@ -8,6 +8,7 @@ import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class MovementSystem extends SystemComponent {
 
@@ -70,7 +71,7 @@ public class MovementSystem extends SystemComponent {
     }
 
     @Override
-    public void render(StackPane root, long time) {
+    public void render(GraphicsContext gc, long time) {
 
     }
 
@@ -79,11 +80,11 @@ public class MovementSystem extends SystemComponent {
             switch (key) {
                 case "a":
                     getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
-                    getRequester().getComponent(VelocityComponent.class).setVelocityX(-10);
+                    getRequester().getComponent(VelocityComponent.class).setVelocityX(-15);
                     break;
                 case "d":
                     getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
-                    getRequester().getComponent(VelocityComponent.class).setVelocityX(10);
+                    getRequester().getComponent(VelocityComponent.class).setVelocityX(15);
                     break;
             }
         } else {
@@ -97,7 +98,7 @@ public class MovementSystem extends SystemComponent {
             getRequester().getComponent(PhysicsComponent.class).setJumping(true);
             getRequester().getComponent(PhysicsComponent.class).setFalling(true);
         } else {
-            
+
         }
     }
 

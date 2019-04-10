@@ -45,7 +45,7 @@ public class GameScene {
         GameScene.setOnKeyPressed(new GameLoop());
         GameScene.setOnKeyReleased(new GameLoop());
 
-        world.init(root);
+        world.init(gc);
 
         if (animationTimer == false) {
             new AnimationTimer() {
@@ -54,7 +54,7 @@ public class GameScene {
                         canvas.relocate(-world.getHero().getComponent(PositionComponent.class).getX() + ((screenWidth - world.getHero().getComponent(DimensionComponent.class).getWidth()) / 2), 0);
                     gc.clearRect(0, 0, 3 * screenWidth, screenHeight);
                     world.update(time);
-                    world.render(root, time);
+                    world.render(gc, time);
                 }
             }.start();
         }

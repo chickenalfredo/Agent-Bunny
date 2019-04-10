@@ -4,7 +4,7 @@ import core.component.components.AIComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class AISystem extends SystemComponent {
 
@@ -29,8 +29,6 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void render(StackPane root, long time) {
-
-    }
+    public void render(GraphicsContext gc, long time) {}
 
 }

@@ -16,6 +16,7 @@ import core.physics.collision.CollisionPacket;
 import core.physics.collision.Side;
 import core.system.SystemComponent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class CollisionSystem extends SystemComponent {
 
@@ -50,9 +51,7 @@ public class CollisionSystem extends SystemComponent {
     }
 
     @Override
-    public void render(StackPane root, long time) {
-
-    }
+    public void render(GraphicsContext gc, long time) {}
 
     private void detectCollisionsWithWalls() {
         Collision collision = new Collision();

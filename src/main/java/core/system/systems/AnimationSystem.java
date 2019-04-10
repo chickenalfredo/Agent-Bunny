@@ -1,16 +1,16 @@
 package core.system.systems;
 
-import core.component.components.HeroAnimationComponent;
+import core.component.components.HeroAnimationComponentV2;
 import core.component.components.PositionComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.screens.ScreenBuilder;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class AnimationSystem extends SystemComponent {
 
-    private StackPane root;
+    private GraphicsContext gc;
     private long lastTime = 0;
     private int i = 0;
 
@@ -18,7 +18,6 @@ public class AnimationSystem extends SystemComponent {
     private static final double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
     private static final double xOffset = -(screenWidth / 2);
     private static final double yOffset = -(screenHeight / 2);
-
 
     public AnimationSystem() {
         setEnabled(true);
@@ -29,40 +28,27 @@ public class AnimationSystem extends SystemComponent {
     @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
-            if (e.getComponent(HeroAnimationComponent.class) != null) {
+            if (e.getComponent(HeroAnimationComponentV2.class) != null) {
                 addSystemEntity(e);
-                root.getChildren().add(e.getComponent(HeroAnimationComponent.class).getGroup());
             }
         }
     }
 
-    public void init(StackPane root) {
-        this.root = root;
-	}
-
-    @Override
-    public void update(long delta) {
-
+    public void init(GraphicsContext gc) {
+        this.gc = gc;
     }
 
     @Override
-    public void render(StackPane root, long time) {
-        long curTime = System.currentTimeMillis();
-        if (curTime > lastTime + 100) {
-            for (Entity e : getSystemEntities()) {
-                if (i >= e.getComponent(HeroAnimationComponent.class).animateRunning().size()) {
-                    i = 0;
-                }
-                e.getComponent(HeroAnimationComponent.class).getGroup().setTranslateX(
-                    xOffset + (e.getComponent(HeroAnimationComponent.class).getGroup().getBoundsInLocal().getWidth()/2) +
-                    e.getComponent(PositionComponent.class).getX());
-                e.getComponent(HeroAnimationComponent.class).getGroup().setTranslateY(
-                    yOffset + ((e.getComponent(HeroAnimationComponent.class).getGroup().getBoundsInLocal().getHeight()/2)) +
-                    e.getComponent(PositionComponent.class).getY());    
-                e.getComponent(HeroAnimationComponent.class).getGroup().getChildren().setAll(e.getComponent(HeroAnimationComponent.class).animateIdle().get(i));
-                lastTime = curTime;
-                i++;
-            }
+    public void update(long delta) {}
+
+    @Override
+    public void render(GraphicsContext gc, long time) {
+        for (Entity e : getSystemEntities()) {
+            if (i >= e.getComponent(HeroAnimationComponentV2.class).animateRunning().size())
+                i = 0;
+            gc.drawImage(e.getComponent(HeroAnimationComponentV2.class).animateIdle().get(i),
+                    e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            i++;
         }
     }
 

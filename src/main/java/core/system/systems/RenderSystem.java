@@ -1,5 +1,6 @@
 package core.system.systems;
 
+import core.component.components.HeroAnimationComponentV2;
 import core.component.components.PositionComponent;
 import core.component.components.RenderComponent;
 import core.entity.Entity;
@@ -7,10 +8,11 @@ import core.entity.EntityManager;
 import core.screens.ScreenBuilder;
 import core.system.SystemComponent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class RenderSystem extends SystemComponent {
 
-    private StackPane root;
+    private GraphicsContext gc;
 
     private static final double screenHeight = ScreenBuilder.getPrimaryScreenBounds().getHeight();
     private static final double screenWidth = ScreenBuilder.getPrimaryScreenBounds().getWidth();
@@ -35,31 +37,16 @@ public class RenderSystem extends SystemComponent {
                 addSystemEntity(e);
             }
         }
-        addEntitiesToGroup();
     }
 
-    public void init(StackPane root) {
-        this.root = root;
+    public void init(GraphicsContext gc) {
+        this.gc = gc;
     }
 
     @Override
-    public void render(StackPane root, long time) {
+    public void render(GraphicsContext gc, long time) {
         for (Entity e : getSystemEntities()) {
-            e.getComponent(RenderComponent.class).getGroup()
-                    .setTranslateX(xOffset
-                            + (e.getComponent(RenderComponent.class).getGroup().getBoundsInLocal().getWidth() / 2)
-                            + e.getComponent(PositionComponent.class).getX());
-            e.getComponent(RenderComponent.class).getGroup()
-                    .setTranslateY(yOffset
-                            + ((e.getComponent(RenderComponent.class).getGroup().getBoundsInLocal().getHeight() / 2))
-                            + e.getComponent(PositionComponent.class).getY());
-        }
-    }
-
-    public void addEntitiesToGroup() {
-        for (Entity e : getSystemEntities()) {
-            e.getComponent(RenderComponent.class).createGroup();
-            root.getChildren().add(e.getComponent(RenderComponent.class).getGroup());
+            gc.drawImage(e.getComponent(RenderComponent.class).getImage(), e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
         }
     }
 

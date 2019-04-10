@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import core.entity.Entity;
 import core.entity.EntityManager;
+import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.layout.StackPane;
 
 /**
@@ -96,6 +97,6 @@ public abstract class SystemComponent {
 
     public abstract void update(long delta);
 
-    public abstract void render(StackPane root, long time);
+    public abstract void render(GraphicsContext gc, long time);
 
 }
