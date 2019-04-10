@@ -23,7 +23,7 @@ public class Level extends GameMap implements Serializable {
         List<Entity> sprites = new ArrayList<Entity>();
 
         Entity hero = new Entity();
-        hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(25, 50, 0.5), new HealthComponent(),
+        hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(25, 50, 250), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(200, 210), new VelocityComponent());
         hero.addComponents(new HeroAnimationComponentV2(hero));
