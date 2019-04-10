@@ -1,6 +1,5 @@
-package core.command.commands;
+package core.command;
 
-import core.command.Command;
 import core.entity.Entity;
 import core.game.World;
 import core.system.systems.MovementSystem;
@@ -8,14 +7,19 @@ import core.system.systems.MovementSystem;
 /**
  * 
  */
-public class JumpCommand extends Command {
+public class MoveCommand implements Command {
 
     private String key;
-    private boolean isKeyPressed;
+    private boolean isKeyPressedEvent;
 
-    public JumpCommand(String key, boolean isKeyPressed) {
+    /**
+     * 
+     * @param key
+     * @param isKeyPressedEvent
+     */
+    public MoveCommand(String key, boolean isKeyPressedEvent) {
         this.key = key;
-        this.isKeyPressed = isKeyPressed;
+        this.isKeyPressedEvent = isKeyPressedEvent;
     }
 
     /**
@@ -27,6 +31,6 @@ public class JumpCommand extends Command {
     public void execute(Entity actor, World world) {
         world.getManager().getSystemManager().getSystem(MovementSystem.class).requestUpdate(actor);
         world.getManager().getSystemManager().getSystem(MovementSystem.class).setKey(key);
-        world.getManager().getSystemManager().getSystem(MovementSystem.class).setKeyPressedEvent(isKeyPressed);
+        world.getManager().getSystemManager().getSystem(MovementSystem.class).setKeyPressedEvent(isKeyPressedEvent);
     }
 }

@@ -1,6 +1,5 @@
-package core.command.commands;
+package core.command;
 
-import core.command.Command;
 import core.entity.Entity;
 import core.game.World;
 import javafx.scene.layout.HBox;
@@ -9,7 +8,7 @@ import core.scenes.*;
 /**
  * 
  */
-public class MenuCommand extends Command {
+public class MenuCommand implements Command {
 
     private boolean isKeyPressed;
 

@@ -1,6 +1,6 @@
 package core.system.systems;
 
-import core.component.components.AIComponent;
+import core.component.AIComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;

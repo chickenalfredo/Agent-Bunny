@@ -1,6 +1,5 @@
-package core.component.components;
+package core.component;
 
-import core.component.Component;
 import core.component.state.*;
 
 /**

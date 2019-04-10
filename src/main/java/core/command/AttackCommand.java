@@ -1,6 +1,5 @@
-package core.command.commands;
+package core.command;
 
-import core.command.Command;
 import core.entity.Entity;
 import core.game.World;
 import core.system.systems.CombatSystem;
@@ -8,7 +7,7 @@ import core.system.systems.CombatSystem;
 /**
  * 
  */
-public class AttackCommand extends Command {
+public class AttackCommand implements Command {
 
     private boolean isKeyPressed;
 

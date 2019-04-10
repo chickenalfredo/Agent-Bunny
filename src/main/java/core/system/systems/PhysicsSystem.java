@@ -1,12 +1,11 @@
 package core.system.systems;
 
-import core.component.components.PhysicsComponent;
-import core.component.components.PositionComponent;
-import core.component.components.VelocityComponent;
+import core.component.PhysicsComponent;
+import core.component.PositionComponent;
+import core.component.VelocityComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public class PhysicsSystem extends SystemComponent {

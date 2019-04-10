@@ -1,6 +1,6 @@
 package core.game.map;
 
-import core.component.components.*;
+import core.component.*;
 import core.entity.Entity;
 import core.entity.attributes.CollidableAttribute;
 import core.entity.attributes.NameAttribute;
@@ -23,10 +23,11 @@ public class Level extends GameMap implements Serializable {
         List<Entity> sprites = new ArrayList<Entity>();
 
         Entity hero = new Entity();
-        hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(25, 50, 250), new HealthComponent(),
+        hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(25, 50, 250),
+                new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(200, 210), new VelocityComponent());
-        hero.addComponents(new HeroAnimationComponentV2(hero));
+        hero.addComponents(new HeroAnimationComponent(hero));
         hero.addAttribute(new TypeAttribute(Type.HERO), new CollidableAttribute(true), new NameAttribute("Hero"));
         sprites.add(hero);
 
@@ -35,7 +36,7 @@ public class Level extends GameMap implements Serializable {
                 new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(0, 0), new VelocityComponent());
-        alienBug.addComponents(new HeroAnimationComponentV2(alienBug));
+        alienBug.addComponents(new HeroAnimationComponent(alienBug));
         alienBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienBug"));
         sprites.add(alienBug);
@@ -45,7 +46,7 @@ public class Level extends GameMap implements Serializable {
                 new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        alienCrabPurple.addComponents(new HeroAnimationComponentV2(alienCrabPurple));
+        alienCrabPurple.addComponents(new HeroAnimationComponent(alienCrabPurple));
         alienCrabPurple.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienCrabPurple"));
         sprites.add(alienCrabPurple);
@@ -55,7 +56,7 @@ public class Level extends GameMap implements Serializable {
                 new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        alienCrabRed.addComponents(new HeroAnimationComponentV2(alienCrabRed));
+        alienCrabRed.addComponents(new HeroAnimationComponent(alienCrabRed));
         alienCrabRed.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienCrabRed"));
         sprites.add(alienCrabRed);
@@ -65,7 +66,7 @@ public class Level extends GameMap implements Serializable {
                 new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        alienDragon.addComponents(new HeroAnimationComponentV2(alienDragon));
+        alienDragon.addComponents(new HeroAnimationComponent(alienDragon));
         alienDragon.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienDragon"));
         sprites.add(alienDragon);
@@ -75,7 +76,7 @@ public class Level extends GameMap implements Serializable {
                 new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        alienTentacle.addComponents(new HeroAnimationComponentV2(alienTentacle));
+        alienTentacle.addComponents(new HeroAnimationComponent(alienTentacle));
         alienTentacle.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienTentacle"));
         sprites.add(alienTentacle);
@@ -85,7 +86,7 @@ public class Level extends GameMap implements Serializable {
                 new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        blob.addComponents(new HeroAnimationComponentV2(blob));
+        blob.addComponents(new HeroAnimationComponent(blob));
         blob.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true), new NameAttribute("blob"));
         sprites.add(blob);
 
@@ -94,7 +95,7 @@ public class Level extends GameMap implements Serializable {
                 new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        blueBug.addComponents(new HeroAnimationComponentV2(blueBug));
+        blueBug.addComponents(new HeroAnimationComponent(blueBug));
         blueBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("blueBug"));
         sprites.add(blueBug);
@@ -104,7 +105,7 @@ public class Level extends GameMap implements Serializable {
                 new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        greenBug.addComponents(new HeroAnimationComponentV2(greenBug));
+        greenBug.addComponents(new HeroAnimationComponent(greenBug));
         greenBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("greenBug"));
         sprites.add(greenBug);
@@ -114,7 +115,7 @@ public class Level extends GameMap implements Serializable {
                 new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        orangeBug.addComponents(new HeroAnimationComponentV2(orangeBug));
+        orangeBug.addComponents(new HeroAnimationComponent(orangeBug));
         orangeBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("orangeBug"));
         sprites.add(orangeBug);
@@ -124,7 +125,7 @@ public class Level extends GameMap implements Serializable {
                 new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        purpleBug.addComponents(new HeroAnimationComponentV2(purpleBug));
+        purpleBug.addComponents(new HeroAnimationComponent(purpleBug));
         purpleBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("purpleBug"));
         sprites.add(purpleBug);
@@ -134,7 +135,7 @@ public class Level extends GameMap implements Serializable {
                 new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(), new VelocityComponent());
-        fatty.addComponents(new HeroAnimationComponentV2(fatty));
+        fatty.addComponents(new HeroAnimationComponent(fatty));
         fatty.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true), new NameAttribute("fatty"));
         sprites.add(fatty);
 

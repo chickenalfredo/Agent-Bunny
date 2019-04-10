@@ -16,8 +16,8 @@ import core.utils.InputHandler;
 import java.io.File;
 
 import core.command.Command;
-import core.component.components.DimensionComponent;
-import core.component.components.PositionComponent;
+import core.component.DimensionComponent;
+import core.component.PositionComponent;
 import core.screens.ScreenBuilder;
 import core.game.World;
 

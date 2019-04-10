@@ -2,10 +2,10 @@ package core.system.systems;
 
 import java.util.ArrayList;
 
-import core.component.components.DimensionComponent;
-import core.component.components.PhysicsComponent;
-import core.component.components.PositionComponent;
-import core.component.components.VelocityComponent;
+import core.component.DimensionComponent;
+import core.component.PhysicsComponent;
+import core.component.PositionComponent;
+import core.component.VelocityComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.entity.attributes.CollidableAttribute;
@@ -15,7 +15,6 @@ import core.physics.collision.Collision;
 import core.physics.collision.CollisionPacket;
 import core.physics.collision.Side;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public class CollisionSystem extends SystemComponent {

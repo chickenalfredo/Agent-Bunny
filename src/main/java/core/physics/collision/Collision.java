@@ -1,7 +1,7 @@
 package core.physics.collision;
 
-import core.component.components.DimensionComponent;
-import core.component.components.PositionComponent;
+import core.component.DimensionComponent;
+import core.component.PositionComponent;
 import core.entity.Entity;
 
 /**

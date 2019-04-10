@@ -1,8 +1,7 @@
-package core.component.components;
+package core.component;
 
 import java.io.FileInputStream;
 
-import core.component.Component;
 import core.entity.Entity;
 import javafx.scene.CacheHint;
 import javafx.scene.Group;

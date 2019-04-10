@@ -1,8 +1,7 @@
 package core.utils;
 
 import javafx.scene.input.KeyEvent;
-import core.command.Command;
-import core.command.commands.*;
+import core.command.*;
 import core.utils.KeyBindings;
 
 /**

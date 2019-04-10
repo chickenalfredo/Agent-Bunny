@@ -1,6 +1,4 @@
-package core.component.components;
-
-import core.component.Component;
+package core.component;
 
 /**
  * This component will allow an Entity to have the data necessary for attacking

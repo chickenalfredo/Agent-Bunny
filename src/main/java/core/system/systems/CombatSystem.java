@@ -1,7 +1,7 @@
 package core.system.systems;
 
-import core.component.components.AttackComponent;
-import core.component.components.HealthComponent;
+import core.component.AttackComponent;
+import core.component.HealthComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
