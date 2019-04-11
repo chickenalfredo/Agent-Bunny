@@ -4,6 +4,9 @@ import core.component.PhysicsComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
 import core.component.VelocityComponent;
+import core.component.state.ConcurrentState;
+import core.component.state.Direction;
+import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
@@ -51,6 +54,12 @@ public class MovementSystem extends SystemComponent {
 
     @Override
     public void update(long delta) {
+        if (getRequester().getComponent(PhysicsComponent.class).isJumping()) {
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.JUMPING);
+        }
+        if (getRequester().getComponent(PhysicsComponent.class).isFalling()) {
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.FALLING);
+        }
         if (key.equals("a") || key.equals("d")) {
             moveEntity(key, isKeyPressedEvent);
         }
@@ -81,14 +90,20 @@ public class MovementSystem extends SystemComponent {
                 case "a":
                     getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
                     getRequester().getComponent(VelocityComponent.class).setVelocityX(-15);
+                    getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
+                    getRequester().getComponent(StateComponent.class).setDirection(Direction.LEFT);
+
                     break;
                 case "d":
                     getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
                     getRequester().getComponent(VelocityComponent.class).setVelocityX(15);
+                    getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
+                    getRequester().getComponent(StateComponent.class).setDirection(Direction.RIGHT);
                     break;
             }
         } else {
             getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+            getRequester().getComponent(StateComponent.class).setState(State.IDLE);
         }
     }
 
@@ -97,8 +112,9 @@ public class MovementSystem extends SystemComponent {
             getRequester().getComponent(VelocityComponent.class).setVelocityY(-30);
             getRequester().getComponent(PhysicsComponent.class).setJumping(true);
             getRequester().getComponent(PhysicsComponent.class).setFalling(true);
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.JUMPING);
         } else {
-
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.FALLING);
         }
     }
 

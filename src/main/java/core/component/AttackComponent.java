@@ -21,47 +21,29 @@ public class AttackComponent implements Component, Serializable {
         this.attackRange = attackRange;
         this.cooldownTime = cooldownTime;
     }
+    private long lastAttack = 0;
 
     /**
-     * @return the cooldownTime
+     * @return the lastAttack
      */
-    public long getCooldownTime() {
-        return cooldownTime;
+    public long getLastAttack() {
+        return lastAttack;
     }
 
     /**
-     * @param cooldownTime the cooldownTime to set
+     * @param lastAttack the lastAttack to set
      */
-    public void setCooldownTime(long cooldownTime) {
-        this.cooldownTime = cooldownTime;
+    private void setLastAttack(long lastAttack) {
+        this.lastAttack = lastAttack;
     }
 
-    /**
-     * @return the attackRange
-     */
-    public float getAttackRange() {
-        return attackRange;
-    }
-
-    /**
-     * @param attackRange the attackRange to set
-     */
-    public void setAttackRange(float attackRange) {
-        this.attackRange = attackRange;
-    }
-
-    /**
-     * @return the attackDamage
-     */
-    public float getAttackDamage() {
-        return attackDamage;
-    }
-
-    /**
-     * @param attackDamage the attackDamage to set
-     */
-    public void setAttackDamage(float attackDamage) {
-        this.attackDamage = attackDamage;
+    public boolean attackOffCooldown(long cooldownTime) {
+        long time = System.currentTimeMillis();
+        if (time > lastAttack + cooldownTime) {
+            setLastAttack(time);
+            return true;
+        }
+        return false;
     }
 
 }

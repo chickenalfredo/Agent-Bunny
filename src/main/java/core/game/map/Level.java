@@ -23,8 +23,8 @@ public class Level extends GameMap implements Serializable {
         List<Entity> sprites = new ArrayList<Entity>();
 
         Entity hero = new Entity();
-        hero.addComponents(new StateComponent(), new PhysicsComponent(), new AttackComponent(25, 50, 250),
-                new HealthComponent(),
+        hero.addComponents(new StateComponent(), new PhysicsComponent(), new WeaponComponent(25, 50, 250),
+                new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(200, 210), new VelocityComponent());
         hero.addComponents(new HeroAnimationComponent(hero));
@@ -32,112 +32,34 @@ public class Level extends GameMap implements Serializable {
         sprites.add(hero);
 
         Entity alienBug = new Entity();
-        alienBug.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(), new AttackComponent(),
-                new HealthComponent(),
+        alienBug.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
+                new WeaponComponent(25, 50, 250), new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(0, 0), new VelocityComponent());
-        alienBug.addComponents(new HeroAnimationComponent(alienBug));
+        alienBug.addComponents(new AlienBugAnimationComponent(alienBug));
         alienBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienBug"));
         sprites.add(alienBug);
 
         Entity alienCrabPurple = new Entity();
         alienCrabPurple.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
-                new AttackComponent(), new HealthComponent(),
+                new WeaponComponent(25, 50, 250), new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        alienCrabPurple.addComponents(new HeroAnimationComponent(alienCrabPurple));
+                new PositionComponent(200, 0), new VelocityComponent());
+        alienCrabPurple.addComponents(new AlienCrabAnimationComponent(alienCrabPurple));
         alienCrabPurple.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienCrabPurple"));
         sprites.add(alienCrabPurple);
 
-        Entity alienCrabRed = new Entity();
-        alienCrabRed.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
-                new AttackComponent(), new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        alienCrabRed.addComponents(new HeroAnimationComponent(alienCrabRed));
-        alienCrabRed.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
-                new NameAttribute("alienCrabRed"));
-        sprites.add(alienCrabRed);
-
         Entity alienDragon = new Entity();
         alienDragon.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
-                new AttackComponent(), new HealthComponent(),
+                new WeaponComponent(25, 50, 250), new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        alienDragon.addComponents(new HeroAnimationComponent(alienDragon));
+                new PositionComponent(900, 0), new VelocityComponent());
+        alienDragon.addComponents(new AlienDragonAnimationComponent(alienDragon));
         alienDragon.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienDragon"));
         sprites.add(alienDragon);
-
-        Entity alienTentacle = new Entity();
-        alienTentacle.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
-                new AttackComponent(), new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        alienTentacle.addComponents(new HeroAnimationComponent(alienTentacle));
-        alienTentacle.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
-                new NameAttribute("alienTentacle"));
-        sprites.add(alienTentacle);
-
-        Entity blob = new Entity();
-        blob.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(), new AttackComponent(),
-                new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        blob.addComponents(new HeroAnimationComponent(blob));
-        blob.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true), new NameAttribute("blob"));
-        sprites.add(blob);
-
-        Entity blueBug = new Entity();
-        blueBug.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(), new AttackComponent(),
-                new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        blueBug.addComponents(new HeroAnimationComponent(blueBug));
-        blueBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
-                new NameAttribute("blueBug"));
-        sprites.add(blueBug);
-
-        Entity greenBug = new Entity();
-        greenBug.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(), new AttackComponent(),
-                new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        greenBug.addComponents(new HeroAnimationComponent(greenBug));
-        greenBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
-                new NameAttribute("greenBug"));
-        sprites.add(greenBug);
-
-        Entity orangeBug = new Entity();
-        orangeBug.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(), new AttackComponent(),
-                new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        orangeBug.addComponents(new HeroAnimationComponent(orangeBug));
-        orangeBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
-                new NameAttribute("orangeBug"));
-        sprites.add(orangeBug);
-
-        Entity purpleBug = new Entity();
-        purpleBug.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(), new AttackComponent(),
-                new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        purpleBug.addComponents(new HeroAnimationComponent(purpleBug));
-        purpleBug.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
-                new NameAttribute("purpleBug"));
-        sprites.add(purpleBug);
-
-        Entity fatty = new Entity();
-        fatty.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(), new AttackComponent(),
-                new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(), new VelocityComponent());
-        fatty.addComponents(new HeroAnimationComponent(fatty));
-        fatty.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true), new NameAttribute("fatty"));
-        sprites.add(fatty);
 
         Entity endPoint = new Entity();
         endPoint.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
