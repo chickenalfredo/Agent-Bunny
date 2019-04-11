@@ -19,6 +19,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class CollisionSystem extends SystemComponent {
 
+    private static final long serialVersionUID = 1L;
     private static ArrayList<Entity> static_entities = new ArrayList<Entity>();
     private static ArrayList<Entity> m_entities = new ArrayList<Entity>();
 

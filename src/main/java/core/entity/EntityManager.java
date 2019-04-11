@@ -1,9 +1,11 @@
 package core.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class EntityManager {
+public class EntityManager implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private ArrayList<Entity> m_entities;
 
     public void init(ArrayList<Entity> entities) {

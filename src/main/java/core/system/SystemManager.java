@@ -1,15 +1,16 @@
 package core.system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.entity.EntityManager;
 import core.system.systems.AnimationSystem;
 import core.system.systems.RenderSystem;
-import javafx.scene.layout.StackPane;
 import javafx.scene.canvas.GraphicsContext;
 
-public class SystemManager {
+public class SystemManager implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private ArrayList<SystemComponent> m_systems = new ArrayList<SystemComponent>();
 
     public void init(EntityManager entityManager) {

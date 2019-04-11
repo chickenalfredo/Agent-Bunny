@@ -1,12 +1,15 @@
 package core.component;
 
+import java.io.Serializable;
+
 /**
  * This component will allow an Entity to have the data necessary for attacking
  * other Entities. This class defines damage, range, speed and cooldown data for
  * this component.
  */
-public class AttackComponent implements Component {
+public class AttackComponent implements Component, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private float attackDamage;
     private float attackRange;
     private long cooldownTime;

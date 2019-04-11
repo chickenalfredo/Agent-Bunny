@@ -8,6 +8,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class AISystem extends SystemComponent {
 
+    private static final long serialVersionUID = 1L;
+
     public AISystem() {
         setEnabled(true);
         setNeedsUpdate(false);

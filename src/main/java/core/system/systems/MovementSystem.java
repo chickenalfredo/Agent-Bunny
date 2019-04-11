@@ -11,6 +11,7 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class MovementSystem extends SystemComponent {
 
+    private static final long serialVersionUID = 1L;
     private String key = null;
     private boolean isKeyPressedEvent = false;
 

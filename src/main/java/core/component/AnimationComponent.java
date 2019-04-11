@@ -1,15 +1,17 @@
 package core.component;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.component.Component;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
-public class AnimationComponent implements Component {
+public class AnimationComponent implements Component, Serializable {
 
     private ArrayList<Image> m_images = new ArrayList<Image>();
     private ArrayList<ImageView> m_imageViews = new ArrayList<ImageView>();
+    private static final long serialVersionUID = 1L;
 
     /**
      * @param m_imageViews the m_imageViews to set

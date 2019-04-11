@@ -1,13 +1,16 @@
 package core.component;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.entity.Entity;
 import javafx.scene.image.Image;
+import core.savablejfx.*;
 
-public class HeroAnimationComponent implements Component {
+public class HeroAnimationComponent implements Component, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private final double ACTOR_WIDTH;
     private final double ACTOR_HEIGHT;
 
@@ -17,6 +20,7 @@ public class HeroAnimationComponent implements Component {
     private ArrayList<Image> fallingAnimations = new ArrayList<Image>();
     private ArrayList<Image> runShootAnimations = new ArrayList<Image>();
     private ArrayList<Image> idleShootAnimations = new ArrayList<Image>();
+    private ArrayList<SavableImage> runShootAnimations = new ArrayList<SavableImage>();
 
     private static Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11, run_12, run_13,
             run_14, run_15, run_16;

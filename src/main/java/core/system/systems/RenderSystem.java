@@ -10,6 +10,7 @@ import javafx.scene.canvas.GraphicsContext;
 public class RenderSystem extends SystemComponent {
 
     private GraphicsContext gc;
+    private static final long serialVersionUID = 1L;
 
     public RenderSystem() {
         setEnabled(true);

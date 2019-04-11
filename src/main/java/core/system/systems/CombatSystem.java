@@ -9,6 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class CombatSystem extends SystemComponent {
 
+    private static final long serialVersionUID = 1L;
+
     public CombatSystem() {
         setEnabled(true);
         setNeedsUpdate(false);

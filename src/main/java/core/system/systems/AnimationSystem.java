@@ -9,7 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class AnimationSystem extends SystemComponent {
 
-    private GraphicsContext gc;
+    private static final long serialVersionUID = 1L;
+    private transient GraphicsContext gc;
     private int i = 0;
 
     public AnimationSystem() {

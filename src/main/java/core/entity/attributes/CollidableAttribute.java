@@ -1,12 +1,15 @@
 package core.entity.attributes;
 
+import java.io.Serializable;
+
 /**
  * CollidableAttribute allows the Entity object to have a collidable attribute.
- * This class will set the collidable on construction and can
- * only be retrieved as this class is final.
+ * This class will set the collidable on construction and can only be retrieved
+ * as this class is final.
  */
-public final class CollidableAttribute implements Attribute {
+public final class CollidableAttribute implements Attribute, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private final boolean IS_COLLIDABLE;
 
     /**

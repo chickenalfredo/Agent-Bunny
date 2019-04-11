@@ -1,13 +1,14 @@
 package core.game;
 
+import java.io.Serializable;
 import core.entity.EntityManager;
 import core.system.SystemManager;
 import core.system.systems.*;
-import javafx.scene.layout.StackPane;
 import javafx.scene.canvas.GraphicsContext;
 
-public class Manager {
+public class Manager implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private SystemManager systemManager;
     private EntityManager entityManager;
 
