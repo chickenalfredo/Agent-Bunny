@@ -11,6 +11,8 @@ public class HeroAnimationComponent implements Component {
     private final double ACTOR_WIDTH;
     private final double ACTOR_HEIGHT;
 
+    private Image currentRender;
+
     private ArrayList<Image> runningAnimations = new ArrayList<Image>();
     private ArrayList<Image> jumpingAnimations = new ArrayList<Image>();
     private ArrayList<Image> idleAnimations = new ArrayList<Image>();
@@ -208,6 +210,20 @@ public class HeroAnimationComponent implements Component {
         setRunningAndShootingAnimation();
     }
 
+    /**
+     * @return the currentRender
+     */
+    public Image getCurrentRender() {
+        return currentRender;
+    }
+
+    /**
+     * @param currentRender the currentRender to set
+     */
+    public void setCurrentRender(Image currentRender) {
+        this.currentRender = currentRender;
+    }
+
     private void setRunningAnimation() {
         runningAnimations.add(run_1);
         runningAnimations.add(run_2);
@@ -279,7 +295,7 @@ public class HeroAnimationComponent implements Component {
     }
 
     public ArrayList<Image> animateRunAndShoot() {
-        return idleAnimations;
+        return runShootAnimations;
     }
 
     private void setIdleShootingAnimation() {
@@ -287,7 +303,7 @@ public class HeroAnimationComponent implements Component {
     }
 
     public ArrayList<Image> animateIdleAndShoot() {
-        return idleAnimations;
+        return idleShootAnimations;
     }
 
     private void setJumpingAnimation() {
@@ -298,7 +314,7 @@ public class HeroAnimationComponent implements Component {
     }
 
     public ArrayList<Image> AnimateJump() {
-        return idleAnimations;
+        return jumpingAnimations;
     }
 
     private void setFallingAnimation() {
@@ -316,7 +332,7 @@ public class HeroAnimationComponent implements Component {
     }
 
     public ArrayList<Image> animateFalling() {
-        return idleAnimations;
+        return fallingAnimations;
     }
 
 }

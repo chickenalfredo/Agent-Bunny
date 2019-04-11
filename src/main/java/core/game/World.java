@@ -6,7 +6,6 @@ import core.entity.Entity;
 import core.entity.attributes.Type;
 import core.entity.attributes.TypeAttribute;
 import core.game.map.Level;
-import javafx.scene.layout.StackPane;
 import javafx.scene.canvas.GraphicsContext;
 
 /**

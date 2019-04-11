@@ -3,9 +3,8 @@ package core.system;
 import java.util.ArrayList;
 
 import core.entity.EntityManager;
-import core.system.systems.AnimationSystem;
+import core.system.systems.HeroAnimationSystem;
 import core.system.systems.RenderSystem;
-import javafx.scene.layout.StackPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public class SystemManager {
@@ -23,8 +22,8 @@ public class SystemManager {
             if (s instanceof RenderSystem) {
                 RenderSystem tmp = (RenderSystem) s;
                 tmp.init(gc);
-            } else if (s instanceof AnimationSystem) {
-                AnimationSystem tmp = (AnimationSystem) s;
+            } else if (s instanceof HeroAnimationSystem) {
+                HeroAnimationSystem tmp = (HeroAnimationSystem) s;
                 tmp.init(gc);
             }
         }

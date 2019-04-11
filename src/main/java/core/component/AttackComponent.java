@@ -7,58 +7,29 @@ package core.component;
  */
 public class AttackComponent implements Component {
 
-    private float attackDamage;
-    private float attackRange;
-    private long cooldownTime;
+    private long lastAttack = 0;
 
-    public AttackComponent() {}
-
-    public AttackComponent(float attackDamage, float attackRange, long cooldownTime) {
-        this.attackDamage = attackDamage;
-        this.attackRange = attackRange;
-        this.cooldownTime = cooldownTime;
+    /**
+     * @return the lastAttack
+     */
+    public long getLastAttack() {
+        return lastAttack;
     }
 
     /**
-     * @return the cooldownTime
+     * @param lastAttack the lastAttack to set
      */
-    public long getCooldownTime() {
-        return cooldownTime;
+    private void setLastAttack(long lastAttack) {
+        this.lastAttack = lastAttack;
     }
 
-    /**
-     * @param cooldownTime the cooldownTime to set
-     */
-    public void setCooldownTime(long cooldownTime) {
-        this.cooldownTime = cooldownTime;
-    }
-
-    /**
-     * @return the attackRange
-     */
-    public float getAttackRange() {
-        return attackRange;
-    }
-
-    /**
-     * @param attackRange the attackRange to set
-     */
-    public void setAttackRange(float attackRange) {
-        this.attackRange = attackRange;
-    }
-
-    /**
-     * @return the attackDamage
-     */
-    public float getAttackDamage() {
-        return attackDamage;
-    }
-
-    /**
-     * @param attackDamage the attackDamage to set
-     */
-    public void setAttackDamage(float attackDamage) {
-        this.attackDamage = attackDamage;
+    public boolean attackOffCooldown(long cooldownTime) {
+        long time = System.currentTimeMillis();
+        if (time > lastAttack + cooldownTime) {
+            setLastAttack(time);
+            return true;
+        }
+        return false;
     }
 
 }

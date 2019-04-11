@@ -5,15 +5,17 @@ import java.util.ArrayList;
 import core.component.DimensionComponent;
 import core.component.PhysicsComponent;
 import core.component.PositionComponent;
+import core.component.StateComponent;
 import core.component.VelocityComponent;
+import core.component.state.ConcurrentState;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.entity.attributes.CollidableAttribute;
 import core.entity.attributes.Type;
 import core.entity.attributes.TypeAttribute;
-import core.physics.collision.Collision;
-import core.physics.collision.CollisionPacket;
-import core.physics.collision.Side;
+import core.physics.Collision;
+import core.physics.CollisionPacket;
+import core.physics.Side;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -71,6 +73,9 @@ public class CollisionSystem extends SystemComponent {
             actor.getComponent(VelocityComponent.class).setVelocityY(0);
             actor.getComponent(PhysicsComponent.class).setFalling(false);
             actor.getComponent(PhysicsComponent.class).setJumping(false);
+            if (actor.getComponent(StateComponent.class).getConcurrentState() == ConcurrentState.FALLING) {
+                actor.getComponent(StateComponent.class).setConcurrentState(ConcurrentState.NONE);
+            }
         } else {
             actor.getComponent(PhysicsComponent.class).setFalling(true);
         }

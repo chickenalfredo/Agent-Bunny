@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.layout.StackPane;
 
 /**
  * An interface with the purpose of being implemented to define a child class as

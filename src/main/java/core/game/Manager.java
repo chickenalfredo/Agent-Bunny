@@ -3,7 +3,6 @@ package core.game;
 import core.entity.EntityManager;
 import core.system.SystemManager;
 import core.system.systems.*;
-import javafx.scene.layout.StackPane;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Manager {
@@ -50,7 +49,10 @@ public class Manager {
             new MovementSystem(), 
             new PhysicsSystem(), 
             new RenderSystem(),
-            new AnimationSystem()
+            new AlienBugAnimationSystem(),
+            new AlienCrabAnimationSystem(),
+            new AlienDragonAnimationSystem(),
+            new HeroAnimationSystem()
         );
     }
 
