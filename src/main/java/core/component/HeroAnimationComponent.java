@@ -6,13 +6,12 @@ import java.util.ArrayList;
 
 import core.entity.Entity;
 import javafx.scene.image.Image;
-import core.savablejfx.*;
 
 public class HeroAnimationComponent implements Component, Serializable {
 
     private static final long serialVersionUID = 1L;
-    private final double ACTOR_WIDTH;
-    private final double ACTOR_HEIGHT;
+    private double ACTOR_WIDTH;
+    private double ACTOR_HEIGHT;
 
     private ArrayList<Image> runningAnimations = new ArrayList<Image>();
     private ArrayList<Image> jumpingAnimations = new ArrayList<Image>();
@@ -20,7 +19,6 @@ public class HeroAnimationComponent implements Component, Serializable {
     private ArrayList<Image> fallingAnimations = new ArrayList<Image>();
     private ArrayList<Image> runShootAnimations = new ArrayList<Image>();
     private ArrayList<Image> idleShootAnimations = new ArrayList<Image>();
-    private ArrayList<SavableImage> runShootAnimations = new ArrayList<SavableImage>();
 
     private static Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11, run_12, run_13,
             run_14, run_15, run_16;
@@ -40,6 +38,10 @@ public class HeroAnimationComponent implements Component, Serializable {
     private static Image idle_shoot;
 
     public HeroAnimationComponent(Entity actor) {
+        init(actor);
+    }
+
+    public void init(Entity actor) {
         ACTOR_WIDTH = actor.getComponent(DimensionComponent.class).getWidth();
         ACTOR_HEIGHT = actor.getComponent(DimensionComponent.class).getHeight();
         try {
@@ -321,6 +323,13 @@ public class HeroAnimationComponent implements Component, Serializable {
 
     public ArrayList<Image> animateFalling() {
         return idleAnimations;
+    }
+
+    public boolean isInit() {
+        if(fallingAnimations.isEmpty() || fallingAnimations == null) 
+            return false;
+        else 
+            return true;
     }
 
 }

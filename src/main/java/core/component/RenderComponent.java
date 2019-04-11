@@ -6,16 +6,21 @@ import java.io.Serializable;
 import core.entity.Entity;
 import javafx.scene.CacheHint;
 import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import core.savablejfx.*;
 
 public class RenderComponent implements Component, Serializable {
 
-    private Image image;
     private static final long serialVersionUID = 1L;
     private SavableGroup group;
-    private SavableImageView imageView;
+    private transient ImageView imageView;
+    private transient Image image;
 
     public RenderComponent(Entity actor, String filename) {
+        init(actor, filename);
+    }
+
+    public void init(Entity actor, String filename) {
         setImage(filename, actor.getComponent(DimensionComponent.class).getWidth(), actor.getComponent(DimensionComponent.class).getHeight());
         setImageView();
     }
@@ -29,7 +34,7 @@ public class RenderComponent implements Component, Serializable {
     }
 
     public void setImageView() {
-        imageView = new SavableImageView();
+        imageView = new ImageView();
         imageView.setImage(image);
         imageView.setCache(true);
         imageView.setCacheHint(CacheHint.SPEED);
@@ -39,7 +44,7 @@ public class RenderComponent implements Component, Serializable {
         return image;
     }
 
-    public SavableImageView getImageView() {
+    public ImageView getImageView() {
         return imageView;
     }
 
@@ -52,6 +57,11 @@ public class RenderComponent implements Component, Serializable {
      */
     public SavableGroup getGroup() {
         return group;
+    }
+
+    public boolean isInit() {
+        if(image == null) return false;
+        else return true;
     }
 
 }

@@ -27,6 +27,9 @@ public class RenderSystem extends SystemComponent {
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
             if (e.getComponent(RenderComponent.class) != null) {
+                if (e.getComponent(RenderComponent.class).isInit()) {
+                    e.getComponent(RenderComponent.class).init();
+                }
                 addSystemEntity(e);
             }
         }
