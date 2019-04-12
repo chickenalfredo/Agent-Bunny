@@ -3,7 +3,7 @@ package core.game;
 import core.entity.EntityManager;
 import core.system.SystemManager;
 import core.system.systems.*;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class Manager {
 
@@ -21,16 +21,16 @@ public class Manager {
         systemManager.init(entityManager);
     }
 
-    public void init(StackPane root) {
-        systemManager.init(root);
+    public void init(GraphicsContext gc) {
+        systemManager.init(gc);
     }
 
     public void update(long delta) {
         systemManager.update(delta);
     }
 
-    public void render(StackPane root, long time) {
-        systemManager.render(root, time);
+    public void render(GraphicsContext gc, long time) {
+        systemManager.render(gc, time);
 	}
 
     public EntityManager getEntityManager() {
@@ -43,14 +43,17 @@ public class Manager {
 
     private void initSystems() {
         systemManager.addSystems(
-                new AISystem(), 
-                new CollisionSystem(), 
-                new CombatSystem(), 
-                new MovementSystem(), 
-                new PhysicsSystem(), 
-                new RenderSystem(),
-                new AnimationSystem()
-            );
+            new AISystem(), 
+            new CollisionSystem(), 
+            new CombatSystem(), 
+            new MovementSystem(), 
+            new PhysicsSystem(), 
+            new RenderSystem(),
+            new AlienBugAnimationSystem(),
+            new AlienCrabAnimationSystem(),
+            new AlienDragonAnimationSystem(),
+            new HeroAnimationSystem()
+        );
     }
 
 }

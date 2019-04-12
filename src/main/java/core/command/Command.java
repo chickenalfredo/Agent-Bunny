@@ -6,9 +6,7 @@ import core.game.World;
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public abstract class Command {
-
-    public Command() {}
+public interface Command {
 
     /**
      * 

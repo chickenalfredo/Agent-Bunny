@@ -6,7 +6,7 @@ import core.entity.Entity;
 import core.entity.attributes.Type;
 import core.entity.attributes.TypeAttribute;
 import core.game.map.Level;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * This class is the world that contains all GameObjects in the level. The World
@@ -31,8 +31,8 @@ public class World implements Serializable {
         manager = new Manager();
     }
 
-    public void init(StackPane root) {
-        manager.init(root);
+    public void init(GraphicsContext gc) {
+        manager.init(gc);
         manager.init(this);
 	}
 
@@ -45,9 +45,13 @@ public class World implements Serializable {
         manager.update(delta);
     }
 
-    public void render(StackPane root, long time) {
-        manager.render(root, time);
-	}
+    public void render(GraphicsContext gc, long time) {
+        manager.render(gc, time);
+    }
+    
+    public Manager getManager() {
+        return manager;
+    }
 
     /**
      * @return The Hero Entity
@@ -93,9 +97,5 @@ public class World implements Serializable {
     public ArrayList<Entity> getEntities() {
         return new ArrayList<Entity>(level.getEntities());
     }
-
-	
-
-	
 
 }

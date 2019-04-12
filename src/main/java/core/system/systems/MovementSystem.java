@@ -1,14 +1,21 @@
 package core.system.systems;
 
-import core.component.components.MovementComponent;
-import core.component.components.PositionComponent;
-import core.component.components.StateComponent;
+import core.component.PhysicsComponent;
+import core.component.PositionComponent;
+import core.component.StateComponent;
+import core.component.VelocityComponent;
+import core.component.state.ConcurrentState;
+import core.component.state.Direction;
+import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class MovementSystem extends SystemComponent {
+
+    private String key = null;
+    private boolean isKeyPressedEvent = false;
 
     public MovementSystem() {
         setEnabled(true);
@@ -16,25 +23,55 @@ public class MovementSystem extends SystemComponent {
         setNeedsRender(false);
     }
 
+    /**
+     * @return the isKeyPressedEvent
+     */
+    public boolean isKeyPressedEvent() {
+        return isKeyPressedEvent;
+    }
+
+    /**
+     * @param isKeyPressedEvent the isKeyPressedEvent to set
+     */
+    public void setKeyPressedEvent(boolean isKeyPressedEvent) {
+        this.isKeyPressedEvent = isKeyPressedEvent;
+    }
+
+    /**
+     * @return the key
+     */
+    public String getKey() {
+        return key;
+    }
+
+    /**
+     * @param key the key to set
+     */
+    public void setKey(String key) {
+        this.key = key;
+    }
+
     @Override
     public void update(long delta) {
-        System.out.println("Updating Movement System...");
-    }
-
-    @Override
-    public void preUpdate() {
-        System.out.println("Pre-updating Movement System...");
-    }
-
-    @Override
-    public void postUpdate() {
-        System.out.println("Post-updating Movement System...");
+        if (getRequester().getComponent(PhysicsComponent.class).isJumping()) {
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.JUMPING);
+        }
+        if (getRequester().getComponent(PhysicsComponent.class).isFalling()) {
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.FALLING);
+        }
+        if (key.equals("a") || key.equals("d")) {
+            moveEntity(key, isKeyPressedEvent);
+        }
+        if (key.equals("jump") && isKeyPressedEvent) {
+            jump();
+        }
+        setNeedsUpdate(false);
     }
 
     @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
-            if (e.getComponent(MovementComponent.class) != null && e.getComponent(PositionComponent.class) != null
+            if (e.getComponent(VelocityComponent.class) != null && e.getComponent(PositionComponent.class) != null
                     && e.getComponent(StateComponent.class) != null) {
                 addSystemEntity(e);
             }
@@ -42,9 +79,42 @@ public class MovementSystem extends SystemComponent {
     }
 
     @Override
-    public void render(StackPane root, long time) {
+    public void render(GraphicsContext gc, long time) {
 
     }
 
+    private void moveEntity(String key, boolean isKeyPressedEvent) {
+        if (isKeyPressedEvent) {
+            switch (key) {
+                case "a":
+                    getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+                    getRequester().getComponent(VelocityComponent.class).setVelocityX(-15);
+                    getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
+                    getRequester().getComponent(StateComponent.class).setDirection(Direction.LEFT);
+
+                    break;
+                case "d":
+                    getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+                    getRequester().getComponent(VelocityComponent.class).setVelocityX(15);
+                    getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
+                    getRequester().getComponent(StateComponent.class).setDirection(Direction.RIGHT);
+                    break;
+            }
+        } else {
+            getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+            getRequester().getComponent(StateComponent.class).setState(State.IDLE);
+        }
+    }
+
+    private void jump() {
+        if (!(getRequester().getComponent(PhysicsComponent.class).isJumping() || getRequester().getComponent(PhysicsComponent.class).isFalling())) {
+            getRequester().getComponent(VelocityComponent.class).setVelocityY(-30);
+            getRequester().getComponent(PhysicsComponent.class).setJumping(true);
+            getRequester().getComponent(PhysicsComponent.class).setFalling(true);
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.JUMPING);
+        } else {
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.FALLING);
+        }
+    }
 
 }

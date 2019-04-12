@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import core.entity.Entity;
 import core.entity.EntityManager;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 /**
  * An interface with the purpose of being implemented to define a child class as
@@ -12,12 +12,27 @@ import javafx.scene.layout.StackPane;
  */
 public abstract class SystemComponent {
 
+    private Entity requester;
     private boolean enabled = true;
     private boolean needsUpdate = false;
     private boolean needsRender = false;
     private ArrayList<Entity> systemEntities = new ArrayList<Entity>();
 
     public abstract void init(EntityManager entityManager);
+
+    /**
+     * @return the requester
+     */
+    public Entity getRequester() {
+        return requester;
+    }
+
+    /**
+     * @param requester the requester to set
+     */
+    protected void setRequester(Entity requester) {
+        this.requester = requester;
+    }
 
     /**
      * @return the systemEntities
@@ -53,9 +68,9 @@ public abstract class SystemComponent {
     }
 
     public boolean needsRender() {
-		return needsRender;
+        return needsRender;
     }
-    
+
     public void setNeedsRender(boolean needsRender) {
         this.needsRender = needsRender;
     }
@@ -74,14 +89,13 @@ public abstract class SystemComponent {
         this.enabled = enabled;
     }
 
-    public abstract void preUpdate();
+    public void requestUpdate(Entity requester) {
+        this.setRequester(requester);
+        setNeedsUpdate(true);
+    }
 
     public abstract void update(long delta);
 
-    public abstract void postUpdate();
-
-	public abstract void render(StackPane root, long time);
-
-	
+    public abstract void render(GraphicsContext gc, long time);
 
 }

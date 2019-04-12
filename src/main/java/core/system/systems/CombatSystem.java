@@ -1,11 +1,14 @@
 package core.system.systems;
 
-import core.component.components.AttackComponent;
-import core.component.components.HealthComponent;
+import core.component.AttackComponent;
+import core.component.HealthComponent;
+import core.component.StateComponent;
+import core.component.WeaponComponent;
+import core.component.state.ConcurrentState;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class CombatSystem extends SystemComponent {
 
@@ -17,17 +20,13 @@ public class CombatSystem extends SystemComponent {
 
     @Override
     public void update(long delta) {
-        System.out.println("Updating Combat System...");
-    }
-
-    @Override
-    public void preUpdate() {
-        System.out.println("Pre-updating Combat System...");
-    }
-
-    @Override
-    public void postUpdate() {
-        System.out.println("Post-updating Combat System...");
+        if (getRequester().getComponent(AttackComponent.class).attackOffCooldown(getRequester().getComponent(WeaponComponent.class).getCooldownTime())) {
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.ATTACKING);
+            System.out.println("attacking...");
+        } else {
+            getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.NONE);
+        }
+        setNeedsUpdate(false);
     }
 
     @Override
@@ -40,8 +39,6 @@ public class CombatSystem extends SystemComponent {
     }
 
     @Override
-    public void render(StackPane root, long time) {
-
-    }
+    public void render(GraphicsContext gc, long time) {}
 
 }

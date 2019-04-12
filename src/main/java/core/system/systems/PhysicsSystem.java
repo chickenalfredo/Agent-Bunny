@@ -1,18 +1,23 @@
 package core.system.systems;
 
-import core.component.components.PhysicsComponent;
-import core.component.components.PositionComponent;
-import core.component.components.StateComponent;
+import core.component.PhysicsComponent;
+import core.component.PositionComponent;
+import core.component.StateComponent;
+import core.component.VelocityComponent;
+import core.component.state.ConcurrentState;
+import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.entity.attributes.Type;
+import core.entity.attributes.TypeAttribute;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class PhysicsSystem extends SystemComponent {
 
     public PhysicsSystem() {
         setEnabled(true);
-        setNeedsUpdate(false);
+        setNeedsUpdate(true);
         setNeedsRender(false);
     }
 
@@ -20,30 +25,38 @@ public class PhysicsSystem extends SystemComponent {
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
             if (e.getComponent(PhysicsComponent.class) != null && e.getComponent(PositionComponent.class) != null
-                    && e.getComponent(StateComponent.class) != null) {
+                    && e.getComponent(VelocityComponent.class) != null) {
                 addSystemEntity(e);
+                e.getComponent(StateComponent.class).setState(State.IDLE);
+                e.getComponent(StateComponent.class).setConcurrentState(ConcurrentState.NONE);
             }
         }
     }
 
     @Override
     public void update(long delta) {
-        System.out.println("Updating Physics System...");
+        for (Entity e : getSystemEntities()) {
+            // if (e.getAttribute(TypeAttribute.class).getType() == Type.HERO) {
+            //     System.out.println(e.getComponent(StateComponent.class).getConcurrentState());
+            // }
+            e.getComponent(PositionComponent.class).setX(e.getComponent(PositionComponent.class).getX()
+                    + e.getComponent(VelocityComponent.class).getVelocityX());
+            e.getComponent(PositionComponent.class).setY(e.getComponent(PositionComponent.class).getY()
+                    + e.getComponent(VelocityComponent.class).getVelocityY());
+        }
+        applyGravity();
     }
 
     @Override
-    public void preUpdate() {
-        System.out.println("Pre-updating Physics System...");
+    public void render(GraphicsContext gc, long time) {
+
     }
 
-    @Override
-    public void postUpdate() {
-        System.out.println("Post-updating Physics System...");
-    }
-
-    @Override
-    public void render(StackPane root, long time) {
-
+    private void applyGravity() {
+        for (Entity e : getSystemEntities()) {
+            e.getComponent(VelocityComponent.class).setVelocityY(e.getComponent(VelocityComponent.class).getVelocityY()
+                    + e.getComponent(PhysicsComponent.class).getForce());
+        }
     }
 
 }

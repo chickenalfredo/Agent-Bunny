@@ -1,10 +1,10 @@
 package core.system.systems;
 
-import core.component.components.AIComponent;
+import core.component.AIComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
-import javafx.scene.layout.StackPane;
+import javafx.scene.canvas.GraphicsContext;
 
 public class AISystem extends SystemComponent {
 
@@ -20,16 +20,6 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void preUpdate() {
-        System.out.println("Pre-updating AI System...");
-    }
-
-    @Override
-    public void postUpdate() {
-        System.out.println("Post-updating AI System...");
-    }
-
-    @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
             if (e.getComponent(AIComponent.class) != null) {
@@ -39,8 +29,6 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void render(StackPane root, long time) {
-
-    }
+    public void render(GraphicsContext gc, long time) {}
 
 }
