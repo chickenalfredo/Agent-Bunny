@@ -1,6 +1,9 @@
 package core;
 
-import core.game.World;
+import core.map.*;
+import core.sprite.World;
+import core.external.level.*;
+import java.util.Scanner;
 
 /**
  * Terminal output for Demo 1

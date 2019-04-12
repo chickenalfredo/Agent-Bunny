@@ -1,0 +1,186 @@
+package core.map;
+
+import java.io.Serializable;
+import java.util.ArrayList;
+
+import core.sprite.*;
+
+/**
+ * Storing all the sprites inside a map
+ * 
+ * @author Cloudy Yunfan
+ * @since 2019/02/23 11:36
+ * @param String
+ *                   name of the level
+ */
+
+public class GameMap implements Serializable {
+
+	private static final long serialVersionUID = 6155530831197383076L;
+	private ArrayList<Sprite> sprite = new ArrayList<Sprite>();
+	private Sprite checkPoint;
+	private String name;
+	private int highestGamePoint;
+	private final int ROW = 15;
+	private final int COLUMN = 50;
+	private char map[][];
+
+	public GameMap() {}
+
+    /**
+     * 
+     * @param name
+     */
+	public GameMap(String name) {
+		this.name = name;
+	}
+
+	/**
+	 * Get all the sprite in this map
+	 * 
+	 * @return List<Sprite> - all sprite in the map
+	 */
+	public ArrayList<Sprite> getSprites() {
+		return new ArrayList<Sprite>(this.sprite);
+	}
+
+	/**
+	 * Set recent check point
+	 * 
+	 * @param Sprite:
+	 *                    checkPoint object
+	 */
+	public void setCheckPoint(Sprite checkPoint) {
+		this.checkPoint = checkPoint;
+	}
+
+	/**
+	 * Get recent check point
+	 * 
+	 * @return Sprite: checkPoint object
+	 */
+	public Sprite getCheckPoint() {
+		return this.checkPoint;
+	}
+
+	/**
+	 * Generate the graphical map after Demo 1
+	 */
+	public void generateMap() {}
+
+	/**
+	 * Get the terminal character map for Demo 1
+	 * 
+	 * @return String - terminal string
+	 */
+	public String generateMapTerminal() {
+		String ret = "";
+		setTerminalMap();
+		generateTerminalBounds();
+		setSpritesOnTerminalMap();
+		for (char[] column : map) {
+			for (char row : column) {
+				ret += row;
+			}
+			ret += "\n";
+		}
+		return ret;
+	}
+
+    /**
+     * 
+     */
+	private void setSpritesOnTerminalMap() {
+		// for (Sprite each : sprite) {
+		// 	Coordinate currentCoord = each.getCoordinate();
+		// 	int columnY = (int) (currentCoord.getY() / 5); // assume 5px is one block in terminal version(way more than 5px in finished version)
+		// 	int rowX = (int) (currentCoord.getX() / 5);
+		// 	map[columnY][rowX] = each.getTerminalChar();
+		// }
+	}
+
+    /**
+     * 
+     */
+	private void setTerminalMap() {
+		map = new char[ROW][COLUMN];
+		for (int i = 0; i < ROW; i++) {
+			for (int j = 0; j < COLUMN; j ++) {
+				map[i][j] = ' ';
+			}
+		}
+	}
+
+    /**
+     * 
+     */
+	private void generateTerminalBounds() {
+		// for (int i = 0; i < COLUMN; i++) {
+		// 	addSprite(new Wall(i*5, 0, 5.0, 5.0));
+		// 	addSprite(new Wall((i)*5, (ROW-1)*5, 5.0, 5.0));
+		// }
+		// for (int i = 0; i < ROW; i++) {
+		// 	addSprite(new Wall(0, i*5, 5.0, 5.0));
+		// 	addSprite(new Wall((COLUMN-1)*5, (i)*5, 5.0, 5.0));
+		// }
+	}
+
+	/**
+	 * Add a sprite to the map
+	 * 
+	 * @param Sprite
+	 *                   - sprite object to be added
+	 */
+	public void addSprite(Sprite sprite) {
+		this.sprite.add(sprite);
+	}
+
+	/**
+	 * Remove a sprite from the map by object
+	 * 
+	 * @param Sprite
+	 *                   - sprite object to be removed
+	 */
+	public void removeSprite(Sprite sprite) {
+		this.sprite.remove(sprite);
+	}
+
+	/**
+	 * remove a sprite from the map by index
+	 * 
+	 * @param int
+	 *                - sprite index to be added
+	 */
+	public void removeSprite(int index) {
+		this.sprite.remove(index);
+	}
+
+	/**
+	 * Get the level name of map
+	 * 
+	 * @return String - level map name
+	 */
+	public String getName() {
+		return this.name;
+	}
+
+	/**
+	 * Get the highest game point
+	 * 
+	 * @return int - game point
+	 */
+	public int getHighestGamePoint() {
+		return this.highestGamePoint;
+	}
+
+	/**
+	 * Set the highest game point
+	 * 
+	 * @param int
+	 *                - game point
+	 */
+	public void setHighestGamePoint(int point) {
+		this.highestGamePoint = point;
+	}
+	
+}
