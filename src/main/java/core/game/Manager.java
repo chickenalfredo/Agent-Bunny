@@ -59,6 +59,7 @@ public class Manager implements Serializable {
             new RenderSystem(),
             new AlienBugAnimationSystem(),
             new AlienCrabAnimationSystem(),
+            new AlienRedCrabAnimationSystem(),
             new AlienDragonAnimationSystem(),
             new HeroAnimationSystem()
         );

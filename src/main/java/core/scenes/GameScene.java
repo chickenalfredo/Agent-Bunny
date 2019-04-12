@@ -15,8 +15,10 @@ import core.utils.InputHandler;
 
 import java.io.File;
 
+import core.App;
 import core.command.Command;
 import core.component.DimensionComponent;
+import core.component.HealthComponent;
 import core.component.PositionComponent;
 import core.screens.ScreenBuilder;
 import core.game.World;
@@ -59,8 +61,14 @@ public class GameScene {
                     if (world.getHero().getComponent(PositionComponent.class).getX() > (screenWidth / 2) - world.getHero().getComponent(DimensionComponent.class).getWidth() / 2)
                         canvas.relocate(-world.getHero().getComponent(PositionComponent.class).getX() + ((screenWidth - world.getHero().getComponent(DimensionComponent.class).getWidth()) / 2), 0);
                     gc.clearRect(0, 0, 3 * screenWidth, screenHeight);
+                    if (world.getHero().getComponent(HealthComponent.class).isAlive()) {
                     world.update(time);
                     world.render(gc, time);
+                    } else {
+                    App.getGameWindow().setScene(TitleScene.display());
+                    animationTimer = false;
+                    stop();
+                    }
                 }
             }.start();
         }
