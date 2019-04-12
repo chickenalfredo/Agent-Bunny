@@ -37,6 +37,12 @@ public class GameScene {
     private static World world;
     private static boolean animationTimer = false;
 
+    /**
+     * someComment
+     * 
+     * @return gh       hjkhjkhjkhjkh
+     * @see Component.class && Entity.class
+     */
     public static Scene display(World aWorld) {
         world = aWorld;
         root = new StackPane();

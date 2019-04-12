@@ -1,17 +1,20 @@
 package core.system;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.game.World;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
  * An interface with the purpose of being implemented to define a child class as
  * a System type.
  */
-public abstract class SystemComponent {
+public abstract class SystemComponent implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private Entity requester;
     private boolean enabled = true;
     private boolean needsUpdate = false;
@@ -94,8 +97,10 @@ public abstract class SystemComponent {
         setNeedsUpdate(true);
     }
 
-    public abstract void update(long delta);
+    public abstract void update(long delta, World world);
 
-    public abstract void render(GraphicsContext gc, long time);
+    public abstract void setDefaultState();
+
+    public abstract void render(GraphicsContext gc, long time, World world);
 
 }

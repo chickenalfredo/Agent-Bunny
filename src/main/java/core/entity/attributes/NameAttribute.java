@@ -1,12 +1,15 @@
 package core.entity.attributes;
 
+import java.io.Serializable;
+
 /**
  * NameAttribute allows the Entity object to have a name attribute.
  * This class will set the name on construction and can
  * only be retrieved as this class is final.
  */
-public final class NameAttribute implements Attribute {
+public final class NameAttribute implements Attribute, Serializable {
     
+    private static final long serialVersionUID = 1L;
     private final String NAME;
 
     /**

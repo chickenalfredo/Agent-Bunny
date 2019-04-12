@@ -1,33 +1,47 @@
 package core.component;
 
 import java.io.File;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import core.entity.Entity;
 import javafx.scene.image.Image;
 
-public class AlienDragonAnimationComponent implements Component {
+public class AlienDragonAnimationComponent implements Component, Serializable {
 
-    private final double ACTOR_WIDTH;
-    private final double ACTOR_HEIGHT;
+    private static final long serialVersionUID = 1L;
+    private double ACTOR_WIDTH;
+    private double ACTOR_HEIGHT;
 
-    private Image currentRender;
+    private transient Image currentRender;
 
-    private ArrayList<Image> runningAnimations = new ArrayList<Image>();
-    private ArrayList<Image> idleAnimations = new ArrayList<Image>();
-    private ArrayList<Image> attackAnimations = new ArrayList<Image>();
+    private transient ArrayList<Image> runningAnimations;
+    private transient ArrayList<Image> idleAnimations;
+    private transient ArrayList<Image> attackAnimations;
 
-    private static Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11;
+    private static transient Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11;
 
-    private static Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11,
+    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11,
             idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20, idle_21, idle_22;
 
-    private static Image attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attack_7, attack_8, attack_9,
+    private static transient Image attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attack_7, attack_8, attack_9,
             attack_10, attack_11, attack_12, attack_13;
 
     public AlienDragonAnimationComponent(Entity actor) {
+        init(actor);
+    }
+
+    /**
+     * Initializes the Animation Images of the entity
+     * 
+     * @param actor     The entity to have images initialized
+     */
+    public void init(Entity actor) {
         ACTOR_WIDTH = actor.getComponent(DimensionComponent.class).getWidth();
         ACTOR_HEIGHT = actor.getComponent(DimensionComponent.class).getHeight();
+        runningAnimations = new ArrayList<Image>();
+        idleAnimations = new ArrayList<Image>();
+        attackAnimations = new ArrayList<Image>();
         try {
             run_1 = new Image(new File("resources/assets/Enemy/alien_dragon/d_hopp_1.png").toURI().toString(),
                     ACTOR_WIDTH, ACTOR_HEIGHT, false, true);
@@ -129,6 +143,21 @@ public class AlienDragonAnimationComponent implements Component {
         setRunningAnimation();
         setIdleAnimation();
         setAttackAnimation();
+    }
+
+    /**
+     * FOR SERIALIZATION
+     * 
+     * returns a boolean whether or not images for this entity are initialized
+     * 
+     * @return boolean      true: are initalized 
+     *                      false: not initialized
+     */
+    public boolean isInit() {
+        if (runningAnimations == null)
+            return false;
+        else
+            return true;
     }
 
     /**

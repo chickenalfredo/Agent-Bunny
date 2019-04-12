@@ -1,5 +1,7 @@
 package core.component;
 
+import java.io.Serializable;
+
 import core.component.state.*;
 
 /**
@@ -11,8 +13,9 @@ import core.component.state.*;
  * @see ConcurrentState
  * @see Direction
  */
-public class StateComponent implements Component {
+public class StateComponent implements Component, Serializable {
     
+    private static final long serialVersionUID = 1L;
     private State state;
     private ConcurrentState concurrentState;
     private Direction direction;

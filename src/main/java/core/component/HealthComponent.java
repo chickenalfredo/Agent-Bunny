@@ -1,12 +1,15 @@
 package core.component;
 
+import java.io.Serializable;
+
 /**
  * This component will allow an Entity to have the data necessary for having health
  * data. This class defines the Entities current health, max health and whether or not
  * the Object is alive.
  */
-public class HealthComponent implements Component {
+public class HealthComponent implements Component, Serializable {
  
+    private static final long serialVersionUID = 1L;
     private final float MAX_HP;
     private float currentHP;
     private boolean isAlive = true;
@@ -40,7 +43,7 @@ public class HealthComponent implements Component {
      * @return the isAlive
      */
     public boolean isAlive() {
-        return isAlive;
+        return currentHP > 0;
     }
 
     /**
@@ -70,5 +73,9 @@ public class HealthComponent implements Component {
     public float getMaxHP() {
         return MAX_HP;
     }
+
+	public void takeDamage(float attackDamage) {
+        currentHP -= attackDamage;
+	}
 
 }

@@ -1,12 +1,15 @@
 package core.component;
 
+import java.io.Serializable;
+
 /**
  * This component will allow an Entity to have the data necessary for having a position in
  * the 2D plane. All Entities that are to be rendered and have a position on the screen are
  * to have this component.
  */
-public class PositionComponent implements Component {
+public class PositionComponent implements Component, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private float x;
     private float y;
 
@@ -66,5 +69,4 @@ public class PositionComponent implements Component {
             this.x = x;
         }
     }
-
 }

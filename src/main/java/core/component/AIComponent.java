@@ -1,5 +1,9 @@
 package core.component;
 
-public class AIComponent implements Component {
+import java.io.Serializable;
+
+public class AIComponent implements Component, Serializable {
+
+    private static final long serialVersionUID = 1L;
     
 }
