@@ -10,7 +10,6 @@ import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
-import core.entity.attributes.TypeAttribute;
 import core.scenes.GameScene;
 import core.game.World;
 import core.system.SystemComponent;
@@ -27,11 +26,13 @@ public class AISystem extends SystemComponent {
 
     @Override
     public void update(long delta, World world) {
-        for (Entity e : getSystemEntities()) {
-            if (isInRange(e))
-                moveEntity(e, world);
-            else
-                stayIdle(e);
+        for (Entity e : world.getEntities()) {
+            if (e.getComponent(AIComponent.class) != null) {
+                if (isInRange(e))
+                    moveEntity(e, world);
+                else
+                    stayIdle(e);
+            }
         }
     }
 
@@ -54,7 +55,7 @@ public class AISystem extends SystemComponent {
     }
 
     public void moveEntity(Entity e, World world) {
-        
+
         String direction = Position(e);
 
         switch (direction) {
@@ -74,7 +75,7 @@ public class AISystem extends SystemComponent {
             e.getComponent(VelocityComponent.class).setVelocityX(0);
             e.getComponent(StateComponent.class).setConcurrentState(ConcurrentState.ATTACKING);
             world.getManager().getSystemManager().getSystem(CombatSystem.class).requestUpdate(e);
-            
+
         }
     }
 
@@ -90,7 +91,7 @@ public class AISystem extends SystemComponent {
         else if (e.getComponent(PositionComponent.class).getX() + e.getComponent(WeaponComponent.class)
                 .getAttackRange() > GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
             return "left";
-        else 
+        else
             return "on";
     }
 
