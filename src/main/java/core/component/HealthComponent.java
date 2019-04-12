@@ -40,7 +40,7 @@ public class HealthComponent implements Component {
      * @return the isAlive
      */
     public boolean isAlive() {
-        return isAlive;
+        return currentHP > 0;
     }
 
     /**
@@ -70,5 +70,9 @@ public class HealthComponent implements Component {
     public float getMaxHP() {
         return MAX_HP;
     }
+
+	public void takeDamage(float attackDamage) {
+        currentHP -= attackDamage;
+	}
 
 }

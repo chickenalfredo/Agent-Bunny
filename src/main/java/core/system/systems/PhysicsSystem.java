@@ -10,6 +10,7 @@ import core.entity.Entity;
 import core.entity.EntityManager;
 import core.entity.attributes.Type;
 import core.entity.attributes.TypeAttribute;
+import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -34,21 +35,22 @@ public class PhysicsSystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta) {
-        for (Entity e : getSystemEntities()) {
-            // if (e.getAttribute(TypeAttribute.class).getType() == Type.HERO) {
-            //     System.out.println(e.getComponent(StateComponent.class).getConcurrentState());
-            // }
-            e.getComponent(PositionComponent.class).setX(e.getComponent(PositionComponent.class).getX()
-                    + e.getComponent(VelocityComponent.class).getVelocityX());
-            e.getComponent(PositionComponent.class).setY(e.getComponent(PositionComponent.class).getY()
-                    + e.getComponent(VelocityComponent.class).getVelocityY());
+    public void update(long delta, World world) {
+        for (Entity e : world.getEntities()) {
+            if (e.getComponent(PhysicsComponent.class) != null && e.getComponent(PositionComponent.class) != null
+                    && e.getComponent(VelocityComponent.class) != null) {
+                e.getComponent(PositionComponent.class).setX(e.getComponent(PositionComponent.class).getX()
+                        + e.getComponent(VelocityComponent.class).getVelocityX());
+                e.getComponent(PositionComponent.class).setY(e.getComponent(PositionComponent.class).getY()
+                        + e.getComponent(VelocityComponent.class).getVelocityY());
+            }
+
         }
         applyGravity();
     }
 
     @Override
-    public void render(GraphicsContext gc, long time) {
+    public void render(GraphicsContext gc, long time, World world) {
 
     }
 

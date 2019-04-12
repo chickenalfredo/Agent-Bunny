@@ -9,6 +9,7 @@ import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -50,11 +51,11 @@ public class HeroAnimationSystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(long delta, World world) {
     }
 
     @Override
-    public void render(GraphicsContext gc, long time) {
+    public void render(GraphicsContext gc, long time, World world) {
         for (Entity e : getSystemEntities()) {
             if (e.getComponent(StateComponent.class).getState() == State.IDLE) {
                 switch (e.getComponent(StateComponent.class).getConcurrentState()) {

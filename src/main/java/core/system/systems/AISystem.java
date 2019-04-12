@@ -3,6 +3,7 @@ package core.system.systems;
 import core.component.AIComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -15,7 +16,7 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(long delta, World world) {
         System.out.println("Updating AI System...");
     }
 
@@ -29,6 +30,6 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void render(GraphicsContext gc, long time) {}
+    public void render(GraphicsContext gc, long time, World world) {}
 
 }
