@@ -143,5 +143,4 @@ public class AlienBugAnimationSystem extends SystemComponent implements Animatio
         }
         return false;
     }
-
 }
