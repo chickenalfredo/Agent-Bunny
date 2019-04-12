@@ -28,10 +28,11 @@ public class AISystem extends SystemComponent {
         for (Entity e : getSystemEntities()) {
             if (isInRange(e))
                 moveEntity(e);
-            else stayIdle(e);
+            else
+                stayIdle(e);
         }
     }
-    
+
     @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
@@ -47,13 +48,12 @@ public class AISystem extends SystemComponent {
         setNeedsRender(false);
     }
 
-    public void render(GraphicsContext gc, long time, World world) {}
+    public void render(GraphicsContext gc, long time, World world) {
+    }
 
     public void moveEntity(Entity e) {
-        String direction;
         
-        if (isToTheRight(e)) direction = "left";
-        else direction = "right";
+        String direction = Position(e);
 
         switch (direction) {
         case "left":
@@ -61,7 +61,6 @@ public class AISystem extends SystemComponent {
             e.getComponent(VelocityComponent.class).setVelocityX(-5);
             e.getComponent(StateComponent.class).setState(State.RUNNING);
             e.getComponent(StateComponent.class).setDirection(Direction.RIGHT);
-
             break;
         case "right":
             e.getComponent(VelocityComponent.class).setVelocityX(0);
@@ -69,6 +68,10 @@ public class AISystem extends SystemComponent {
             e.getComponent(StateComponent.class).setState(State.RUNNING);
             e.getComponent(StateComponent.class).setDirection(Direction.LEFT);
             break;
+        case "on":
+            e.getComponent(VelocityComponent.class).setVelocityX(0);
+            e.getComponent(StateComponent.class).setConcurrentState(ConcurrentState.ATTACKING);
+            world.getManager().getSystemManager().getSystem(CombatSystem.class).requestUpdate(e);
         }
     }
 
@@ -77,13 +80,14 @@ public class AISystem extends SystemComponent {
         e.getComponent(StateComponent.class).setState(State.IDLE);
     }
 
-    private boolean isToTheRight(Entity e) {
-        if (e.getComponent(PositionComponent.class).getX()
-                + e.getComponent(WeaponComponent.class).getAttackRange() > GameScene
-                        .getWorld().getHero().getComponent(PositionComponent.class).getX())
-            return true;
-        else
-            return false;
+    private String Position(Entity e) {
+        if (e.getComponent(PositionComponent.class).getX() + e.getComponent(WeaponComponent.class)
+                .getAttackRange() > GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
+            return "right";
+        else if (e.getComponent(PositionComponent.class).getX() + e.getComponent(WeaponComponent.class)
+                .getAttackRange() < GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
+            return "left";
+        else return "on"
     }
 
     private boolean isInRange(Entity e) {
