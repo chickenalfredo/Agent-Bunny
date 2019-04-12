@@ -1,7 +1,7 @@
 package core.utils;
 
 import core.scenes.*;
-import core.sprite.World;
+import core.game.World;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
