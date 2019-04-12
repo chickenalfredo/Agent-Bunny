@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import core.component.AlienCrabAnimationComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
+import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
@@ -106,8 +107,17 @@ public class AlienCrabAnimationSystem extends SystemComponent implements Animati
                     break;
                 }
             }
-            gc.drawImage(e.getComponent(AlienCrabAnimationComponent.class).getCurrentRender(),
-                    e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
+                gc.drawImage(e.getComponent(AlienCrabAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            } else {
+                gc.drawImage(e.getComponent(AlienCrabAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX()
+                                + e.getComponent(AlienCrabAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(PositionComponent.class).getY(),
+                        -e.getComponent(AlienCrabAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(AlienCrabAnimationComponent.class).getCurrentRender().getHeight());
+            }
         }
     }
 
