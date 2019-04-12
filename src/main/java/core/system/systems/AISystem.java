@@ -10,6 +10,7 @@ import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.entity.attributes.TypeAttribute;
 import core.scenes.GameScene;
 import core.game.World;
 import core.system.SystemComponent;

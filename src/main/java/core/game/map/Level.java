@@ -76,22 +76,6 @@ public class Level extends GameMap implements Serializable {
                 new NameAttribute("alienDragon"));
         sprites.add(alienDragon);
 
-        Entity endPoint = new Entity();
-        endPoint.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(1200, 900));
-        endPoint.addComponents(new RenderComponent(endPoint, "resources/assets/Asset 9.png"));
-        endPoint.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
-                new NameAttribute("endPoint"));
-        sprites.add(endPoint);
-
-        Entity checkPoint = new Entity();
-        checkPoint.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(2000, 900));
-        checkPoint.addComponents(new RenderComponent(checkPoint, "resources/assets/Asset 1.png"));
-        checkPoint.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
-                new NameAttribute("checkPoint"));
-        sprites.add(checkPoint);
-
         //first platform
         Entity block1 = new Entity();
         block1.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),

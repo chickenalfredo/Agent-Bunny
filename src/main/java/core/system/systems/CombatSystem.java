@@ -94,8 +94,6 @@ public class CombatSystem extends SystemComponent {
     }
 
     private void resolveCombat(Entity attacker, Entity collider) {
-        System.out.println(collider.getAttribute(NameAttribute.class).getName() + " : "
-                + collider.getComponent(HealthComponent.class).getCurrentHP());
         collider.getComponent(HealthComponent.class)
                 .takeDamage(attacker.getComponent(WeaponComponent.class).getAttackDamage());
     }

@@ -86,7 +86,6 @@ public class MovementSystem extends SystemComponent {
 
     @Override
     public void render(GraphicsContext gc, long time, World world) {
-
     }
 
     private void moveEntity(String key, boolean isKeyPressedEvent) {

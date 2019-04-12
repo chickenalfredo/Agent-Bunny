@@ -95,11 +95,11 @@ public class CollisionSystem extends SystemComponent {
         }
         if (packet.getCollisionSide() == Side.RIGHT) {
             actor.getComponent(PositionComponent.class).setX(collider.getComponent(PositionComponent.class).getX()
-                    + actor.getComponent(DimensionComponent.class).getWidth() + 1);
+                    + actor.getComponent(DimensionComponent.class).getWidth() + 9);
         }
         if (packet.getCollisionSide() == Side.LEFT) {
             actor.getComponent(PositionComponent.class).setX(collider.getComponent(PositionComponent.class).getX()
-                    - actor.getComponent(DimensionComponent.class).getWidth() - 1);
+                    - actor.getComponent(DimensionComponent.class).getWidth() - 9);
         }
     }
 
