@@ -1,18 +1,20 @@
 package core.command;
 
-import core.entity.Entity;
-import core.game.World;
+import core.external.entity.Hero;
+import core.sprite.World;
 
 /**
  * <source: http://gameprogrammingpatterns.com/contents.html>
  */
-public interface Command {
+public abstract class Command {
+
+    public Command() {}
 
     /**
      * 
      * @param hero
      * @param world
      */
-    public abstract void execute(Entity hero, World world);
+    public abstract void execute(Hero hero, World world);
 
 }
