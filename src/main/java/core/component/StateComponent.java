@@ -6,19 +6,26 @@ import core.component.state.*;
 
 /**
  * This component will allow an Entity to have the data necessary for having a
- * state. An entity can have three different states that all run concurrent to 
- * one another. 
+ * state. An entity can have three different states that all run concurrent to
+ * one another.
  * 
  * @see State
  * @see ConcurrentState
  * @see Direction
  */
 public class StateComponent implements Component, Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     private State state;
     private ConcurrentState concurrentState;
     private Direction direction;
+
+    public StateComponent() {
+        state = State.IDLE;
+        concurrentState = ConcurrentState.FALLING;
+        direction = Direction.RIGHT;
+
+    }
 
     /**
      * @return the state

@@ -8,8 +8,6 @@ import core.component.state.ConcurrentState;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
-import core.entity.attributes.Type;
-import core.entity.attributes.TypeAttribute;
 import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;

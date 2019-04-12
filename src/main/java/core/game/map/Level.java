@@ -68,7 +68,7 @@ public class Level extends GameMap implements Serializable {
         Entity endPoint = new Entity();
         endPoint.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(1200, 900));
-        endPoint.addComponents(new RenderComponent(endPoint, "resources/assets/Door.png"));
+        endPoint.addComponents(new RenderComponent(endPoint, "resources/assets/Asset 9.png"));
         endPoint.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                 new NameAttribute("endPoint"));
         sprites.add(endPoint);
@@ -76,7 +76,7 @@ public class Level extends GameMap implements Serializable {
         Entity checkPoint = new Entity();
         checkPoint.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(2000, 900));
-        checkPoint.addComponents(new RenderComponent(checkPoint, "resources/assets/CheckPoint_checkpoint_1.png"));
+        checkPoint.addComponents(new RenderComponent(checkPoint, "resources/assets/Asset 1.png"));
         checkPoint.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                 new NameAttribute("checkPoint"));
         sprites.add(checkPoint);
@@ -84,7 +84,7 @@ public class Level extends GameMap implements Serializable {
         Entity block1 = new Entity();
         block1.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent((float) (screenWidth * .20), (float) (screenHeight * .75)));
-        block1.addComponents(new RenderComponent(block1, "resources/assets/Block_floatblock_left.png"));
+        block1.addComponents(new RenderComponent(block1, "resources/assets/GrassMid.png"));
         block1.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                 new NameAttribute("block1"));
         sprites.add(block1);
@@ -95,7 +95,7 @@ public class Level extends GameMap implements Serializable {
                         (block1.getComponent(PositionComponent.class).getX()
                                 + block1.getComponent(DimensionComponent.class).getWidth() - 1),
                         (float) (screenHeight * .75)));
-        block2.addComponents(new RenderComponent(block2, "resources/assets/Block_floatblock_middle_1.png"));
+        block2.addComponents(new RenderComponent(block2, "resources/assets/GrassMid.png"));
         block2.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                 new NameAttribute("block2"));
         sprites.add(block2);
@@ -106,7 +106,7 @@ public class Level extends GameMap implements Serializable {
                         (block2.getComponent(PositionComponent.class).getX()
                                 + block1.getComponent(DimensionComponent.class).getWidth() - 1),
                         (float) (screenHeight * .75)));
-        block3.addComponents(new RenderComponent(block3, "resources/assets/Block_floatblock_middle_2.png"));
+        block3.addComponents(new RenderComponent(block3, "resources/assets/GrassMid.png"));
         block3.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                 new NameAttribute("block3"));
         sprites.add(block3);
@@ -117,7 +117,7 @@ public class Level extends GameMap implements Serializable {
                         (block3.getComponent(PositionComponent.class).getX()
                                 + block1.getComponent(DimensionComponent.class).getWidth() - 1),
                         (float) (screenHeight * .75)));
-        block4.addComponents(new RenderComponent(block4, "resources/assets/Block_floatblock_right.png"));
+        block4.addComponents(new RenderComponent(block4, "resources/assets/GrassMid.png"));
         block4.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                 new NameAttribute("block4"));
         sprites.add(block4);
@@ -126,7 +126,7 @@ public class Level extends GameMap implements Serializable {
             Entity wall = new Entity();
             wall.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                     new PositionComponent(i, (float) (screenHeight - (screenHeight * 0.063))));
-            wall.addComponents(new RenderComponent(wall, "resources/assets/Block_grass4_1.png"));
+            wall.addComponents(new RenderComponent(wall, "resources/assets/GrassMid.png"));
             wall.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                     new NameAttribute("wall"));
 
