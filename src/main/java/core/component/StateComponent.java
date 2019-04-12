@@ -17,6 +17,12 @@ public class StateComponent implements Component {
     private ConcurrentState concurrentState;
     private Direction direction;
 
+    public StateComponent() {
+        state = State.IDLE;
+        concurrentState = concurrentState.NONE;
+        direction = direction.RIGHT;
+    }
+
     /**
      * @return the state
      */

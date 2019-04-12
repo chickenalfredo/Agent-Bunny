@@ -3,6 +3,7 @@ package core.system.systems;
 import java.util.ArrayList;
 
 import core.component.AlienCrabAnimationComponent;
+import core.component.DimensionComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
 import core.component.state.Direction;
