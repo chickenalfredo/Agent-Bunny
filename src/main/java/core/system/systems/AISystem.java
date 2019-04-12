@@ -1,6 +1,10 @@
 package core.system.systems;
 
 import core.component.AIComponent;
+import core.component.StateComponent;
+import core.component.VelocityComponent;
+import core.component.state.Direction;
+import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.system.SystemComponent;
@@ -30,11 +34,31 @@ public class AISystem extends SystemComponent {
 
     public void setDefaultState() {
         setEnabled(true);
-        setNeedsUpdate(false);
+        setNeedsUpdate(true);
         setNeedsRender(false);
     }
 
     @Override
     public void render(GraphicsContext gc, long time) {}
+    
+    private void moveEntity(String direction) {
+        switch (direction) {
+            case "left":
+                getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+                getRequester().getComponent(VelocityComponent.class).setVelocityX(-15);
+                getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
+                getRequester().getComponent(StateComponent.class).setDirection(Direction.LEFT);
 
+                break;
+            case "right":
+                getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+                getRequester().getComponent(VelocityComponent.class).setVelocityX(15);
+                getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
+                getRequester().getComponent(StateComponent.class).setDirection(Direction.RIGHT);
+                break;
+            case "idle": 
+                getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
+                getRequester().getComponent(StateComponent.class).setState(State.IDLE);
+        }
+    }
 }
