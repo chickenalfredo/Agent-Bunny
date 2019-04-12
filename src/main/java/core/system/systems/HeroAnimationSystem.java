@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import core.component.HeroAnimationComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
+import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
@@ -77,7 +78,7 @@ public class HeroAnimationSystem extends SystemComponent {
                     }
                     break;
                 case NONE:
-                    if (animationTimerOver(100)) {
+                    if (animationTimerOver(250)) {
                         e.getComponent(HeroAnimationComponent.class)
                                 .setCurrentRender(animateIdle.get(iterate(animateIdle)));
                     }
@@ -111,8 +112,17 @@ public class HeroAnimationSystem extends SystemComponent {
                     break;
                 }
             }
-            gc.drawImage(e.getComponent(HeroAnimationComponent.class).getCurrentRender(),
-                    e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
+                gc.drawImage(e.getComponent(HeroAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            } else {
+                gc.drawImage(e.getComponent(HeroAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX()
+                                + e.getComponent(HeroAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(PositionComponent.class).getY(),
+                        -e.getComponent(HeroAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(HeroAnimationComponent.class).getCurrentRender().getHeight());
+            }
         }
     }
 
