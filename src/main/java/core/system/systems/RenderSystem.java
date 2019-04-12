@@ -18,7 +18,6 @@ public class RenderSystem extends SystemComponent implements AnimationSystemComp
 
     @Override
     public void update(long delta, World world) {
-        System.out.println("Updating Render System...");
     }
 
     @Override
