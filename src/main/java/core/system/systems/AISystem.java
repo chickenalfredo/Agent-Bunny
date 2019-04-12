@@ -62,13 +62,13 @@ public class AISystem extends SystemComponent {
             e.getComponent(VelocityComponent.class).setVelocityX(0);
             e.getComponent(VelocityComponent.class).setVelocityX(-5);
             e.getComponent(StateComponent.class).setState(State.RUNNING);
-            e.getComponent(StateComponent.class).setDirection(Direction.RIGHT);
+            e.getComponent(StateComponent.class).setDirection(Direction.LEFT);
             break;
         case "right":
             e.getComponent(VelocityComponent.class).setVelocityX(0);
             e.getComponent(VelocityComponent.class).setVelocityX(5);
             e.getComponent(StateComponent.class).setState(State.RUNNING);
-            e.getComponent(StateComponent.class).setDirection(Direction.LEFT);
+            e.getComponent(StateComponent.class).setDirection(Direction.RIGHT);
             break;
         case "on":
             e.getComponent(VelocityComponent.class).setVelocityX(0);
