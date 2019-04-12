@@ -78,7 +78,7 @@ public class HeroAnimationSystem extends SystemComponent {
                     }
                     break;
                 case NONE:
-                    if (animationTimerOver(250)) {
+                    if (animationTimerOver(100)) {
                         e.getComponent(HeroAnimationComponent.class)
                                 .setCurrentRender(animateIdle.get(iterate(animateIdle)));
                     }

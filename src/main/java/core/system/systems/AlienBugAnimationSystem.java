@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import core.component.AlienBugAnimationComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
+import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
@@ -85,8 +86,17 @@ public class AlienBugAnimationSystem extends SystemComponent {
                     break;
                 }
             }
-            gc.drawImage(e.getComponent(AlienBugAnimationComponent.class).getCurrentRender(),
-                    e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
+                gc.drawImage(e.getComponent(AlienBugAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            } else {
+                gc.drawImage(e.getComponent(AlienBugAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX()
+                                + e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(PositionComponent.class).getY(),
+                        -e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getHeight());
+            }
         }
     }
 
