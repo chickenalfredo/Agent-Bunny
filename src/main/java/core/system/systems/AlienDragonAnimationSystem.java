@@ -3,9 +3,9 @@ package core.system.systems;
 import java.util.ArrayList;
 
 import core.component.AlienDragonAnimationComponent;
-import core.component.AlienDragonAnimationComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
+import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
@@ -86,8 +86,17 @@ public class AlienDragonAnimationSystem extends SystemComponent {
                     break;
                 }
             }
-            gc.drawImage(e.getComponent(AlienDragonAnimationComponent.class).getCurrentRender(),
-                    e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
+                gc.drawImage(e.getComponent(AlienDragonAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+            } else {
+                gc.drawImage(e.getComponent(AlienDragonAnimationComponent.class).getCurrentRender(),
+                        e.getComponent(PositionComponent.class).getX()
+                                + e.getComponent(AlienDragonAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(PositionComponent.class).getY(),
+                        -e.getComponent(AlienDragonAnimationComponent.class).getCurrentRender().getWidth(),
+                        e.getComponent(AlienDragonAnimationComponent.class).getCurrentRender().getHeight());
+            }
         }
     }
 
