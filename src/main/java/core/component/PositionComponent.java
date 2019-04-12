@@ -69,5 +69,4 @@ public class PositionComponent implements Component, Serializable {
             this.x = x;
         }
     }
-
 }

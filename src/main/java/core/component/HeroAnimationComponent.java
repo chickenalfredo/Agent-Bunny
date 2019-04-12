@@ -13,31 +13,31 @@ public class HeroAnimationComponent implements Component, Serializable {
     private double ACTOR_WIDTH;
     private double ACTOR_HEIGHT;
 
-    private Image currentRender;
+    private transient Image currentRender;
 
-    private ArrayList<Image> runningAnimations = new ArrayList<Image>();
-    private ArrayList<Image> jumpingAnimations = new ArrayList<Image>();
-    private ArrayList<Image> idleAnimations = new ArrayList<Image>();
-    private ArrayList<Image> fallingAnimations = new ArrayList<Image>();
-    private ArrayList<Image> runShootAnimations = new ArrayList<Image>();
-    private ArrayList<Image> idleShootAnimations = new ArrayList<Image>();
+    private transient ArrayList<Image> runningAnimations;
+    private transient ArrayList<Image> jumpingAnimations;
+    private transient ArrayList<Image> idleAnimations;
+    private transient ArrayList<Image> fallingAnimations;
+    private transient ArrayList<Image> runShootAnimations;
+    private transient ArrayList<Image> idleShootAnimations;
 
-    private static Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11, run_12, run_13,
+    private static transient Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11, run_12, run_13,
             run_14, run_15, run_16;
 
-    private static Image jump_1, jump_2, jump_3, jump_4;
+    private static transient Image jump_1, jump_2, jump_3, jump_4;
 
-    private static Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11,
+    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11,
             idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20;
 
-    private static Image falling_1, falling_2, falling_3, falling_4, falling_5, falling_6, falling_7, falling_8,
+    private static transient Image falling_1, falling_2, falling_3, falling_4, falling_5, falling_6, falling_7, falling_8,
             falling_9, falling_10, falling_11;
 
-    private static Image run_shoot_1, run_shoot_2, run_shoot_3, run_shoot_4, run_shoot_5, run_shoot_6, run_shoot_7,
+    private static transient Image run_shoot_1, run_shoot_2, run_shoot_3, run_shoot_4, run_shoot_5, run_shoot_6, run_shoot_7,
             run_shoot_8, run_shoot_9, run_shoot_10, run_shoot_11, run_shoot_12, run_shoot_13, run_shoot_14,
             run_shoot_15, run_shoot_16;
 
-    private static Image idle_shoot;
+    private static transient Image idle_shoot;
 
     public HeroAnimationComponent(Entity actor) {
         init(actor);
@@ -46,6 +46,12 @@ public class HeroAnimationComponent implements Component, Serializable {
     public void init(Entity actor) {
         ACTOR_WIDTH = actor.getComponent(DimensionComponent.class).getWidth();
         ACTOR_HEIGHT = actor.getComponent(DimensionComponent.class).getHeight();
+        runningAnimations = new ArrayList<Image>();
+        jumpingAnimations = new ArrayList<Image>();
+        idleAnimations = new ArrayList<Image>();
+        fallingAnimations = new ArrayList<Image>();
+        runShootAnimations = new ArrayList<Image>();
+        idleShootAnimations = new ArrayList<Image>();
         try {
             run_1 = new Image(new File("resources/assets/Hero/move_right/r_run_1.png").toURI().toString(), ACTOR_WIDTH,
                     ACTOR_HEIGHT, false, true);
@@ -215,6 +221,20 @@ public class HeroAnimationComponent implements Component, Serializable {
         setJumpingAnimation();
         setRunningAndShootingAnimation();
     }
+    /**
+     * FOR SERIALIZATION 
+     * 
+     * returns a boolean whether or not images for this entity are initialized
+     * 
+     * @return boolean          true: are initalized
+     *                          false: not initialized
+     */
+    public boolean isInit() {
+        if(fallingAnimations == null) 
+            return false;
+        else 
+            return true;
+    }
 
     /**
      * @return the currentRender
@@ -340,12 +360,4 @@ public class HeroAnimationComponent implements Component, Serializable {
     public ArrayList<Image> animateFalling() {
         return fallingAnimations;
     }
-
-    public boolean isInit() {
-        if(fallingAnimations.isEmpty() || fallingAnimations == null) 
-            return false;
-        else 
-            return true;
-    }
-
 }

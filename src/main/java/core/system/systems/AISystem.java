@@ -11,9 +11,7 @@ public class AISystem extends SystemComponent {
     private static final long serialVersionUID = 1L;
 
     public AISystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(false);
+        setDefaultState();
     }
 
     @Override
@@ -28,6 +26,12 @@ public class AISystem extends SystemComponent {
                 addSystemEntity(e);
             }
         }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(false);
     }
 
     @Override

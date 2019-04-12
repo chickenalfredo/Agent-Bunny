@@ -98,6 +98,8 @@ public abstract class SystemComponent implements Serializable {
 
     public abstract void update(long delta);
 
+    public abstract void setDefaultState();
+
     public abstract void render(GraphicsContext gc, long time);
 
 }

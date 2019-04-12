@@ -1,7 +1,10 @@
 package core.component;
 
-public class WeaponComponent implements Component {
+import java.io.Serializable;
 
+public class WeaponComponent implements Component, Serializable {
+
+    private static final long serialVersionUID = 1L;
     private float attackDamage;
     private float attackRange;
     private long cooldownTime;

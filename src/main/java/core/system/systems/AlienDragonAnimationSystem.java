@@ -3,7 +3,6 @@ package core.system.systems;
 import java.util.ArrayList;
 
 import core.component.AlienDragonAnimationComponent;
-import core.component.AlienDragonAnimationComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
 import core.component.state.State;
@@ -13,19 +12,18 @@ import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class AlienDragonAnimationSystem extends SystemComponent {
+public class AlienDragonAnimationSystem extends SystemComponent implements AnimationSystemComponent {
 
-    private ArrayList<Image> animateRunning;
-    private ArrayList<Image> animateIdle;
-    private ArrayList<Image> animateAttack;
+    private static final long serialVersionUID = 1L;
+    private transient ArrayList<Image> animateRunning;
+    private transient ArrayList<Image> animateIdle;
+    private transient ArrayList<Image> animateAttack;
 
     private int i = 0;
     private long lastAnimation = 0;
 
     public AlienDragonAnimationSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
+        setDefaultState();
     }
 
     @Override
@@ -40,7 +38,29 @@ public class AlienDragonAnimationSystem extends SystemComponent {
         }
     }
 
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
+    }
+
     public void init(GraphicsContext gc) {
+    }
+
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(AlienDragonAnimationComponent.class) != null) {
+                if (!e.getComponent(AlienDragonAnimationComponent.class).isInit()) {
+                    e.getComponent(AlienDragonAnimationComponent.class).init(e);
+                    animateAttack = new ArrayList<Image>();
+                    animateIdle = new ArrayList<Image>();
+                    animateRunning = new ArrayList<Image>();
+                    animateRunning = e.getComponent(AlienDragonAnimationComponent.class).animateRunning();
+                    animateIdle = e.getComponent(AlienDragonAnimationComponent.class).animateIdle();
+                    animateAttack = e.getComponent(AlienDragonAnimationComponent.class).animateAttack();
+                }
+            }
+        }
     }
 
     @Override

@@ -19,7 +19,11 @@ public class Manager implements Serializable {
     }
 
     public void init(World world) {
-        entityManager.init(world.getEntities());
+        if (entityManager.getEntities() == null) {
+            System.out.println("init entities");
+            entityManager.init(world.getEntities());
+        }
+        System.out.println("init system");
         systemManager.init(entityManager);
     }
 
@@ -56,6 +60,6 @@ public class Manager implements Serializable {
             new AlienDragonAnimationSystem(),
             new HeroAnimationSystem()
         );
+        
     }
-
 }

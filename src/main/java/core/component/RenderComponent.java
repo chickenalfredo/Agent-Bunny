@@ -15,13 +15,15 @@ public class RenderComponent implements Component, Serializable {
     private SavableGroup group;
     private transient ImageView imageView;
     private transient Image image;
+    private String filename;
 
     public RenderComponent(Entity actor, String filename) {
-        init(actor, filename);
+        this.filename = filename;
+        init(actor);
     }
 
-    public void init(Entity actor, String filename) {
-        setImage(filename, actor.getComponent(DimensionComponent.class).getWidth(), actor.getComponent(DimensionComponent.class).getHeight());
+    public void init(Entity actor) {
+        setImage(this.filename, actor.getComponent(DimensionComponent.class).getWidth(), actor.getComponent(DimensionComponent.class).getHeight());
         setImageView();
     }
 

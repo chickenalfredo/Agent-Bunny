@@ -22,13 +22,11 @@ import javafx.scene.canvas.GraphicsContext;
 public class CollisionSystem extends SystemComponent {
 
     private static final long serialVersionUID = 1L;
-    private static ArrayList<Entity> static_entities = new ArrayList<Entity>();
-    private static ArrayList<Entity> m_entities = new ArrayList<Entity>();
+    private static transient ArrayList<Entity> static_entities;
+    private static transient ArrayList<Entity> m_entities;
 
     public CollisionSystem() {
-        setEnabled(true);
-        setNeedsUpdate(true);
-        setNeedsRender(false);
+        setDefaultState();
     }
 
     @Override
@@ -42,7 +40,7 @@ public class CollisionSystem extends SystemComponent {
             if (e.getAttribute(CollidableAttribute.class).isCollidable()
                     && e.getComponent(DimensionComponent.class) != null
                     && e.getComponent(PositionComponent.class) != null) {
-                addSystemEntity(e);
+                    addSystemEntity(e);
                 if (e.getAttribute(TypeAttribute.class).getType() == Type.STATIC_OBJECT) {
                     static_entities.add(e);
                 } else {
@@ -50,6 +48,14 @@ public class CollisionSystem extends SystemComponent {
                 }
             }
         }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(true);
+        setNeedsRender(false);
+        m_entities = new ArrayList<Entity>();
+        static_entities = new ArrayList<Entity>();
     }
 
     @Override
@@ -92,6 +98,20 @@ public class CollisionSystem extends SystemComponent {
         if (packet.getCollisionSide() == Side.LEFT) {
             actor.getComponent(PositionComponent.class).setX(collider.getComponent(PositionComponent.class).getX()
                     - actor.getComponent(DimensionComponent.class).getWidth() - 1);
+        }
+    }
+
+    public void addEntities(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getAttribute(CollidableAttribute.class).isCollidable()
+                    && e.getComponent(DimensionComponent.class) != null
+                    && e.getComponent(PositionComponent.class) != null) {
+                if (e.getAttribute(TypeAttribute.class).getType() == Type.STATIC_OBJECT) {
+                    static_entities.add(e);
+                } else {
+                    m_entities.add(e);
+                }
+            }
         }
     }
 

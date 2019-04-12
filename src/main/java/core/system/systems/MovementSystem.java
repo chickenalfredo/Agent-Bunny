@@ -19,9 +19,7 @@ public class MovementSystem extends SystemComponent {
     private boolean isKeyPressedEvent = false;
 
     public MovementSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(false);
+        setDefaultState();
     }
 
     /**
@@ -77,6 +75,12 @@ public class MovementSystem extends SystemComponent {
                 addSystemEntity(e);
             }
         }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(false);
     }
 
     @Override

@@ -12,22 +12,21 @@ import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class HeroAnimationSystem extends SystemComponent {
+public class HeroAnimationSystem extends SystemComponent implements AnimationSystemComponent {
 
-    private ArrayList<Image> animateRunning;
-    private ArrayList<Image> animateJump;
-    private ArrayList<Image> animateIdle;
-    private ArrayList<Image> animateFalling;
-    private ArrayList<Image> animateRunAndShoot;
-    private ArrayList<Image> animateIdleAndShoot;
+    private static final long serialVersionUID = 1L;
+    private transient ArrayList<Image> animateRunning;
+    private transient ArrayList<Image> animateJump;
+    private transient ArrayList<Image> animateIdle;
+    private transient ArrayList<Image> animateFalling;
+    private transient ArrayList<Image> animateRunAndShoot;
+    private transient ArrayList<Image> animateIdleAndShoot;
 
     private int i = 0;
     private long lastAnimation = 0;
 
     public HeroAnimationSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
+        setDefaultState();
     }
 
     @Override
@@ -43,6 +42,34 @@ public class HeroAnimationSystem extends SystemComponent {
                 animateIdleAndShoot = e.getComponent(HeroAnimationComponent.class).animateIdleAndShoot();
             }
         }
+    }
+
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(HeroAnimationComponent.class) != null) {
+                if (!e.getComponent(HeroAnimationComponent.class).isInit()) {
+                    e.getComponent(HeroAnimationComponent.class).init(e);
+                    animateRunning = new ArrayList<Image>();
+                    animateJump = new ArrayList<Image>();
+                    animateIdle = new ArrayList<Image>();
+                    animateFalling = new ArrayList<Image>();
+                    animateRunAndShoot = new ArrayList<Image>();
+                    animateIdleAndShoot = new ArrayList<Image>();
+                    animateRunning = e.getComponent(HeroAnimationComponent.class).animateRunning();
+                    animateJump = e.getComponent(HeroAnimationComponent.class).AnimateJump();
+                    animateIdle = e.getComponent(HeroAnimationComponent.class).animateIdle();
+                    animateFalling = e.getComponent(HeroAnimationComponent.class).animateFalling();
+                    animateRunAndShoot = e.getComponent(HeroAnimationComponent.class).animateRunAndShoot();
+                    animateIdleAndShoot = e.getComponent(HeroAnimationComponent.class).animateIdleAndShoot();
+                }
+            }
+        }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     public void init(GraphicsContext gc) {

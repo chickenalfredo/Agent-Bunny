@@ -45,7 +45,7 @@ public class Level extends GameMap implements Serializable {
         alienCrabPurple.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
                 new WeaponComponent(25, 50, 250), new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(200, 0), new VelocityComponent());
+                new PositionComponent(300, 0), new VelocityComponent());
         alienCrabPurple.addComponents(new AlienCrabAnimationComponent(alienCrabPurple));
         alienCrabPurple.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienCrabPurple"));
