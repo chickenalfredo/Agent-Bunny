@@ -1,18 +1,22 @@
 package core.system.systems;
 
 import core.component.AIComponent;
+import core.component.PositionComponent;
 import core.component.StateComponent;
 import core.component.VelocityComponent;
+import core.component.WeaponComponent;
 import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.scenes.GameScene;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
 public class AISystem extends SystemComponent {
 
     private static final long serialVersionUID = 1L;
+    private double range = (GameScene.screenWidth * 0.3125);
 
     public AISystem() {
         setDefaultState();
@@ -20,6 +24,12 @@ public class AISystem extends SystemComponent {
 
     @Override
     public void update(long delta) {
+        for (Entity e : getSystemEntities()) {
+            if (isInRange(e))
+                moveEntity(e);
+            else stayIdle(e);
+
+        }
         System.out.println("Updating AI System...");
     }
 
@@ -39,26 +49,55 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void render(GraphicsContext gc, long time) {}
-    
-    private void moveEntity(String direction) {
-        switch (direction) {
-            case "left":
-                getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
-                getRequester().getComponent(VelocityComponent.class).setVelocityX(-15);
-                getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
-                getRequester().getComponent(StateComponent.class).setDirection(Direction.LEFT);
+    public void render(GraphicsContext gc, long time) {
+    }
 
-                break;
-            case "right":
-                getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
-                getRequester().getComponent(VelocityComponent.class).setVelocityX(15);
-                getRequester().getComponent(StateComponent.class).setState(State.RUNNING);
-                getRequester().getComponent(StateComponent.class).setDirection(Direction.RIGHT);
-                break;
-            case "idle": 
-                getRequester().getComponent(VelocityComponent.class).setVelocityX(0);
-                getRequester().getComponent(StateComponent.class).setState(State.IDLE);
+    private void moveEntity(Entity e) {
+        String direction;
+
+        if (isToTheRight(e)) direction = "left";
+        else direction = "right";
+
+        switch (direction) {
+        case "left":
+            e.getComponent(VelocityComponent.class).setVelocityX(0);
+            e.getComponent(VelocityComponent.class).setVelocityX(-5);
+            e.getComponent(StateComponent.class).setState(State.RUNNING);
+            e.getComponent(StateComponent.class).setDirection(Direction.RIGHT);
+
+            break;
+        case "right":
+            e.getComponent(VelocityComponent.class).setVelocityX(0);
+            e.getComponent(VelocityComponent.class).setVelocityX(5);
+            e.getComponent(StateComponent.class).setState(State.RUNNING);
+            e.getComponent(StateComponent.class).setDirection(Direction.LEFT);
+            break;
         }
+    }
+
+    public void stayIdle(Entity e) {
+        e.getComponent(VelocityComponent.class).setVelocityX(0);
+        e.getComponent(StateComponent.class).setState(State.IDLE);
+    }
+
+    private boolean isToTheRight(Entity e) {
+        if (e.getComponent(PositionComponent.class).getX()
+                + e.getComponent(WeaponComponent.class).getAttackRange() > GameScene
+                        .getWorld().getHero().getComponent(PositionComponent.class).getX())
+            return true;
+        else
+            return false;
+    }
+
+    private boolean isInRange(Entity e) {
+        if ((e.getComponent(PositionComponent.class).getX()
+                - GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX() <= range
+                || GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX()
+                        - e.getComponent(PositionComponent.class).getX() >= -range)
+                && e.getComponent(PositionComponent.class).getY() == GameScene.getWorld().getHero()
+                        .getComponent(PositionComponent.class).getY())
+            return true;
+        else
+            return false;
     }
 }
