@@ -1,6 +1,9 @@
 package core.system.systems;
 
 import core.component.WeaponComponent;
+
+import java.io.File;
+
 import core.component.DimensionComponent;
 import core.component.HealthComponent;
 import core.component.PositionComponent;
@@ -9,14 +12,16 @@ import core.component.state.ConcurrentState;
 import core.component.state.Direction;
 import core.entity.Entity;
 import core.entity.EntityManager;
-import core.entity.attributes.NameAttribute;
 import core.game.World;
 import core.physics.Collision;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
+import javafx.scene.image.Image;
 
 public class CombatSystem extends SystemComponent {
+
+    private static Image projectile = new Image(
+            new File("resources/assets/Hero/projectile/Beam_Thin.png").toURI().toString());
 
     private static final long serialVersionUID = 1L;
 
@@ -26,11 +31,11 @@ public class CombatSystem extends SystemComponent {
 
     @Override
     public void update(long delta, World world) {
-        updateWeapon();
+        updateWeapon(world);
         if (getRequester() != null) {
             if (getRequester().getComponent(WeaponComponent.class).attackOffCooldown()) {
                 getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.ATTACKING);
-                for (Entity e : getSystemEntities()) {
+                for (Entity e : world.getEntities()) {
                     if (!e.equals(getRequester())) {
                         checkCollisions(getRequester(), e);
                     }
@@ -40,6 +45,7 @@ public class CombatSystem extends SystemComponent {
             }
         }
         setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     @Override
@@ -59,30 +65,36 @@ public class CombatSystem extends SystemComponent {
 
     @Override
     public void render(GraphicsContext gc, long time, World world) {
-        for (Entity e : getSystemEntities()) {
-            gc.setFill(Color.GREEN);
-            gc.fillRect(e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class).getX(),
-                    e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class).getY(),
-                    e.getComponent(WeaponComponent.class).getWeapon().getComponent(DimensionComponent.class).getWidth(),
-                    e.getComponent(WeaponComponent.class).getWeapon().getComponent(DimensionComponent.class)
-                            .getHeight());
+        for (Entity e : world.getEntities()) {
+            if (e.getComponent(WeaponComponent.class) != null) {
+                gc.drawImage(projectile,
+                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class).getX(),
+                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class).getY()
+                                + 15,
+                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(DimensionComponent.class)
+                                .getWidth(),
+                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(DimensionComponent.class)
+                                .getHeight());
+            }
         }
         setNeedsRender(false);
     }
 
-    private void updateWeapon() {
-        for (Entity e : getSystemEntities()) {
-            if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
+    private void updateWeapon(World world) {
+        for (Entity e : world.getEntities()) {
+            if (e.getComponent(WeaponComponent.class) != null) {
+                if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
+                    e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class)
+                            .setX(e.getComponent(PositionComponent.class).getX()
+                                    + e.getComponent(DimensionComponent.class).getWidth());
+                } else {
+                    e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class)
+                            .setX(e.getComponent(PositionComponent.class).getX() - e.getComponent(WeaponComponent.class)
+                                    .getWeapon().getComponent(DimensionComponent.class).getWidth());
+                }
                 e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class)
-                        .setX(e.getComponent(PositionComponent.class).getX()
-                                + e.getComponent(DimensionComponent.class).getWidth());
-            } else {
-                e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class)
-                        .setX(e.getComponent(PositionComponent.class).getX() - e.getComponent(WeaponComponent.class)
-                                .getWeapon().getComponent(DimensionComponent.class).getWidth());
+                        .setY(e.getComponent(PositionComponent.class).getY());
             }
-            e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class)
-                    .setY(e.getComponent(PositionComponent.class).getY());
         }
     }
 
@@ -94,8 +106,11 @@ public class CombatSystem extends SystemComponent {
     }
 
     private void resolveCombat(Entity attacker, Entity collider) {
-        collider.getComponent(HealthComponent.class)
-                .takeDamage(attacker.getComponent(WeaponComponent.class).getAttackDamage());
+        if (collider.getComponent(HealthComponent.class) != null) {
+            collider.getComponent(HealthComponent.class)
+                    .takeDamage(attacker.getComponent(WeaponComponent.class).getAttackDamage());
+        }
+
     }
 
 }
