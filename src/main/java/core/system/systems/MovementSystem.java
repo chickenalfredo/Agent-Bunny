@@ -9,6 +9,7 @@ import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -51,7 +52,7 @@ public class MovementSystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(long delta, World world) {
         if (getRequester().getComponent(PhysicsComponent.class).isJumping()) {
             getRequester().getComponent(StateComponent.class).setConcurrentState(ConcurrentState.JUMPING);
         }
@@ -84,7 +85,7 @@ public class MovementSystem extends SystemComponent {
     }
 
     @Override
-    public void render(GraphicsContext gc, long time) {
+    public void render(GraphicsContext gc, long time, World world) {
 
     }
 

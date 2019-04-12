@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.game.World;
 import javafx.scene.canvas.GraphicsContext;
 
 /**
@@ -96,10 +97,10 @@ public abstract class SystemComponent implements Serializable {
         setNeedsUpdate(true);
     }
 
-    public abstract void update(long delta);
+    public abstract void update(long delta, World world);
 
     public abstract void setDefaultState();
 
-    public abstract void render(GraphicsContext gc, long time);
+    public abstract void render(GraphicsContext gc, long time, World world);
 
 }

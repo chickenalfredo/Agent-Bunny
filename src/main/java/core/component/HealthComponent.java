@@ -43,7 +43,7 @@ public class HealthComponent implements Component, Serializable {
      * @return the isAlive
      */
     public boolean isAlive() {
-        return isAlive;
+        return currentHP > 0;
     }
 
     /**
@@ -73,5 +73,9 @@ public class HealthComponent implements Component, Serializable {
     public float getMaxHP() {
         return MAX_HP;
     }
+
+	public void takeDamage(float attackDamage) {
+        currentHP -= attackDamage;
+	}
 
 }

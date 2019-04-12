@@ -27,13 +27,16 @@ public class World implements Serializable {
     public World() {
         level = new Level();
         m_entities = level.getEntities();
-        setHero();
         manager = new Manager();
+        // manager.getEntityManager().setEntities(level.getEntities());
+
     }
 
     public void init(GraphicsContext gc) {
         manager.init(gc);
         manager.init(this);
+        setHero();
+
 	}
 
     /**
@@ -42,11 +45,11 @@ public class World implements Serializable {
      * @param delta
      */
     public void update(long delta) {
-        manager.update(delta);
+        manager.update(delta, this);
     }
 
     public void render(GraphicsContext gc, long time) {
-        manager.render(gc, time);
+        manager.render(gc, time, this);
     }
     
     public Manager getManager() {
@@ -64,7 +67,7 @@ public class World implements Serializable {
      * Sets the Hero Entity
      */
     private void setHero() {
-        for (Entity s : m_entities) {
+        for (Entity s : manager.getEntityManager().getEntities()) {
             if (s.getAttribute(TypeAttribute.class) != null && s.getAttribute(TypeAttribute.class).getType().equals(Type.HERO)) {
                 hero = s;
             }

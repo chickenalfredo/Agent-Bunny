@@ -31,12 +31,14 @@ public class Manager implements Serializable {
         systemManager.init(gc);
     }
 
-    public void update(long delta) {
-        systemManager.update(delta);
+    public void update(long delta, World world) {
+        systemManager.update(delta, world);
+        entityManager.removeDestroyedEntities(world);
+        // System.out.println(world.getEntities().size() + " : " + entityManager.getEntities().size());
     }
 
-    public void render(GraphicsContext gc, long time) {
-        systemManager.render(gc, time);
+    public void render(GraphicsContext gc, long time, World world) {
+        systemManager.render(gc, time, world);
 	}
 
     public EntityManager getEntityManager() {

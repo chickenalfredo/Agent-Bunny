@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import core.entity.EntityManager;
 import core.system.systems.AnimationSystemComponent;
 import core.system.systems.CollisionSystem;
+import core.game.World;
 import core.system.systems.HeroAnimationSystem;
 import core.system.systems.RenderSystem;
 import javafx.scene.canvas.GraphicsContext;
@@ -41,17 +42,17 @@ public class SystemManager implements Serializable {
         }
     }
 
-    public void update(long delta) {
+    public void update(long delta, World world) {
         for (SystemComponent s : m_systems) {
             if (s.needsUpdate() && s.enabled())
-                s.update(delta);
+                s.update(delta, world);
         }
     }
 
-    public void render(GraphicsContext gc, long time) {
+    public void render(GraphicsContext gc, long time, World world) {
         for (SystemComponent s : m_systems) {
             if (s.needsRender() && s.enabled()) {
-                s.render(gc, time);
+                s.render(gc, time, world);
             }
         }
     }

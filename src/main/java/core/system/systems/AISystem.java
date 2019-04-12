@@ -10,6 +10,7 @@ import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.scenes.GameScene;
+import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
@@ -23,16 +24,13 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta) {
+    public void update(long delta, World world) {
         for (Entity e : getSystemEntities()) {
             if (isInRange(e))
                 moveEntity(e);
             else stayIdle(e);
 
         }
-        System.out.println("Updating AI System...");
-    }
-
     @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
@@ -48,13 +46,11 @@ public class AISystem extends SystemComponent {
         setNeedsRender(false);
     }
 
-    @Override
-    public void render(GraphicsContext gc, long time) {
-    }
+    public void render(GraphicsContext gc, long time, World world) {}
 
-    private void moveEntity(Entity e) {
+    public void moveEntity(Entity e) {
         String direction;
-
+        
         if (isToTheRight(e)) direction = "left";
         else direction = "right";
 

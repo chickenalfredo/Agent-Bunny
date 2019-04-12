@@ -13,6 +13,7 @@ import core.entity.EntityManager;
 import core.entity.attributes.CollidableAttribute;
 import core.entity.attributes.Type;
 import core.entity.attributes.TypeAttribute;
+import core.game.World;
 import core.physics.Collision;
 import core.physics.CollisionPacket;
 import core.physics.Side;
@@ -30,8 +31,8 @@ public class CollisionSystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta) {
-        detectCollisionsWithWalls();
+    public void update(long delta, World world) {
+        detectCollisionsWithWalls(world);
     }
 
     @Override
@@ -59,9 +60,10 @@ public class CollisionSystem extends SystemComponent {
     }
 
     @Override
-    public void render(GraphicsContext gc, long time) {}
+    public void render(GraphicsContext gc, long time, World world) {
+    }
 
-    private void detectCollisionsWithWalls() {
+    private void detectCollisionsWithWalls(World world) {
         Collision collision = new Collision();
         for (Entity actor : m_entities) {
             for (Entity collider : static_entities) {

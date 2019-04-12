@@ -9,6 +9,7 @@ import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
@@ -59,7 +60,7 @@ public class AlienBugAnimationSystem extends SystemComponent implements Animatio
     }
 
     @Override
-    public void update(long delta) {
+    public void update(long delta, World world) {
     }
 
     public void setDefaultState() {
@@ -69,54 +70,57 @@ public class AlienBugAnimationSystem extends SystemComponent implements Animatio
     }
 
     @Override
-    public void render(GraphicsContext gc, long time) {
-        for (Entity e : getSystemEntities()) {
-            if (e.getComponent(StateComponent.class).getState() == State.IDLE) {
-                switch (e.getComponent(StateComponent.class).getConcurrentState()) {
-                case ATTACKING:
-                    if (animationTimerOver(100)) {
-                        e.getComponent(AlienBugAnimationComponent.class)
-                                .setCurrentRender(animateAttack.get(iterate(animateAttack)));
-                    }
+    public void render(GraphicsContext gc, long time, World world) {
+        for (Entity e : world.getEntities()) {
+            if (e.getComponent(AlienBugAnimationComponent.class) != null) {
+                if (e.getComponent(StateComponent.class).getState() == State.IDLE) {
+                    switch (e.getComponent(StateComponent.class).getConcurrentState()) {
+                    case ATTACKING:
+                        if (animationTimerOver(100)) {
+                            e.getComponent(AlienBugAnimationComponent.class)
+                                    .setCurrentRender(animateAttack.get(iterate(animateAttack)));
+                        }
 
-                    break;
-                case JUMPING:
-                case FALLING:
-                case NONE:
-                    if (animationTimerOver(100)) {
-                        e.getComponent(AlienBugAnimationComponent.class)
-                                .setCurrentRender(animateIdle.get(iterate(animateIdle)));
+                        break;
+                    case JUMPING:
+                    case FALLING:
+                    case NONE:
+                        if (animationTimerOver(100)) {
+                            e.getComponent(AlienBugAnimationComponent.class)
+                                    .setCurrentRender(animateIdle.get(iterate(animateIdle)));
+                        }
+                        break;
                     }
-                    break;
+                } else {
+                    switch (e.getComponent(StateComponent.class).getConcurrentState()) {
+                    case ATTACKING:
+                        if (animationTimerOver(60)) {
+                            e.getComponent(AlienBugAnimationComponent.class)
+                                    .setCurrentRender(animateAttack.get(iterate(animateAttack)));
+                        }
+                        break;
+                    case JUMPING:
+                    case FALLING:
+                    case NONE:
+                        if (animationTimerOver(60)) {
+                            e.getComponent(AlienBugAnimationComponent.class)
+                                    .setCurrentRender(animateRunning.get(iterate(animateRunning)));
+                        }
+                        break;
+                    }
                 }
-            } else {
-                switch (e.getComponent(StateComponent.class).getConcurrentState()) {
-                case ATTACKING:
-                    if (animationTimerOver(60)) {
-                        e.getComponent(AlienBugAnimationComponent.class)
-                                .setCurrentRender(animateAttack.get(iterate(animateAttack)));
-                    }
-                    break;
-                case JUMPING:
-                case FALLING:
-                case NONE:
-                    if (animationTimerOver(60)) {
-                        e.getComponent(AlienBugAnimationComponent.class)
-                                .setCurrentRender(animateRunning.get(iterate(animateRunning)));
-                    }
-                    break;
+                if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
+                    gc.drawImage(e.getComponent(AlienBugAnimationComponent.class).getCurrentRender(),
+                            e.getComponent(PositionComponent.class).getX(),
+                            e.getComponent(PositionComponent.class).getY());
+                } else {
+                    gc.drawImage(e.getComponent(AlienBugAnimationComponent.class).getCurrentRender(),
+                            e.getComponent(PositionComponent.class).getX()
+                                    + e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getWidth(),
+                            e.getComponent(PositionComponent.class).getY(),
+                            -e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getWidth(),
+                            e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getHeight());
                 }
-            }
-            if (e.getComponent(StateComponent.class).getDirection() == Direction.RIGHT) {
-                gc.drawImage(e.getComponent(AlienBugAnimationComponent.class).getCurrentRender(),
-                        e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
-            } else {
-                gc.drawImage(e.getComponent(AlienBugAnimationComponent.class).getCurrentRender(),
-                        e.getComponent(PositionComponent.class).getX()
-                                + e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getWidth(),
-                        e.getComponent(PositionComponent.class).getY(),
-                        -e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getWidth(),
-                        e.getComponent(AlienBugAnimationComponent.class).getCurrentRender().getHeight());
             }
         }
     }
