@@ -65,18 +65,20 @@ public class CombatSystem extends SystemComponent {
 
     @Override
     public void render(GraphicsContext gc, long time, World world) {
-        for (Entity e : world.getEntities()) {
-            if (e.getComponent(WeaponComponent.class) != null) {
+        // for (Entity e : world.getEntities()) {
+        if (getRequester() != null) {
+            if (getRequester().getComponent(WeaponComponent.class) != null) {
                 gc.drawImage(projectile,
-                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class).getX(),
-                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(PositionComponent.class).getY()
-                                + 15,
-                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(DimensionComponent.class)
-                                .getWidth(),
-                        e.getComponent(WeaponComponent.class).getWeapon().getComponent(DimensionComponent.class)
-                                .getHeight());
+                        getRequester().getComponent(WeaponComponent.class).getWeapon()
+                                .getComponent(PositionComponent.class).getX(),
+                        getRequester().getComponent(WeaponComponent.class).getWeapon()
+                                .getComponent(PositionComponent.class).getY() + 15,
+                        getRequester().getComponent(WeaponComponent.class).getWeapon()
+                                .getComponent(DimensionComponent.class).getWidth(),
+                        getRequester().getComponent(WeaponComponent.class).getWeapon()
+                                .getComponent(DimensionComponent.class).getHeight());
             }
-        }
+        } // }
         setNeedsRender(false);
     }
 
