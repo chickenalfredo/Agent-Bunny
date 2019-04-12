@@ -373,6 +373,239 @@ public class Level extends GameMap implements Serializable {
                 new NameAttribute("block28"));
         sprites.add(block28);
 
+        //seventh platform
+        Entity block29 = new Entity();
+        block29.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 1.45), (float) (screenHeight * .40)));
+        block29.addComponents(new RenderComponent(block29, "resources/assets/Block_floatblock_left.png"));
+        block29.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block29"));
+        sprites.add(block29);
+
+        Entity block30 = new Entity();
+        block30.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block29.getComponent(PositionComponent.class).getX()
+                                + block29.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .40)));
+        block30.addComponents(new RenderComponent(block30, "resources/assets/Block_floatblock_right.png"));
+        block30.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block30"));
+        sprites.add(block30);
+
+        //eighth platform
+        Entity block31 = new Entity();
+        block31.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 1.80), (float) (screenHeight * .70)));
+        block31.addComponents(new RenderComponent(block31, "resources/assets/Block_floatblock_left.png"));
+        block31.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block31"));
+        sprites.add(block31);
+
+        Entity block32 = new Entity();
+        block32.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block31.getComponent(PositionComponent.class).getX()
+                                + block31.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .70)));
+        block32.addComponents(new RenderComponent(block32, "resources/assets/Block_floatblock_middle_1.png"));
+        block32.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block32"));
+        sprites.add(block32);
+
+        Entity block33 = new Entity();
+        block33.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block32.getComponent(PositionComponent.class).getX()
+                                + block31.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .70)));
+        block33.addComponents(new RenderComponent(block33, "resources/assets/Block_floatblock_middle_2.png"));
+        block33.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block33"));
+        sprites.add(block33);
+
+        Entity block34 = new Entity();
+        block34.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block32.getComponent(PositionComponent.class).getX()
+                                + block31.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .70)));
+        block34.addComponents(new RenderComponent(block34, "resources/assets/Block_floatblock_right.png"));
+        block34.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block34"));
+        sprites.add(block34);
+
+        //ninth platform
+        Entity block35 = new Entity();
+        block35.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 2.10), (float) (screenHeight * .50)));
+        block35.addComponents(new RenderComponent(block35, "resources/assets/Block_floatblock_left.png"));
+        block35.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block35"));
+        sprites.add(block35);
+
+        Entity block36 = new Entity();
+        block36.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block35.getComponent(PositionComponent.class).getX()
+                                + block35.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .50)));
+        block36.addComponents(new RenderComponent(block30, "resources/assets/Block_floatblock_right.png"));
+        block36.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block36"));
+        sprites.add(block36);
+
+        //tenth blocks
+        Entity block37 = new Entity();
+        block37.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 2.30), (float) (screenHeight * .55)));
+        block37.addComponents(new RenderComponent(block37, "resources/assets/Block_floatblock_left.png"));
+        block37.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block37"));
+        sprites.add(block37);
+
+        Entity block38 = new Entity();
+        block38.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block37.getComponent(PositionComponent.class).getX()
+                                + block37.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .55)));
+        block38.addComponents(new RenderComponent(block38, "resources/assets/Block_floatblock_middle_1.png"));
+        block38.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block38"));
+        sprites.add(block38);
+
+        Entity block39 = new Entity();
+        block39.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block38.getComponent(PositionComponent.class).getX()
+                                + block37.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .55)));
+        block39.addComponents(new RenderComponent(block39, "resources/assets/Block_floatblock_middle_2.png"));
+        block39.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block39"));
+        sprites.add(block39);
+
+        Entity block40 = new Entity();
+        block40.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block38.getComponent(PositionComponent.class).getX()
+                                + block37.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .55)));
+        block40.addComponents(new RenderComponent(block40, "resources/assets/Block_floatblock_right.png"));
+        block40.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block40"));
+        sprites.add(block40);
+
+        //eleventh platform
+        Entity block41 = new Entity();
+        block41.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 2.20), (float) (screenHeight * .20)));
+        block41.addComponents(new RenderComponent(block41, "resources/assets/Block_floatblock_left.png"));
+        block41.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block41"));
+        sprites.add(block41);
+
+        Entity block42 = new Entity();
+        block42.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block41.getComponent(PositionComponent.class).getX()
+                                + block41.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .20)));
+        block42.addComponents(new RenderComponent(block42, "resources/assets/Block_floatblock_right.png"));
+        block42.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block42"));
+        sprites.add(block42);
+
+        //twelfth platform
+        Entity block43 = new Entity();
+        block43.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 1.90), (float) (screenHeight * .15)));
+        block43.addComponents(new RenderComponent(block43, "resources/assets/Block_floatblock_left.png"));
+        block43.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block43"));
+        sprites.add(block43);
+
+        Entity block44 = new Entity();
+        block44.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block43.getComponent(PositionComponent.class).getX()
+                                + block43.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .15)));
+        block44.addComponents(new RenderComponent(block44, "resources/assets/Block_floatblock_middle_1.png"));
+        block44.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block44"));
+        sprites.add(block44);
+
+        Entity block45 = new Entity();
+        block45.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block43.getComponent(PositionComponent.class).getX()
+                                + block43.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .15)));
+        block45.addComponents(new RenderComponent(block45, "resources/assets/Block_floatblock_middle_2.png"));
+        block45.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block45"));
+        sprites.add(block45);
+
+        Entity block46 = new Entity();
+        block46.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block45.getComponent(PositionComponent.class).getX()
+                                + block43.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .15)));
+        block46.addComponents(new RenderComponent(block46, "resources/assets/Block_floatblock_right.png"));
+        block46.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block46"));
+        sprites.add(block46);
+
+        //thirteenth platform
+        Entity block47 = new Entity();
+        block47.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 2.40), (float) (screenHeight * .15)));
+        block47.addComponents(new RenderComponent(block47, "resources/assets/Block_floatblock_left.png"));
+        block47.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block47"));
+        sprites.add(block47);
+
+        Entity block48 = new Entity();
+        block48.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block47.getComponent(PositionComponent.class).getX()
+                                + block47.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .15)));
+        block48.addComponents(new RenderComponent(block44, "resources/assets/Block_floatblock_middle_1.png"));
+        block48.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block48"));
+        sprites.add(block48);
+
+        Entity block49 = new Entity();
+        block49.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block48.getComponent(PositionComponent.class).getX()
+                                + block47.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .15)));
+        block49.addComponents(new RenderComponent(block49, "resources/assets/Block_floatblock_middle_2.png"));
+        block49.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block49"));
+        sprites.add(block49);
+
+        Entity block50 = new Entity();
+        block50.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block49.getComponent(PositionComponent.class).getX()
+                                + block47.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .15)));
+        block50.addComponents(new RenderComponent(block50, "resources/assets/Block_floatblock_right.png"));
+        block50.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block50"));
+        sprites.add(block50);
+
+        double blockW = screenWidth * 0.035;
+        double blockH = screenHeight * 0.063;
+        int count = 0;
+        int counter = 0;
+
         for (int i = 0; i < screenWidth * 3; i += (screenWidth * 0.035)) {
             Entity wall = new Entity();
             wall.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
@@ -382,6 +615,30 @@ public class Level extends GameMap implements Serializable {
                     new NameAttribute("wall"));
 
             sprites.add(wall);
+            if (count % 25 == 0 && count != 0) {
+                if (counter % 2 == 1) {
+                    for (float k = 0; k < screenHeight - 3 * blockH; k += blockH) {
+                        Entity verticalWall = new Entity();
+                        verticalWall.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                                new PositionComponent(i, k));
+                        verticalWall.addComponents(new RenderComponent(verticalWall, "resources/assets/Block_grass4_1.png"));
+                        verticalWall.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                                new NameAttribute("verticalWall"));
+                        
+                        sprites.add(verticalWall);
+                    }
+                    counter++;
+                } else if (counter % 2 == 0) {
+                    for (double k = 2 * blockH; k < screenHeight - blockH; k += blockH) {
+                        TileObject verticalWall = new TileObject(i, k, blockW * 1.06, blockH * 1.06);
+                        verticalWall.addComponents(new RenderComponent(verticalWall, "resources/assets/Block_wall.png"),
+                                new CollidableComponent());
+                        sprites.add(verticalWall);
+                    }
+                    counter++;
+                }
+            }
+            count++;
         }
 
         for (Entity e : sprites) {
