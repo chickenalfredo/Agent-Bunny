@@ -95,7 +95,7 @@ public class Level extends GameMap implements Serializable {
         alienBug3.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
                 new WeaponComponent(25, 50, 250), new AttackComponent(), new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent((float) (screenWidth * 0.05), (float) (screenHeight * 0.20)), new VelocityComponent());
+                new PositionComponent((float) (screenWidth * 1.05), (float) (screenHeight * 0.20)), new VelocityComponent());
         alienBug3.addComponents(new AlienBugAnimationComponent(alienBug3));
         alienBug3.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
                 new NameAttribute("alienBug3"));
