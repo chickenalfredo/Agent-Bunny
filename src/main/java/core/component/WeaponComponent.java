@@ -9,7 +9,6 @@ public class WeaponComponent implements Component, Serializable {
     private static final long serialVersionUID = 1L;
     private Entity actor;
     private Entity weapon;
-    private Entity[] projectile;
     private float attackDamage;
     private float attackRange;
     private long cooldownTime;
