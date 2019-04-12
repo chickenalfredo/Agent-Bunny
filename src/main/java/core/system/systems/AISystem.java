@@ -29,8 +29,9 @@ public class AISystem extends SystemComponent {
             if (isInRange(e))
                 moveEntity(e);
             else stayIdle(e);
-
         }
+    }
+    
     @Override
     public void init(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
