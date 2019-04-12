@@ -5,6 +5,7 @@ import core.component.PositionComponent;
 import core.component.StateComponent;
 import core.component.VelocityComponent;
 import core.component.WeaponComponent;
+import core.component.state.ConcurrentState;
 import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
@@ -27,7 +28,7 @@ public class AISystem extends SystemComponent {
     public void update(long delta, World world) {
         for (Entity e : getSystemEntities()) {
             if (isInRange(e))
-                moveEntity(e);
+                moveEntity(e, world);
             else
                 stayIdle(e);
         }
@@ -51,7 +52,7 @@ public class AISystem extends SystemComponent {
     public void render(GraphicsContext gc, long time, World world) {
     }
 
-    public void moveEntity(Entity e) {
+    public void moveEntity(Entity e, World world) {
         
         String direction = Position(e);
 
@@ -72,6 +73,7 @@ public class AISystem extends SystemComponent {
             e.getComponent(VelocityComponent.class).setVelocityX(0);
             e.getComponent(StateComponent.class).setConcurrentState(ConcurrentState.ATTACKING);
             world.getManager().getSystemManager().getSystem(CombatSystem.class).requestUpdate(e);
+            
         }
     }
 
@@ -82,12 +84,13 @@ public class AISystem extends SystemComponent {
 
     private String Position(Entity e) {
         if (e.getComponent(PositionComponent.class).getX() + e.getComponent(WeaponComponent.class)
-                .getAttackRange() > GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
+                .getAttackRange() < GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
             return "right";
         else if (e.getComponent(PositionComponent.class).getX() + e.getComponent(WeaponComponent.class)
-                .getAttackRange() < GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
+                .getAttackRange() > GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
             return "left";
-        else return "on"
+        else 
+            return "on";
     }
 
     private boolean isInRange(Entity e) {
