@@ -53,7 +53,8 @@ public class CollisionSystem extends SystemComponent {
     }
 
     @Override
-    public void render(GraphicsContext gc, long time, World world) {}
+    public void render(GraphicsContext gc, long time, World world) {
+    }
 
     private void detectCollisionsWithWalls(World world) {
         Collision collision = new Collision();
