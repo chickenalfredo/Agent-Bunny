@@ -1,5 +1,6 @@
 package core.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import com.google.gson.GsonBuilder;
@@ -12,8 +13,9 @@ import core.entity.attributes.Attribute;
  * of the GameObject class. This class will define a set of attributes to define
  * and differentiate all Entities from one another. 
  */
-public class Entity {
+public class Entity implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private ArrayList<Attribute> m_attributes = new ArrayList<Attribute>();
     private ArrayList<Component> m_components = new ArrayList<Component>();
 

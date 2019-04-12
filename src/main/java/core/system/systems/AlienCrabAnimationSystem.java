@@ -14,19 +14,18 @@ import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class AlienCrabAnimationSystem extends SystemComponent {
+public class AlienCrabAnimationSystem extends SystemComponent implements AnimationSystemComponent {
 
-    private ArrayList<Image> animateRunning;
-    private ArrayList<Image> animateIdle;
-    private ArrayList<Image> animateAttack;
+    private static final long serialVersionUID = 1L;
+    private transient ArrayList<Image> animateRunning;
+    private transient ArrayList<Image> animateIdle;
+    private transient ArrayList<Image> animateAttack;
 
     private int i = 0;
     private long lastAnimation = 0;
 
     public AlienCrabAnimationSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
+        setDefaultState();
     }
 
     @Override
@@ -42,6 +41,28 @@ public class AlienCrabAnimationSystem extends SystemComponent {
     }
 
     public void init(GraphicsContext gc) {
+    }
+
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(AlienCrabAnimationComponent.class) != null) {
+                if (!e.getComponent(AlienCrabAnimationComponent.class).isInit()) {
+                    e.getComponent(AlienCrabAnimationComponent.class).init(e);
+                    animateAttack = new ArrayList<Image>();
+                    animateIdle = new ArrayList<Image>();
+                    animateRunning = new ArrayList<Image>();
+                    animateRunning = e.getComponent(AlienCrabAnimationComponent.class).animateRunning();
+                    animateIdle = e.getComponent(AlienCrabAnimationComponent.class).animateIdle();
+                    animateAttack = e.getComponent(AlienCrabAnimationComponent.class).animateAttack();
+                }
+            }
+        }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     @Override

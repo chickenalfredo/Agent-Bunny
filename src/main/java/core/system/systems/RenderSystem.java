@@ -8,14 +8,12 @@ import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
-public class RenderSystem extends SystemComponent {
+public class RenderSystem extends SystemComponent implements AnimationSystemComponent {
 
-    private GraphicsContext gc;
+    private static final long serialVersionUID = 1L;
 
     public RenderSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
+        setDefaultState();
     }
 
     @Override
@@ -33,7 +31,16 @@ public class RenderSystem extends SystemComponent {
     }
 
     public void init(GraphicsContext gc) {
-        this.gc = gc;
+    }
+
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(RenderComponent.class) != null) {
+                if (!e.getComponent(RenderComponent.class).isInit()) {
+                    e.getComponent(RenderComponent.class).init(e);
+                }
+            }
+        }
     }
 
     @Override
@@ -42,6 +49,12 @@ public class RenderSystem extends SystemComponent {
             gc.drawImage(e.getComponent(RenderComponent.class).getImage(),
                     e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
         }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
 }

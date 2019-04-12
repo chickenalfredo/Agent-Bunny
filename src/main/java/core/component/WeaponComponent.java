@@ -1,12 +1,12 @@
 package core.component;
 
+import java.io.Serializable;
 import core.entity.Entity;
 import core.entity.attributes.NameAttribute;
-import core.entity.attributes.Type;
-import core.entity.attributes.TypeAttribute;
 
-public class WeaponComponent implements Component {
+public class WeaponComponent implements Component, Serializable {
 
+    private static final long serialVersionUID = 1L;
     private Entity actor;
     private Entity weapon;
     private float attackDamage;

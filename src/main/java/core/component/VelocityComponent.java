@@ -1,11 +1,14 @@
 package core.component;
 
+import java.io.Serializable;
+
 /**
  * This component will allow an Entity to have the data necessary for movement. This 
  * class will define the Entities velocity in relation to their current state.
  */
-public class VelocityComponent implements Component {
+public class VelocityComponent implements Component, Serializable {
     
+    private static final long serialVersionUID = 1L;
     private float velocityX = 0.0f;
     private float velocityY = 0.0f;
 

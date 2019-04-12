@@ -14,19 +14,18 @@ import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class AlienBugAnimationSystem extends SystemComponent {
+public class AlienBugAnimationSystem extends SystemComponent implements AnimationSystemComponent {
 
-    private ArrayList<Image> animateRunning;
-    private ArrayList<Image> animateIdle;
-    private ArrayList<Image> animateAttack;
+    private static final long serialVersionUID = 1L;
+    private transient ArrayList<Image> animateRunning;
+    private transient ArrayList<Image> animateIdle;
+    private transient ArrayList<Image> animateAttack;
 
     private int i = 0;
     private long lastAnimation = 0;
 
     public AlienBugAnimationSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
+        setDefaultState();
     }
 
     @Override
@@ -44,8 +43,30 @@ public class AlienBugAnimationSystem extends SystemComponent {
     public void init(GraphicsContext gc) {
     }
 
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(AlienBugAnimationComponent.class) != null) {
+                if (!e.getComponent(AlienBugAnimationComponent.class).isInit()) {
+                    e.getComponent(AlienBugAnimationComponent.class).init(e);
+                    animateAttack = new ArrayList<Image>();
+                    animateIdle = new ArrayList<Image>();
+                    animateRunning = new ArrayList<Image>();
+                    animateRunning = e.getComponent(AlienBugAnimationComponent.class).animateRunning();
+                    animateIdle = e.getComponent(AlienBugAnimationComponent.class).animateIdle();
+                    animateAttack = e.getComponent(AlienBugAnimationComponent.class).animateAttack();
+                }
+            }
+        }
+    }
+
     @Override
     public void update(long delta, World world) {
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     @Override
@@ -122,5 +143,4 @@ public class AlienBugAnimationSystem extends SystemComponent {
         }
         return false;
     }
-
 }

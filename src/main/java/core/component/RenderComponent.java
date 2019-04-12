@@ -1,21 +1,29 @@
 package core.component;
 
 import java.io.FileInputStream;
+import java.io.Serializable;
 
 import core.entity.Entity;
 import javafx.scene.CacheHint;
-import javafx.scene.Group;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import core.savablejfx.*;
 
-public class RenderComponent implements Component {
+public class RenderComponent implements Component, Serializable {
 
-    private Group group;
-    private ImageView imageView;
-    private Image image;
+    private static final long serialVersionUID = 1L;
+    private SavableGroup group;
+    private transient ImageView imageView;
+    private transient Image image;
+    private String filename;
 
     public RenderComponent(Entity actor, String filename) {
-        setImage(filename, actor.getComponent(DimensionComponent.class).getWidth(), actor.getComponent(DimensionComponent.class).getHeight());
+        this.filename = filename;
+        init(actor);
+    }
+
+    public void init(Entity actor) {
+        setImage(this.filename, actor.getComponent(DimensionComponent.class).getWidth(), actor.getComponent(DimensionComponent.class).getHeight());
         setImageView();
     }
 
@@ -43,14 +51,19 @@ public class RenderComponent implements Component {
     }
 
     public void createGroup() {
-        group = new Group(imageView);
+        group = new SavableGroup(imageView);
     }
 
     /**
      * @return the entityGroup
      */
-    public Group getGroup() {
+    public SavableGroup getGroup() {
         return group;
+    }
+
+    public boolean isInit() {
+        if(image == null) return false;
+        else return true;
     }
 
 }

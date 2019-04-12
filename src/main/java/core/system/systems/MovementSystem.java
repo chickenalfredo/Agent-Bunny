@@ -15,13 +15,12 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class MovementSystem extends SystemComponent {
 
+    private static final long serialVersionUID = 1L;
     private String key = null;
     private boolean isKeyPressedEvent = false;
 
     public MovementSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(false);
+        setDefaultState();
     }
 
     /**
@@ -77,6 +76,12 @@ public class MovementSystem extends SystemComponent {
                 addSystemEntity(e);
             }
         }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(false);
     }
 
     @Override

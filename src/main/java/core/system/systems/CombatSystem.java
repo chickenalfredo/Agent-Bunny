@@ -18,10 +18,10 @@ import javafx.scene.paint.Color;
 
 public class CombatSystem extends SystemComponent {
 
+    private static final long serialVersionUID = 1L;
+
     public CombatSystem() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(false);
+        setDefaultState();
     }
 
     @Override
@@ -49,6 +49,12 @@ public class CombatSystem extends SystemComponent {
                 addSystemEntity(e);
             }
         }
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(false);
     }
 
     @Override

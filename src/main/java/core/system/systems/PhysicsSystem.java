@@ -16,10 +16,10 @@ import javafx.scene.canvas.GraphicsContext;
 
 public class PhysicsSystem extends SystemComponent {
 
+    private static final long serialVersionUID = 1L;
+
     public PhysicsSystem() {
-        setEnabled(true);
-        setNeedsUpdate(true);
-        setNeedsRender(false);
+        setDefaultState();
     }
 
     @Override
@@ -47,6 +47,12 @@ public class PhysicsSystem extends SystemComponent {
 
         }
         applyGravity();
+    }
+
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(true);
+        setNeedsRender(false);
     }
 
     @Override

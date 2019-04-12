@@ -1,12 +1,13 @@
 package core.entity;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-
 import core.component.HealthComponent;
 import core.game.World;
 
-public class EntityManager {
 
+public class EntityManager implements Serializable {
+    private static final long serialVersionUID = 1L;
     private ArrayList<Entity> m_entities;
     private World world;
 
@@ -42,5 +43,4 @@ public class EntityManager {
         }
         m_entities = world.getEntities();
     }
-
 }

@@ -1,5 +1,6 @@
 package core.component;
 
+import java.io.Serializable;
 import core.component.Component;
 
 /**
@@ -7,8 +8,9 @@ import core.component.Component;
  * dimensions. Every Entity should have this component as it is necessary 
  * data for rendering Entities properly.
  */
-public class DimensionComponent implements Component {
+public class DimensionComponent implements Component, Serializable {
     
+    private static final long serialVersionUID = 1L;
     private float width = 0;
     private float height = 0;
 
