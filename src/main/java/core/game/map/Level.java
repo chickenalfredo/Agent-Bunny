@@ -427,7 +427,7 @@ public class Level extends GameMap implements Serializable {
         Entity block34 = new Entity();
         block34.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(
-                        (block32.getComponent(PositionComponent.class).getX()
+                        (block33.getComponent(PositionComponent.class).getX()
                                 + block31.getComponent(DimensionComponent.class).getWidth() - 1),
                         (float) (screenHeight * .70)));
         block34.addComponents(new RenderComponent(block34, "resources/assets/Block_floatblock_right.png"));
@@ -489,7 +489,7 @@ public class Level extends GameMap implements Serializable {
         Entity block40 = new Entity();
         block40.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(
-                        (block38.getComponent(PositionComponent.class).getX()
+                        (block39.getComponent(PositionComponent.class).getX()
                                 + block37.getComponent(DimensionComponent.class).getWidth() - 1),
                         (float) (screenHeight * .55)));
         block40.addComponents(new RenderComponent(block40, "resources/assets/Block_floatblock_right.png"));
@@ -540,7 +540,7 @@ public class Level extends GameMap implements Serializable {
         Entity block45 = new Entity();
         block45.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent(
-                        (block43.getComponent(PositionComponent.class).getX()
+                        (block44.getComponent(PositionComponent.class).getX()
                                 + block43.getComponent(DimensionComponent.class).getWidth() - 1),
                         (float) (screenHeight * .15)));
         block45.addComponents(new RenderComponent(block45, "resources/assets/Block_floatblock_middle_2.png"));
@@ -601,8 +601,17 @@ public class Level extends GameMap implements Serializable {
                 new NameAttribute("block50"));
         sprites.add(block50);
 
-        double blockW = screenWidth * 0.035;
-        double blockH = screenHeight * 0.063;
+        //endpoint door
+        Entity door = new Entity();
+        door.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 2.95), (float) (screenHeight - 2 * screenHeight * 0.063)));
+        door.addComponents(new RenderComponent(door, "resources/assets/Door.png"));
+        door.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("door"));
+        sprites.add(door);
+
+        float blockW = (float) (screenWidth * 0.035);
+        float blockH = (float) (screenHeight * 0.063);
         int count = 0;
         int counter = 0;
 
@@ -621,7 +630,7 @@ public class Level extends GameMap implements Serializable {
                         Entity verticalWall = new Entity();
                         verticalWall.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                                 new PositionComponent(i, k));
-                        verticalWall.addComponents(new RenderComponent(verticalWall, "resources/assets/Block_grass4_1.png"));
+                        verticalWall.addComponents(new RenderComponent(verticalWall, "resources/assets/Block_wall.png"));
                         verticalWall.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                                 new NameAttribute("verticalWall"));
                         
@@ -629,10 +638,14 @@ public class Level extends GameMap implements Serializable {
                     }
                     counter++;
                 } else if (counter % 2 == 0) {
-                    for (double k = 2 * blockH; k < screenHeight - blockH; k += blockH) {
-                        TileObject verticalWall = new TileObject(i, k, blockW * 1.06, blockH * 1.06);
-                        verticalWall.addComponents(new RenderComponent(verticalWall, "resources/assets/Block_wall.png"),
-                                new CollidableComponent());
+                    for (float k = 2 * blockH; k < screenHeight - blockH; k += blockH) {
+                        Entity verticalWall = new Entity();
+                        verticalWall.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                                new PositionComponent(i, k));
+                        verticalWall.addComponents(new RenderComponent(verticalWall, "resources/assets/Block_wall.png"));
+                        verticalWall.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                                new NameAttribute("verticalWall"));
+                        
                         sprites.add(verticalWall);
                     }
                     counter++;
