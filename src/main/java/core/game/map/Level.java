@@ -133,6 +133,38 @@ public class Level extends GameMap implements Serializable {
                 new NameAttribute("block4"));
         sprites.add(block4);
 
+        Entity block6 = new Entity();
+        block6.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(900, 1200));
+        block6.addComponents(new RenderComponent(block6, "resources/assets/GrassMid.png"));
+        block6.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block6"));
+        sprites.add(block6);
+
+        Entity block7 = new Entity();
+        block7.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(900 + (float) (screenWidth * 0.035), 1200));
+        block7.addComponents(new RenderComponent(block7, "resources/assets/GrassMid.png"));
+        block7.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block7"));
+        sprites.add(block7);
+
+        Entity block8 = new Entity();
+        block8.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(900 + (float) (screenWidth * 0.035) + (float) (screenWidth * 0.035), 1200));
+        block8.addComponents(new RenderComponent(block8, "resources/assets/GrassMid.png"));
+        block8.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block8"));
+        sprites.add(block8);
+
+        Entity block9 = new Entity();
+        block9.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(900 + (float) (screenWidth * 0.035) + (float) (screenWidth * 0.035), 1150));
+        block9.addComponents(new RenderComponent(block9, "resources/assets/GrassMid.png"));
+        block9.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block9"));
+        sprites.add(block9);
+
         for (int i = 0; i < screenWidth * 3; i += (screenWidth * 0.035)) {
             Entity wall = new Entity();
             wall.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
