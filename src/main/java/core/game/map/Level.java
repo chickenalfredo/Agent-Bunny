@@ -46,8 +46,8 @@ public class Level extends GameMap implements Serializable {
         Entity alienCrabPurple = new Entity();
         alienCrabPurple.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
                  new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 1.50), (float) (screenHeight * 0.063)),
-                new PositionComponent(200, 0), new VelocityComponent());
+                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 1.50), 0), new VelocityComponent());
         alienCrabPurple.addComponents(new WeaponComponent(alienCrabPurple, 25, 50, 250));
         alienCrabPurple.addComponents(new AlienCrabAnimationComponent(alienCrabPurple));
         alienCrabPurple.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
@@ -58,7 +58,7 @@ public class Level extends GameMap implements Serializable {
         alienCrabRed.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
                  new HealthComponent(),
                 new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
-                new PositionComponent(500, 0), new VelocityComponent());
+                new PositionComponent((float) (screenWidth * 2.50), 0), new VelocityComponent());
         alienCrabRed.addComponents(new WeaponComponent(alienCrabRed, 25, 50, 250));
         alienCrabRed.addComponents(new AlienRedCrabAnimationComponent(alienCrabRed));
         alienCrabRed.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
@@ -68,8 +68,8 @@ public class Level extends GameMap implements Serializable {
         Entity alienDragon = new Entity();
         alienDragon.addComponents(new AIComponent(), new StateComponent(), new PhysicsComponent(),
                  new HealthComponent(),
-                new DimensionComponent((float) (screenWidth * 2.0), (float) (screenHeight * 0.063)),
-                new PositionComponent(900, 0), new VelocityComponent());
+                new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 2.0), 0), new VelocityComponent());
         alienDragon.addComponents(new WeaponComponent(alienDragon, 25, 50, 250));
         alienDragon.addComponents(new AlienDragonAnimationComponent(alienDragon));
         alienDragon.addAttribute(new TypeAttribute(Type.ENEMY), new CollidableAttribute(true),
@@ -92,6 +92,7 @@ public class Level extends GameMap implements Serializable {
                 new NameAttribute("checkPoint"));
         sprites.add(checkPoint);
 
+        //first platform
         Entity block1 = new Entity();
         block1.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
                 new PositionComponent((float) (screenWidth * .20), (float) (screenHeight * .75)));
@@ -132,6 +133,90 @@ public class Level extends GameMap implements Serializable {
         block4.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
                 new NameAttribute("block4"));
         sprites.add(block4);
+
+        //second platform
+        Entity block16 = new Entity();
+        block16.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 1.30), (float) (screenHeight * .65)));
+        block16.addComponents(new RenderComponent(block16, "resources/assets/GrassMid.png"));
+        block16.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block16"));
+        sprites.add(block16);
+
+        Entity block17 = new Entity();
+        block17.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block16.getComponent(PositionComponent.class).getX()
+                                + block16.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .65)));
+        block17.addComponents(new RenderComponent(block17, "resources/assets/GrassMid.png"));
+        block17.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block17"));
+        sprites.add(block17);
+
+        Entity block18 = new Entity();
+        block18.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block17.getComponent(PositionComponent.class).getX()
+                                + block16.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .65)));
+        block18.addComponents(new RenderComponent(block18, "resources/assets/GrassMid.png"));
+        block18.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block18"));
+        sprites.add(block18);
+
+        Entity block19 = new Entity();
+        block19.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block18.getComponent(PositionComponent.class).getX()
+                                + block16.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .65)));
+        block19.addComponents(new RenderComponent(block19, "resources/assets/GrassMid.png"));
+        block19.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block19"));
+        sprites.add(block19);
+
+        //third platform
+        Entity block20 = new Entity();
+        block20.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent((float) (screenWidth * 2.40), (float) (screenHeight * .70)));
+        block20.addComponents(new RenderComponent(block20, "resources/assets/GrassMid.png"));
+        block20.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block20"));
+        sprites.add(block20);
+
+        Entity block21 = new Entity();
+        block21.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block20.getComponent(PositionComponent.class).getX()
+                                + block20.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .70)));
+        block21.addComponents(new RenderComponent(block21, "resources/assets/GrassMid.png"));
+        block21.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block21"));
+        sprites.add(block21);
+
+        Entity block22 = new Entity();
+        block22.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block21.getComponent(PositionComponent.class).getX()
+                                + block20.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .70)));
+        block22.addComponents(new RenderComponent(block18, "resources/assets/GrassMid.png"));
+        block22.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block22"));
+        sprites.add(block22);
+
+        Entity block23 = new Entity();
+        block23.addComponents(new DimensionComponent((float) (screenWidth * 0.035), (float) (screenHeight * 0.063)),
+                new PositionComponent(
+                        (block22.getComponent(PositionComponent.class).getX()
+                                + block20.getComponent(DimensionComponent.class).getWidth() - 1),
+                        (float) (screenHeight * .70)));
+        block23.addComponents(new RenderComponent(block23, "resources/assets/GrassMid.png"));
+        block23.addAttribute(new TypeAttribute(Type.STATIC_OBJECT), new CollidableAttribute(true),
+                new NameAttribute("block23"));
+        sprites.add(block23);
 
         //first hill
         Entity block5 = new Entity();
