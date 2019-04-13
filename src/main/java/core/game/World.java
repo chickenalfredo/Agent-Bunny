@@ -28,30 +28,41 @@ public class World implements Serializable {
         level = new Level();
         m_entities = level.getEntities();
         manager = new Manager();
-        // manager.getEntityManager().setEntities(level.getEntities());
-
     }
 
-    public void init(GraphicsContext gc) {
-        manager.init(gc);
+    /**
+     * Initializes the World by setting the Entities in the World and all of it's
+     * managing Systems
+     */
+    public void init() {
         manager.init(this);
         setHero();
-
-	}
+    }
 
     /**
+     * Update the Manager pertaining to this World. This will update all Systems and
+     * Managers that need an update
      * 
      * @param gc
      * @param delta
      */
-    public void update(long delta) {
-        manager.update(delta, this);
+    public void update() {
+        manager.update(this);
     }
 
-    public void render(GraphicsContext gc, long time) {
-        manager.render(gc, time, this);
+    /**
+     * Renders all Systems that require an update
+     * 
+     * @param gc
+     * @param time
+     */
+    public void render(GraphicsContext gc) {
+        manager.render(gc, this);
     }
-    
+
+    /**
+     * @return  the World's Manager
+     */
     public Manager getManager() {
         return manager;
     }
@@ -68,7 +79,8 @@ public class World implements Serializable {
      */
     private void setHero() {
         for (Entity s : manager.getEntityManager().getEntities()) {
-            if (s.getAttribute(TypeAttribute.class) != null && s.getAttribute(TypeAttribute.class).getType().equals(Type.HERO)) {
+            if (s.getAttribute(TypeAttribute.class) != null
+                    && s.getAttribute(TypeAttribute.class).getType().equals(Type.HERO)) {
                 hero = s;
             }
         }

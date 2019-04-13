@@ -10,22 +10,28 @@ import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.game.World;
-import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class AlienCrabAnimationSystem extends SystemComponent implements AnimationSystemComponent {
+/**
+ * This class contains animations for Alien Crabs
+ */
+public class AlienCrabAnimationSystem extends AnimationSystemComponent {
 
     private static final long serialVersionUID = 1L;
     private transient ArrayList<Image> animateRunning;
     private transient ArrayList<Image> animateIdle;
     private transient ArrayList<Image> animateAttack;
 
-    private int i = 0;
-    private long lastAnimation = 0;
-
     public AlienCrabAnimationSystem() {
         setDefaultState();
+    }
+
+    @Override
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     @Override
@@ -40,37 +46,12 @@ public class AlienCrabAnimationSystem extends SystemComponent implements Animati
         }
     }
 
-    public void init(GraphicsContext gc) {
-    }
-
-    public void initializeComponents(EntityManager entityManager) {
-        for (Entity e : entityManager.getEntities()) {
-            if (e.getComponent(AlienCrabAnimationComponent.class) != null) {
-                if (!e.getComponent(AlienCrabAnimationComponent.class).isInit()) {
-                    e.getComponent(AlienCrabAnimationComponent.class).init(e);
-                    animateAttack = new ArrayList<Image>();
-                    animateIdle = new ArrayList<Image>();
-                    animateRunning = new ArrayList<Image>();
-                    animateRunning = e.getComponent(AlienCrabAnimationComponent.class).animateRunning();
-                    animateIdle = e.getComponent(AlienCrabAnimationComponent.class).animateIdle();
-                    animateAttack = e.getComponent(AlienCrabAnimationComponent.class).animateAttack();
-                }
-            }
-        }
-    }
-
-    public void setDefaultState() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
+    @Override
+    public void update(World world) {
     }
 
     @Override
-    public void update(long delta, World world) {
-    }
-
-    @Override
-    public void render(GraphicsContext gc, long time, World world) {
+    public void render(GraphicsContext gc, World world) {
         for (Entity e : world.getEntities()) {
             if (e.getComponent(AlienCrabAnimationComponent.class) != null) {
                 if (e.getComponent(StateComponent.class).getState() == State.IDLE) {
@@ -125,23 +106,21 @@ public class AlienCrabAnimationSystem extends SystemComponent implements Animati
         }
     }
 
-    private int iterate(ArrayList<Image> images) {
-        if (i >= images.size() - 1) {
-            i = 0;
-            return i;
-        } else {
-            i++;
-            return i;
+    @Override
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(AlienCrabAnimationComponent.class) != null) {
+                if (!e.getComponent(AlienCrabAnimationComponent.class).isInit()) {
+                    e.getComponent(AlienCrabAnimationComponent.class).init(e);
+                    animateAttack = new ArrayList<Image>();
+                    animateIdle = new ArrayList<Image>();
+                    animateRunning = new ArrayList<Image>();
+                    animateRunning = e.getComponent(AlienCrabAnimationComponent.class).animateRunning();
+                    animateIdle = e.getComponent(AlienCrabAnimationComponent.class).animateIdle();
+                    animateAttack = e.getComponent(AlienCrabAnimationComponent.class).animateAttack();
+                }
+            }
         }
-    }
-
-    private boolean animationTimerOver(long duration) {
-        long time = System.currentTimeMillis();
-        if (time > lastAnimation + duration) {
-            lastAnimation = time;
-            return true;
-        }
-        return false;
     }
 
 }

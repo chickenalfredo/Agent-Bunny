@@ -12,7 +12,6 @@ public class HealthComponent implements Component, Serializable {
     private static final long serialVersionUID = 1L;
     private final float MAX_HP;
     private float currentHP;
-    private boolean isAlive = true;
 
     /**
      * Constructs this health component with the default max health value
@@ -47,13 +46,6 @@ public class HealthComponent implements Component, Serializable {
     }
 
     /**
-     * @param isAlive the isAlive to set
-     */
-    public void setAlive(boolean isAlive) {
-        this.isAlive = isAlive;
-    }
-
-    /**
      * @return the currentHP
      */
     public float getCurrentHP() {
@@ -74,6 +66,12 @@ public class HealthComponent implements Component, Serializable {
         return MAX_HP;
     }
 
+    /**
+     * Deals damage to this Entity by the described attackDamage as 
+     * specified via the parameter
+     * 
+     * @param attackDamage
+     */
 	public void takeDamage(float attackDamage) {
         currentHP -= attackDamage;
 	}

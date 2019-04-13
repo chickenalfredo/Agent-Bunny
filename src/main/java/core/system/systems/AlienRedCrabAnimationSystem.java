@@ -10,22 +10,28 @@ import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.game.World;
-import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class AlienRedCrabAnimationSystem extends SystemComponent implements AnimationSystemComponent {
+/**
+ * This class contains animations for Red Alien Crabs
+ */
+public class AlienRedCrabAnimationSystem extends AnimationSystemComponent {
 
     private static final long serialVersionUID = 1L;
     private transient ArrayList<Image> animateRunning;
     private transient ArrayList<Image> animateIdle;
     private transient ArrayList<Image> animateAttack;
 
-    private int i = 0;
-    private long lastAnimation = 0;
-
     public AlienRedCrabAnimationSystem() {
         setDefaultState();
+    }
+
+    @Override
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     @Override
@@ -40,37 +46,12 @@ public class AlienRedCrabAnimationSystem extends SystemComponent implements Anim
         }
     }
 
-    public void init(GraphicsContext gc) {
-    }
-
-    public void initializeComponents(EntityManager entityManager) {
-        for (Entity e : entityManager.getEntities()) {
-            if (e.getComponent(AlienRedCrabAnimationComponent.class) != null) {
-                if (!e.getComponent(AlienRedCrabAnimationComponent.class).isInit()) {
-                    e.getComponent(AlienRedCrabAnimationComponent.class).init(e);
-                    animateAttack = new ArrayList<Image>();
-                    animateIdle = new ArrayList<Image>();
-                    animateRunning = new ArrayList<Image>();
-                    animateRunning = e.getComponent(AlienRedCrabAnimationComponent.class).animateRunning();
-                    animateIdle = e.getComponent(AlienRedCrabAnimationComponent.class).animateIdle();
-                    animateAttack = e.getComponent(AlienRedCrabAnimationComponent.class).animateAttack();
-                }
-            }
-        }
-    }
-
-    public void setDefaultState() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
+    @Override
+    public void update(World world) {
     }
 
     @Override
-    public void update(long delta, World world) {
-    }
-
-    @Override
-    public void render(GraphicsContext gc, long time, World world) {
+    public void render(GraphicsContext gc, World world) {
         for (Entity e : world.getEntities()) {
             if (e.getComponent(AlienRedCrabAnimationComponent.class) != null) {
                 if (e.getComponent(StateComponent.class).getState() == State.IDLE) {
@@ -115,8 +96,8 @@ public class AlienRedCrabAnimationSystem extends SystemComponent implements Anim
                             e.getComponent(PositionComponent.class).getY());
                 } else {
                     gc.drawImage(e.getComponent(AlienRedCrabAnimationComponent.class).getCurrentRender(),
-                            e.getComponent(PositionComponent.class).getX()
-                                    + e.getComponent(AlienRedCrabAnimationComponent.class).getCurrentRender().getWidth(),
+                            e.getComponent(PositionComponent.class).getX() + e
+                                    .getComponent(AlienRedCrabAnimationComponent.class).getCurrentRender().getWidth(),
                             e.getComponent(PositionComponent.class).getY(),
                             -e.getComponent(AlienRedCrabAnimationComponent.class).getCurrentRender().getWidth(),
                             e.getComponent(AlienRedCrabAnimationComponent.class).getCurrentRender().getHeight());
@@ -125,23 +106,21 @@ public class AlienRedCrabAnimationSystem extends SystemComponent implements Anim
         }
     }
 
-    private int iterate(ArrayList<Image> images) {
-        if (i >= images.size() - 1) {
-            i = 0;
-            return i;
-        } else {
-            i++;
-            return i;
+    @Override
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(AlienRedCrabAnimationComponent.class) != null) {
+                if (!e.getComponent(AlienRedCrabAnimationComponent.class).isInit()) {
+                    e.getComponent(AlienRedCrabAnimationComponent.class).init(e);
+                    animateAttack = new ArrayList<Image>();
+                    animateIdle = new ArrayList<Image>();
+                    animateRunning = new ArrayList<Image>();
+                    animateRunning = e.getComponent(AlienRedCrabAnimationComponent.class).animateRunning();
+                    animateIdle = e.getComponent(AlienRedCrabAnimationComponent.class).animateIdle();
+                    animateAttack = e.getComponent(AlienRedCrabAnimationComponent.class).animateAttack();
+                }
+            }
         }
-    }
-
-    private boolean animationTimerOver(long duration) {
-        long time = System.currentTimeMillis();
-        if (time > lastAnimation + duration) {
-            lastAnimation = time;
-            return true;
-        }
-        return false;
     }
 
 }

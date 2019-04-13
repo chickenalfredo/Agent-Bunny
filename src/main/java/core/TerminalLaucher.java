@@ -8,9 +8,13 @@ import core.GameTerminal;
  * @author Cloudy Yunfan
  * @since 2019/02/23 11:36
  */
-
 public class TerminalLaucher {
 
+    /**
+     * Main method for terminal version
+     * 
+     * @param args
+     */
     public static void main(String[] args) {
         boolean resume = true;
         GameTerminal.printTitle();
