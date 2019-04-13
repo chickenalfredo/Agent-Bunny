@@ -12,12 +12,27 @@ import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * This System will handle all physics, position, velocity and state components
+ * of each entity. By default, all entities within this system will have gravity
+ * imposed on them and will constantly be pulled down when required
+ */
 public class PhysicsSystem extends SystemComponent {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructs a new PhysicsSystem with the default values
+     */
     public PhysicsSystem() {
         setDefaultState();
+    }
+
+    @Override
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(true);
+        setNeedsRender(false);
     }
 
     @Override
@@ -33,7 +48,7 @@ public class PhysicsSystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta, World world) {
+    public void update(World world) {
         for (Entity e : world.getEntities()) {
             if (e.getComponent(PhysicsComponent.class) != null && e.getComponent(PositionComponent.class) != null
                     && e.getComponent(VelocityComponent.class) != null) {
@@ -47,16 +62,13 @@ public class PhysicsSystem extends SystemComponent {
         applyGravity();
     }
 
-    public void setDefaultState() {
-        setEnabled(true);
-        setNeedsUpdate(true);
-        setNeedsRender(false);
-    }
-
     @Override
-    public void render(GraphicsContext gc, long time, World world) {
+    public void render(GraphicsContext gc, World world) {
     }
 
+    /**
+     * Applies gravity to all entites in this system
+     */
     private void applyGravity() {
         for (Entity e : getSystemEntities()) {
             e.getComponent(VelocityComponent.class).setVelocityY(e.getComponent(VelocityComponent.class).getVelocityY()

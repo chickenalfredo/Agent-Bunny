@@ -10,22 +10,28 @@ import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.game.World;
-import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class AlienDragonAnimationSystem extends SystemComponent implements AnimationSystemComponent {
+/**
+ * This class contains animations for Alien Dragons
+ */
+public class AlienDragonAnimationSystem extends AnimationSystemComponent {
 
     private static final long serialVersionUID = 1L;
     private transient ArrayList<Image> animateRunning;
     private transient ArrayList<Image> animateIdle;
     private transient ArrayList<Image> animateAttack;
 
-    private int i = 0;
-    private long lastAnimation = 0;
-
     public AlienDragonAnimationSystem() {
         setDefaultState();
+    }
+
+    @Override
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     @Override
@@ -40,37 +46,12 @@ public class AlienDragonAnimationSystem extends SystemComponent implements Anima
         }
     }
 
-    public void setDefaultState() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
-    }
-
-    public void init(GraphicsContext gc) {
-    }
-
-    public void initializeComponents(EntityManager entityManager) {
-        for (Entity e : entityManager.getEntities()) {
-            if (e.getComponent(AlienDragonAnimationComponent.class) != null) {
-                if (!e.getComponent(AlienDragonAnimationComponent.class).isInit()) {
-                    e.getComponent(AlienDragonAnimationComponent.class).init(e);
-                    animateAttack = new ArrayList<Image>();
-                    animateIdle = new ArrayList<Image>();
-                    animateRunning = new ArrayList<Image>();
-                    animateRunning = e.getComponent(AlienDragonAnimationComponent.class).animateRunning();
-                    animateIdle = e.getComponent(AlienDragonAnimationComponent.class).animateIdle();
-                    animateAttack = e.getComponent(AlienDragonAnimationComponent.class).animateAttack();
-                }
-            }
-        }
+    @Override
+    public void update(World world) {
     }
 
     @Override
-    public void update(long delta, World world) {
-    }
-
-    @Override
-    public void render(GraphicsContext gc, long time, World world) {
+    public void render(GraphicsContext gc, World world) {
         for (Entity e : world.getEntities()) {
             if (e.getComponent(AlienDragonAnimationComponent.class) != null) {
                 if (e.getComponent(StateComponent.class).getState() == State.IDLE) {
@@ -125,23 +106,23 @@ public class AlienDragonAnimationSystem extends SystemComponent implements Anima
         }
     }
 
-    private int iterate(ArrayList<Image> images) {
-        if (i >= images.size() - 1) {
-            i = 0;
-            return i;
-        } else {
-            i++;
-            return i;
+    @Override
+    public void initializeComponents(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(AlienDragonAnimationComponent.class) != null) {
+                if (!e.getComponent(AlienDragonAnimationComponent.class).isInit()) {
+                    e.getComponent(AlienDragonAnimationComponent.class).init(e);
+                    animateAttack = new ArrayList<Image>();
+                    animateIdle = new ArrayList<Image>();
+                    animateRunning = new ArrayList<Image>();
+                    animateRunning = e.getComponent(AlienDragonAnimationComponent.class).animateRunning();
+                    animateIdle = e.getComponent(AlienDragonAnimationComponent.class).animateIdle();
+                    animateAttack = e.getComponent(AlienDragonAnimationComponent.class).animateAttack();
+                }
+            }
         }
     }
 
-    private boolean animationTimerOver(long duration) {
-        long time = System.currentTimeMillis();
-        if (time > lastAnimation + duration) {
-            lastAnimation = time;
-            return true;
-        }
-        return false;
-    }
+  
 
 }

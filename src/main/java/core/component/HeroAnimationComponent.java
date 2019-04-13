@@ -7,6 +7,10 @@ import java.util.ArrayList;
 import core.entity.Entity;
 import javafx.scene.image.Image;
 
+/**
+ * This class sets the Hero's animation component by populating sets of
+ * ArrayList's containing the Images of the animation.
+ */
 public class HeroAnimationComponent implements Component, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -22,27 +26,38 @@ public class HeroAnimationComponent implements Component, Serializable {
     private transient ArrayList<Image> runShootAnimations;
     private transient ArrayList<Image> idleShootAnimations;
 
-    private static transient Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11, run_12, run_13,
-            run_14, run_15, run_16;
+    private static transient Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11,
+            run_12, run_13, run_14, run_15, run_16;
 
     private static transient Image jump_1, jump_2, jump_3, jump_4;
 
-    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11,
-            idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20;
+    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10,
+            idle_11, idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20;
 
-    private static transient Image falling_1, falling_2, falling_3, falling_4, falling_5, falling_6, falling_7, falling_8,
-            falling_9, falling_10, falling_11;
+    private static transient Image falling_1, falling_2, falling_3, falling_4, falling_5, falling_6, falling_7,
+            falling_8, falling_9, falling_10, falling_11;
 
-    private static transient Image run_shoot_1, run_shoot_2, run_shoot_3, run_shoot_4, run_shoot_5, run_shoot_6, run_shoot_7,
-            run_shoot_8, run_shoot_9, run_shoot_10, run_shoot_11, run_shoot_12, run_shoot_13, run_shoot_14,
+    private static transient Image run_shoot_1, run_shoot_2, run_shoot_3, run_shoot_4, run_shoot_5, run_shoot_6,
+            run_shoot_7, run_shoot_8, run_shoot_9, run_shoot_10, run_shoot_11, run_shoot_12, run_shoot_13, run_shoot_14,
             run_shoot_15, run_shoot_16;
 
     private static transient Image idle_shoot;
 
+    /**
+     * Constructs an AlienCrabAnimationComponent for the Entity passed in via
+     * parameter
+     * 
+     * @param actor
+     */
     public HeroAnimationComponent(Entity actor) {
         init(actor);
     }
 
+    /**
+     * Initializes the Images for rendering
+     * 
+     * @param actor
+     */
     public void init(Entity actor) {
         ACTOR_WIDTH = actor.getComponent(DimensionComponent.class).getWidth();
         ACTOR_HEIGHT = actor.getComponent(DimensionComponent.class).getHeight();
@@ -221,18 +236,18 @@ public class HeroAnimationComponent implements Component, Serializable {
         setJumpingAnimation();
         setRunningAndShootingAnimation();
     }
+
     /**
-     * FOR SERIALIZATION 
+     * FOR SERIALIZATION
      * 
      * returns a boolean whether or not images for this entity are initialized
      * 
-     * @return boolean          true: are initalized
-     *                          false: not initialized
+     * @return boolean true: are initalized false: not initialized
      */
     public boolean isInit() {
-        if(fallingAnimations == null) 
+        if (fallingAnimations == null)
             return false;
-        else 
+        else
             return true;
     }
 
@@ -250,6 +265,9 @@ public class HeroAnimationComponent implements Component, Serializable {
         this.currentRender = currentRender;
     }
 
+    /**
+     * Set running animations
+     */
     private void setRunningAnimation() {
         runningAnimations.add(run_1);
         runningAnimations.add(run_2);
@@ -270,10 +288,16 @@ public class HeroAnimationComponent implements Component, Serializable {
 
     }
 
+    /**
+     * @return running animation ArrayList
+     */
     public ArrayList<Image> animateRunning() {
         return runningAnimations;
     }
 
+    /**
+     * set idle animations
+     */
     private void setIdleAnimation() {
         idleAnimations.add(idle_1);
         idleAnimations.add(idle_2);
@@ -297,10 +321,16 @@ public class HeroAnimationComponent implements Component, Serializable {
         idleAnimations.add(idle_20);
     }
 
+    /**
+     * @return idle animation ArrayList
+     */
     public ArrayList<Image> animateIdle() {
         return idleAnimations;
     }
 
+    /**
+     * Set running and shooting animation
+     */
     private void setRunningAndShootingAnimation() {
         runShootAnimations.add(run_shoot_1);
         runShootAnimations.add(run_shoot_2);
@@ -320,18 +350,30 @@ public class HeroAnimationComponent implements Component, Serializable {
         runShootAnimations.add(run_shoot_16);
     }
 
+    /**
+     * @return run and shoot animation ArrayList
+     */
     public ArrayList<Image> animateRunAndShoot() {
         return runShootAnimations;
     }
 
+    /**
+     * set idle and shoot animation
+     */
     private void setIdleShootingAnimation() {
         idleShootAnimations.add(idle_shoot);
     }
 
+    /**
+     * @return idle and shoot animation ArrayList
+     */
     public ArrayList<Image> animateIdleAndShoot() {
         return idleShootAnimations;
     }
 
+    /**
+     * set jumping animation
+     */
     private void setJumpingAnimation() {
         jumpingAnimations.add(jump_1);
         jumpingAnimations.add(jump_2);
@@ -339,10 +381,16 @@ public class HeroAnimationComponent implements Component, Serializable {
         jumpingAnimations.add(jump_4);
     }
 
+    /**
+     * @return jump animation ArrayList
+     */
     public ArrayList<Image> AnimateJump() {
         return jumpingAnimations;
     }
 
+    /**
+     * set falling animation
+     */
     private void setFallingAnimation() {
         fallingAnimations.add(falling_1);
         fallingAnimations.add(falling_2);
@@ -357,7 +405,11 @@ public class HeroAnimationComponent implements Component, Serializable {
         fallingAnimations.add(falling_11);
     }
 
+    /**
+     * @return falling animation ArrayList
+     */
     public ArrayList<Image> animateFalling() {
         return fallingAnimations;
     }
+
 }

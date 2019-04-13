@@ -7,26 +7,49 @@ import core.entity.Entity;
 import javafx.scene.CacheHint;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import core.savablejfx.*;
 
+/**
+ * This class sets the Statuc Objects's render component by storing and
+ * retrieving Image's beloning to the instance
+ */
 public class RenderComponent implements Component, Serializable {
 
     private static final long serialVersionUID = 1L;
-    private SavableGroup group;
     private transient ImageView imageView;
     private transient Image image;
     private String filename;
 
+    /**
+     * Constructs a Render Component for the specified actor with the specified
+     * Image as described in the filename
+     * 
+     * @param actor
+     * @param filename
+     */
     public RenderComponent(Entity actor, String filename) {
         this.filename = filename;
         init(actor);
     }
 
+    /**
+     * Initializes this Render Component by setting the Image and ImageView for
+     * rendering
+     * 
+     * @param actor
+     */
     public void init(Entity actor) {
-        setImage(this.filename, actor.getComponent(DimensionComponent.class).getWidth(), actor.getComponent(DimensionComponent.class).getHeight());
+        setImage(this.filename, actor.getComponent(DimensionComponent.class).getWidth(),
+                actor.getComponent(DimensionComponent.class).getHeight());
         setImageView();
     }
 
+    /**
+     * Sets the Image as specified by the filename, width and height
+     * 
+     * @param filename
+     * @param width
+     * @param height
+     */
     public void setImage(String filename, float width, float height) {
         try {
             image = new Image(new FileInputStream(filename), width, height, false, true);
@@ -35,6 +58,9 @@ public class RenderComponent implements Component, Serializable {
         }
     }
 
+    /**
+     * Sets the ImageView with the now-initialized Image
+     */
     public void setImageView() {
         imageView = new ImageView();
         imageView.setImage(image);
@@ -42,28 +68,28 @@ public class RenderComponent implements Component, Serializable {
         imageView.setCacheHint(CacheHint.SPEED);
     }
 
+    /**
+     * @return  image that will be rendered
+     */
     public Image getImage() {
         return image;
     }
 
+    /**
+     * @return  ImageView containing the Image to be rendered
+     */
     public ImageView getImageView() {
         return imageView;
     }
 
-    public void createGroup() {
-        group = new SavableGroup(imageView);
-    }
-
     /**
-     * @return the entityGroup
+     * @return  true or false if Image has been initialzied
      */
-    public SavableGroup getGroup() {
-        return group;
-    }
-
     public boolean isInit() {
-        if(image == null) return false;
-        else return true;
+        if (image == null)
+            return false;
+        else
+            return true;
     }
 
 }

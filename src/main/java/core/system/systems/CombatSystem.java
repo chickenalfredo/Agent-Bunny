@@ -18,19 +18,44 @@ import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
+/**
+ * Updates all entities belonging to this System. By default, any Entity who has
+ * a weapon and a health component will belong to this System.
+ */
 public class CombatSystem extends SystemComponent {
+
+    private static final long serialVersionUID = 1L;
 
     private static Image projectile = new Image(
             new File("resources/assets/Hero/projectile/Beam_Thin.png").toURI().toString());
 
-    private static final long serialVersionUID = 1L;
-
+    /**
+     * Constructs the CombatSystem with the default values. By default, this class
+     * will not be updated on every frame. Instead, a valid Entity will make a
+     * request for an update
+     */
     public CombatSystem() {
         setDefaultState();
     }
 
     @Override
-    public void update(long delta, World world) {
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(false);
+    }
+
+    @Override
+    public void init(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getComponent(WeaponComponent.class) != null && e.getComponent(HealthComponent.class) != null) {
+                addSystemEntity(e);
+            }
+        }
+    }
+
+    @Override
+    public void update(World world) {
         updateWeapon(world);
         if (getRequester() != null) {
             if (getRequester().getComponent(WeaponComponent.class).attackOffCooldown()) {
@@ -49,23 +74,7 @@ public class CombatSystem extends SystemComponent {
     }
 
     @Override
-    public void init(EntityManager entityManager) {
-        for (Entity e : entityManager.getEntities()) {
-            if (e.getComponent(WeaponComponent.class) != null && e.getComponent(HealthComponent.class) != null) {
-                addSystemEntity(e);
-            }
-        }
-    }
-
-    public void setDefaultState() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(false);
-    }
-
-    @Override
-    public void render(GraphicsContext gc, long time, World world) {
-        // for (Entity e : world.getEntities()) {
+    public void render(GraphicsContext gc, World world) {
         if (getRequester() != null) {
             if (getRequester().getComponent(WeaponComponent.class) != null) {
                 gc.drawImage(projectile,
@@ -78,10 +87,15 @@ public class CombatSystem extends SystemComponent {
                         getRequester().getComponent(WeaponComponent.class).getWeapon()
                                 .getComponent(DimensionComponent.class).getHeight());
             }
-        } // }
+        }
         setNeedsRender(false);
     }
 
+    /**
+     * Updates the weapon's location, on request, to be in front of the Entity
+     * 
+     * @param world
+     */
     private void updateWeapon(World world) {
         for (Entity e : world.getEntities()) {
             if (e.getComponent(WeaponComponent.class) != null) {
@@ -100,6 +114,12 @@ public class CombatSystem extends SystemComponent {
         }
     }
 
+    /**
+     * Checks if the weapon has collided with an enemy
+     * 
+     * @param attacker
+     * @param collider
+     */
     private void checkCollisions(Entity attacker, Entity collider) {
         Collision collision = new Collision();
         if (collision.intersectAABB(attacker.getComponent(WeaponComponent.class).getWeapon(), collider)) {
@@ -107,6 +127,12 @@ public class CombatSystem extends SystemComponent {
         }
     }
 
+    /**
+     * Damages the collider on collision detection
+     * 
+     * @param attacker
+     * @param collider
+     */
     private void resolveCombat(Entity attacker, Entity collider) {
         if (collider.getComponent(HealthComponent.class) != null) {
             collider.getComponent(HealthComponent.class)

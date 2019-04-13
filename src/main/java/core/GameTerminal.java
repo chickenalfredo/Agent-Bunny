@@ -25,7 +25,7 @@ public class GameTerminal {
     }
 
     /**
-     * 
+     * Prints title screen
      */
     public static void printTitle() {
         String str = "";
@@ -48,7 +48,7 @@ public class GameTerminal {
     }
 
     /**
-     * 
+     * Shows prompt
      */
     private static void printMessage() {
         StringBuilder str = new StringBuilder();
@@ -72,6 +72,9 @@ public class GameTerminal {
         return "";
     }
 
+    /**
+     * Initializes a new World
+     */
     private static void init() {
         world = new World();
     }

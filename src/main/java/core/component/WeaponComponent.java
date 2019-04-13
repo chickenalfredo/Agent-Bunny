@@ -4,6 +4,10 @@ import java.io.Serializable;
 import core.entity.Entity;
 import core.entity.attributes.NameAttribute;
 
+/**
+ * This Component will allow the Entity to partake in combat. This class will
+ * define the weapon's attack damage, attack range, and cooldown times
+ */
 public class WeaponComponent implements Component, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -14,6 +18,15 @@ public class WeaponComponent implements Component, Serializable {
     private long cooldownTime;
     private long lastAttack = 0;
 
+    /**
+     * Constructs the Weapon Component for the specified Entity with the Specified
+     * values for attack damage, attack range and cooldown time
+     * 
+     * @param actor
+     * @param attackDamage
+     * @param attackRange
+     * @param cooldownTime
+     */
     public WeaponComponent(Entity actor, float attackDamage, float attackRange, long cooldownTime) {
         setActor(actor);
         setAttackDamage(attackDamage);
@@ -117,6 +130,9 @@ public class WeaponComponent implements Component, Serializable {
         this.lastAttack = lastAttack;
     }
 
+    /**
+     * @return true or false if attack is off cooldown
+     */
     public boolean attackOffCooldown() {
         long time = System.currentTimeMillis();
         if (time > lastAttack + cooldownTime) {
