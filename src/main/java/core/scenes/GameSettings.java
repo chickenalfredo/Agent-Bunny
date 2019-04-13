@@ -14,7 +14,7 @@ import javafx.event.EventHandler;
 import javafx.scene.input.KeyCode;
 
 /**
- * 
+ * The scene containig all the nodes of the game settings
  */
 public class GameSettings {
 
@@ -24,8 +24,7 @@ public class GameSettings {
     private static VBox graphicsMenu;
 
     /**
-     * 
-     * @return
+     * @return  the scene to display
      */
     public static Scene display() {
         menu = mainMenu();
@@ -37,7 +36,7 @@ public class GameSettings {
     }
 
     /**
-     * 
+     * Returns the user back to the title scen
      */
     public static class EscKey implements EventHandler<KeyEvent> {
         public void handle(KeyEvent key) {
@@ -54,8 +53,7 @@ public class GameSettings {
     }
 
     /**
-     * 
-     * @return
+     * @return  the HBox containing the menu's nodes
      */
     static public HBox mainMenu() {
         if (App.getGameWindow().getScene() == GameScene.getScene()) {
@@ -84,10 +82,9 @@ public class GameSettings {
     }
 
     /**
-     * 
+     * Sets up the graphics menu
      */
     public static void graphicsMenu() {
-
         CheckBox fullscreen = new CheckBox("Toggle Fullscreen");
         fullscreen.setStyle("-fx-text-fill: white;");
         Label resolutionLabel = new Label("Available Resolutions: ");
@@ -124,15 +121,14 @@ public class GameSettings {
     }
 
     /**
-     * 
-     * @return
+     * @return  the game settings scene 
      */
     public static Scene getScene() {
         return GameSettings;
     }
 
     /**
-     * 
+     * Sets the game setting scene
      * @param scene
      */
     public static void setScene(Scene scene) {
@@ -140,8 +136,7 @@ public class GameSettings {
     }
 
     /**
-     * 
-     * @return
+     * @return  the HBox containign the menu
      */
     public static HBox getMenu() {
         return menu;

@@ -6,13 +6,16 @@ import javafx.scene.layout.HBox;
 import core.scenes.*;
 
 /**
- * 
+ * This Command will execute a menu command. Execution of this object will 
+ * bring up the game menu.
  */
 public class MenuCommand implements Command {
 
     private boolean isKeyPressed;
 
     /**
+     * Constructs a menu command object that specifies whether or not the 
+     * key event was a keypress
      * 
      * @param isKeyPressed
      */
@@ -21,6 +24,7 @@ public class MenuCommand implements Command {
     }
 
     /**
+     * Executes the Menu Command by bringing up the game menu
      * 
      * @param actor
      * @param world

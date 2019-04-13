@@ -4,13 +4,14 @@ import javafx.stage.Screen;
 import javafx.geometry.Rectangle2D;
 
 /**
- * 
+ * Defines some utility for getting screen data. 
  */
 public class ScreenBuilder {
 
     private static Rectangle2D primaryScreenBounds = Screen.getPrimary().getVisualBounds();
 
     /**
+     * Sets the default screen data
      * 
      * @param primaryStage
      * @return

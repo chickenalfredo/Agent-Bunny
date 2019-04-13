@@ -9,6 +9,7 @@ import core.game.World;
 public interface Command {
 
     /**
+     * Execute the command of the specified Command object
      * 
      * @param hero
      * @param world

@@ -14,12 +14,13 @@ import javafx.event.EventHandler;
 import javafx.event.ActionEvent;
 
 /**
- * 
+ * This class handles all menu event handlers. This class defines the behaviour
+ * of each button.
  */
 public class MenuEventHandlers {
 
     /**
-     * 
+     * Sets the new game when the new game button is clicked
      */
     public static class NewGameEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -28,7 +29,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Loads an old game when the button is clicked
      */
     public static class LoadGameEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -37,7 +38,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Loads the settings menu when the button is clicked
      */
     public static class OpenSettingsEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -46,7 +47,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Loads the title scene when the button is clicked
      */
     public static class goToTitle implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -56,7 +57,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Exists the game when the button is clicked
      */
     public static class ExitGameEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -66,7 +67,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Goes the graphics settings menu when the button is clicked
      */
     public static class GraphicsMenuEvent implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -75,7 +76,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Sets the screen ratio to fullscreen when the option is selected
      */
     public static class setFullScreen implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -88,7 +89,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Resumes the game when the button is clicked
      */
     public static class resumeGame implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -97,7 +98,7 @@ public class MenuEventHandlers {
     }
 
     /**
-     * 
+     * Opens the keybinding scene when the button is clicked
      */
     public static class KeyBinding implements EventHandler<ActionEvent> {
         public void handle(ActionEvent leftClick) {
@@ -105,6 +106,11 @@ public class MenuEventHandlers {
         }
     }
 
+    /**
+     * Handles serialization upon exiting the game
+     * 
+     * @param world the world being serealized
+     */
     public static void saveGame(World world) {
         try {
             FileOutputStream fileOut = new FileOutputStream("world.ser");
@@ -117,24 +123,26 @@ public class MenuEventHandlers {
         }
     }
 
+    /**
+     * Handles deserealization upon loading the game
+     * 
+     * @return the World being deserealized
+     */
     public static World loadGame() {
-        try
-  {
-   FileInputStream fileIn =new FileInputStream("world.ser");
-   ObjectInputStream in = new ObjectInputStream(fileIn);
-   World world = (World) in.readObject();
-   in.close();
-   fileIn.close();
-   return world;
-  }catch(IOException i)
-  {
-   i.printStackTrace();
-   return null;
-  }catch(ClassNotFoundException c)
-  {
-   System.out.println("Employee class not found");
-   c.printStackTrace();
-   return null;
-  }
+        try {
+            FileInputStream fileIn = new FileInputStream("world.ser");
+            ObjectInputStream in = new ObjectInputStream(fileIn);
+            World world = (World) in.readObject();
+            in.close();
+            fileIn.close();
+            return world;
+        } catch (IOException i) {
+            i.printStackTrace();
+            return null;
+        } catch (ClassNotFoundException c) {
+            System.out.println("Employee class not found");
+            c.printStackTrace();
+            return null;
+        }
     }
 }

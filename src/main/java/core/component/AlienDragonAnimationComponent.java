@@ -1,3 +1,4 @@
+
 package core.component;
 
 import java.io.File;
@@ -7,6 +8,10 @@ import java.util.ArrayList;
 import core.entity.Entity;
 import javafx.scene.image.Image;
 
+/**
+ * This class sets the Dragon's animation component by populating sets of
+ * ArrayList's containing the Images of the animation.
+ */
 public class AlienDragonAnimationComponent implements Component, Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -21,12 +26,18 @@ public class AlienDragonAnimationComponent implements Component, Serializable {
 
     private static transient Image run_1, run_2, run_3, run_4, run_5, run_6, run_7, run_8, run_9, run_10, run_11;
 
-    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11,
-            idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20, idle_21, idle_22;
+    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10,
+            idle_11, idle_12, idle_13, idle_14, idle_15, idle_16, idle_17, idle_18, idle_19, idle_20, idle_21, idle_22;
 
-    private static transient Image attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attack_7, attack_8, attack_9,
-            attack_10, attack_11, attack_12, attack_13;
+    private static transient Image attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attack_7, attack_8,
+            attack_9, attack_10, attack_11, attack_12, attack_13;
 
+    /**
+     * Constructs an AlienCrabAnimationComponent for the Entity passed in via
+     * parameter
+     * 
+     * @param actor
+     */
     public AlienDragonAnimationComponent(Entity actor) {
         init(actor);
     }
@@ -34,7 +45,7 @@ public class AlienDragonAnimationComponent implements Component, Serializable {
     /**
      * Initializes the Animation Images of the entity
      * 
-     * @param actor     The entity to have images initialized
+     * @param actor The entity to have images initialized
      */
     public void init(Entity actor) {
         ACTOR_WIDTH = actor.getComponent(DimensionComponent.class).getWidth();
@@ -150,8 +161,7 @@ public class AlienDragonAnimationComponent implements Component, Serializable {
      * 
      * returns a boolean whether or not images for this entity are initialized
      * 
-     * @return boolean      true: are initalized 
-     *                      false: not initialized
+     * @return boolean true: are initalized false: not initialized
      */
     public boolean isInit() {
         if (runningAnimations == null)
@@ -174,6 +184,9 @@ public class AlienDragonAnimationComponent implements Component, Serializable {
         this.currentRender = currentRender;
     }
 
+    /**
+     * Set running animation
+     */
     private void setRunningAnimation() {
         runningAnimations.add(run_1);
         runningAnimations.add(run_2);
@@ -188,10 +201,16 @@ public class AlienDragonAnimationComponent implements Component, Serializable {
         runningAnimations.add(run_11);
     }
 
+    /**
+     * @return  running animation ArrayList
+     */
     public ArrayList<Image> animateRunning() {
         return runningAnimations;
     }
 
+    /**
+     * Set Idle animation
+     */
     private void setIdleAnimation() {
         idleAnimations.add(idle_1);
         idleAnimations.add(idle_2);
@@ -217,10 +236,16 @@ public class AlienDragonAnimationComponent implements Component, Serializable {
         idleAnimations.add(idle_22);
     }
 
+    /**
+     * @return  idle animation ArrayList
+     */
     public ArrayList<Image> animateIdle() {
         return idleAnimations;
     }
 
+    /**
+     * set attack animation
+     */
     private void setAttackAnimation() {
         attackAnimations.add(attack_1);
         attackAnimations.add(attack_2);
@@ -237,6 +262,9 @@ public class AlienDragonAnimationComponent implements Component, Serializable {
         attackAnimations.add(attack_13);
     }
 
+    /**
+     * @return  attack animation ArrayList
+     */
     public ArrayList<Image> animateAttack() {
         return attackAnimations;
     }

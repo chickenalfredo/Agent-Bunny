@@ -21,11 +21,17 @@ public class AlienBugAnimationComponent implements Component, Serializable {
 
     private static transient Image run_1, run_2, run_3, run_4, run_5, run_6;
 
-    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10, idle_11,
-            idle_12;
+    private static transient Image idle_1, idle_2, idle_3, idle_4, idle_5, idle_6, idle_7, idle_8, idle_9, idle_10,
+            idle_11, idle_12;
 
     private static transient Image attack_1, attack_2, attack_3, attack_4, attack_5, attack_6, attack_7;
 
+    /**
+     * Constructs an AlienBugAnimationComponent to the Entity passed in via the
+     * parameter
+     * 
+     * @param actor
+     */
     public AlienBugAnimationComponent(Entity actor) {
         init(actor);
     }
@@ -33,9 +39,8 @@ public class AlienBugAnimationComponent implements Component, Serializable {
     /**
      * Initializes the Animation Images of the entity
      * 
-     * @param actor     The entity to have images initialized
+     * @param actor The entity to have images initialized
      */
-
     public void init(Entity actor) {
         ACTOR_WIDTH = actor.getComponent(DimensionComponent.class).getWidth();
         ACTOR_HEIGHT = actor.getComponent(DimensionComponent.class).getHeight();
@@ -107,17 +112,16 @@ public class AlienBugAnimationComponent implements Component, Serializable {
     }
 
     /**
-     * FOR SERIALIZATION 
+     * FOR SERIALIZATION
      * 
      * returns a boolean whether or not images for this entity are initialized
      * 
-     * @return boolean          true: are initalized
-     *                          false: not initialized
+     * @return boolean true: are initalized false: not initialized
      */
     public boolean isInit() {
-        if(runningAnimations == null) 
+        if (runningAnimations == null)
             return false;
-        else 
+        else
             return true;
     }
 
@@ -135,6 +139,9 @@ public class AlienBugAnimationComponent implements Component, Serializable {
         this.currentRender = currentRender;
     }
 
+    /**
+     * Sets the running animation ArrayList
+     */
     private void setRunningAnimation() {
         runningAnimations.add(run_1);
         runningAnimations.add(run_2);
@@ -144,10 +151,18 @@ public class AlienBugAnimationComponent implements Component, Serializable {
         runningAnimations.add(run_6);
     }
 
+    /**
+     * Gets the ArrayList containing the running animation
+     * 
+     * @return
+     */
     public ArrayList<Image> animateRunning() {
         return runningAnimations;
     }
 
+    /**
+     * Sets the idle animation
+     */
     private void setIdleAnimation() {
         idleAnimations.add(idle_1);
         idleAnimations.add(idle_2);
@@ -163,10 +178,18 @@ public class AlienBugAnimationComponent implements Component, Serializable {
         idleAnimations.add(idle_12);
     }
 
+    /**
+     * Gets the ArrayList containing the idle animation
+     * 
+     * @return
+     */
     public ArrayList<Image> animateIdle() {
         return idleAnimations;
     }
 
+    /**
+     * Sets the attack animation
+     */
     private void setAttackAnimation() {
         attackAnimations.add(attack_1);
         attackAnimations.add(attack_2);
@@ -177,6 +200,11 @@ public class AlienBugAnimationComponent implements Component, Serializable {
         attackAnimations.add(attack_7);
     }
 
+    /**
+     * Gets the ArrayList containing the attack animation
+     * 
+     * @return
+     */
     public ArrayList<Image> animateAttack() {
         return attackAnimations;
     }

@@ -5,19 +5,29 @@ import core.component.RenderComponent;
 import core.entity.Entity;
 import core.entity.EntityManager;
 import core.game.World;
-import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
-public class RenderSystem extends SystemComponent implements AnimationSystemComponent {
+/**
+ * This class will handle all rendering of static objects. 
+ */
+public class RenderSystem extends AnimationSystemComponent {
 
     private static final long serialVersionUID = 1L;
 
+    /**
+     * Constructs a RenderSystem that will handle all rendering of static objects on
+     * the map. By default this System will be enabled and will also have it's
+     * render update set to true
+     */
     public RenderSystem() {
         setDefaultState();
     }
 
     @Override
-    public void update(long delta, World world) {
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(false);
+        setNeedsRender(true);
     }
 
     @Override
@@ -29,9 +39,19 @@ public class RenderSystem extends SystemComponent implements AnimationSystemComp
         }
     }
 
-    public void init(GraphicsContext gc) {
+    @Override
+    public void update(World world) {
     }
 
+    @Override
+    public void render(GraphicsContext gc, World world) {
+        for (Entity e : getSystemEntities()) {
+            gc.drawImage(e.getComponent(RenderComponent.class).getImage(),
+                    e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
+        }
+    }
+
+    @Override
     public void initializeComponents(EntityManager entityManager) {
         for (Entity e : entityManager.getEntities()) {
             if (e.getComponent(RenderComponent.class) != null) {
@@ -40,20 +60,6 @@ public class RenderSystem extends SystemComponent implements AnimationSystemComp
                 }
             }
         }
-    }
-
-    @Override
-    public void render(GraphicsContext gc, long time, World world) {
-        for (Entity e : getSystemEntities()) {
-            gc.drawImage(e.getComponent(RenderComponent.class).getImage(),
-                    e.getComponent(PositionComponent.class).getX(), e.getComponent(PositionComponent.class).getY());
-        }
-    }
-
-    public void setDefaultState() {
-        setEnabled(true);
-        setNeedsUpdate(false);
-        setNeedsRender(true);
     }
 
 }

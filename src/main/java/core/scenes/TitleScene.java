@@ -13,15 +13,14 @@ import java.io.FileNotFoundException;
 import javafx.geometry.*;
 
 /**
- * 
+ * This class is the Title Scene that is loaded on startup of the GUI.
  */
 public class TitleScene {
 
     private static Scene TitleScene;
 
     /**
-     * 
-     * @return
+     * @return  the scene to display
      */
     public static Scene display() {
         VBox root = initScene();
@@ -32,8 +31,7 @@ public class TitleScene {
     }
 
     /**
-     * 
-     * @return
+     * @return  The VBox containing all the nodes of this scene
      */
     public static VBox initScene() {
 

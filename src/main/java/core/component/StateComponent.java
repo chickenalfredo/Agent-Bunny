@@ -20,6 +20,9 @@ public class StateComponent implements Component, Serializable {
     private ConcurrentState concurrentState;
     private Direction direction;
 
+    /**
+     * Constructs this Component with the default values 
+     */
     public StateComponent() {
         state = State.IDLE;
         concurrentState = ConcurrentState.FALLING;

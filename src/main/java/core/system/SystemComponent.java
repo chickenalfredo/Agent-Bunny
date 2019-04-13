@@ -44,14 +44,29 @@ public abstract class SystemComponent implements Serializable {
         return systemEntities;
     }
 
+    /**
+     * Sets the systems entities that it will need to update
+     * 
+     * @param m_entities
+     */
     public void setSystemEntities(ArrayList<Entity> m_entities) {
         systemEntities = m_entities;
     }
 
+    /**
+     * Adds an entity to the System Entity list
+     * 
+     * @param actor
+     */
     public void addSystemEntity(Entity actor) {
         systemEntities.add(actor);
     }
 
+    /**
+     * Removes the specified Entity from the System Entity list
+     * 
+     * @param actor
+     */
     public void removeSystemEntity(Entity actor) {
         systemEntities.remove(actor);
     }
@@ -70,10 +85,18 @@ public abstract class SystemComponent implements Serializable {
         this.needsUpdate = needsUpdate;
     }
 
+    /**
+     * @return true or false if the System needs a render update
+     */
     public boolean needsRender() {
         return needsRender;
     }
 
+    /**
+     * Set whether or not this System requires a render update
+     * 
+     * @param needsRender
+     */
     public void setNeedsRender(boolean needsRender) {
         this.needsRender = needsRender;
     }
@@ -92,15 +115,37 @@ public abstract class SystemComponent implements Serializable {
         this.enabled = enabled;
     }
 
+    /**
+     * Sets the specified Entity as the Entity who has initialized a request for a
+     * System update. This will set a flag to true in this System and will therefore
+     * begin to update
+     * 
+     * @param requester
+     */
     public void requestUpdate(Entity requester) {
         this.setRequester(requester);
         setNeedsUpdate(true);
     }
 
-    public abstract void update(long delta, World world);
+    /**
+     * Updates this System
+     * 
+     * @param world
+     */
+    public abstract void update(World world);
 
+    /**
+     * Sets the default state of the system. By default all Systems are enabled but
+     * not all Systems are set to update or to render
+     */
     public abstract void setDefaultState();
 
-    public abstract void render(GraphicsContext gc, long time, World world);
+    /**
+     * Renders this System
+     * 
+     * @param gc
+     * @param world
+     */
+    public abstract void render(GraphicsContext gc, World world);
 
 }

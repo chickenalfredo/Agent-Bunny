@@ -1,6 +1,5 @@
 package core.system.systems;
 
-import core.component.AIComponent;
 import core.component.PositionComponent;
 import core.component.StateComponent;
 import core.component.VelocityComponent;
@@ -10,11 +9,17 @@ import core.component.state.Direction;
 import core.component.state.State;
 import core.entity.Entity;
 import core.entity.EntityManager;
+import core.entity.attributes.Type;
+import core.entity.attributes.TypeAttribute;
 import core.scenes.GameScene;
 import core.game.World;
 import core.system.SystemComponent;
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * This System defines all actions and scripts that an AI entity will follow. This 
+ * System handles attacks, movements and states of the AI.
+ */
 public class AISystem extends SystemComponent {
 
     private static final long serialVersionUID = 1L;
@@ -25,9 +30,25 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void update(long delta, World world) {
+    public void setDefaultState() {
+        setEnabled(true);
+        setNeedsUpdate(true);
+        setNeedsRender(false);
+    }
+
+    @Override
+    public void init(EntityManager entityManager) {
+        for (Entity e : entityManager.getEntities()) {
+            if (e.getAttribute(TypeAttribute.class).getType() == Type.ENEMY) {
+                addSystemEntity(e);
+            }
+        }
+    }
+
+    @Override
+    public void update(World world) {
         for (Entity e : world.getEntities()) {
-            if (e.getComponent(AIComponent.class) != null) {
+            if (e.getAttribute(TypeAttribute.class).getType() == Type.ENEMY) {
                 if (isInRange(e))
                     moveEntity(e, world);
                 else
@@ -37,23 +58,14 @@ public class AISystem extends SystemComponent {
     }
 
     @Override
-    public void init(EntityManager entityManager) {
-        for (Entity e : entityManager.getEntities()) {
-            if (e.getComponent(AIComponent.class) != null) {
-                addSystemEntity(e);
-            }
-        }
+    public void render(GraphicsContext gc, World world) {
     }
 
-    public void setDefaultState() {
-        setEnabled(true);
-        setNeedsUpdate(true);
-        setNeedsRender(false);
-    }
-
-    public void render(GraphicsContext gc, long time, World world) {
-    }
-
+    /**
+     * Moves the AI
+     * @param e
+     * @param world
+     */
     public void moveEntity(Entity e, World world) {
 
         String direction = Position(e);
@@ -79,11 +91,19 @@ public class AISystem extends SystemComponent {
         }
     }
 
+    /**
+     * Sets the AI's state to idle
+     * @param e
+     */
     public void stayIdle(Entity e) {
         e.getComponent(VelocityComponent.class).setVelocityX(0);
         e.getComponent(StateComponent.class).setState(State.IDLE);
     }
 
+    /**
+     * @param e
+     * @return  the position of the Entity relative to the Hero
+     */
     private String Position(Entity e) {
         if (e.getComponent(PositionComponent.class).getX() + e.getComponent(WeaponComponent.class)
                 .getAttackRange() < GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX())
@@ -95,6 +115,11 @@ public class AISystem extends SystemComponent {
             return "on";
     }
 
+    /**
+     * Checks if the Entity is in range of the AI
+     * @param e
+     * @return
+     */
     private boolean isInRange(Entity e) {
         if ((e.getComponent(PositionComponent.class).getX()
                 - GameScene.getWorld().getHero().getComponent(PositionComponent.class).getX() <= range

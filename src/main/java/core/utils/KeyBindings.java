@@ -11,7 +11,8 @@ import core.scenes.GameSettings;
 import core.scenes.KeyBindingScene;
 
 /**
- * 
+ * This class will handle keybindings in the game. Through this interface, the
+ * user may change the default keys that are set.
  */
 public class KeyBindings {
 
@@ -22,15 +23,14 @@ public class KeyBindings {
     private static String menu = "ESCAPE";
 
     /**
-     * 
-     * @return
+     * @return the current left key
      */
     public static String getLeftKey() {
         return left;
     }
 
     /**
-     * 
+     * Sets the left key
      */
     public static class setLeftKey implements EventHandler<KeyEvent> {
         @Override
@@ -46,15 +46,14 @@ public class KeyBindings {
     }
 
     /**
-     * 
-     * @return
+     * @return the current right key
      */
     public static String getRightKey() {
         return right;
     }
 
     /**
-     * 
+     * Sets the right
      */
     public static class setRightKey implements EventHandler<KeyEvent> {
         @Override
@@ -70,15 +69,14 @@ public class KeyBindings {
     }
 
     /**
-     * 
-     * @return
+     * @return the current jump key
      */
     public static String getJumpKey() {
         return jump;
     }
 
     /**
-     * 
+     * Sets the jump key
      */
     public static class setJumpKey implements EventHandler<KeyEvent> {
         @Override
@@ -94,15 +92,14 @@ public class KeyBindings {
     }
 
     /**
-     * 
-     * @return
+     * @return the current attack key
      */
     public static String getAttackKey() {
         return attack;
     }
 
     /**
-     * 
+     * sets the attack key
      */
     public static class setAttackKey implements EventHandler<KeyEvent> {
         @Override
@@ -118,20 +115,18 @@ public class KeyBindings {
     }
 
     /**
-     * 
-     * @return
+     * @return the current menu key
      */
     public static String getMenuKey() {
         return menu;
     }
 
     /**
-     * 
+     * sets the menu key
      */
     public static class setMenuKey implements EventHandler<KeyEvent> {
         @Override
         public void handle(KeyEvent event) {
-
             if (String.valueOf(event.getCode()) != left && String.valueOf(event.getCode()) != jump
                     && String.valueOf(event.getCode()) != attack && String.valueOf(event.getCode()) != right) {
 
@@ -139,17 +134,15 @@ public class KeyBindings {
                 ((Button) ((HBox) KeyBindingScene.getKeyMenu().getChildren().get(5)).getChildren().get(1))
                         .setText(getMenuKey());
             }
-
         }
     }
 
     /**
-     * 
+     * Removes a current key binding
      */
     public static class removeKeyListener implements EventHandler<KeyEvent> {
         @Override
         public void handle(KeyEvent event) {
-
             if (App.getGameWindow().getScene() == GameScene.getScene()) {
                 App.getGameWindow().getScene().setOnKeyReleased(new GameScene.GameLoop());
                 App.getGameWindow().getScene().setOnKeyPressed(new GameScene.GameLoop());
@@ -160,7 +153,7 @@ public class KeyBindings {
     }
 
     /**
-     * 
+     * Binds the key buttons
      */
     public static class BindKeyButtons implements EventHandler<ActionEvent> {
 
@@ -180,9 +173,7 @@ public class KeyBindings {
                     App.getGameWindow().getScene().setOnKeyPressed(new setMenuKey());
                 } else {
                 }
-
                 App.getGameWindow().getScene().setOnKeyReleased(new removeKeyListener());
-
             }
         }
     }

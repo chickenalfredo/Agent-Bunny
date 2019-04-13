@@ -5,13 +5,18 @@ import core.command.*;
 import core.utils.KeyBindings;
 
 /**
- * 
+ * This class returns a new Command depending on the type of input the user
+ * enters. If the user enters invalid input, the Command is not instantiated and
+ * therefore the user recieves a null pointer.
  */
 public class InputHandler {
 
-    public InputHandler() {}
+    public InputHandler() {
+    }
 
     /**
+     * Handles input recieved as a KeyEvent type. Depending on what keybindings
+     * currently exist, this method will return a new Command.
      * 
      * @param event
      * @return

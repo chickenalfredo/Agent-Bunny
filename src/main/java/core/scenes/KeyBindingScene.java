@@ -13,7 +13,7 @@ import core.utils.KeyBindings;
 import core.scenes.GameSettings;
 
 /**
- * 
+ * The scene where keybinding's are made
  * @param <ClickEvent>
  */
 public class KeyBindingScene<ClickEvent> {
@@ -22,8 +22,7 @@ public class KeyBindingScene<ClickEvent> {
     private static VBox keyMenu;
 
     /**
-     * 
-     * @return
+     * @return  the VBox containing the display
      */
     public static VBox display() {
         try {
@@ -42,8 +41,7 @@ public class KeyBindingScene<ClickEvent> {
     }
 
     /**
-     * 
-     * @return
+     * @return  the initialized VBox scene
      */
     public static VBox initScene() {
 
@@ -79,22 +77,19 @@ public class KeyBindingScene<ClickEvent> {
                 }
             }
         }
-
         menu.setAlignment(Pos.CENTER);
-
         return keyMenu;
     }
 
     /**
-     * 
-     * @return
+     * @return  the VBox containing the key menu
      */
     public static VBox getKeyMenu() {
         return keyMenu;
     }
 
     /**
-     * 
+     * Sets the new keybinding key-press
      * @param handler
      */
     public static void setOnKeyPressed(EventHandler<KeyEvent> handler) {
@@ -106,7 +101,7 @@ public class KeyBindingScene<ClickEvent> {
     }
 
     /**
-     * 
+     * Sets the new keybinding on key-release
      * @param handler
      */
     public static void setOnKeyReleased(EventHandler<KeyEvent> handler) {
@@ -114,7 +109,7 @@ public class KeyBindingScene<ClickEvent> {
     }
 
     /**
-     * 
+     * Escapes out of this scene's menu
      */
     public static class EscKey implements EventHandler<KeyEvent> {
         public void handle(KeyEvent key) {

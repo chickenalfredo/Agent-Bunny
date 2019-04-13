@@ -5,7 +5,8 @@ import core.game.World;
 import core.system.systems.MovementSystem;
 
 /**
- * 
+ * This Command will execute a move command. Execution of this object will 
+ * send an update request the MovementSystem.
  */
 public class MoveCommand implements Command {
 
@@ -13,9 +14,11 @@ public class MoveCommand implements Command {
     private boolean isKeyPressedEvent;
 
     /**
+     * Constructs a Move Command with the key that was pressed and whether or not
+     * the event was a key pressed event
      * 
      * @param key
-     * @param isKeyPressedEvent
+     * @param isKeyPressed
      */
     public MoveCommand(String key, boolean isKeyPressedEvent) {
         this.key = key;
@@ -23,6 +26,7 @@ public class MoveCommand implements Command {
     }
 
     /**
+     * Executes the Move Command by request an update to the Movement System
      * 
      * @param actor
      * @param world

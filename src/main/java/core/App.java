@@ -6,7 +6,8 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 /**
- * 
+ * This is the JavaFX GUI that is run when the user selects "g" as their option
+ * for which program to run. From here the entire GUI version is loaded.
  */
 public class App extends Application {
 
@@ -28,5 +29,5 @@ public class App extends Application {
     public static Stage getGameWindow() {
         return gameWindow;
     }
-    
+
 }
